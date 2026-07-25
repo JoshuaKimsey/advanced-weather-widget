@@ -74,10 +74,10 @@ Item {
     // These are always in sync with iconInfo via QML bindings (no
     // imperative onChanged handler needed).  When iconInfo is null the
     // defaults produce an empty/invisible state.
-    readonly property string _infoType:     iconInfo ? String(iconInfo.type     || "") : ""
-    readonly property string _infoSource:   iconInfo ? String(iconInfo.source   || "") : ""
+    readonly property string _infoType: iconInfo ? String(iconInfo.type || "") : ""
+    readonly property string _infoSource: iconInfo ? String(iconInfo.source || "") : ""
     readonly property string _infoFallback: iconInfo ? String(iconInfo.svgFallback || "") : ""
-    readonly property bool   _infoMask:     iconInfo ? (iconInfo.isMask === true) : false
+    readonly property bool _infoMask: iconInfo ? (iconInfo.isMask === true) : false
 
     // ── Individual properties (can also be set directly) ──────────────────
     /** Icon type: "kde" (system icon), "svg" (file URL), "wi" (wi-font glyph) */
@@ -101,13 +101,56 @@ Item {
     /** Static (non-animated) glow behind the icon — a blurred copy of the
       * icon in its own colours.  Follows the global config toggle by
       * default; can be overridden per instance. */
-    property bool glowEnabled: Plasmoid.configuration
-                               && Plasmoid.configuration.iconGlowEnabled === true
+    property bool glowEnabled: Plasmoid.configuration && Plasmoid.configuration.iconGlowEnabled === true
 
-    /** Glow strength 0.1–1.0 — drives the halo's opacity and brightness. */
-    property real glowIntensity: (Plasmoid.configuration
-                                  && Plasmoid.configuration.iconGlowIntensity !== undefined)
-                                 ? Plasmoid.configuration.iconGlowIntensity : 0.85
+    /** Glow strength 0.1–1.0 — drives the halo's opacity, brightness, AND
+      * reach (blurMax/pad below) — all three scale with it, not just
+      * brightness/opacity, so the slider produces an actually visible
+      * difference rather than a barely-perceptible brightness nudge on an
+      * already-faint effect. */
+    property real glowIntensity: (Plasmoid.configuration && Plasmoid.configuration.iconGlowIntensity !== undefined) ? Plasmoid.configuration.iconGlowIntensity : 0.85
+
+    /** Whether the glow may bleed past the icon's own box. The full halo
+      * (widget popup) spreads outward beyond iconSize and needs an
+      * unclipped ancestor chain to paint into. Panel rows sit under
+      * clip:true ancestors for marquee/scroll behaviour, so glowBleed:false
+      * is used there — the glow is contained entirely within the icon's
+      * existing iconSize box instead, which never gets clipped no matter
+      * what the ancestors do. */
+    property bool glowBleed: true
+
+    /** Contained mode needs somewhere inside the box for the halo to be
+      * visible: a same-size layer directly behind an opaque icon is
+      * completely hidden with nothing showing around it — verified by
+      * direct pixel sampling: a same-box glow measured as indistinguishable
+      * from background regardless of intensity. So instead of requesting
+      * extra space, the visible icon content is rendered slightly smaller
+      * than the box (shrinkScale) when contained, leaving a real margin —
+      * inside the box that's already reserved by the panel layout — for
+      * the glow to occupy. Only takes effect when the glow is actually on
+      * and contained; a plain icon is unaffected. */
+    readonly property real _contentScale: (glowEnabled && !glowBleed) ? 0.78 : 1.0
+    readonly property int _contentSize: Math.max(1, Math.round(iconSize * _contentScale))
+
+    // MultiEffect never reports an implicit size of its own — verified by
+    // direct measurement, implicitWidth/Height read back as 0 even with
+    // autoPaddingEnabled — so relying on a Loader/effect to size itself
+    // renders a 0×0 item (i.e. nothing at all). The padded box has to be
+    // computed and assigned explicitly. Bleed mode's pad also scales with
+    // glowIntensity (0.3–1.0× of the max reach) so higher intensity looks
+    // like a visibly bigger, bolder halo, not just a brighter one.
+    // Contained mode's pad stays fixed to the shrink margin above — that
+    // margin is the hard ceiling the panel layout allows regardless of
+    // intensity, so only blur/brightness/opacity flex with it there.
+    //
+    // NOTE on scale: measured directly — the glow's actual visible falloff
+    // extends roughly 2x past the nominal blurMax value, not 1x. A blurMax
+    // of iconSize*0.6 (as this briefly shipped) produces a halo that visibly
+    // reaches ~2.3x the icon's own diameter — the oversized "zoom" bloom.
+    // iconSize*0.1 measured out to a clean, proportionate ~25px halo past a
+    // 120px icon's true edge instead.
+    readonly property int _glowPad: glowBleed ? Math.max(3, Math.round(iconSize * 0.1 * (0.3 + 0.7 * glowIntensity))) : Math.max(1, Math.round((iconSize - _contentSize) / 2))
+    readonly property int _glowBoxSize: _contentSize + _glowPad * 2
 
     // ── Wi-font specific (only needed for "wi" type) ──────────────────────
     /** The loaded wi-font family name (from FontLoader.font.family) */
@@ -121,7 +164,9 @@ Item {
     implicitHeight: iconSize
     width: iconSize
     height: iconSize
-    // The glow spreads past the icon bounds, so clipping must be off for it.
+    // The bleeding halo spreads past the icon bounds, so clipping must be
+    // off for it. Contained mode never exceeds this item's own box (see
+    // _contentScale above), so it doesn't need clip touched at all.
     clip: iconType !== "wi" && !glowEnabled
 
     visible: iconSource.length > 0
@@ -136,12 +181,13 @@ Item {
     // lookup actually misses.
     Loader {
         id: iconLoader
-        anchors.fill: parent
+        width: weatherIcon._contentSize
+        height: weatherIcon._contentSize
+        anchors.centerIn: parent
         sourceComponent: {
             if (weatherIcon.iconType === "wi")
                 return weatherIcon.wiFontReady ? wiComp : null;
-            if ((weatherIcon.iconType === "kde" || weatherIcon.iconType === "svg")
-                    && weatherIcon.iconSource.length > 0)
+            if ((weatherIcon.iconType === "kde" || weatherIcon.iconType === "svg") && weatherIcon.iconSource.length > 0)
                 return iconComp;
             return null;
         }
@@ -152,19 +198,29 @@ Item {
     // Purely static — no animation.  The MultiEffect (and its offscreen
     // texture) only exists while the option is enabled, so the default
     // configuration pays nothing.
+    //
+    // width/height are set explicitly to _glowBoxSize (verified necessary:
+    // MultiEffect's implicit size measures as 0 regardless of
+    // autoPaddingEnabled, so without an explicit size this Loader renders
+    // at 0×0 and the glow is invisible). autoPaddingEnabled:true then
+    // renders the source at native scale, centered within that explicit
+    // box, with blur bleeding into the padding rather than the source
+    // being stretched to fill it — verified by pixel sampling.
     Loader {
-        anchors.fill: iconLoader
+        width: weatherIcon._glowBoxSize
+        height: weatherIcon._glowBoxSize
+        anchors.centerIn: iconLoader
         z: -1
         active: weatherIcon.glowEnabled && iconLoader.item !== null
         sourceComponent: MultiEffect {
             source: iconLoader
             autoPaddingEnabled: true
             blurEnabled: true
-            blur: 1.0
-            blurMax: Math.max(12, Math.round(weatherIcon.iconSize * 0.6))
+            blur: 0.5 + 0.5 * weatherIcon.glowIntensity
+            blurMax: weatherIcon._glowPad
             brightness: 0.3 * weatherIcon.glowIntensity
             saturation: 0.4
-            opacity: weatherIcon.glowIntensity
+            opacity: 0.3 + 0.7 * weatherIcon.glowIntensity
         }
     }
 
@@ -174,7 +230,7 @@ Item {
         Text {
             text: weatherIcon.iconSource
             font.family: weatherIcon.wiFontFamily
-            font.pixelSize: Math.round(weatherIcon.iconSize * 0.88)
+            font.pixelSize: Math.round(weatherIcon._contentSize * 0.88)
             color: weatherIcon.iconColor
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
@@ -189,10 +245,7 @@ Item {
             source: weatherIcon.iconSource
             isMask: weatherIcon.isMask
             color: weatherIcon.isMask ? weatherIcon.iconColor : "transparent"
-            fallback: weatherIcon.iconType === "kde"
-                ? (weatherIcon.svgFallback.length > 0 ? ""
-                   : (weatherIcon.isMask ? "dialog-question-symbolic" : "dialog-question"))
-                : "unknown"
+            fallback: weatherIcon.iconType === "kde" ? (weatherIcon.svgFallback.length > 0 ? "" : (weatherIcon.isMask ? "dialog-question-symbolic" : "dialog-question")) : "unknown"
 
             // Bundled SVG fallback — only exists when the KDE icon is missing.
             // Gate on status === Error, not !valid: a failed theme lookup still
@@ -201,9 +254,7 @@ Item {
             // while the primary icon is still loading.
             Loader {
                 anchors.fill: parent
-                active: weatherIcon.iconType === "kde"
-                        && weatherIcon.svgFallback.length > 0
-                        && primaryIcon.status === Kirigami.Icon.Error
+                active: weatherIcon.iconType === "kde" && weatherIcon.svgFallback.length > 0 && primaryIcon.status === Kirigami.Icon.Error
                 sourceComponent: Kirigami.Icon {
                     source: weatherIcon.svgFallback
                     isMask: weatherIcon.isMask
