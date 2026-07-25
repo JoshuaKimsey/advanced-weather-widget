@@ -152,18 +152,18 @@ function openMeteoModelParam(setting, countryCode) {
 // Display metadata for each national model id: the issuing weather service's
 // name (shown in the footer) and its homepage. Keyed by Open-Meteo model id.
 var OPEN_METEO_MODEL_INFO = {
-    "dwd_icon_seamless":            { name: "DWD Germany",       url: "https://www.dwd.de" },
+    "dwd_icon_seamless":            { name: "DWD",               url: "https://www.dwd.de" },
     "meteofrance_seamless":         { name: "Météo-France",      url: "https://meteofrance.com" },
     "ukmo_seamless":                { name: "UK Met Office",     url: "https://www.metoffice.gov.uk" },
     "gfs_seamless":                 { name: "NOAA U.S.",         url: "https://www.weather.gov" },
     "meteoswiss_icon_seamless":     { name: "MeteoSwiss",        url: "https://www.meteoswiss.admin.ch" },
     "metno_seamless":               { name: "MET Norway",        url: "https://www.met.no" },
     "gem_seamless":                 { name: "GEM Canada",        url: "https://weather.gc.ca" },
-    "cma_grapes_global":            { name: "CMA China",         url: "https://www.cma.gov.cn" },
-    "jma_seamless":                 { name: "JMA Japan",         url: "https://www.jma.go.jp" },
-    "knmi_seamless":                { name: "KNMI Netherlands",  url: "https://www.knmi.nl" },
-    "dmi_seamless":                 { name: "DMI Denmark",       url: "https://www.dmi.dk" },
-    "italia_meteo_arpae_icon_2i":   { name: "ItaliaMeteo",       url: "https://www.italiameteo.org" }
+    "cma_grapes_global":            { name: "CMA",               url: "https://www.cma.gov.cn" },
+    "jma_seamless":                 { name: "JMA",               url: "https://www.jma.go.jp" },
+    "knmi_seamless":                { name: "KNMI Nederlands",   url: "https://www.knmi.nl" },
+    "dmi_seamless":                 { name: "DMI Danmark",       url: "https://www.dmi.dk" },
+    "italia_meteo_arpae_icon_2i":   { name: "ItaliaMeteo",       url: "https://www.agenziaitaliameteo.it" }
 };
 
 /**
