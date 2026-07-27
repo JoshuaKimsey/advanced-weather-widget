@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-07-20 09:31+0300\n"
-"PO-Revision-Date: 2026-07-26 19:15+0200\n"
+"PO-Revision-Date: 2026-07-27 22:35+0200\n"
 "Last-Translator: TomfromBerlin <tom-at-github@quantentunnel.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -227,7 +227,7 @@ msgstr "Die Luftqualität ist schlecht."
 
 #: contents/ui/js/airQuality.js:49
 msgid "Air quality is satisfactory."
-msgstr "Die Luftqualität ist befriedigend."
+msgstr "Die Luftqualität ist zufriedenstellend."
 
 #: contents/ui/js/airQuality.js:53
 msgid "Air quality is very poor."
@@ -283,11 +283,11 @@ msgstr "Alle Tabs"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:371
 msgid "Alt: %1 %2"
-msgstr "Alt: %1 %2"
+msgstr "Höhe mNN: %1 %2"
 
 #: contents/ui/config/configLocation.qml:1783
 msgid "Alt: %1 m"
-msgstr "Alt: %1 m"
+msgstr "Höhe mNN: %1 m"
 
 #: contents/ui/config/configGeneral.qml:456
 msgid "Alternative provider. API key required below."
@@ -295,7 +295,7 @@ msgstr "Alternativer Anbieter. API-Schlüssel unten erforderlich."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:464
 msgid "Altitude (%1):"
-msgstr "Höhe (%1):"
+msgstr "Höhe (%1 mNN):"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:483
 msgid "Altitude is optional, but strongly recommended for accurate forecasts. MET Norway (met.no) uses it to correct temperature and pressure for elevation; leaving it at 0 for a mountain location will return sea-level values."
@@ -303,7 +303,7 @@ msgstr "Die Angabe der Höhe ist optional, wird jedoch für genaue Vorhersagen d
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:610
 msgid "Altitude:"
-msgstr "Höhe:"
+msgstr "Höhe mNN:"
 
 #: contents/ui/config/configGeneral.qml:654
 msgid "An API key is required for %1. Weather data cannot be retrieved without it."
@@ -884,7 +884,7 @@ msgstr "Taupunkt:"
 
 #: contents/ui/config/configNotifications.qml:336
 msgid "Disable a type to silence it, or give it its own repeat interval. The interval is used only when 'Repeat reminder until dismissed' is on."
-msgstr "Deaktivieren Sie einen Typ, um ihn stummzuschalten, oder legen Sie ein eigenes Wiederholungsintervall fest. Das Intervall wird nur verwendet, wenn die Option „Erinnerung bis zum Schließen wiederholen“ aktiviert ist."
+msgstr "Deaktivieren Sie einen Typ, um ihn stumm zu schalten, oder legen Sie ein eigenes Wiederholungsintervall fest. Das Intervall wird nur verwendet, wenn die Option „Erinnerung bis zum Schließen wiederholen“ aktiviert ist."
 
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:488
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:483
@@ -973,7 +973,7 @@ msgstr "Standortdetails bearbeiten"
 
 #: contents/ui/DetailsView.qml:2337
 msgid "Effective"
-msgstr "Effektiv"
+msgstr "Gültig ab"
 
 #: contents/ui/config/configNotifications.qml:244
 msgid "Enable alert notifications"
@@ -1020,7 +1020,7 @@ msgstr "Geben Sie einen Standortnamen und gültige Koordinaten ein und klicken S
 
 #: contents/ui/config/configLocation.qml:1598
 msgid "Enter exact latitude, longitude, and optional elevation for a more local forecast. You can copy coordinates from OpenStreetMap, GeoNames, or Google Maps."
-msgstr "Geben Sie den genauen Breitengrad, Längengrad und optional die Höhe ein, um eine genauere Vorhersage für Ihren Standort zu erhalten. Sie können die Koordinaten von OpenStreetMap, GeoNames oder Google Maps kopieren."
+msgstr "Geben Sie den genauen Breitengrad, Längengrad und optional die Höhe (mNN) ein, um eine genauere Vorhersage für Ihren Standort zu erhalten. Sie können die Koordinaten von OpenStreetMap, GeoNames oder Google Maps kopieren."
 
 #: contents/ui/config/configLocation.qml:1185
 msgid "Enter manually"
@@ -1117,7 +1117,7 @@ msgstr "Fehlgeschlagen: %1"
 
 #: contents/ui/js/airQuality.js:50 contents/ui/main.qml:845
 msgid "Fair"
-msgstr "Befriedigend"
+msgstr "Mäßig"
 
 #: contents/ui/config/configAppearance.qml:1345
 #: contents/ui/config/configAppearance.qml:1447
@@ -1305,7 +1305,7 @@ msgstr "Gräser"
 
 #: contents/ui/DetailsView.qml:2329
 msgid "Headline"
-msgstr "Kopfzeile"
+msgstr "Überschrift"
 
 #: contents/ui/components/RadarWebEngineView.qml:93
 #: contents/ui/components/RadarWebEngineView.qml:538
@@ -1360,7 +1360,7 @@ msgstr "Präfix-Icon ausblenden"
 #: contents/ui/js/spaceWeather.js:199 contents/ui/main.qml:833
 #: contents/ui/main.qml:877
 msgid "High"
-msgstr "Max"
+msgstr "Hoch"
 
 #: contents/ui/config/configGeneral.qml:466
 msgid "High precision forecast provider. API key required below."
@@ -1384,7 +1384,7 @@ msgstr "Einstellungen für stündliche Prognose"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:944
 msgid "Hourly layout:"
-msgstr "Stunden-Layout:"
+msgstr "Stundenlayout:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:735
 msgid "How often the rows scroll to reveal the next item"
@@ -1420,21 +1420,21 @@ msgstr "Icon Leuchtintensität:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:203
 msgid "Icon only"
-msgstr "Icon"
+msgstr "Nur Icon"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:344
 msgid "Icon size:"
-msgstr "Icon-Größe:"
+msgstr "Icon Größe:"
 
 #: contents/ui/config/configAppearance.qml:440
 msgid "Icon source:"
-msgstr "Icon-Quelle:"
+msgstr "Icon Quelle:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1063
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:191
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:517
 msgid "Icon theme:"
-msgstr "Icon-Theme:"
+msgstr "Icon Thema:"
 
 #: contents/ui/config/configAppearance.qml:658
 msgid "Icon:"
@@ -1503,7 +1503,7 @@ msgstr ""
 
 #: contents/ui/DetailsView.qml:2341
 msgid "Instruction"
-msgstr "Anweisung"
+msgstr "Instruktion"
 
 #: contents/ui/config/configGeneral.qml:911
 msgid "Interval:"
@@ -1619,7 +1619,7 @@ msgstr "Layout"
 #: contents/ui/config/tabs/ConfigPanelTab.qml:146
 #: contents/ui/config/tabs/ConfigPanelTab.qml:179
 msgid "Layout type:"
-msgstr "Layout-Typ:"
+msgstr "Layouttyp:"
 
 #: contents/ui/config/configGeneral.qml:749
 #: contents/ui/config/configGeneral.qml:828
@@ -1793,7 +1793,7 @@ msgstr "Suche nach Standort…"
 #: contents/ui/js/spaceWeather.js:201 contents/ui/main.qml:831
 #: contents/ui/main.qml:875
 msgid "Low"
-msgstr "Min"
+msgstr "Niedrig"
 
 #: contents/ui/config/configNotifications.qml:46 contents/ui/main.qml:971
 msgid "Low temperature"
@@ -2127,11 +2127,11 @@ msgstr "Keine Wetterstationen für '%1' gefunden"
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
 #: contents/ui/main.qml:941
 msgid "None"
-msgstr "Kein"
+msgstr "Nichts"
 
 #: contents/ui/config/configLocation.qml:635
 msgid "None Selected"
-msgstr "Keine Auswahl"
+msgstr "Nichts ausgewählt"
 
 #: contents/ui/DetailsView.qml:1047
 msgid "Normal"
@@ -2278,7 +2278,7 @@ msgstr "Anzeigeeinstellungen für Kontrollleiste"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1002
 msgid "Panel font:"
-msgstr "Kontrollleiste Schriftart:"
+msgstr "Kontrollleistenschriftart:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:939
 msgid "Panel items settings"
@@ -2316,7 +2316,7 @@ msgstr "Pause"
 
 #: contents/ui/config/configNotifications.qml:327
 msgid "Per alert type:"
-msgstr "Pro Benachrichtigungstyp:"
+msgstr "Nach Benachrichtigungstyp:"
 
 #: contents/ui/config/configAppearance.qml:884
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:509
@@ -2543,15 +2543,15 @@ msgstr "Nur Radar"
 
 #: contents/ui/config/configGeneral.qml:742
 msgid "Radar provider:"
-msgstr "Radar-Anbieter:"
+msgstr "Radar Anbieter:"
 
 #: contents/ui/config/configGeneral.qml:771
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
-msgstr "Radar-Anbieter: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR ist eine kostenlose Open-Source-Wetterradar-API. Sie kombiniert echte Radar-Kompositbilder aus US-amerikanischen (NOAA), kanadischen und europäischen Quellen mit einem globalen Modell als Rückfalloption und stellt Radardaten der letzten zwei Stunden sowie eine kurzfristige Vorhersage (Nowcast) bereit. Zudem wird eine kostenlose Satellitenebene (Infrarot) angeboten.<br/><br/>Ebenenmodus, Radar-Farbschema und Bewegungspfeile lassen sich direkt im Reiter „Radar“ auswählen. Die Karte passt sich automatisch an das helle oder dunkle Plasma-Farbschema an."
+msgstr "Radar Anbieter: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR ist eine kostenlose Open-Source-Wetterradar-API. Sie kombiniert echte Radar-Kompositbilder aus US-amerikanischen (NOAA), kanadischen und europäischen Quellen mit einem globalen Modell als Rückfalloption und stellt Radardaten der letzten zwei Stunden sowie eine kurzfristige Vorhersage (Nowcast) bereit. Zudem wird eine kostenlose Satellitenebene (Infrarot) angeboten.<br/><br/>Ebenenmodus, Radar-Farbschema und Bewegungspfeile lassen sich direkt im Reiter „Radar“ auswählen. Die Karte passt sich automatisch an das helle oder dunkle Plasma-Farbschema an."
 
 #: contents/ui/config/configGeneral.qml:762
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
-msgstr "Radar-Anbieter: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>Das Widget verwendet die kostenlose RainViewer-API, die die Wetterradardaten der letzten 2 Stunden in 10-Minuten-Intervallen bereitstellt. Radarvorhersagen werden nicht unterstützt.<br/><br/>Rain Viewer übernimmt keine Garantie für die Verfügbarkeit von Radardaten. Sie schließen keine Verträge mit den Eigentümern dieser Daten. Der Grund dafür ist, dass die Eigentümer sie bitten können, ihre Daten aus Rain Viewer zu entfernen, das Format zu ändern oder die Weitergabe der Daten einzustellen. Sie versuchen, die Radardaten so lange wie möglich aufzubewahren, aber manchmal stellen die Eigentümer einfach die Bereitstellung der Bilder ein."
+msgstr "Radar Anbieter: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>Das Widget verwendet die kostenlose RainViewer-API, die die Wetterradardaten der letzten 2 Stunden in 10-Minuten-Intervallen bereitstellt. Radarvorhersagen werden nicht unterstützt.<br/><br/>Rain Viewer übernimmt keine Garantie für die Verfügbarkeit von Radardaten. Sie schließen keine Verträge mit den Eigentümern dieser Daten. Der Grund dafür ist, dass die Eigentümer sie bitten können, ihre Daten aus Rain Viewer zu entfernen, das Format zu ändern oder die Weitergabe der Daten einzustellen. Sie versuchen, die Radardaten so lange wie möglich aufzubewahren, aber manchmal stellen die Eigentümer einfach die Bereitstellung der Bilder ein."
 
 #: contents/ui/FullView.qml:731 contents/ui/FullView.qml:733
 msgid "Radar:"
@@ -2579,7 +2579,7 @@ msgstr "Regen (Nacht)"
 
 #: contents/ui/config/configGeneral.qml:748
 msgid "Rain Viewer"
-msgstr "Regen-Ansicht"
+msgstr "Rain Viewer"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:59
 msgid "Rain showers"
@@ -2706,7 +2706,7 @@ msgstr "SO₂"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:139
 msgid "Satellite"
-msgstr "Satellite"
+msgstr "Satellit"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:906
 msgid "Saturday"
@@ -2917,10 +2917,9 @@ msgstr "Einfacher Modus Icons"
 msgid "Simple Widget"
 msgstr "Einfaches Widget"
 
-# I couldn't determine where this appears in the widget or what "chips" mean in this context.
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:739
 msgid "Simple chips:"
-msgstr ""
+msgstr "Wetterelemente im einfachen Modus:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:140
 msgid "Simple display mode settings"
@@ -3003,12 +3002,9 @@ msgstr "Schnee erwartet"
 msgid "Snow expected to end %1."
 msgstr "Es wird erwartet, dass der Schneefall um %1 aufhört."
 
-# In German, it is rather unusual to speak of snow grains.
-# As far as I know, there is no word in our language for this specific type of precipitation. While there is a term for *sleet* (soft hail) - referring to actual pellets - that does not seem to be what is meant by the term "snow grains".
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:58
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:702
 #: contents/ui/main.qml:1943
-#, fuzzy
 msgid "Snow grains"
 msgstr "Schneekörner"
 
@@ -3047,7 +3043,7 @@ msgstr "Weltallwetter:"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:353
 msgid "Space weather options"
-msgstr "Weltallwetter Optionen"
+msgstr "Optionen für Weltallwetter"
 
 #: contents/ui/config/configGeneral.qml:454
 msgid "Standard provider. API key required below."
@@ -3096,13 +3092,13 @@ msgstr "Sonnenauf- und -untergangszeiten"
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:523
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:518
 msgid "Sun times mode:"
-msgstr "Sonnenzeiten-Modus:"
+msgstr "Modus für Sonnenzeiten:"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:349
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:417
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:412
 msgid "Sun times options"
-msgstr "Sonnenzeiten-Optionen"
+msgstr "Optionen für Sonnenzeiten"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:903
 msgid "Sunday"
@@ -3221,7 +3217,7 @@ msgstr "Anzeigeoptionen des Infobereiches"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:140
 msgid "System tray icon settings"
-msgstr "Infobereich Icon-Einstellungen"
+msgstr "Einstellungen für Icons im Infobereich"
 
 #: contents/ui/components/RadarWebEngineView.qml:75
 #: contents/ui/config/configAppearance.qml:1323
@@ -3306,7 +3302,7 @@ msgstr "Die Kartenauswahl benötigt die Pakete QtLocation und QtPositioning, die
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:682
 msgid "Theme default"
-msgstr "Themastandard"
+msgstr "Themenstandard"
 
 #: contents/ui/config/configLocation.qml:182
 msgid "This location is already in your saved list."
@@ -3599,11 +3595,9 @@ msgstr "Regionsstandards verwenden"
 msgid "Uses KDE system icons by default. Click the button to customise each item's icon."
 msgstr "Verwendet standardmäßig KDE-System-Icons. Klicken Sie auf die Schaltfläche, um das Icon jedes Elements anzupassen."
 
-# What does "V." stand for?
 #: contents/ui/js/airQuality.js:53
-#, fuzzy
 msgid "V.Poor"
-msgstr "V.Poor"
+msgstr "Sehr schlecht"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:55
 msgid "Values are rounded to whole numbers"
@@ -3905,7 +3899,7 @@ msgstr "ft"
 
 #: contents/ui/DetailsView.qml:1489 contents/ui/DetailsView.qml:1624
 msgid "grains/m³"
-msgstr "Samen/m³"
+msgstr "Pollen/m³"
 
 #: contents/ui/components/RadarWebEngineView.qml:551
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
@@ -4077,11 +4071,11 @@ msgstr "Systemstandort"
 
 #: contents/ui/main.qml:1649
 msgid "this afternoon"
-msgstr "heute nachmittag"
+msgstr "heute Nachmittag"
 
 #: contents/ui/main.qml:1648
 msgid "this morning"
-msgstr "heute morgen"
+msgstr "heute Morgen"
 
 #: contents/ui/main.qml:1509
 msgid "thunderstorms"
@@ -4097,7 +4091,7 @@ msgstr "bis %1"
 
 #: contents/ui/DetailsView.qml:3496
 msgid "until dawn"
-msgstr "bis zur Dämmerung"
+msgstr "bis zur Morgendämmerung"
 
 #: contents/ui/main.qml:1743
 msgid "very high"
