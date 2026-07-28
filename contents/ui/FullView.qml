@@ -717,7 +717,7 @@ Rectangle {
             }
         }
 
-        // ── Footer: "Updated HH:mm · Weather provider: <link>" ─────────
+        // ── Footer: "Updated X ago · Weather provider: <link>" ─────────
         Item {
             Layout.preferredHeight: 6
         }
@@ -726,8 +726,12 @@ Rectangle {
             visible: Plasmoid.configuration.showUpdateText !== false && weatherRoot && !weatherRoot.loading && (weatherRoot.updateText || "").length > 0
             text: {
                 var t = weatherRoot ? weatherRoot.updateText : "";
-                if (fullView._isRadarTab && (Plasmoid.configuration.radarLayer || "rainviewer") === "rainviewer")
-                    t += " · " + i18n("Radar:") + " <a href='https://www.rainviewer.com/'>Rain Viewer</a>";
+                if (fullView._isRadarTab) {
+                    if ((Plasmoid.configuration.radarProvider || "rainviewer") === "librewxr")
+                        t += " · " + i18n("Radar:") + " <a href='https://librewxr.net/'>LibreWXR</a>";
+                    else
+                        t += " · " + i18n("Radar:") + " <a href='https://www.rainviewer.com/'>Rain Viewer</a>";
+                }
                 return t;
             }
             textFormat: Text.RichText

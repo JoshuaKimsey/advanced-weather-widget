@@ -5,23 +5,23 @@
 
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |     859 |       |
-| bg       | 840/859 |   97% |
-| cs_CZ    | 839/859 |   97% |
-| de       | 291/859 |   33% |
-| es       | 839/859 |   97% |
-| fr       | 738/859 |   85% |
-| hu_HU    | 839/859 |   97% |
-| it_IT    | 859/859 |  100% |
-| ja_JP    | 839/859 |   97% |
-| nl       | 859/859 |  100% |
-| pl_PL    | 820/859 |   95% |
-| pt_BR    | 290/859 |   33% |
-| ru       | 839/859 |   97% |
-| tr_TR    | 291/859 |   33% |
-| uk       | 839/859 |   97% |
-| zh_CN    | 839/859 |   97% |
-| zh_TW    | 839/859 |   97% |
+| Template |     901 |       |
+| bg       | 901/901 |  100% |
+| cs_CZ    | 836/901 |   92% |
+| de       | 901/901 |  100% |
+| es       | 901/901 |  100% |
+| fr       | 901/901 |  100% |
+| hu_HU    | 901/901 |  100% |
+| it_IT    | 901/901 |  100% |
+| ja_JP    | 901/901 |  100% |
+| nl       | 901/901 |  100% |
+| pl_PL    | 901/901 |  100% |
+| pt_BR    | 289/901 |   32% |
+| ru       | 855/901 |   94% |
+| tr_TR    | 901/901 |  100% |
+| uk       | 901/901 |  100% |
+| zh_CN    | 901/901 |  100% |
+| zh_TW    | 901/901 |  100% |
 
 
 
@@ -67,7 +67,7 @@ msgstr "Configurar ícone…"
 
 Thank you to everyone who contributed translations to this project ❤️
 
-- **German** - [HolySoap](https://github.com/HolySoap)
+- **German** - [HolySoap](https://github.com/HolySoap) and [TomfromBerlin](https://github.com/TomfromBerlin)
 - **Brazilian Portuguese** - [PauloAlbqrq](https://github.com/PauloAlbqrq)
 - **Bulgarian** - Petar Nedyalkov (Author)
 - **Dutch** - Heimen Stoffels (<vistausss@fastmail.com>)

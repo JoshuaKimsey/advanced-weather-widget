@@ -30,7 +30,170 @@
 
 function I18N_NOOP(s) { return s; }
 
+// ── "Not supported" sentinel ─────────────────────────────────────────────────
+//
+// Numeric weather fields are normally NaN when a value is simply not loaded yet
+// (transient) — formatters render that as "--". Some providers, however, never
+// expose a given field at all (e.g. BBC has no precipitation amount and no
+// per-hour UV index). Those providers set the field to NOT_SUPPORTED so the
+// formatters can render a distinct, honest "Not supported" instead of "--".
+var NOT_SUPPORTED = -9999;
+function isNotSupported(v) { return v === NOT_SUPPORTED; }
+
+/**
+ * Magnus-formula dew-point approximation.
+ * T in °C, rh in % → dew point in °C (rounded to 1 decimal), NaN if unusable.
+ * Shared helper so providers that lack a native dew point (BBC, met.no, …)
+ * can derive one from temperature + humidity.
+ */
+function dewPoint(T, rh) {
+    if (isNaN(T) || isNaN(rh) || rh <= 0)
+        return NaN;
+    var b = 17.67, c = 243.5;
+    var gamma = Math.log(rh / 100.0) + (b * T) / (c + T);
+    return Math.round((c * gamma) / (b - gamma) * 10) / 10;
+}
+
+// ── Open-Meteo national high-resolution models ───────────────────────────────
+//
+// Open-Meteo re-hosts the official national weather models. Passing the right
+// `models=` value to the SAME forecast endpoint yields the official per-country
+// high-resolution forecast (e.g. DWD ICON for Germany, Météo-France AROME for
+// France) — same JSON shape, so no parsing changes are needed.
+//
+// Every value below was verified against the live API to return a non-null
+// `current` block (temperature_2m + weather_code + wind + humidity) AND a
+// multi-day `daily.temperature_2m_max`. Where a `_seamless` variant exists it is
+// preferred: it blends the high-res short-range model (best near-term accuracy)
+// with the provider's global model for the long tail, giving both accuracy and
+// the full forecast horizon.
+//
+// Countries whose national model does NOT return usable `current` data
+// (Australia's ACCESS, Korea's LDPS/GDPS/KMA-seamless all come back null via
+// Open-Meteo) are intentionally omitted → they fall back to Open-Meteo's
+// default global "best_match", i.e. the widget's previous behaviour.
+//
+// Keyed by ISO 3166-1 alpha-2 country code (uppercase).
+var OPEN_METEO_COUNTRY_MODELS = {
+    // DWD ICON — Germany + immediate Central-European neighbours the 2km
+    // ICON-D2 domain covers well (Austria, Switzerland handled separately below).
+    "DE": "dwd_icon_seamless",
+    "AT": "dwd_icon_seamless",   // GeoSphere Austria has no usable OM current model; ICON-D2 covers Austria
+    "PL": "dwd_icon_seamless",
+    "CZ": "dwd_icon_seamless",
+    "BE": "dwd_icon_seamless",
+    "LU": "dwd_icon_seamless",
+
+    // Météo-France AROME/ARPEGE
+    "FR": "meteofrance_seamless",
+
+    // UK Met Office (UKV 2km near-term)
+    "GB": "ukmo_seamless",
+    "IE": "ukmo_seamless",
+
+    // NOAA — GFS seamless includes HRRR (3km CONUS) in the near term
+    "US": "gfs_seamless",
+
+    // MeteoSwiss ICON-CH (1–2km, Alpine)
+    "CH": "meteoswiss_icon_seamless",
+    "LI": "meteoswiss_icon_seamless",
+
+    // MET Norway Nordic (1km) — covers the Nordics + Baltic
+    "NO": "metno_seamless",
+    "SE": "metno_seamless",
+    "FI": "metno_seamless",
+
+    // Environment Canada GEM HRDPS (2.5km)
+    "CA": "gem_seamless",
+
+    // CMA GRAPES (China) — no seamless variant; direct global model returns data
+    "CN": "cma_grapes_global",
+
+    // JMA MSM (Japan, 5km)
+    "JP": "jma_seamless",
+
+    // KNMI HARMONIE-AROME (Netherlands, 2km)
+    "NL": "knmi_seamless",
+
+    // DMI HARMONIE-AROME (Denmark + surrounding Europe, 2km)
+    "DK": "dmi_seamless",
+
+    // ItaliaMeteo ARPAE ICON-2I (Italy, 2km) — no seamless variant
+    "IT": "italia_meteo_arpae_icon_2i"
+};
+
+/**
+ * Resolves the Open-Meteo `models=` value to use for a given config setting and
+ * location country.
+ *
+ * @param {string} setting     The `openMeteoModel` config value:
+ *                             "auto"    → pick the national model by country;
+ *                             "default" → force the global best_match;
+ *                             "<id>"    → force a specific model id.
+ * @param {string} countryCode ISO-3166 alpha-2 (any case); used only for "auto".
+ * @returns {string} A model id, or "" meaning "add no models= param" (best_match).
+ */
+function resolveOpenMeteoModel(setting, countryCode) {
+    var s = (setting || "auto").trim();
+    if (s === "default" || s === "best_match")
+        return "";                       // no models= param → global best_match
+    if (s !== "auto" && s.length > 0)
+        return s;                        // explicit user override
+    var cc = (countryCode || "").toUpperCase();
+    return OPEN_METEO_COUNTRY_MODELS[cc] || "";   // "" → fall back to best_match
+}
+
+/** Builds the "&models=<id>" URL fragment, or "" when best_match should be used. */
+function openMeteoModelParam(setting, countryCode) {
+    var m = resolveOpenMeteoModel(setting, countryCode);
+    return m ? "&models=" + m : "";
+}
+
+// Display metadata for each national model id: the issuing weather service's
+// name (shown in the footer) and its homepage. Keyed by Open-Meteo model id.
+var OPEN_METEO_MODEL_INFO = {
+    "dwd_icon_seamless":            { name: "DWD",               url: "https://www.dwd.de" },
+    "meteofrance_seamless":         { name: "Météo-France",      url: "https://meteofrance.com" },
+    "ukmo_seamless":                { name: "UK Met Office",     url: "https://www.metoffice.gov.uk" },
+    "gfs_seamless":                 { name: "NOAA U.S.",         url: "https://www.weather.gov" },
+    "meteoswiss_icon_seamless":     { name: "MeteoSwiss",        url: "https://www.meteoswiss.admin.ch" },
+    "metno_seamless":               { name: "MET Norway",        url: "https://www.met.no" },
+    "gem_seamless":                 { name: "GEM Canada",        url: "https://weather.gc.ca" },
+    "cma_grapes_global":            { name: "CMA",               url: "https://www.cma.gov.cn" },
+    "jma_seamless":                 { name: "JMA",               url: "https://www.jma.go.jp" },
+    "knmi_seamless":                { name: "KNMI Nederlands",   url: "https://www.knmi.nl" },
+    "dmi_seamless":                 { name: "DMI Danmark",       url: "https://www.dmi.dk" },
+    "italia_meteo_arpae_icon_2i":   { name: "ItaliaMeteo",       url: "https://www.agenziaitaliameteo.it" }
+};
+
+/**
+ * Returns { name, url } describing the active national high-resolution model
+ * for the given config setting + country, or null when the plain global
+ * best_match is in use (nothing extra to show in the footer).
+ */
+function openMeteoModelInfo(setting, countryCode) {
+    var m = resolveOpenMeteoModel(setting, countryCode);
+    return m && OPEN_METEO_MODEL_INFO[m] ? OPEN_METEO_MODEL_INFO[m] : null;
+}
+
 // ── Wind direction ──────────────────────────────────────────────────────────
+
+/**
+ * Converts a compass abbreviation ("N", "NNE", "SW", …) to degrees.
+ * Used by providers (e.g. BBC) that report wind direction as text.
+ * Returns NaN for unknown/empty input.
+ */
+var _COMPASS_DEGREES = {
+    "N": 0, "NNE": 22.5, "NE": 45, "ENE": 67.5,
+    "E": 90, "ESE": 112.5, "SE": 135, "SSE": 157.5,
+    "S": 180, "SSW": 202.5, "SW": 225, "WSW": 247.5,
+    "W": 270, "WNW": 292.5, "NW": 315, "NNW": 337.5
+};
+function compassToDegrees(abbr) {
+    if (!abbr) return NaN;
+    var v = _COMPASS_DEGREES[String(abbr).toUpperCase().trim()];
+    return (v === undefined) ? NaN : v;
+}
 
 /**
  * Maps wind degrees to a wi-font directional arrow glyph (16-point compass).
@@ -246,6 +409,73 @@ function pirateWeatherIconToWmo(icon) {
         default:
             return 2;
     }
+}
+
+/**
+ * Converts a BBC Weather (Met Office) numeric weatherType to a WMO weather code.
+ * BBC uses the standard Met Office 0–30 code table; see
+ * https://www.metoffice.gov.uk/services/data/datapoint/code-definitions
+ */
+function bbcWeatherTypeToWmo(code) {
+    switch (Number(code)) {
+        case 0:  // Clear sky (night)
+        case 1:  // Sunny (day)
+            return 0;
+        case 2:  // Partly cloudy (night)
+        case 3:  // Sunny intervals (day)
+            return 2;
+        case 5:  // Mist
+        case 6:  // Fog
+            return 45;
+        case 7:  // Light cloud
+            return 3;
+        case 8:  // Thick cloud
+            return 3;
+        case 9:  // Light rain shower (night)
+        case 10: // Light rain shower (day)
+        case 11: // Drizzle
+        case 12: // Light rain
+            return 61;
+        case 13: // Heavy rain shower (night)
+        case 14: // Heavy rain shower (day)
+        case 15: // Heavy rain
+            return 63;
+        case 16: // Sleet shower (night)
+        case 17: // Sleet shower (day)
+        case 18: // Sleet
+            return 66;
+        case 19: // Hail shower (night)
+        case 20: // Hail shower (day)
+        case 21: // Hail
+            return 77;
+        case 22: // Light snow shower (night)
+        case 23: // Light snow shower (day)
+        case 24: // Light snow
+            return 71;
+        case 25: // Heavy snow shower (night)
+        case 26: // Heavy snow shower (day)
+        case 27: // Heavy snow
+            return 75;
+        case 28: // Thunder shower (night)
+        case 29: // Thunder shower (day)
+        case 30: // Thunder
+            return 95;
+        default:
+            return 2;
+    }
+}
+
+/**
+ * Determines day/night from a BBC weatherType code.
+ * Even codes below 30 are night variants, odd codes are day variants;
+ * 0 (clear sky) is night, 1 (sunny) is day. Returns 1/0/-1.
+ */
+function bbcWeatherTypeIsDay(code) {
+    var c = Number(code);
+    if (isNaN(c)) return -1;
+    if (c === 5 || c === 6 || c === 7 || c === 8) return -1; // mist/fog/cloud: ambiguous
+    if (c >= 0 && c <= 30) return (c % 2 === 1) ? 1 : 0;
+    return -1;
 }
 
 // ── Unit formatters ─────────────────────────────────────────────────────────

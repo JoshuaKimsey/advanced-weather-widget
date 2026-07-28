@@ -39,6 +39,9 @@ QtObject {
     /** Reference to the PlasmoidItem root — set from main.qml */
     property var weatherRoot
 
+    property string _updateProvider: ""
+    property real _updateTimestampMs: 0
+
     // ── Lazy provider dispatcher ─────────────────────────────────────────
     // Providers.qml (which imports all 12 provider modules) is loaded on first
     // use instead of at widget construction, keeping provider JS off the shell-
@@ -72,7 +75,27 @@ QtObject {
     readonly property int forecastDays:    Plasmoid.configuration.forecastDays
     readonly property real altitude:       Plasmoid.configuration.altitude
     readonly property string countryCode:  (Plasmoid.configuration.countryCode || "").toUpperCase()
+    // Open-Meteo model selection ("auto" = official national high-res model by
+    // country; "default" = global best_match; otherwise a literal models= id).
+    readonly property string openMeteoModel: Plasmoid.configuration.openMeteoModel || "auto"
     readonly property string locationName: Plasmoid.configuration.locationName || ""
+    // Alerts source: "native" (provider alerts + MeteoAlarm/NWS fallback),
+    // "librewxr" (LibreWXR worldwide CAP alerts API), or "foss" (KDE FOSS
+    // Public Alert Server — worldwide CAP alerts).
+    readonly property string alertsProvider: Plasmoid.configuration.alertsProvider || "native"
+    // Base URL shared with the LibreWXR radar view (librewxrUrl config entry)
+    readonly property string librewxrBaseUrl: {
+        var u = (Plasmoid.configuration.librewxrUrl || "https://api.librewxr.net").trim();
+        u = u.replace(/\/+$/, "");
+        return u || "https://api.librewxr.net";
+    }
+    // Base URL for the FOSS Public Alert Server (self-hostable; default is
+    // KDE's public instance at https://alerts.kde.org).
+    readonly property string fossBaseUrl: {
+        var u = (Plasmoid.configuration.fossAlertUrl || "https://alerts.kde.org").trim();
+        u = u.replace(/\/+$/, "");
+        return u || "https://alerts.kde.org";
+    }
 
     // ── Private: API key helpers ─────────────────────────────────────────
     function _owKey() {
@@ -122,6 +145,11 @@ QtObject {
     property var _tio_cur: null
     property var _wb_cur: null
     property var _qw_cur: null
+    // BBC Weather is keyed by a numeric location id (not lat/lon). We cache the
+    // id resolved from the locator service, keyed by rounded coordinates, so
+    // repeat refreshes for the same location skip the extra lookup request.
+    property string _bbcLocId: ""
+    property string _bbcLocKey: ""
     // True once the current provider has written native alerts for this
     // refresh generation — lets _fetchAlertsIfNeeded() decide whether to
     // fall back to AlertsJS without having to blank weatherRoot.weatherAlerts
@@ -137,9 +165,17 @@ QtObject {
             if (weatherRoot && weatherRoot.loading) {
                 console.warn("[WeatherService] Safety timeout — forcing loading=false");
                 weatherRoot.loading = false;
+                service._clearUpdateMetadata();
                 weatherRoot.updateText = i18n("Update timed out. Tap to retry.");
             }
         }
+    }
+
+    property Timer _relativeUpdateTimer: Timer {
+        interval: 60000
+        running: service._updateTimestampMs > 0 && (service._updateProvider || "").length > 0
+        repeat: true
+        onTriggered: service._refreshRelativeUpdateText()
     }
 
     // ── Public methods ────────────────────────────────────────────────────
@@ -153,6 +189,7 @@ QtObject {
         var r = weatherRoot;
         if (!r.hasSelectedTown) {
             r.loading = false;
+            service._clearUpdateMetadata();
             r.updateText = "";
             r.weatherDataStaged = null;
             r.aqiDataStaged = null;
@@ -170,7 +207,7 @@ QtObject {
         _nativeAlertsSetThisGen = false;
 
         var provider = Plasmoid.configuration.weatherProvider || "adaptive";
-        var chain = (provider === "adaptive") ? ["openMeteo", "metno", "pirateWeather", "visualCrossing", "tomorrowIo", "stormGlass", "weatherbit", "qWeather", "openWeather", "weatherApi"] : [provider];
+        var chain = (provider === "adaptive") ? ["openMeteo", "bbc", "metno", "pirateWeather", "visualCrossing", "tomorrowIo", "stormGlass", "weatherbit", "qWeather", "openWeather", "weatherApi"] : [provider];
         chain._gen = _refreshGen;
 
         _tryProvider(chain, 0);
@@ -214,6 +251,16 @@ QtObject {
         var lon = service.longitude;
         var tz  = service.timezone || "auto";
 
+        // ── BBC Weather ───────────────────────────────────────────────────────
+        // BBC's id resolution lives in its provider module, so delegate the
+        // whole parallel fetch there instead of inlining it here.
+        if (ap === "bbc") {
+            var _pB = _providers();
+            if (!_pB || !_pB.fetchHourlyDirect(ap, service, dateStr, callback))
+                callback([]);
+            return;
+        }
+
         // ── Open-Meteo ────────────────────────────────────────────────────────
         if (ap === "openMeteo") {
             var url = "https://api.open-meteo.com/v1/forecast"
@@ -225,7 +272,8 @@ QtObject {
                 + "precipitation_probability,precipitation"
                 + "&start_date=" + encodeURIComponent(dateStr)
                 + "&end_date="   + encodeURIComponent(dateStr)
-                + "&wind_speed_unit=kmh";
+                + "&wind_speed_unit=kmh"
+                + W.openMeteoModelParam(service.openMeteoModel, service.countryCode);
             var xhr = new XMLHttpRequest();
             xhr.open("GET", url);
             xhr.onreadystatechange = function() {
@@ -657,11 +705,26 @@ QtObject {
 
     /**
      * Called by each provider after setting r.loading = false.
-     * If the provider already populated weatherAlerts (native alerts),
-     * this is a no-op.  Otherwise it falls back to MeteoAlarm / NWS.
+     * With the LibreWXR alerts provider selected, alerts always come from
+     * LibreWXR (overwriting any provider-native alerts on success).
+     * Otherwise (native mode): if the provider already populated
+     * weatherAlerts (native alerts), this is a no-op — else it falls
+     * back to MeteoAlarm / NWS.
      */
     function _fetchAlertsIfNeeded() {
         var r = weatherRoot;
+        if (alertsProvider === "librewxr") {
+            console.log("[WeatherService] Alerts provider = LibreWXR → fetching " + librewxrBaseUrl);
+            var _pL = _providers();
+            if (_pL) _pL.fetchAlertsLibreWxr(service);
+            return;
+        }
+        if (alertsProvider === "foss") {
+            console.log("[WeatherService] Alerts provider = FOSS Public Alert Server → fetching " + fossBaseUrl);
+            var _pF = _providers();
+            if (_pF) _pF.fetchAlertsFoss(service);
+            return;
+        }
         if (!_nativeAlertsSetThisGen) {
             console.log("[WeatherService] No native alerts → fetching via AlertsJS (countryCode=" + countryCode + ")");
             var _pA = _providers();
@@ -672,40 +735,101 @@ QtObject {
     }
 
     function _formatUpdateText(p) {
-        var t = Qt.formatTime(new Date(), Qt.locale().timeFormat(Locale.ShortFormat));
-        var name, url;
-        if (p === "openWeather") {
-            name = "OpenWeather";
-            url = "https://openweathermap.org";
-        } else if (p === "weatherApi") {
-            name = "WeatherAPI.com";
-            url = "https://www.weatherapi.com";
-        } else if (p === "metno") {
-            name = "MET Norway";
-            url = "https://www.met.no";
-        } else if (p === "pirateWeather") {
-            name = "Pirate Weather";
-            url = "https://pirateweather.net";
-        } else if (p === "visualCrossing") {
-            name = "Visual Crossing";
-            url = "https://www.visualcrossing.com";
-        } else if (p === "tomorrowIo") {
-            name = "Tomorrow.io";
-            url = "https://www.tomorrow.io";
-        } else if (p === "stormGlass") {
-            name = "StormGlass";
-            url = "https://stormglass.io";
-        } else if (p === "weatherbit") {
-            name = "Weatherbit";
-            url = "https://www.weatherbit.io";
-        } else if (p === "qWeather") {
-            name = "QWeather";
-            url = "https://www.qweather.com";
-        } else {
-            name = "Open-Meteo";
-            url = "https://open-meteo.com";
+        service._updateTimestampMs = Date.now();
+        service._updateProvider = p || "";
+        return service._buildRelativeUpdateText(service._updateProvider);
+    }
+
+    function _clearUpdateMetadata() {
+        service._updateTimestampMs = 0;
+        service._updateProvider = "";
+    }
+
+    function _relativeUpdateAgeText() {
+        var stamp = service._updateTimestampMs;
+        if (!(stamp > 0))
+            return "";
+        var elapsedMinutes = Math.floor(Math.max(0, Date.now() - stamp) / 60000);
+        if (elapsedMinutes < 1)
+            return i18n("Updated just now");
+        if (elapsedMinutes < 60)
+            return i18np("Updated %1 minute ago", "Updated %1 minutes ago", elapsedMinutes);
+        var elapsedHours = Math.floor(elapsedMinutes / 60);
+        if (elapsedHours < 24)
+            return i18np("Updated %1 hour ago", "Updated %1 hours ago", elapsedHours);
+        var elapsedDays = Math.floor(elapsedHours / 24);
+        return i18np("Updated %1 day ago", "Updated %1 days ago", elapsedDays);
+    }
+
+    function _providerUrl(p) {
+        if (p === "openWeather")
+            return "https://openweathermap.org";
+        if (p === "weatherApi")
+            return "https://www.weatherapi.com";
+        if (p === "metno")
+            return "https://www.met.no";
+        if (p === "bbc")
+            return "https://www.bbc.com/weather";
+        if (p === "pirateWeather")
+            return "https://pirateweather.net";
+        if (p === "visualCrossing")
+            return "https://www.visualcrossing.com";
+        if (p === "tomorrowIo")
+            return "https://www.tomorrow.io";
+        if (p === "stormGlass")
+            return "https://stormglass.io";
+        if (p === "weatherbit")
+            return "https://www.weatherbit.io";
+        if (p === "qWeather")
+            return "https://www.qweather.com";
+        return "https://open-meteo.com";
+    }
+
+    function _providerLinkLabel(p) {
+        if (p === "openWeather")
+            return "OpenWeather";
+        if (p === "weatherApi")
+            return "WeatherAPI.com";
+        if (p === "metno")
+            return "MET Norway";
+        if (p === "bbc")
+            return "BBC Weather";
+        if (p === "pirateWeather")
+            return "Pirate Weather";
+        if (p === "visualCrossing")
+            return "Visual Crossing";
+        if (p === "tomorrowIo")
+            return "Tomorrow.io";
+        if (p === "stormGlass")
+            return "StormGlass";
+        if (p === "weatherbit")
+            return "Weatherbit";
+        if (p === "qWeather")
+            return "QWeather";
+        return "Open-Meteo";
+    }
+
+    function _buildRelativeUpdateText(p) {
+        var provider = p || service._updateProvider;
+        if ((provider || "").length === 0)
+            return "";
+        var providerLink = "<a href='" + service._providerUrl(provider) + "'>" + service._providerLinkLabel(provider) + "</a>";
+        if (provider !== "openWeather" && provider !== "weatherApi" && provider !== "metno" && provider !== "bbc"
+            && provider !== "pirateWeather" && provider !== "visualCrossing" && provider !== "tomorrowIo"
+            && provider !== "stormGlass" && provider !== "weatherbit" && provider !== "qWeather") {
+            var mi = W.openMeteoModelInfo(openMeteoModel, countryCode);
+            if (mi)
+                providerLink += " (<a href='" + mi.url + "'>" + mi.name + "</a>)";
         }
-        return i18n("Updated %1", t) + " \u00B7 " + i18n("Weather provider:") + " <a href='" + url + "'>" + name + "</a>";
+        return service._relativeUpdateAgeText() + " \u00B7 " + i18n("Weather provider:") + " " + providerLink;
+    }
+
+    function _refreshRelativeUpdateText() {
+        if (!weatherRoot || weatherRoot.loading)
+            return;
+        var next = service._buildRelativeUpdateText(service._updateProvider);
+        if (next.length > 0)
+            weatherRoot.updateText = next;
     }
 
     function _providerLabel(p) {
@@ -715,6 +839,8 @@ QtObject {
             return "WeatherAPI.com";
         if (p === "metno")
             return "met.no";
+        if (p === "bbc")
+            return "BBC Weather";
         if (p === "pirateWeather")
             return "Pirate Weather";
         if (p === "visualCrossing")
@@ -740,6 +866,7 @@ QtObject {
             var names = chain.map(function (p) {
                 return _providerLabel(p);
             });
+            service._clearUpdateMetadata();
             weatherRoot.updateText = i18n("Failed: %1", names.join(", "));
             _failed = [];
             // Still fetch alerts even if all weather providers failed
@@ -752,6 +879,7 @@ QtObject {
             // Providers.qml failed to load — fail this refresh gracefully.
             weatherRoot.loading = false;
             _safetyTimer.stop();
+            service._clearUpdateMetadata();
             weatherRoot.updateText = i18n("Failed to load weather providers");
             return;
         }

@@ -37,6 +37,9 @@ KCM.SimpleKCM {
     property string cfg_qwApiKey: ""
     property string cfg_qwApiHost: ""
     property bool cfg_radarEnabled: true
+    property string cfg_radarProvider: "rainviewer"
+    property string cfg_alertsProvider: "native"
+    property string cfg_fossAlertUrl: "https://alerts.kde.org"
     property bool cfg_autoRefresh: true
     property int cfg_refreshIntervalMinutes: 15
 
@@ -140,6 +143,9 @@ KCM.SimpleKCM {
             url = "https://api.weatherbit.io/v2.0/current?lat=" + encodeURIComponent(lat) + "&lon=" + encodeURIComponent(lon) + "&key=" + encodeURIComponent(wbKey) + "&units=M";
         } else if (provider === "metno") {
             url = "https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=" + encodeURIComponent(lat) + "&lon=" + encodeURIComponent(lon);
+        } else if (provider === "bbc") {
+            // BBC has no key; verify by resolving the nearest location id.
+            url = "https://locator-service.api.bbci.co.uk/locations?api_key=AGbFAKx58hyjQScCXIYrxuEwJh2W2cmv&stack=aws&locale=en&filter=international&place-types=settlement%2Cairport%2Cdistrict&order=importance&latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(lon) + "&format=json";
         } else if (provider === "qWeather") {
             var qwKey = (cfg_qwApiKey || "").trim();
             if (!qwKey) {
@@ -187,6 +193,8 @@ KCM.SimpleKCM {
             return "WeatherAPI.com";
         if (p === "metno")
             return "met.no";
+        if (p === "bbc")
+            return "BBC Weather";
         if (p === "pirateWeather")
             return "Pirate Weather";
         if (p === "visualCrossing")
@@ -290,6 +298,10 @@ KCM.SimpleKCM {
         {
             text: i18n("met.no (free)"),
             value: "metno"
+        },
+        {
+            text: i18n("BBC Weather (free)"),
+            value: "bbc"
         },
         {
             text: i18n("OpenWeatherMap (Key Required)"),
@@ -396,7 +408,7 @@ KCM.SimpleKCM {
                 Layout.topMargin: 4
                 visible: root.isAdaptive
                 type: Kirigami.MessageType.Information
-                text: i18n("Providers are tried in order until one succeeds:\nOpen-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\nOpen-Meteo is always tried first - it is free and requires no API key.")
+                text: i18n("Providers are tried in order until one succeeds:\nOpen-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\nOpen-Meteo is always tried first - it is free and requires no API key.")
             }
 
             Item {
@@ -456,6 +468,8 @@ KCM.SimpleKCM {
                             return i18n("Chinese weather provider with global coverage. API key required below.") + "<br/>" + i18n("Provider website:") + " <a href='https://www.qweather.com'>qweather.com</a>";
                         if (root.cfg_weatherProvider === "metno")
                             return i18n("Free Norwegian Meteorological Institute service. No API key needed.") + "<br/>" + i18n("Provider website:") + " <a href='https://met.no'>met.no</a>";
+                        if (root.cfg_weatherProvider === "bbc")
+                            return i18n("Free BBC Weather service (data from the Met Office). No API key needed.") + "<br/>" + i18n("Provider website:") + " <a href='https://www.bbc.com/weather'>bbc.com/weather</a>";
                         return i18n("Free and open-source. No API key needed. Recommended.") + "<br/>" + i18n("Provider website:") + " <a href='https://open-meteo.com'>open-meteo.com</a>";
                     }
                     HoverHandler {
@@ -720,12 +734,41 @@ KCM.SimpleKCM {
                 onToggled: root.cfg_radarEnabled = checked
             }
 
+            RowLayout {
+                spacing: 8
+                visible: root.cfg_radarEnabled
+
+                Label {
+                    text: i18n("Radar provider:")
+                }
+                ComboBox {
+                    id: radarProviderCombo
+                    Layout.preferredWidth: 280
+                    model: [
+                        { text: i18n("Rain Viewer"), value: "rainviewer" },
+                        { text: i18n("LibreWXR"),    value: "librewxr" }
+                    ]
+                    textRole: "text"
+                    currentIndex: root.cfg_radarProvider === "librewxr" ? 1 : 0
+                    onActivated: root.cfg_radarProvider = model[currentIndex].value
+                }
+            }
+
             Kirigami.InlineMessage {
                 Layout.fillWidth: true
-                visible: root.cfg_radarEnabled
+                visible: root.cfg_radarEnabled && root.cfg_radarProvider !== "librewxr"
                 showCloseButton: true
                 type: Kirigami.MessageType.Information
                 text: i18n("Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>" + "The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>" + "Rain Viewer does not guarantee the availability of radar data. " + "They do not conclude contracts with owners of this data. " + "The reason is that the owners can ask them to remove their data from Rain Viewer, " + "change the format, or stop sharing the data. " + "They are trying to keep radar data for as long as possible, " + "but sometimes the owners just stop providing the images.")
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_radarEnabled && root.cfg_radarProvider === "librewxr"
+                showCloseButton: true
+                type: Kirigami.MessageType.Information
+                text: i18n("Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>" + "LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>" + "Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically.")
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
@@ -743,6 +786,84 @@ KCM.SimpleKCM {
                 visible: root.cfg_radarEnabled && (root.cfg_owApiKey || "").trim() !== ""
                 type: Kirigami.MessageType.Warning
                 text: i18n("<b>Why OWM layers may not match RainViewer radar</b><br/><br/>" + "OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. " + "They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>" + "RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. " + "This discrepancy is expected and known.")
+            }
+        }
+
+        Item {
+            Layout.preferredHeight: 8
+        }
+
+        // ══════════════════════════════════════════════════════════════
+        // SECTION: Weather Alerts
+        // ══════════════════════════════════════════════════════════════
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 8
+
+            RowLayout {
+                Layout.fillWidth: true
+                Kirigami.Heading {
+                    text: i18n("Weather Alerts")
+                    level: 4
+                }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Kirigami.Theme.textColor
+                    opacity: 0.5
+                }
+            }
+
+            RowLayout {
+                spacing: 8
+
+                Label {
+                    text: i18n("Alerts provider:")
+                }
+                ComboBox {
+                    id: alertsProviderCombo
+                    Layout.preferredWidth: 280
+                    model: [
+                        { text: i18n("MeteoAlarm + NOAA NWS (Native)"), value: "native" },
+                        { text: i18n("LibreWXR"),                       value: "librewxr" },
+                        { text: i18n("FOSS Public Alert Server"),       value: "foss" }
+                    ]
+                    textRole: "text"
+                    currentIndex: {
+                        for (var i = 0; i < model.length; i++)
+                            if (model[i].value === root.cfg_alertsProvider)
+                                return i;
+                        return 0;
+                    }
+                    onActivated: root.cfg_alertsProvider = model[currentIndex].value
+                }
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_alertsProvider === "native"
+                showCloseButton: true
+                type: Kirigami.MessageType.Information
+                text: i18n("Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>" + "European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly.")
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_alertsProvider === "librewxr"
+                showCloseButton: true
+                type: Kirigami.MessageType.Information
+                text: i18n("Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>" + "LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider.")
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_alertsProvider === "foss"
+                showCloseButton: true
+                type: Kirigami.MessageType.Information
+                text: i18n("Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>" + "KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider.")
+                onLinkActivated: Qt.openUrlExternally(link)
             }
         }
 

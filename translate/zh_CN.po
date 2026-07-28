@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-07-20 09:31+0300\n"
+"POT-Creation-Date: 2026-07-28 14:52+0300\n"
 "PO-Revision-Date: 2026-07-20 15:19+0800\n"
 "Last-Translator: kang guo\n"
 "Language-Team: Chinese (Simplified)\n"
@@ -611,7 +611,7 @@ msgstr "点击地图以选择位置"
 msgid "Click to configure a location"
 msgstr "点击配置位置"
 
-#: contents/ui/components/RadarWebEngineView.qml:74
+#: contents/ui/components/RadarWebEngineView.qml:126
 msgid "Clouds"
 msgstr "云层"
 
@@ -1305,8 +1305,8 @@ msgstr "禾草"
 msgid "Headline"
 msgstr "标题"
 
-#: contents/ui/components/RadarWebEngineView.qml:93
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:145
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Heavy"
 msgstr "强"
 
@@ -1479,7 +1479,13 @@ msgid ""
 "  • Debian / Kubuntu / KDE Neon: qml6-module-qtlocation and qml6-module-qtpositioning\n"
 "\n"
 "You can still search for a location or enter coordinates manually. Note that auto-detection will continue to work using an IP fallback, but it may be less accurate and won’t update in real time as you move around."
-msgstr "请根据你的发行版安装：\n  • Fedora / RHEL / Arch：qt6-qtlocation\n  • openSUSE：qt6-location\n  • Debian / Kubuntu / KDE Neon：qml6-module-qtlocation 和 qml6-module-qtpositioning\n\n你仍然可以搜索位置或手动输入坐标。请注意，自动检测仍会通过 IP 回退方式工作，但准确性可能较低，并且在你移动时不会实时更新。"
+msgstr ""
+"请根据你的发行版安装：\n"
+"  • Fedora / RHEL / Arch：qt6-qtlocation\n"
+"  • openSUSE：qt6-location\n"
+"  • Debian / Kubuntu / KDE Neon：qml6-module-qtlocation 和 qml6-module-qtpositioning\n"
+"\n"
+"你仍然可以搜索位置或手动输入坐标。请注意，自动检测仍会通过 IP 回退方式工作，但准确性可能较低，并且在你移动时不会实时更新。"
 
 #: contents/ui/RadarView.qml:181
 msgid ""
@@ -1487,7 +1493,11 @@ msgid ""
 "- Fedora / RHEL: qt6-qtwebengine\n"
 "- openSUSE / Arch: qt6-webengine\n"
 "- Debian / Kubuntu / KDE Neon: qml6-module-qtwebengine"
-msgstr "请根据你的发行版安装：\n- Fedora / RHEL：qt6-qtwebengine\n- openSUSE / Arch：qt6-webengine\n- Debian / Kubuntu / KDE Neon：qml6-module-qtwebengine"
+msgstr ""
+"请根据你的发行版安装：\n"
+"- Fedora / RHEL：qt6-qtwebengine\n"
+"- openSUSE / Arch：qt6-webengine\n"
+"- Debian / Kubuntu / KDE Neon：qml6-module-qtwebengine"
 
 #: contents/ui/DetailsView.qml:2341
 msgid "Instruction"
@@ -1614,8 +1624,8 @@ msgstr "布局类型："
 msgid "LibreWXR"
 msgstr "LibreWXR"
 
-#: contents/ui/components/RadarWebEngineView.qml:91
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:143
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Light"
 msgstr "弱"
 
@@ -1873,7 +1883,7 @@ msgstr "轻微地磁暴。"
 msgid "Misc"
 msgstr "杂项"
 
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Mod"
 msgstr "中"
 
@@ -1881,7 +1891,7 @@ msgstr "中"
 msgid "Mode:"
 msgstr "模式："
 
-#: contents/ui/components/RadarWebEngineView.qml:92
+#: contents/ui/components/RadarWebEngineView.qml:144
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -2108,8 +2118,8 @@ msgstr "没有已保存的位置。保存当前位置即可在多个地点之间
 msgid "No weather stations found for '%1'"
 msgstr "未找到 '%1' 的气象站"
 
-#: contents/ui/components/RadarWebEngineView.qml:90
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:142
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2298,7 +2308,7 @@ msgstr "局部多云（白天）"
 msgid "Partly cloudy (night)"
 msgstr "局部多云（夜间）"
 
-#: contents/ui/components/RadarWebEngineView.qml:87
+#: contents/ui/components/RadarWebEngineView.qml:139
 msgid "Pause"
 msgstr "暂停"
 
@@ -2336,7 +2346,7 @@ msgstr "Pirate Weather（需要密钥）"
 msgid "Pirate Weather API Key:"
 msgstr "Pirate Weather API 密钥："
 
-#: contents/ui/components/RadarWebEngineView.qml:86
+#: contents/ui/components/RadarWebEngineView.qml:138
 msgid "Play"
 msgstr "播放"
 
@@ -2407,7 +2417,7 @@ msgstr "降水："
 msgid "Prefix style:"
 msgstr "前缀样式："
 
-#: contents/ui/components/RadarWebEngineView.qml:77
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configAppearance.qml:1359
 #: contents/ui/config/configAppearance.qml:1461
 #: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
@@ -2511,7 +2521,7 @@ msgid "Quiet"
 msgstr "平静"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:72
+#: contents/ui/components/RadarWebEngineView.qml:124
 #: contents/ui/config/configGeneral.qml:720
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
@@ -2550,7 +2560,7 @@ msgstr "雷达："
 msgid "Ragweed"
 msgstr "豚草"
 
-#: contents/ui/components/RadarWebEngineView.qml:73
+#: contents/ui/components/RadarWebEngineView.qml:125
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
 #: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
@@ -2577,11 +2587,11 @@ msgstr "阵雨"
 msgid "Rain/Storm"
 msgstr "降雨/雷暴"
 
-#: contents/ui/components/RadarWebEngineView.qml:88
+#: contents/ui/components/RadarWebEngineView.qml:140
 msgid "Real-time"
 msgstr "实时"
 
-#: contents/ui/components/RadarWebEngineView.qml:85
+#: contents/ui/components/RadarWebEngineView.qml:137
 msgid "Recent"
 msgstr "最近"
 
@@ -2821,7 +2831,7 @@ msgstr "在详情中显示"
 msgid "Show in:"
 msgstr "显示在："
 
-#: contents/ui/components/RadarWebEngineView.qml:89
+#: contents/ui/components/RadarWebEngineView.qml:141
 msgid "Show my location"
 msgstr "显示我的位置"
 
@@ -3041,8 +3051,8 @@ msgstr "标准数据源。需要在下方填写 API 密钥。"
 msgid "Stats items:"
 msgstr "统计项："
 
-#: contents/ui/components/RadarWebEngineView.qml:94
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:146
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "磁暴"
@@ -3207,7 +3217,7 @@ msgstr "系统托盘显示设置"
 msgid "System tray icon settings"
 msgstr "系统托盘图标设置"
 
-#: contents/ui/components/RadarWebEngineView.qml:75
+#: contents/ui/components/RadarWebEngineView.qml:127
 #: contents/ui/config/configAppearance.qml:1323
 #: contents/ui/config/configAppearance.qml:1570
 msgid "Temperature"
@@ -3756,7 +3766,7 @@ msgstr "小组件大小"
 msgid "Widget panel area:"
 msgstr "小组件面板区域："
 
-#: contents/ui/components/RadarWebEngineView.qml:76
+#: contents/ui/components/RadarWebEngineView.qml:128
 #: contents/ui/config/configAppearance.qml:1337
 #: contents/ui/config/configAppearance.qml:1468
 #: contents/ui/config/configAppearance.qml:1591
@@ -3886,7 +3896,7 @@ msgstr "ft"
 msgid "grains/m³"
 msgstr "粒/m³"
 
-#: contents/ui/components/RadarWebEngineView.qml:551
+#: contents/ui/components/RadarWebEngineView.qml:655
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "hPa"
@@ -3903,11 +3913,11 @@ msgstr "in"
 msgid "in the next hours"
 msgstr "在接下来几小时内"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "in/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:549
+#: contents/ui/components/RadarWebEngineView.qml:653
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "inHg"
@@ -3918,7 +3928,7 @@ msgstr "inHg"
 msgid "km"
 msgstr "km"
 
-#: contents/ui/components/RadarWebEngineView.qml:544
+#: contents/ui/components/RadarWebEngineView.qml:648
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "km/h"
@@ -3927,7 +3937,7 @@ msgstr "km/h"
 msgid "km/s"
 msgstr "km/s"
 
-#: contents/ui/components/RadarWebEngineView.qml:545
+#: contents/ui/components/RadarWebEngineView.qml:649
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "kn"
@@ -3944,7 +3954,7 @@ msgstr "低"
 msgid "m"
 msgstr "m"
 
-#: contents/ui/components/RadarWebEngineView.qml:546
+#: contents/ui/components/RadarWebEngineView.qml:650
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "m/s"
@@ -3978,11 +3988,11 @@ msgstr "分钟"
 msgid "mm"
 msgstr "mm"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "mm/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:550
+#: contents/ui/components/RadarWebEngineView.qml:654
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "mmHg"
@@ -3991,7 +4001,7 @@ msgstr "mmHg"
 msgid "moderate"
 msgstr "中等"
 
-#: contents/ui/components/RadarWebEngineView.qml:543
+#: contents/ui/components/RadarWebEngineView.qml:647
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "mph"
