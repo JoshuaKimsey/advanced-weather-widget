@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-07-20 09:31+0300\n"
+"POT-Creation-Date: 2026-07-28 14:52+0300\n"
 "PO-Revision-Date: 2026-05-26 16:39+0300\n"
 "Last-Translator: Oleksandr Afanasiev\n"
 "Language-Team: Ukrainian\n"
@@ -149,11 +149,7 @@ msgstr "Прогноз погоди на базі ШІ. Нижче потріб�
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:162
 msgid "API error"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Помилка API"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:219
 msgid "API key is empty."
@@ -254,21 +250,6 @@ msgstr "Попередження"
 
 #: contents/ui/config/configGeneral.qml:821
 msgid "Alerts provider:"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:865
-msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:856
-msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:847
-msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr ""
-=======
 msgstr "Постачальник попереджень:"
 
 #: contents/ui/config/configGeneral.qml:865
@@ -282,7 +263,6 @@ msgstr "Постачальник попереджень: <a href='https://librew
 #: contents/ui/config/configGeneral.qml:847
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
 msgstr "Постачальник попереджень: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Для європейських регіонів використовуються офіційні стрічки MeteoAlarm (38 країн), для США — API попереджень Національної погодної служби NOAA, а як резервний варіант — MetAlerts від met.no. Якщо ваш постачальник погоди надає власні попередження (наприклад, WeatherAPI.com, Pirate Weather), вони використовуються безпосередньо."
->>>>>>> origin/main
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -428,11 +408,7 @@ msgstr "Лавина"
 
 #: contents/ui/config/configGeneral.qml:303
 msgid "BBC Weather (free)"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "BBC Weather (безкоштовно)"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:100
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:374
@@ -474,11 +450,7 @@ msgstr "Береза"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:150
 msgid "Black and White"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Чорно-біла"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:732
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:536
@@ -640,7 +612,7 @@ msgstr "Клацніть на карті, щоб вибрати місцезна
 msgid "Click to configure a location"
 msgstr "Клацніть, щоб налаштувати розташування"
 
-#: contents/ui/components/RadarWebEngineView.qml:74
+#: contents/ui/components/RadarWebEngineView.qml:126
 msgid "Clouds"
 msgstr "Хмари"
 
@@ -719,11 +691,7 @@ msgstr "Підтвердіть ваше розташування"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:163
 msgid "Connection failed"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Помилка з'єднання"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:286
 msgid "Connection failed (HTTP %1)."
@@ -793,11 +761,7 @@ msgstr "API-сумісний з Dark Sky з оповіщеннями для СШ
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:314
 msgid "Dark map"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Темна карта"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:873
 msgid "Dash  –"
@@ -841,11 +805,7 @@ msgstr "Дата:"
 msgid "Dawn approaching — "
 msgstr "Наближається світанок — "
 
-<<<<<<< HEAD
 #: contents/ui/DetailsView.qml:3471
-=======
-#: contents/ui/DetailsView.qml:3468
->>>>>>> origin/main
 msgid "Day"
 msgstr "День"
 
@@ -988,11 +948,7 @@ msgstr "Подвійна температура"
 #: contents/ui/main.qml:1219
 msgctxt "Alert severity"
 msgid "EXTREME"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "ЕКСТРЕМАЛЬНИЙ"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:696
 msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
@@ -1144,11 +1100,7 @@ msgstr "Вкрай погана"
 
 #: contents/ui/config/configGeneral.qml:829
 msgid "FOSS Public Alert Server"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "FOSS Public Alert Server"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:231
 msgid "Fahrenheit (°F)"
@@ -1261,11 +1213,7 @@ msgstr "Лісова пожежа"
 
 #: contents/ui/config/configGeneral.qml:472
 msgid "Free BBC Weather service (data from the Met Office). No API key needed."
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Безкоштовна служба погоди BBC (дані від Met Office). Ключ API не потрібен."
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:470
 msgid "Free Norwegian Meteorological Institute service. No API key needed."
@@ -1343,11 +1291,7 @@ msgstr "Геомагнітна активність буде %1 (Kp %2)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Інтенсивність світіння:"
->>>>>>> origin/main
 
 #: contents/ui/js/airQuality.js:49 contents/ui/main.qml:844
 msgid "Good"
@@ -1362,8 +1306,8 @@ msgstr "Трава"
 msgid "Headline"
 msgstr "Заголовок"
 
-#: contents/ui/components/RadarWebEngineView.qml:93
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:145
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Heavy"
 msgstr "Сильний"
 
@@ -1471,11 +1415,7 @@ msgstr "Спочатку значок"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:156
 msgid "Icon glow:"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Світіння значка:"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:203
 msgid "Icon only"
@@ -1683,14 +1623,10 @@ msgstr "Тип макету:"
 #: contents/ui/config/configGeneral.qml:749
 #: contents/ui/config/configGeneral.qml:828
 msgid "LibreWXR"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "LibreWXR"
->>>>>>> origin/main
 
-#: contents/ui/components/RadarWebEngineView.qml:91
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:143
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Light"
 msgstr "Слабкий"
 
@@ -1757,19 +1693,11 @@ msgstr "Завантаження прогнозу…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:158
 msgid "Loading frames"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
-msgid "Loading frame…"
-msgstr ""
-=======
 msgstr "Завантаження кадрів"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
 msgid "Loading frame…"
 msgstr "Завантаження кадру…"
->>>>>>> origin/main
 
 #: contents/ui/ForecastView.qml:829
 msgid "Loading hourly data…"
@@ -1785,11 +1713,7 @@ msgstr "Завантаження радара…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:156
 msgid "Loading…"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Завантаження…"
->>>>>>> origin/main
 
 #: contents/config/config.qml:47
 msgid "Location"
@@ -1877,29 +1801,17 @@ msgstr "Низька температура"
 #: contents/ui/main.qml:1224
 msgctxt "Alert severity"
 msgid "MINIMAL"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "МІНІМАЛЬНИЙ"
->>>>>>> origin/main
 
 #: contents/ui/main.qml:1222
 msgctxt "Alert severity"
 msgid "MINOR"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "НЕЗНАЧНИЙ"
->>>>>>> origin/main
 
 #: contents/ui/main.qml:1221
 msgctxt "Alert severity"
 msgid "MODERATE"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "ПОМІРНИЙ"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:721
 msgid "Magnetic Field (Bz)"
@@ -1942,11 +1854,7 @@ msgstr "Провайдер морських та погодних даних. Н
 
 #: contents/ui/config/configGeneral.qml:827
 msgid "MeteoAlarm + NOAA NWS (Native)"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "MeteoAlarm + NOAA NWS (Вбудований)"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:153
 msgid "Metric (°C, km/h, hPa, mm)"
@@ -1976,7 +1884,7 @@ msgstr "Незначна геомагнітна буря."
 msgid "Misc"
 msgstr "Різне"
 
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Mod"
 msgstr "Помірний"
 
@@ -1984,7 +1892,7 @@ msgstr "Помірний"
 msgid "Mode:"
 msgstr "Режим:"
 
-#: contents/ui/components/RadarWebEngineView.qml:92
+#: contents/ui/components/RadarWebEngineView.qml:144
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -2168,11 +2076,7 @@ msgstr "Ні"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:159
 msgid "No data"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Немає даних"
->>>>>>> origin/main
 
 #: contents/ui/DetailsView.qml:553
 msgid "No details data"
@@ -2201,19 +2105,11 @@ msgstr "Розташування не встановлено"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:160
 msgid "No radar data"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
-msgid "No satellite data"
-msgstr ""
-=======
 msgstr "Немає даних радара"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
 msgid "No satellite data"
 msgstr "Немає даних супутника"
->>>>>>> origin/main
 
 #: contents/ui/config/configLocation.qml:1627
 msgid "No saved locations. Save the current location to quickly switch between places."
@@ -2223,8 +2119,8 @@ msgstr "Немає збережених розташувань. Збережіт
 msgid "No weather stations found for '%1'"
 msgstr "Метеостанцій не знайдено для '%1'"
 
-#: contents/ui/components/RadarWebEngineView.qml:90
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:142
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2248,11 +2144,7 @@ msgstr "Недоступно (HTTP %1)"
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
 msgid "Not supported"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Не підтримується"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:623
 msgid "Not tested"
@@ -2417,7 +2309,7 @@ msgstr "Мінлива хмарність (день)"
 msgid "Partly cloudy (night)"
 msgstr "Мінлива хмарність (ніч)"
 
-#: contents/ui/components/RadarWebEngineView.qml:87
+#: contents/ui/components/RadarWebEngineView.qml:139
 msgid "Pause"
 msgstr "Пауза"
 
@@ -2455,7 +2347,7 @@ msgstr "Pirate Weather (Потрібен ключ)"
 msgid "Pirate Weather API Key:"
 msgstr "Ключ API Pirate Weather:"
 
-#: contents/ui/components/RadarWebEngineView.qml:86
+#: contents/ui/components/RadarWebEngineView.qml:138
 msgid "Play"
 msgstr "Відтворити"
 
@@ -2526,7 +2418,7 @@ msgstr "Опади:"
 msgid "Prefix style:"
 msgstr "Стиль префікса:"
 
-#: contents/ui/components/RadarWebEngineView.qml:77
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configAppearance.qml:1359
 #: contents/ui/config/configAppearance.qml:1461
 #: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
@@ -2589,12 +2481,6 @@ msgid ""
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo is always tried first - it is free and requires no API key."
 msgstr ""
-<<<<<<< HEAD
-
-#: contents/ui/config/configNotifications.qml:271
-msgid "Purple"
-msgstr ""
-=======
 "Провайдери опитуються по черзі, доки один не відповість успішно:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo завжди опитується першим — він безкоштовний і не потребує ключа API."
@@ -2602,7 +2488,6 @@ msgstr ""
 #: contents/ui/config/configNotifications.qml:271
 msgid "Purple"
 msgstr "Пурпуровий"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:335
 msgid "QWeather (Key Required)"
@@ -2637,7 +2522,7 @@ msgid "Quiet"
 msgstr "Спокійно"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:72
+#: contents/ui/components/RadarWebEngineView.qml:124
 #: contents/ui/config/configGeneral.qml:720
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
@@ -2645,19 +2530,11 @@ msgstr "Радар"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:144
 msgid "Radar + Satellite"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
-msgid "Radar color scheme:"
-msgstr ""
-=======
 msgstr "Радар + супутник"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
 msgid "Radar color scheme:"
 msgstr "Колірна схема радара:"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:234
 msgid "Radar only"
@@ -2665,19 +2542,11 @@ msgstr "Лише радар"
 
 #: contents/ui/config/configGeneral.qml:742
 msgid "Radar provider:"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:771
-msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
-msgstr ""
-=======
 msgstr "Постачальник радара:"
 
 #: contents/ui/config/configGeneral.qml:771
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
 msgstr "Постачальник радара: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR — це безкоштовний погодний радарний API з відкритим кодом. Він поєднує реальні знімки радарів від NOAA, канадських та європейських джерел із резервною глобальною моделлю, та надає дані радара за останні 2 години разом із коротким поточним прогнозом (nowcast). Він також пропонує безкоштовний супутниковий (інфрачервоний) шар.<br/><br/>Режим шарів, колірна схема радара та стрілки напрямку руху вибираються безпосередньо на вкладці «Радар». Карта автоматично підлаштовується под світлу або темну тему оформлення вашої Plasma."
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:762
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
@@ -2692,7 +2561,7 @@ msgstr "Радар:"
 msgid "Ragweed"
 msgstr "Амброзія"
 
-#: contents/ui/components/RadarWebEngineView.qml:73
+#: contents/ui/components/RadarWebEngineView.qml:125
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
 #: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
@@ -2709,11 +2578,7 @@ msgstr "Дощ (ніч)"
 
 #: contents/ui/config/configGeneral.qml:748
 msgid "Rain Viewer"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Rain Viewer"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:59
 msgid "Rain showers"
@@ -2723,11 +2588,11 @@ msgstr "Дощові зливи"
 msgid "Rain/Storm"
 msgstr "Дощ/Шторм"
 
-#: contents/ui/components/RadarWebEngineView.qml:88
+#: contents/ui/components/RadarWebEngineView.qml:140
 msgid "Real-time"
 msgstr "У реальному часі"
 
-#: contents/ui/components/RadarWebEngineView.qml:85
+#: contents/ui/components/RadarWebEngineView.qml:137
 msgid "Recent"
 msgstr "Недавні"
 
@@ -2832,11 +2697,7 @@ msgstr "Округляти значення:"
 #: contents/ui/main.qml:1220
 msgctxt "Alert severity"
 msgid "SEVERE"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "СИЛЬНИЙ"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:593
 msgid "SO₂"
@@ -2844,11 +2705,7 @@ msgstr "SO₂"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:139
 msgid "Satellite"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Супутник"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:906
 msgid "Saturday"
@@ -2975,7 +2832,7 @@ msgstr "Показувати в деталях"
 msgid "Show in:"
 msgstr "Показувати в:"
 
-#: contents/ui/components/RadarWebEngineView.qml:89
+#: contents/ui/components/RadarWebEngineView.qml:141
 msgid "Show my location"
 msgstr "Показати моє розташування"
 
@@ -2993,11 +2850,7 @@ msgstr "Показувати забруднювачі в розгорнутом�
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:309
 msgid "Show precipitation motion arrows"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Показувати стрілки руху опадів"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:407
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:476
@@ -3199,8 +3052,8 @@ msgstr "Стандартний провайдер. Нижче потрібен �
 msgid "Stats items:"
 msgstr "Елементи статистики:"
 
-#: contents/ui/components/RadarWebEngineView.qml:94
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:146
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "Шторм"
@@ -3323,11 +3176,7 @@ msgstr "Поміняти місцями:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:324
 msgid "Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme."
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Перемикання між світлим та темним стилями карти. До першого перемикання карта слідує темі оформлення Plasma."
->>>>>>> origin/main
 
 #: contents/ui/FullView.qml:328
 msgid "Switch location"
@@ -3369,7 +3218,7 @@ msgstr "Налаштування відображення системного �
 msgid "System tray icon settings"
 msgstr "Налаштування значка системного лотка"
 
-#: contents/ui/components/RadarWebEngineView.qml:75
+#: contents/ui/components/RadarWebEngineView.qml:127
 #: contents/ui/config/configAppearance.qml:1323
 #: contents/ui/config/configAppearance.qml:1570
 msgid "Temperature"
@@ -3614,11 +3463,7 @@ msgstr "Обрізати (один рядок)"
 #: contents/ui/main.qml:1223
 msgctxt "Alert severity"
 msgid "UNKNOWN"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "НЕВІДОМИЙ"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:1394
 #: contents/ui/config/configAppearance.qml:1517
@@ -3705,38 +3550,20 @@ msgstr "Час оновлення вийшов. Натисніть, щоб по�
 #: contents/ui/WeatherService.qml:761
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
-<<<<<<< HEAD
-msgstr[0] ""
-msgstr[1] ""
-=======
 msgstr[0] "Оновлено %1 день тому"
 msgstr[1] "Оновлено %1 дні тому"
 msgstr[2] "Оновлено %1 днів тому"
->>>>>>> origin/main
 
 #: contents/ui/WeatherService.qml:759
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
-<<<<<<< HEAD
-msgstr[0] ""
-msgstr[1] ""
-=======
 msgstr[0] "Оновлено %1 годину тому"
 msgstr[1] "Оновлено %1 години тому"
 msgstr[2] "Оновлено %1 годин тому"
->>>>>>> origin/main
 
 #: contents/ui/WeatherService.qml:756
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
-<<<<<<< HEAD
-msgstr[0] ""
-msgstr[1] ""
-
-#: contents/ui/WeatherService.qml:754
-msgid "Updated just now"
-msgstr ""
-=======
 msgstr[0] "Оновлено %1 хвилину тому"
 msgstr[1] "Оновлено %1 хвилини тому"
 msgstr[2] "Оновлено %1 хвилин тому"
@@ -3744,7 +3571,6 @@ msgstr[2] "Оновлено %1 хвилин тому"
 #: contents/ui/WeatherService.qml:754
 msgid "Updated just now"
 msgstr "Оновлено щойно"
->>>>>>> origin/main
 
 #: contents/ui/FullView.qml:396
 msgid "Updating…"
@@ -3853,11 +3679,7 @@ msgstr "Ми визначили ваше розташування як: <b>%1</b
 
 #: contents/ui/config/configGeneral.qml:806
 msgid "Weather Alerts"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Попередження про погоду"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:362
 msgid "Weather Provider"
@@ -3909,8 +3731,6 @@ msgid ""
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
-<<<<<<< HEAD
-=======
 "Рівні серйозності попереджень про погоду, від найнижчого до найвищого:\n"
 "\n"
 "🟡 Жовтий — Незначний: стежте за ситуацією.\n"
@@ -3919,7 +3739,6 @@ msgstr ""
 "🟣 Пурпуровий — Екстремальний: надзвичайно небезпечно, негайно вживайте заходів.\n"
 "\n"
 "Вимкніть певний рівень, щоб припинити отримання сповіщень про попередження цієї серйозності."
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:311
 msgid "WeatherAPI.com (Key Required)"
@@ -3954,7 +3773,7 @@ msgstr "Розмір віджета"
 msgid "Widget panel area:"
 msgstr "Область панелі віджета:"
 
-#: contents/ui/components/RadarWebEngineView.qml:76
+#: contents/ui/components/RadarWebEngineView.qml:128
 #: contents/ui/config/configAppearance.qml:1337
 #: contents/ui/config/configAppearance.qml:1468
 #: contents/ui/config/configAppearance.qml:1591
@@ -3965,11 +3784,7 @@ msgstr "Вітер"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:301
 msgid "Wind arrows"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Стрілки вітру"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:1469
 #: contents/ui/config/configAppearance.qml:1592
@@ -4088,7 +3903,7 @@ msgstr "фут"
 msgid "grains/m³"
 msgstr "пилку/м³"
 
-#: contents/ui/components/RadarWebEngineView.qml:551
+#: contents/ui/components/RadarWebEngineView.qml:655
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "гПа"
@@ -4105,11 +3920,11 @@ msgstr "дюйм"
 msgid "in the next hours"
 msgstr "у найближчі години"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "дюйм/год"
 
-#: contents/ui/components/RadarWebEngineView.qml:549
+#: contents/ui/components/RadarWebEngineView.qml:653
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "дюйм рт. ст."
@@ -4120,7 +3935,7 @@ msgstr "дюйм рт. ст."
 msgid "km"
 msgstr "km"
 
-#: contents/ui/components/RadarWebEngineView.qml:544
+#: contents/ui/components/RadarWebEngineView.qml:648
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "км/год"
@@ -4129,7 +3944,7 @@ msgstr "км/год"
 msgid "km/s"
 msgstr "км/с"
 
-#: contents/ui/components/RadarWebEngineView.qml:545
+#: contents/ui/components/RadarWebEngineView.qml:649
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "вуз"
@@ -4146,7 +3961,7 @@ msgstr "низький"
 msgid "m"
 msgstr "м"
 
-#: contents/ui/components/RadarWebEngineView.qml:546
+#: contents/ui/components/RadarWebEngineView.qml:650
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "м/с"
@@ -4180,11 +3995,11 @@ msgstr "хвилини"
 msgid "mm"
 msgstr "мм"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "мм/год"
 
-#: contents/ui/components/RadarWebEngineView.qml:550
+#: contents/ui/components/RadarWebEngineView.qml:654
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "мм рт. ст."
@@ -4193,7 +4008,7 @@ msgstr "мм рт. ст."
 msgid "moderate"
 msgstr "помірний"
 
-#: contents/ui/components/RadarWebEngineView.qml:543
+#: contents/ui/components/RadarWebEngineView.qml:647
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "миль/год"
@@ -4292,18 +4107,6 @@ msgstr "ваше місцезнаходження"
 #: contents/ui/js/airQuality.js:156
 msgid "µg/m³"
 msgstr "мкг/м³"
-
-#~ msgid ""
-#~ "Providers are tried in order until one succeeds:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first - it is free and requires no API key."
-#~ msgstr ""
-#~ "Провайдери перевіряються по черзі, доки один не спрацює:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo завжди перевіряється першим - він безкоштовний і не вимагає ключа API."
-
-#~ msgid "Updated %1"
-#~ msgstr "Оновлено %1"
 
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"

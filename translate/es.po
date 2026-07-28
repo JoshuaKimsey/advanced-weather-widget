@@ -7,12 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-07-20 09:31+0300\n"
-<<<<<<< HEAD
-"PO-Revision-Date: 2026-06-20 18:52-0600\n"
-=======
+"POT-Creation-Date: 2026-07-28 14:52+0300\n"
 "PO-Revision-Date: 2026-07-20 12:29-0600\n"
->>>>>>> origin/main
 "Last-Translator: Broxi <broxygames.zf@gmail.com>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -154,11 +150,7 @@ msgstr "Inteligencia meteorológica con IA. Se requiere clave API a continuació
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:162
 msgid "API error"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Error de la API"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:219
 msgid "API key is empty."
@@ -259,21 +251,6 @@ msgstr "Alertas"
 
 #: contents/ui/config/configGeneral.qml:821
 msgid "Alerts provider:"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:865
-msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:856
-msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:847
-msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr ""
-=======
 msgstr "Proveedor de alertas:"
 
 #: contents/ui/config/configGeneral.qml:865
@@ -287,7 +264,6 @@ msgstr "Proveedor de alertas: <a href='https://librewxr.net/'>LibreWXR</a><br/><
 #: contents/ui/config/configGeneral.qml:847
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
 msgstr "Proveedor de alertas: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Las ubicaciones europeas usan las fuentes oficiales de MeteoAlarm (38 países) y las estadounidenses, la API de alertas del Servicio Meteorológico Nacional de la NOAA, con MetAlerts de met.no como alternativa. Si su proveedor meteorológico ofrece sus propias alertas (por ejemplo, WeatherAPI.com o Pirate Weather), se utilizan directamente."
->>>>>>> origin/main
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -433,11 +409,7 @@ msgstr "Avalancha"
 
 #: contents/ui/config/configGeneral.qml:303
 msgid "BBC Weather (free)"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "BBC Weather (gratuito)"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:100
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:374
@@ -479,11 +451,7 @@ msgstr "Abedul"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:150
 msgid "Black and White"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Blanco y negro"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:732
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:536
@@ -645,7 +613,7 @@ msgstr "Haz clic en el mapa para seleccionar una ubicación"
 msgid "Click to configure a location"
 msgstr "Haz clic para configurar una ubicación"
 
-#: contents/ui/components/RadarWebEngineView.qml:74
+#: contents/ui/components/RadarWebEngineView.qml:126
 msgid "Clouds"
 msgstr "Nubes"
 
@@ -724,11 +692,7 @@ msgstr "Confirma tu ubicación"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:163
 msgid "Connection failed"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Error de conexión"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:286
 msgid "Connection failed (HTTP %1)."
@@ -798,11 +762,7 @@ msgstr "API compatible con Dark Sky con alertas de EE. UU. Se requiere clave API
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:314
 msgid "Dark map"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Mapa oscuro"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:873
 msgid "Dash  –"
@@ -989,11 +949,7 @@ msgstr "Temperatura dual"
 #: contents/ui/main.qml:1219
 msgctxt "Alert severity"
 msgid "EXTREME"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "EXTREMO"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:696
 msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
@@ -1145,11 +1101,7 @@ msgstr "Extremadamente mala"
 
 #: contents/ui/config/configGeneral.qml:829
 msgid "FOSS Public Alert Server"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "FOSS Public Alert Server"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:231
 msgid "Fahrenheit (°F)"
@@ -1262,11 +1214,7 @@ msgstr "Incendio forestal"
 
 #: contents/ui/config/configGeneral.qml:472
 msgid "Free BBC Weather service (data from the Met Office). No API key needed."
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Servicio gratuito de BBC Weather (datos de la Met Office). No se necesita clave API."
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:470
 msgid "Free Norwegian Meteorological Institute service. No API key needed."
@@ -1344,11 +1292,7 @@ msgstr "La actividad geomagnética estará en nivel %1 (Kp %2)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Intensidad del brillo:"
->>>>>>> origin/main
 
 #: contents/ui/js/airQuality.js:49 contents/ui/main.qml:844
 msgid "Good"
@@ -1363,8 +1307,8 @@ msgstr "Gramíneas"
 msgid "Headline"
 msgstr "Titular"
 
-#: contents/ui/components/RadarWebEngineView.qml:93
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:145
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Heavy"
 msgstr "Intenso"
 
@@ -1472,11 +1416,7 @@ msgstr "Icono primero"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:156
 msgid "Icon glow:"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Brillo del icono:"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:203
 msgid "Icon only"
@@ -1684,14 +1624,10 @@ msgstr "Tipo de diseño:"
 #: contents/ui/config/configGeneral.qml:749
 #: contents/ui/config/configGeneral.qml:828
 msgid "LibreWXR"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "LibreWXR"
->>>>>>> origin/main
 
-#: contents/ui/components/RadarWebEngineView.qml:91
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:143
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Light"
 msgstr "Ligero"
 
@@ -1758,19 +1694,11 @@ msgstr "Cargando pronóstico…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:158
 msgid "Loading frames"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
-msgid "Loading frame…"
-msgstr ""
-=======
 msgstr "Cargando fotogramas"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
 msgid "Loading frame…"
 msgstr "Cargando fotograma…"
->>>>>>> origin/main
 
 #: contents/ui/ForecastView.qml:829
 msgid "Loading hourly data…"
@@ -1786,11 +1714,7 @@ msgstr "Cargando radar…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:156
 msgid "Loading…"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Cargando…"
->>>>>>> origin/main
 
 #: contents/config/config.qml:47
 msgid "Location"
@@ -1878,29 +1802,17 @@ msgstr "Temperatura baja"
 #: contents/ui/main.qml:1224
 msgctxt "Alert severity"
 msgid "MINIMAL"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "MÍNIMO"
->>>>>>> origin/main
 
 #: contents/ui/main.qml:1222
 msgctxt "Alert severity"
 msgid "MINOR"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "MENOR"
->>>>>>> origin/main
 
 #: contents/ui/main.qml:1221
 msgctxt "Alert severity"
 msgid "MODERATE"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "MODERADO"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:721
 msgid "Magnetic Field (Bz)"
@@ -1943,11 +1855,7 @@ msgstr "Proveedor de datos marinos y meteorológicos. Se requiere clave API a co
 
 #: contents/ui/config/configGeneral.qml:827
 msgid "MeteoAlarm + NOAA NWS (Native)"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "MeteoAlarm + NOAA NWS (nativo)"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:153
 msgid "Metric (°C, km/h, hPa, mm)"
@@ -1977,7 +1885,7 @@ msgstr "Tormenta geomagnética menor."
 msgid "Misc"
 msgstr "Varios"
 
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Mod"
 msgstr "Moder."
 
@@ -1985,7 +1893,7 @@ msgstr "Moder."
 msgid "Mode:"
 msgstr "Modo:"
 
-#: contents/ui/components/RadarWebEngineView.qml:92
+#: contents/ui/components/RadarWebEngineView.qml:144
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -2169,11 +2077,7 @@ msgstr "No"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:159
 msgid "No data"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Sin datos"
->>>>>>> origin/main
 
 #: contents/ui/DetailsView.qml:553
 msgid "No details data"
@@ -2202,19 +2106,11 @@ msgstr "Sin ubicación configurada"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:160
 msgid "No radar data"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
-msgid "No satellite data"
-msgstr ""
-=======
 msgstr "Sin datos de radar"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
 msgid "No satellite data"
 msgstr "Sin datos de satélite"
->>>>>>> origin/main
 
 #: contents/ui/config/configLocation.qml:1627
 msgid "No saved locations. Save the current location to quickly switch between places."
@@ -2224,8 +2120,8 @@ msgstr "Sin ubicaciones guardadas. Guarda la ubicación actual para cambiar ráp
 msgid "No weather stations found for '%1'"
 msgstr "No se encontraron estaciones meteorológicas para «%1»"
 
-#: contents/ui/components/RadarWebEngineView.qml:90
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:142
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2249,11 +2145,7 @@ msgstr "No disponible (HTTP %1)"
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
 msgid "Not supported"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "No compatible"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:623
 msgid "Not tested"
@@ -2418,7 +2310,7 @@ msgstr "Parcialmente nublado (día)"
 msgid "Partly cloudy (night)"
 msgstr "Parcialmente nublado (noche)"
 
-#: contents/ui/components/RadarWebEngineView.qml:87
+#: contents/ui/components/RadarWebEngineView.qml:139
 msgid "Pause"
 msgstr "Pausar"
 
@@ -2456,7 +2348,7 @@ msgstr "Pirate Weather (requiere clave)"
 msgid "Pirate Weather API Key:"
 msgstr "Clave API de Pirate Weather:"
 
-#: contents/ui/components/RadarWebEngineView.qml:86
+#: contents/ui/components/RadarWebEngineView.qml:138
 msgid "Play"
 msgstr "Reproducir"
 
@@ -2527,7 +2419,7 @@ msgstr "Precipitación:"
 msgid "Prefix style:"
 msgstr "Estilo de prefijo:"
 
-#: contents/ui/components/RadarWebEngineView.qml:77
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configAppearance.qml:1359
 #: contents/ui/config/configAppearance.qml:1461
 #: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
@@ -2590,12 +2482,6 @@ msgid ""
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo is always tried first - it is free and requires no API key."
 msgstr ""
-<<<<<<< HEAD
-
-#: contents/ui/config/configNotifications.qml:271
-msgid "Purple"
-msgstr ""
-=======
 "Los proveedores se prueban en orden hasta que uno funcione:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo siempre se prueba primero: es gratuito y no requiere clave API."
@@ -2603,7 +2489,6 @@ msgstr ""
 #: contents/ui/config/configNotifications.qml:271
 msgid "Purple"
 msgstr "Morado"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:335
 msgid "QWeather (Key Required)"
@@ -2638,7 +2523,7 @@ msgid "Quiet"
 msgstr "Tranquilo"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:72
+#: contents/ui/components/RadarWebEngineView.qml:124
 #: contents/ui/config/configGeneral.qml:720
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
@@ -2646,19 +2531,11 @@ msgstr "Radar"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:144
 msgid "Radar + Satellite"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
-msgid "Radar color scheme:"
-msgstr ""
-=======
 msgstr "Radar + satélite"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
 msgid "Radar color scheme:"
 msgstr "Esquema de color del radar:"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:234
 msgid "Radar only"
@@ -2666,19 +2543,11 @@ msgstr "Solo radar"
 
 #: contents/ui/config/configGeneral.qml:742
 msgid "Radar provider:"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:771
-msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
-msgstr ""
-=======
 msgstr "Proveedor de radar:"
 
 #: contents/ui/config/configGeneral.qml:771
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
 msgstr "Proveedor de radar: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR es una API gratuita y de código abierto de radar meteorológico. Combina composiciones de radar reales de fuentes de la NOAA, canadienses y europeas con un modelo global como alternativa, y proporciona las últimas 2 horas de datos de radar más una breve predicción inmediata. También ofrece una capa de satélite (infrarrojo) gratuita.<br/><br/>El modo de capa, el esquema de color del radar y las flechas de movimiento se seleccionan directamente en la pestaña Radar. El mapa sigue automáticamente el tema claro u oscuro de Plasma."
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:762
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
@@ -2693,7 +2562,7 @@ msgstr "Radar:"
 msgid "Ragweed"
 msgstr "Ambrosía"
 
-#: contents/ui/components/RadarWebEngineView.qml:73
+#: contents/ui/components/RadarWebEngineView.qml:125
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
 #: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
@@ -2710,11 +2579,7 @@ msgstr "Lluvia (noche)"
 
 #: contents/ui/config/configGeneral.qml:748
 msgid "Rain Viewer"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Rain Viewer"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:59
 msgid "Rain showers"
@@ -2724,11 +2589,11 @@ msgstr "Chubascos"
 msgid "Rain/Storm"
 msgstr "Lluvia/Tormenta"
 
-#: contents/ui/components/RadarWebEngineView.qml:88
+#: contents/ui/components/RadarWebEngineView.qml:140
 msgid "Real-time"
 msgstr "Tiempo real"
 
-#: contents/ui/components/RadarWebEngineView.qml:85
+#: contents/ui/components/RadarWebEngineView.qml:137
 msgid "Recent"
 msgstr "Reciente"
 
@@ -2833,11 +2698,7 @@ msgstr "Redondear valores:"
 #: contents/ui/main.qml:1220
 msgctxt "Alert severity"
 msgid "SEVERE"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "SEVERO"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:593
 msgid "SO₂"
@@ -2845,11 +2706,7 @@ msgstr "SO₂"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:139
 msgid "Satellite"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Satélite"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:906
 msgid "Saturday"
@@ -2976,7 +2833,7 @@ msgstr "Mostrar en detalles"
 msgid "Show in:"
 msgstr "Mostrar en:"
 
-#: contents/ui/components/RadarWebEngineView.qml:89
+#: contents/ui/components/RadarWebEngineView.qml:141
 msgid "Show my location"
 msgstr "Mostrar mi ubicación"
 
@@ -2994,11 +2851,7 @@ msgstr "Mostrar contaminantes en vista expandida:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:309
 msgid "Show precipitation motion arrows"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Mostrar flechas de movimiento de las precipitaciones"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:407
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:476
@@ -3200,8 +3053,8 @@ msgstr "Proveedor estándar. Se requiere clave API a continuación."
 msgid "Stats items:"
 msgstr "Elementos de estadísticas:"
 
-#: contents/ui/components/RadarWebEngineView.qml:94
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:146
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "Tormenta"
@@ -3324,11 +3177,7 @@ msgstr "Invertir orden:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:324
 msgid "Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme."
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Alterna entre el estilo de mapa claro y oscuro. Hasta que se cambie por primera vez, el mapa sigue el tema de Plasma."
->>>>>>> origin/main
 
 #: contents/ui/FullView.qml:328
 msgid "Switch location"
@@ -3370,7 +3219,7 @@ msgstr "Ajustes de visualización de la bandeja del sistema"
 msgid "System tray icon settings"
 msgstr "Ajustes del icono de la bandeja del sistema"
 
-#: contents/ui/components/RadarWebEngineView.qml:75
+#: contents/ui/components/RadarWebEngineView.qml:127
 #: contents/ui/config/configAppearance.qml:1323
 #: contents/ui/config/configAppearance.qml:1570
 msgid "Temperature"
@@ -3615,11 +3464,7 @@ msgstr "Truncar (una sola línea)"
 #: contents/ui/main.qml:1223
 msgctxt "Alert severity"
 msgid "UNKNOWN"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "DESCONOCIDO"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:1394
 #: contents/ui/config/configAppearance.qml:1517
@@ -3706,43 +3551,24 @@ msgstr "Tiempo de actualización agotado. Toca para reintentar."
 #: contents/ui/WeatherService.qml:761
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
-<<<<<<< HEAD
-msgstr[0] ""
-msgstr[1] ""
-=======
 msgstr[0] "Actualizado hace %1 día"
 msgstr[1] "Actualizado hace %1 días"
->>>>>>> origin/main
 
 #: contents/ui/WeatherService.qml:759
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
-<<<<<<< HEAD
-msgstr[0] ""
-msgstr[1] ""
-=======
 msgstr[0] "Actualizado hace %1 hora"
 msgstr[1] "Actualizado hace %1 horas"
->>>>>>> origin/main
 
 #: contents/ui/WeatherService.qml:756
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
-<<<<<<< HEAD
-msgstr[0] ""
-msgstr[1] ""
-
-#: contents/ui/WeatherService.qml:754
-msgid "Updated just now"
-msgstr ""
-=======
 msgstr[0] "Actualizado hace %1 minuto"
 msgstr[1] "Actualizado hace %1 minutos"
 
 #: contents/ui/WeatherService.qml:754
 msgid "Updated just now"
 msgstr "Actualizado ahora mismo"
->>>>>>> origin/main
 
 #: contents/ui/FullView.qml:396
 msgid "Updating…"
@@ -3851,11 +3677,7 @@ msgstr "Hemos detectado tu ubicación como: <b>%1</b>."
 
 #: contents/ui/config/configGeneral.qml:806
 msgid "Weather Alerts"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Alertas meteorológicas"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:362
 msgid "Weather Provider"
@@ -3907,8 +3729,6 @@ msgid ""
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
-<<<<<<< HEAD
-=======
 "Niveles de gravedad de las alertas meteorológicas, de menor a mayor:\n"
 "\n"
 "🟡 Amarillo — Menor: preste atención a las condiciones.\n"
@@ -3917,7 +3737,6 @@ msgstr ""
 "🟣 Morado — Extremo: extraordinariamente peligroso, actúe de inmediato.\n"
 "\n"
 "Desactive un nivel para dejar de recibir notificaciones de las alertas de esa gravedad."
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:311
 msgid "WeatherAPI.com (Key Required)"
@@ -3952,7 +3771,7 @@ msgstr "Tamaño del widget"
 msgid "Widget panel area:"
 msgstr "Área del widget en el panel:"
 
-#: contents/ui/components/RadarWebEngineView.qml:76
+#: contents/ui/components/RadarWebEngineView.qml:128
 #: contents/ui/config/configAppearance.qml:1337
 #: contents/ui/config/configAppearance.qml:1468
 #: contents/ui/config/configAppearance.qml:1591
@@ -3963,11 +3782,7 @@ msgstr "Viento"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:301
 msgid "Wind arrows"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Flechas de viento"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:1469
 #: contents/ui/config/configAppearance.qml:1592
@@ -4086,7 +3901,7 @@ msgstr "ft"
 msgid "grains/m³"
 msgstr "granos/m³"
 
-#: contents/ui/components/RadarWebEngineView.qml:551
+#: contents/ui/components/RadarWebEngineView.qml:655
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "hPa"
@@ -4103,11 +3918,11 @@ msgstr "in"
 msgid "in the next hours"
 msgstr "en las próximas horas"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "in/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:549
+#: contents/ui/components/RadarWebEngineView.qml:653
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "inHg"
@@ -4118,7 +3933,7 @@ msgstr "inHg"
 msgid "km"
 msgstr "km"
 
-#: contents/ui/components/RadarWebEngineView.qml:544
+#: contents/ui/components/RadarWebEngineView.qml:648
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "km/h"
@@ -4127,7 +3942,7 @@ msgstr "km/h"
 msgid "km/s"
 msgstr "km/s"
 
-#: contents/ui/components/RadarWebEngineView.qml:545
+#: contents/ui/components/RadarWebEngineView.qml:649
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "kn"
@@ -4144,7 +3959,7 @@ msgstr "bajo"
 msgid "m"
 msgstr "m"
 
-#: contents/ui/components/RadarWebEngineView.qml:546
+#: contents/ui/components/RadarWebEngineView.qml:650
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "m/s"
@@ -4178,11 +3993,11 @@ msgstr "minutos"
 msgid "mm"
 msgstr "mm"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "mm/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:550
+#: contents/ui/components/RadarWebEngineView.qml:654
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "mmHg"
@@ -4191,7 +4006,7 @@ msgstr "mmHg"
 msgid "moderate"
 msgstr "moderado"
 
-#: contents/ui/components/RadarWebEngineView.qml:543
+#: contents/ui/components/RadarWebEngineView.qml:647
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "mph"
@@ -4290,18 +4105,6 @@ msgstr "tu ubicación"
 #: contents/ui/js/airQuality.js:156
 msgid "µg/m³"
 msgstr "µg/m³"
-
-#~ msgid ""
-#~ "Providers are tried in order until one succeeds:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first - it is free and requires no API key."
-#~ msgstr ""
-#~ "Los proveedores se prueban en orden hasta que uno tenga éxito:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo siempre se prueba primero: es gratuito y no requiere clave API."
-
-#~ msgid "Updated %1"
-#~ msgstr "Actualizado %1"
 
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"

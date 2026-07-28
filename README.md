@@ -125,16 +125,16 @@ For providers that require an API key, you can enter it in the widget's settings
 5. Enter your API key in the corresponding field for your chosen provider.
 
 | Provider | Key Required | Signup Link |
-|---|---|---|
+|---|:---:|---|
 | **Open-Meteo / MET Norway** | No | - |
-| **OpenWeatherMap** | **Yes** | [Sign Up](https://openweathermap.org/api) |
-| **WeatherAPI** | **Yes** | [Sign Up](https://www.weatherapi.com/) |
-| **Pirate Weather** | **Yes** | [Sign Up](https://pirateweather.net/) |
-| **Tomorrow.io** | **Yes** | [Sign Up](https://www.tomorrow.io/weather-api/) |
-| **Visual Crossing** | **Yes** | [Sign Up](https://www.visualcrossing.com/weather-data) |
-| **StormGlass** | **Yes** | [Sign Up](https://stormglass.io/) |
-| **Weatherbit** | **Yes** | [Sign Up](https://www.weatherbit.io/) |
-| **QWeather** | **Yes** | [Sign Up](https://dev.qweather.com/) |
+| **OpenWeatherMap** | ✅ | [Sign Up](https://openweathermap.org/api) |
+| **WeatherAPI** | ✅ | [Sign Up](https://www.weatherapi.com/) |
+| **Pirate Weather** | ✅ | [Sign Up](https://pirateweather.net/) |
+| **Tomorrow.io** | ✅ | [Sign Up](https://www.tomorrow.io/weather-api/) |
+| **Visual Crossing** | ✅ | [Sign Up](https://www.visualcrossing.com/weather-data) |
+| **StormGlass** | ✅ | [Sign Up](https://stormglass.io/) |
+| **Weatherbit** | ✅ | [Sign Up](https://www.weatherbit.io/) |
+| **QWeather** | ✅ | [Sign Up](https://dev.qweather.com/) |
 
 ### 🌡 Data Points
 - **Core:** Temp (Current/Apparent/Dew), Wind (Speed/Direction), Humidity, Pressure, Visibility.
@@ -155,7 +155,7 @@ For providers that require an API key, you can enter it in the widget's settings
 
 Thank you to everyone who has contributed code to this project ❤️
 
-- **[Mizu Ikki](https://github.com/mizuikki)** - QWeather provider fixes (refresh handling, forecast display, precipitation fallback)
+- **[Mizu Ikki](https://github.com/mizuikki)** - QWeather provider fixes and perfomance improvements (refresh handling, forecast display, precipitation fallback)
 
 ## 🌐 Translation
 
@@ -203,9 +203,8 @@ You can check the current translation coverage in translation-status.md.
 
 Thank you to everyone who contributed translations to this project ❤️
 
-- **German** - [HolySoap](https://github.com/HolySoap)
+- **German** - [HolySoap](https://github.com/HolySoap) and [TomfromBerlin](https://github.com/TomfromBerlin)
 - **Brazilian Portuguese** - [PauloAlbqrq](https://github.com/PauloAlbqrq)
-- **Bulgarian** - Petar Nedyalkov (Author)
 - **Dutch** - Heimen Stoffels (<vistausss@fastmail.com>)
 - **Russian** - [Dmaliog](https://github.com/dmaliog) and [PhvntxmX](https://github.com/PhvntxmX)
 - **French** - [LAZER-TY](https://github.com/LAZER-TY) and [rcspam](https://github.com/rcspam)
@@ -219,29 +218,49 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Polish** - [l3monik](https://github.com/l3monik)
 - **Ukrainian** - [NaviMen (Oleksandr)](https://github.com/NaviMen)
 - **Japanese** - [presire](https://github.com/presire)
+- **Bulgarian** - Petar Nedyalkov (Author)
 
 ---
 
 ## 🐛 Bug Reports & Feedback
 If you encounter any issues or have suggestions, please open a [GitHub Issue](https://github.com/pnedyalkov91/advanced-weather-widget/issues). Please include your distribution, Plasma version, and the weather provider you were using.
 
-## External resources
+## 📦 Data Sources
 
-- This project uses weather icons and font resources from: https://github.com/erikflowers/weather-icons
-  Licensed under SIL OFL 1.1 (http://scripts.sil.org/OFL)
+- This project uses weather icons and font resources from **Weather Icons**:  
+  https://github.com/erikflowers/weather-icons
 
-- This project uses code from the SunCalc library: https://github.com/mourner/suncalc
-  Copyright (c) Vladimir Agafonkin
-  Licensed under the BSD license
+  Licensed under the **SIL Open Font License 1.1 (OFL 1.1)**.
 
-- The Radar tab uses the **RainViewer API** for weather radar data: https://www.rainviewer.com/
+- This project uses code from the **SunCalc** library:  
+  https://github.com/mourner/suncalc
 
-- The Radar tab uses **Leaflet.js** for interactive map rendering: https://leafletjs.com/
-  Copyright (c) 2010–2024 Vladimir Agafonkin
-  Licensed under BSD 2-Clause License
+  Copyright © Vladimir Agafonkin.  
+  Licensed under the **BSD License**.
 
-- Map tiles provided by **OpenStreetMap**: https://www.openstreetmap.org/copyright
-  © OpenStreetMap contributors, licensed under ODbL
+- This project uses the **RainViewer API** for weather radar data:  
+  https://www.rainviewer.com/
+
+- This project uses **LibreWXR** for weather radar data and weather alerts:  
+  https://librewxr.net/
+
+- The **Radar** tab uses **Leaflet.js** for interactive map rendering:  
+  https://leafletjs.com/
+
+  Copyright © 2010–2024 Vladimir Agafonkin.  
+  Licensed under the **BSD 2-Clause License**.
+
+- Map tiles are provided by **OpenStreetMap**:  
+  https://www.openstreetmap.org/copyright
+
+  © OpenStreetMap contributors. Licensed under the **Open Database License (ODbL)**.
+
+- This project uses the **KDE FOSS Public Alert Server** for displaying weather alerts:  
+  https://alerts.kde.org/
+
+  Licensed under the **AGPL-3.0-or-later** license.
+
+
 
 ## ❤️ Support the project
 

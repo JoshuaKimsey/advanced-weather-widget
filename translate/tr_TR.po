@@ -10,11 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2026-07-20 09:31+0300\n"
-=======
-"POT-Creation-Date: 2026-07-21 01:59+0300\n"
->>>>>>> origin/main
+"POT-Creation-Date: 2026-07-28 14:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: herzane <herzane@proton.me>\n"
 "Language-Team: Turkish\n"
@@ -147,8 +143,24 @@ msgid "<b>Severity:</b> %1%2"
 msgstr "<b>Şiddet:</b> %1%2"
 
 #: contents/ui/config/configGeneral.qml:788
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>OWM katmanları neden RainViewer radarıyla eşleşmeyebilir</b><br/><br/>OWM yağış/bulut katmanları <b>statik model karolarıdır</b> - gerçek radar verileri değil, düzleştirilmiş bir NWP (Sayısal Hava Tahmini) çıktısını gösterirler. Hava istasyonları ve model çalıştırmaları arasındaki enterpolasyona dayanarak modelin yağmur yağdığını <i>düşündüğü</i> yerleri temsil ederler.<br/><br/>RainViewer, radar istasyonlarından <b>gerçek hava radarı verilerini</b> kullanır - her 2–10 dakikada bir güncellenen gerçek ölçülmüş yansıtıcılık. Bu farklılık beklenen ve bilinen bir durumdur."
+msgid ""
+"<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM "
+"precipitation/cloud layers are <b>static model tiles</b> - they show a "
+"smoothed NWP (Numerical Weather Prediction) output, not actual radar "
+"returns. They represent where the model <i>thinks</i> it is raining based on"
+" interpolation between weather stations and model runs.<br/><br/>RainViewer "
+"uses <b>real weather radar composites</b> from radar stations - actual "
+"measured reflectivity updated every 2–10 minutes. This discrepancy is "
+"expected and known."
+msgstr ""
+"<b>OWM katmanları neden RainViewer radarıyla eşleşmeyebilir</b><br/><br/>OWM"
+" yağış/bulut katmanları <b>statik model karolarıdır</b> - gerçek radar "
+"verileri değil, düzleştirilmiş bir NWP (Sayısal Hava Tahmini) çıktısını "
+"gösterirler. Hava istasyonları ve model çalıştırmaları arasındaki "
+"enterpolasyona dayanarak modelin yağmur yağdığını <i>düşündüğü</i> yerleri "
+"temsil ederler.<br/><br/>RainViewer, radar istasyonlarından <b>gerçek hava "
+"radarı verilerini</b> kullanır - her 2–10 dakikada bir güncellenen gerçek "
+"ölçülmüş yansıtıcılık. Bu farklılık beklenen ve bilinen bir durumdur."
 
 #: contents/ui/config/configGeneral.qml:462
 msgid "AI-powered weather intelligence. API key required below."
@@ -156,7 +168,7 @@ msgstr "Yapay zeka destekli hava tahmini. Aşağıda API anahtarı gereklidir."
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:162
 msgid "API error"
-msgstr ""
+msgstr "API hatası"
 
 #: contents/ui/config/configGeneral.qml:219
 msgid "API key is empty."
@@ -200,8 +212,8 @@ msgstr "Öğleden Sonra"
 
 #: contents/ui/config/configAppearance.qml:1401
 #: contents/ui/config/configAppearance.qml:1524
-#: contents/ui/config/configAppearance.qml:1647 contents/ui/DetailsView.qml:326
-#: contents/ui/SimpleView.qml:266
+#: contents/ui/config/configAppearance.qml:1647
+#: contents/ui/DetailsView.qml:326 contents/ui/SimpleView.qml:266
 msgid "Air Quality"
 msgstr "Hava Kalitesi"
 
@@ -250,26 +262,61 @@ msgstr "Kızılağaç"
 
 #: contents/ui/config/configAppearance.qml:1422
 #: contents/ui/config/configAppearance.qml:1545
-#: contents/ui/config/configAppearance.qml:1668 contents/ui/DetailsView.qml:329
-#: contents/ui/SimpleView.qml:269
+#: contents/ui/config/configAppearance.qml:1668
+#: contents/ui/DetailsView.qml:329 contents/ui/SimpleView.qml:269
 msgid "Alerts"
 msgstr "Uyarılar"
 
 #: contents/ui/config/configGeneral.qml:821
 msgid "Alerts provider:"
-msgstr ""
+msgstr "Uyarı sağlayıcısı:"
 
 #: contents/ui/config/configGeneral.qml:865
-msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
+msgid ""
+"Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert "
+"Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-"
+"weather warnings in CAP format from agencies worldwide and matches them to "
+"your exact location. Alert notifications work the same as with the native "
+"provider."
 msgstr ""
+"Uyarı sağlayıcısı: <a href='https://alerts.kde.org/'>FOSS Public Alert "
+"Server</a><br/><br/>KDE'nin FOSS Public Alert Server'ı, dünya çapındaki "
+"kurumlardan CAP biçiminde resmi şiddetli hava durumu uyarılarını toplar ve "
+"bunları tam konumunuzla eşleştirir. Uyarı bildirimleri, yerel sağlayıcıyla "
+"aynı şekilde çalışır."
 
 #: contents/ui/config/configGeneral.qml:856
-msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
+msgid ""
+"Alerts provider: <a "
+"href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-"
+"source weather API that aggregates official CAP alerts worldwide (WMO Severe"
+" Weather Information Centre, NOAA NWS, and others) and matches them to your "
+"exact location. Alert notifications work the same as with the native "
+"provider."
 msgstr ""
+"Uyarı sağlayıcısı: <a "
+"href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR, dünya çapındaki"
+" resmi CAP uyarılarını (WMO Severe Weather Information Centre, NOAA NWS ve "
+"diğerleri) toplayan ve bunları tam konumunuzla eşleştiren ücretsiz, açık "
+"kaynaklı bir hava durumu API'sidir. Uyarı bildirimleri, yerel sağlayıcıyla "
+"aynı şekilde çalışır."
 
 #: contents/ui/config/configGeneral.qml:847
-msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
+msgid ""
+"Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET "
+"MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA "
+"NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 "
+"countries), US locations use the NOAA National Weather Service alerts API, "
+"with met.no MetAlerts as a fallback. If your weather provider delivers its "
+"own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
 msgstr ""
+"Uyarı sağlayıcısı: <a href='https://www.meteoalarm.org/'>EUMETNET "
+"MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA "
+"NWS</a><br/><br/>Avrupa'daki konumlar için resmi MeteoAlarm akışları (38 "
+"ülke), ABD'deki konumlar için ise NOAA National Weather Service uyarı API'si"
+" kullanılır; yedek olarak met.no MetAlerts devreye girer. Hava durumu "
+"sağlayıcınız kendi uyarılarını sunuyorsa (örn. WeatherAPI.com, Pirate "
+"Weather), bunlar doğrudan kullanılır."
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -304,16 +351,26 @@ msgid "Altitude (%1):"
 msgstr "Rakım (%1):"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:483
-msgid "Altitude is optional, but strongly recommended for accurate forecasts. MET Norway (met.no) uses it to correct temperature and pressure for elevation; leaving it at 0 for a mountain location will return sea-level values."
-msgstr "Rakım isteğe bağlıdır, ancak doğru tahminler için şiddetle tavsiye edilir. MET Norway (met.no) yüksekliğe göre sıcaklık ve basıncı düzeltmek için rakımı kullanır; dağlık bir konum için 0 bırakmak deniz seviyesi değerlerini döndürür."
+msgid ""
+"Altitude is optional, but strongly recommended for accurate forecasts. MET "
+"Norway (met.no) uses it to correct temperature and pressure for elevation; "
+"leaving it at 0 for a mountain location will return sea-level values."
+msgstr ""
+"Rakım isteğe bağlıdır, ancak doğru tahminler için şiddetle tavsiye edilir. "
+"MET Norway (met.no) yüksekliğe göre sıcaklık ve basıncı düzeltmek için "
+"rakımı kullanır; dağlık bir konum için 0 bırakmak deniz seviyesi değerlerini"
+" döndürür."
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:610
 msgid "Altitude:"
 msgstr "Yükseklik:"
 
 #: contents/ui/config/configGeneral.qml:654
-msgid "An API key is required for %1. Weather data cannot be retrieved without it."
-msgstr "%1 için bir API anahtarı gereklidir. API anahtarı olmadan hava durumu verileri alınamaz."
+msgid ""
+"An API key is required for %1. Weather data cannot be retrieved without it."
+msgstr ""
+"%1 için bir API anahtarı gereklidir. API anahtarı olmadan hava durumu "
+"verileri alınamaz."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:751
 msgid "Animate row scrolling"
@@ -344,8 +401,12 @@ msgid "Apply detected location"
 msgstr "Algılanan konumu uygula"
 
 #: contents/ui/config/configLocation.qml:1380
-msgid "Are you sure? This is your last saved location. If you remove it, the widget will no longer show weather information."
-msgstr "Emin misiniz? Bu kaydettiğiniz son konum. Eğer kaldırırsanız, araç takımı artık hava durumu bilgilerini göstermeyecek."
+msgid ""
+"Are you sure? This is your last saved location. If you remove it, the widget"
+" will no longer show weather information."
+msgstr ""
+"Emin misiniz? Bu kaydettiğiniz son konum. Eğer kaldırırsanız, araç takımı "
+"artık hava durumu bilgilerini göstermeyecek."
 
 #: contents/ui/DetailsView.qml:3495
 msgid "Around midnight — "
@@ -380,12 +441,30 @@ msgid "Auto (detect on save)"
 msgstr "Otomatik (kaydederken algıla)"
 
 #: contents/ui/config/configLocation.qml:1524
-msgid "Auto-detection first asks GeoClue2, the system location service, for your current position. If system location is unavailable, the widget estimates your location from your public IP address, which is usually less precise and only updates when detection runs again."
-msgstr "Otomatik algılama ilk olarak mevcut konumunuz için sistem konum servisi GeoClue2'yi kullanır. Sistem konumu kullanılamıyorsa, araç takımı konumunuzu genellikle daha az kesin olan ve yalnızca algılama tekrar çalıştığında güncellenen genel IP adresinizden tahmin eder."
+msgid ""
+"Auto-detection first asks GeoClue2, the system location service, for your "
+"current position. If system location is unavailable, the widget estimates "
+"your location from your public IP address, which is usually less precise and"
+" only updates when detection runs again."
+msgstr ""
+"Otomatik algılama ilk olarak mevcut konumunuz için sistem konum servisi "
+"GeoClue2'yi kullanır. Sistem konumu kullanılamıyorsa, araç takımı konumunuzu"
+" genellikle daha az kesin olan ve yalnızca algılama tekrar çalıştığında "
+"güncellenen genel IP adresinizden tahmin eder."
 
 #: contents/ui/config/configLocation.qml:1485
-msgid "Auto-detection is limited without QtLocation and QtPositioning. It will fall back to IP-based detection, which may be less accurate and will not update in real time as you move. If you want to improve auto-detection accuracy, please install the required packages for your distribution. For more details, see the install guide."
-msgstr "QtLocation ve QtPositioning olmadan otomatik algılama sınırlıdır. Daha az doğru olabilen ve siz hareket ettikçe gerçek zamanlı güncelleme yapmayan IP tabanlı algılamaya geri dönecektir. Otomatik algılama doğruluğunu artırmak istiyorsanız, lütfen dağıtımınız için gerekli paketleri kurun. Daha fazla ayrıntı için kurulum kılavuzuna bakın."
+msgid ""
+"Auto-detection is limited without QtLocation and QtPositioning. It will fall"
+" back to IP-based detection, which may be less accurate and will not update "
+"in real time as you move. If you want to improve auto-detection accuracy, "
+"please install the required packages for your distribution. For more "
+"details, see the install guide."
+msgstr ""
+"QtLocation ve QtPositioning olmadan otomatik algılama sınırlıdır. Daha az "
+"doğru olabilen ve siz hareket ettikçe gerçek zamanlı güncelleme yapmayan IP "
+"tabanlı algılamaya geri dönecektir. Otomatik algılama doğruluğunu artırmak "
+"istiyorsanız, lütfen dağıtımınız için gerekli paketleri kurun. Daha fazla "
+"ayrıntı için kurulum kılavuzuna bakın."
 
 #: contents/ui/config/configLocation.qml:753
 msgid "Auto-detection updated coordinates."
@@ -415,7 +494,7 @@ msgstr "Çığ"
 
 #: contents/ui/config/configGeneral.qml:303
 msgid "BBC Weather (free)"
-msgstr ""
+msgstr "BBC Weather (ücretsiz)"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:100
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:374
@@ -457,7 +536,7 @@ msgstr "Huş ağacı"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:150
 msgid "Black and White"
-msgstr ""
+msgstr "Siyah Beyaz"
 
 #: contents/ui/config/configAppearance.qml:732
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:536
@@ -551,7 +630,9 @@ msgstr "Konum uygunluğu kontrol ediliyor…"
 
 #: contents/ui/config/configGeneral.qml:468
 msgid "Chinese weather provider with global coverage. API key required below."
-msgstr "Küresel kapsama alanına sahip Çinli hava durumu sağlayıcısı. Aşağıda API anahtarı gereklidir."
+msgstr ""
+"Küresel kapsama alanına sahip Çinli hava durumu sağlayıcısı. Aşağıda API "
+"anahtarı gereklidir."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:945
 msgid "Choose Simple Mode Font"
@@ -608,8 +689,15 @@ msgid "Clear sky"
 msgstr "Açık gökyüzü"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:581
-msgid "Click \"Test across providers\" to check if the coordinates are serviceable by each supported weather provider. Providers requiring an API key that is not configured will be skipped."
-msgstr "Koordinatların desteklenen her hava durumu sağlayıcısı tarafından kullanılabilir olup olmadığını kontrol etmek için \"Sağlayıcılar arasında test et\" seçeneğine tıklayın. Yapılandırılmamış API anahtarı gerektiren sağlayıcılar atlanacaktır."
+msgid ""
+"Click \"Test across providers\" to check if the coordinates are serviceable "
+"by each supported weather provider. Providers requiring an API key that is "
+"not configured will be skipped."
+msgstr ""
+"Koordinatların desteklenen her hava durumu sağlayıcısı tarafından "
+"kullanılabilir olup olmadığını kontrol etmek için \"Sağlayıcılar arasında "
+"test et\" seçeneğine tıklayın. Yapılandırılmamış API anahtarı gerektiren "
+"sağlayıcılar atlanacaktır."
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:635
 msgid "Click on the map to select a location"
@@ -619,7 +707,7 @@ msgstr "Konum seçmek için haritaya tıklayın"
 msgid "Click to configure a location"
 msgstr "Konumu yapılandırmak için tıklayın"
 
-#: contents/ui/components/RadarWebEngineView.qml:74
+#: contents/ui/components/RadarWebEngineView.qml:126
 msgid "Clouds"
 msgstr "Bulutlar"
 
@@ -646,7 +734,8 @@ msgid "Compressed"
 msgstr "Sıkıştırılmış"
 
 #: contents/ui/config/configAppearance.qml:1316
-#: contents/ui/config/configAppearance.qml:1577 contents/ui/DetailsView.qml:322
+#: contents/ui/config/configAppearance.qml:1577
+#: contents/ui/DetailsView.qml:322
 msgid "Condition"
 msgstr "Durum"
 
@@ -698,7 +787,7 @@ msgstr "Konumunuzu onaylayın"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:163
 msgid "Connection failed"
-msgstr ""
+msgstr "Bağlantı başarısız oldu"
 
 #: contents/ui/config/configGeneral.qml:286
 msgid "Connection failed (HTTP %1)."
@@ -713,8 +802,14 @@ msgid "Coordinates"
 msgstr "Koordinatlar"
 
 #: contents/ui/config/configNotifications.qml:303
-msgid "Critical notifications are still shown even when Do Not Disturb is enabled, or while you're playing a game or watching a fullscreen video (if those options are enabled in System Settings → Notifications)."
-msgstr "Kritik bildirimler, Rahatsız Etmeyin modu etkin olduğunda veya bir oyun oynarken ya da tam ekran video izlerken bile gösterilir (bu seçenekler Sistem Ayarları → Bildirimler bölümünde etkinleştirilmişse)."
+msgid ""
+"Critical notifications are still shown even when Do Not Disturb is enabled, "
+"or while you're playing a game or watching a fullscreen video (if those "
+"options are enabled in System Settings → Notifications)."
+msgstr ""
+"Kritik bildirimler, Rahatsız Etmeyin modu etkin olduğunda veya bir oyun "
+"oynarken ya da tam ekran video izlerken bile gösterilir (bu seçenekler "
+"Sistem Ayarları → Bildirimler bölümünde etkinleştirilmişse)."
 
 #: contents/ui/config/configAppearance.qml:1437
 #: contents/ui/config/configAppearance.qml:1560
@@ -764,11 +859,12 @@ msgstr "Günlük Tahmin Ayarları"
 
 #: contents/ui/config/configGeneral.qml:458
 msgid "Dark Sky-compatible API with US alerts. API key required below."
-msgstr "ABD uyarıları içeren Dark Sky uyumlu API. Aşağıda API anahtarı gereklidir."
+msgstr ""
+"ABD uyarıları içeren Dark Sky uyumlu API. Aşağıda API anahtarı gereklidir."
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:314
 msgid "Dark map"
-msgstr ""
+msgstr "Koyu harita"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:873
 msgid "Dash  –"
@@ -780,7 +876,8 @@ msgstr "Veri Yenileme"
 
 #: contents/ui/config/configAppearance.qml:1436
 #: contents/ui/config/configAppearance.qml:1559
-#: contents/ui/config/configAppearance.qml:1682 contents/ui/DetailsView.qml:331
+#: contents/ui/config/configAppearance.qml:1682
+#: contents/ui/DetailsView.qml:331
 msgid "Date / Time"
 msgstr "Tarih / Saat"
 
@@ -842,7 +939,8 @@ msgid "Description"
 msgstr "Açıklama"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:80
-#: contents/ui/config/tabs/ConfigWidgetTab.qml:209 contents/ui/FullView.qml:564
+#: contents/ui/config/tabs/ConfigWidgetTab.qml:209
+#: contents/ui/FullView.qml:564
 msgid "Details"
 msgstr "Detaylar"
 
@@ -875,8 +973,8 @@ msgstr "Konumu algıla / değiştir…"
 msgid "Detecting…"
 msgstr "Algılanıyor…"
 
-#: contents/ui/config/configAppearance.qml:1482 contents/ui/DetailsView.qml:319
-#: contents/ui/SimpleView.qml:261
+#: contents/ui/config/configAppearance.qml:1482
+#: contents/ui/DetailsView.qml:319 contents/ui/SimpleView.qml:261
 msgid "Dew Point"
 msgstr "Çiy Noktası"
 
@@ -889,8 +987,13 @@ msgid "Dew point:"
 msgstr "Çiy noktası:"
 
 #: contents/ui/config/configNotifications.qml:336
-msgid "Disable a type to silence it, or give it its own repeat interval. The interval is used only when 'Repeat reminder until dismissed' is on."
-msgstr "Bir türü susturmak için devre dışı bırakın veya ona kendi tekrar aralığını verin. Aralık yalnızca 'Kapatılana kadar hatırlatıcıyı tekrarla' açık olduğunda kullanılır."
+msgid ""
+"Disable a type to silence it, or give it its own repeat interval. The "
+"interval is used only when 'Repeat reminder until dismissed' is on."
+msgstr ""
+"Bir türü susturmak için devre dışı bırakın veya ona kendi tekrar aralığını "
+"verin. Aralık yalnızca 'Kapatılana kadar hatırlatıcıyı tekrarla' açık "
+"olduğunda kullanılır."
 
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:488
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:483
@@ -955,19 +1058,28 @@ msgstr "Çift sıcaklık"
 #: contents/ui/main.qml:1219
 msgctxt "Alert severity"
 msgid "EXTREME"
-msgstr ""
+msgstr "AŞIRI"
 
 #: contents/ui/config/configGeneral.qml:696
-msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
-msgstr "Her QWeather projesinin benzersiz bir API sunucusu vardır. Kendi sunucunuzu console.qweather.com adresindeki proje ayarlarınızdan bulun."
+msgid ""
+"Each QWeather project has a unique API host. Find yours at "
+"console.qweather.com under your project settings."
+msgstr ""
+"Her QWeather projesinin benzersiz bir API sunucusu vardır. Kendi sunucunuzu "
+"console.qweather.com adresindeki proje ayarlarınızdan bulun."
 
 #: contents/ui/config/configNotifications.qml:319
 msgid "Each alert is shown only once, without Dismiss and Postpone buttons."
-msgstr "Her uyarı sadece bir kez gösterilir, Kapat ve Ertele düğmeleri olmadan."
+msgstr ""
+"Her uyarı sadece bir kez gösterilir, Kapat ve Ertele düğmeleri olmadan."
 
 #: contents/ui/config/configNotifications.qml:233
-msgid "Each notification type can be enabled independently, with its own daily time where applicable."
-msgstr "Her bildirim türü, geçerli olduğu durumlarda kendi günlük saatiyle bağımsız olarak etkinleştirilebilir."
+msgid ""
+"Each notification type can be enabled independently, with its own daily time"
+" where applicable."
+msgstr ""
+"Her bildirim türü, geçerli olduğu durumlarda kendi günlük saatiyle bağımsız "
+"olarak etkinleştirilebilir."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:386
 msgid "Edit Saved Location"
@@ -1021,12 +1133,22 @@ msgid "Enter Manually"
 msgstr "Manuel Gir"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:545
-msgid "Enter a location name and valid coordinates, then click the main Apply button."
-msgstr "Bir konum adı ve geçerli koordinatlar girin, ardından ana Uygula düğmesine tıklayın."
+msgid ""
+"Enter a location name and valid coordinates, then click the main Apply "
+"button."
+msgstr ""
+"Bir konum adı ve geçerli koordinatlar girin, ardından ana Uygula düğmesine "
+"tıklayın."
 
 #: contents/ui/config/configLocation.qml:1598
-msgid "Enter exact latitude, longitude, and optional elevation for a more local forecast. You can copy coordinates from OpenStreetMap, GeoNames, or Google Maps."
-msgstr "Daha yerel bir tahmin için kesin enlem, boylam ve isteğe bağlı rakımı girin. Koordinatları OpenStreetMap, GeoNames veya Google Haritalar'dan kopyalayabilirsiniz."
+msgid ""
+"Enter exact latitude, longitude, and optional elevation for a more local "
+"forecast. You can copy coordinates from OpenStreetMap, GeoNames, or Google "
+"Maps."
+msgstr ""
+"Daha yerel bir tahmin için kesin enlem, boylam ve isteğe bağlı rakımı girin."
+" Koordinatları OpenStreetMap, GeoNames veya Google Haritalar'dan "
+"kopyalayabilirsiniz."
 
 #: contents/ui/config/configLocation.qml:1185
 msgid "Enter manually"
@@ -1107,7 +1229,7 @@ msgstr "Son Derece Kötü"
 
 #: contents/ui/config/configGeneral.qml:829
 msgid "FOSS Public Alert Server"
-msgstr ""
+msgstr "FOSS Public Alert Server"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:231
 msgid "Fahrenheit (°F)"
@@ -1127,8 +1249,8 @@ msgstr "İyi"
 
 #: contents/ui/config/configAppearance.qml:1345
 #: contents/ui/config/configAppearance.qml:1447
-#: contents/ui/config/configAppearance.qml:1584 contents/ui/DetailsView.qml:314
-#: contents/ui/SimpleView.qml:258
+#: contents/ui/config/configAppearance.qml:1584
+#: contents/ui/DetailsView.qml:314 contents/ui/SimpleView.qml:258
 msgid "Feels Like"
 msgstr "Hissedilen"
 
@@ -1198,7 +1320,8 @@ msgstr "Altbilgi:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:155
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:84
-#: contents/ui/config/tabs/ConfigWidgetTab.qml:210 contents/ui/FullView.qml:565
+#: contents/ui/config/tabs/ConfigWidgetTab.qml:210
+#: contents/ui/FullView.qml:565
 msgid "Forecast"
 msgstr "Günlük tahmin"
 
@@ -1219,8 +1342,10 @@ msgid "Forest fire"
 msgstr "Orman yangını"
 
 #: contents/ui/config/configGeneral.qml:472
-msgid "Free BBC Weather service (data from the Met Office). No API key needed."
+msgid ""
+"Free BBC Weather service (data from the Met Office). No API key needed."
 msgstr ""
+"Ücretsiz BBC Weather servisi (Met Office verileri). API anahtarı gerekmez."
 
 #: contents/ui/config/configGeneral.qml:470
 msgid "Free Norwegian Meteorological Institute service. No API key needed."
@@ -1271,10 +1396,15 @@ msgid "Future alerts"
 msgstr "Gelecek uyarıları"
 
 #: contents/ui/config/configLocation.qml:1536
-msgid "GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using IP-based detection."
-msgstr "GPS / GeoClue2 kullanılamıyor (en iyi doğruluk için qt6-qtlocation kurun). IP tabanlı algılama kullanılıyor."
+msgid ""
+"GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using"
+" IP-based detection."
+msgstr ""
+"GPS / GeoClue2 kullanılamıyor (en iyi doğruluk için qt6-qtlocation kurun). "
+"IP tabanlı algılama kullanılıyor."
 
-#: contents/config/config.qml:52 contents/ui/config/tabs/ConfigWidgetTab.qml:76
+#: contents/config/config.qml:52
+#: contents/ui/config/tabs/ConfigWidgetTab.qml:76
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:799
 msgid "General"
 msgstr "Genel"
@@ -1298,7 +1428,7 @@ msgstr "Jeomanyetik aktivite %1 olacak (Kp %2)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
-msgstr ""
+msgstr "Parlaklık yoğunluğu:"
 
 #: contents/ui/js/airQuality.js:49 contents/ui/main.qml:844
 msgid "Good"
@@ -1313,8 +1443,8 @@ msgstr "Çimen"
 msgid "Headline"
 msgstr "Başlık"
 
-#: contents/ui/components/RadarWebEngineView.qml:93
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:145
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Heavy"
 msgstr "Yoğun"
 
@@ -1370,7 +1500,8 @@ msgstr "En yüksek"
 
 #: contents/ui/config/configGeneral.qml:466
 msgid "High precision forecast provider. API key required below."
-msgstr "Yüksek hassasiyetli tahmin sağlayıcısı. Aşağıda API anahtarı gereklidir."
+msgstr ""
+"Yüksek hassasiyetli tahmin sağlayıcısı. Aşağıda API anahtarı gereklidir."
 
 #: contents/ui/config/configNotifications.qml:45 contents/ui/main.qml:970
 msgid "High temperature"
@@ -1398,8 +1529,8 @@ msgstr "Sıradaki öğeyi göstermek için satırların ne sıklıkla kayacağı
 
 #: contents/ui/config/configAppearance.qml:1352
 #: contents/ui/config/configAppearance.qml:1454
-#: contents/ui/config/configAppearance.qml:1598 contents/ui/DetailsView.qml:315
-#: contents/ui/SimpleView.qml:259
+#: contents/ui/config/configAppearance.qml:1598
+#: contents/ui/DetailsView.qml:315 contents/ui/SimpleView.qml:259
 msgid "Humidity"
 msgstr "Nem"
 
@@ -1422,7 +1553,7 @@ msgstr "Önce simge"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:156
 msgid "Icon glow:"
-msgstr ""
+msgstr "Simge parlaklığı:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:203
 msgid "Icon only"
@@ -1452,20 +1583,30 @@ msgid "Icons"
 msgstr "Simgeler"
 
 #: contents/ui/config/configLocation.qml:1161
-msgid "If this looks correct, apply it. Otherwise, choose your location manually."
+msgid ""
+"If this looks correct, apply it. Otherwise, choose your location manually."
 msgstr "Doğru görünüyorsa uygulayın. Aksi takdirde konumunuzu manuel seçin."
 
 #: contents/ui/config/configGeneral.qml:678
-msgid "If you have just registered a new OpenWeatherMap API key, it might take up to 2 hours for it to become active. Please try again later if it doesn't work immediately."
-msgstr "Yeni bir OpenWeatherMap API anahtarı kaydettiyseniz, etkinleşmesi 2 saate kadar sürebilir. Hemen çalışmazsa lütfen daha sonra tekrar deneyin."
+msgid ""
+"If you have just registered a new OpenWeatherMap API key, it might take up "
+"to 2 hours for it to become active. Please try again later if it doesn't "
+"work immediately."
+msgstr ""
+"Yeni bir OpenWeatherMap API anahtarı kaydettiyseniz, etkinleşmesi 2 saate "
+"kadar sürebilir. Hemen çalışmazsa lütfen daha sonra tekrar deneyin."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:157
 msgid "Imperial (°F, mph, inHg, in)"
 msgstr "İngiliz ölçü birimi (°F, mph, inHg, in)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:132
-msgid "In a vertical panel, long item labels may be truncated. Consider using \"Simple\" mode, increasing the panel width, or reducing the font size."
-msgstr "Dikey panelde, uzun öğe etiketleri kırpılabilir. \"Basit\" mod kullanmayı, panel genişliğini veya yazı boyutunu kalibre etmeyi düşünün."
+msgid ""
+"In a vertical panel, long item labels may be truncated. Consider using "
+"\"Simple\" mode, increasing the panel width, or reducing the font size."
+msgstr ""
+"Dikey panelde, uzun öğe etiketleri kırpılabilir. \"Basit\" mod kullanmayı, "
+"panel genişliğini veya yazı boyutunu kalibre etmeyi düşünün."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:314
 msgid ""
@@ -1558,8 +1699,13 @@ msgid "KDE System Icons (automatic, follows weather code)"
 msgstr "KDE Sistem Simgeleri (otomatik, hava durumu koduna uyar)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:561
-msgid "KDE icon themes don't fully support many item icons. You can set your own icons by clicking \"Set your own icons\"."
-msgstr "KDE simge temaları birçok öğe simgesini tam olarak desteklemez. \"Kendi simgelerinizi ayarlayın\" seçeneğine tıklayarak kendi simgelerinizi belirleyebilirsiniz."
+msgid ""
+"KDE icon themes don't fully support many item icons. You can set your own "
+"icons by clicking \"Set your own icons\"."
+msgstr ""
+"KDE simge temaları birçok öğe simgesini tam olarak desteklemez. \"Kendi "
+"simgelerinizi ayarlayın\" seçeneğine tıklayarak kendi simgelerinizi "
+"belirleyebilirsiniz."
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:61
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:50
@@ -1630,10 +1776,10 @@ msgstr "Düzen türü:"
 #: contents/ui/config/configGeneral.qml:749
 #: contents/ui/config/configGeneral.qml:828
 msgid "LibreWXR"
-msgstr ""
+msgstr "LibreWXR"
 
-#: contents/ui/components/RadarWebEngineView.qml:91
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:143
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Light"
 msgstr "Hafif"
 
@@ -1700,11 +1846,11 @@ msgstr "Tahmin yükleniyor…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:158
 msgid "Loading frames"
-msgstr ""
+msgstr "Kareler yükleniyor"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
 msgid "Loading frame…"
-msgstr ""
+msgstr "Kare yükleniyor…"
 
 #: contents/ui/ForecastView.qml:829
 msgid "Loading hourly data…"
@@ -1720,7 +1866,7 @@ msgstr "Radar yükleniyor…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:156
 msgid "Loading…"
-msgstr ""
+msgstr "Yükleniyor…"
 
 #: contents/config/config.qml:47
 msgid "Location"
@@ -1728,8 +1874,12 @@ msgstr "Konum"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:513
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:92
-msgid "Location '%1' is already in your saved list. You can apply the selected location, but it will not be saved again."
-msgstr "'%1' konumu zaten kayıtlı listenizde. Seçilen konumu uygulayabilirsiniz ancak tekrar kaydedilmeyecektir."
+msgid ""
+"Location '%1' is already in your saved list. You can apply the selected "
+"location, but it will not be saved again."
+msgstr ""
+"'%1' konumu zaten kayıtlı listenizde. Seçilen konumu uygulayabilirsiniz "
+"ancak tekrar kaydedilmeyecektir."
 
 #: contents/ui/config/configAppearance.qml:1366
 msgid "Location Name"
@@ -1740,7 +1890,8 @@ msgid "Location auto-detected."
 msgstr "Konum otomatik algılandı."
 
 #: contents/ui/config/configLocation.qml:1536
-msgid "Location detection is depending on system configuration and permissions."
+msgid ""
+"Location detection is depending on system configuration and permissions."
 msgstr "Konum tespiti sistem yapılandırmasına ve izinlere bağlıdır."
 
 #: contents/ui/config/configGeneral.qml:180
@@ -1750,8 +1901,12 @@ msgstr "Konum %1 üzerinde mevcut."
 
 #: contents/ui/config/configGeneral.qml:183
 #: contents/ui/config/configLocation.qml:541
-msgid "Location is not available on %1 (HTTP %2). Try a different provider or location."
-msgstr "Konum %1 üzerinde mevcut değil (HTTP %2). Farklı bir sağlayıcı veya konum deneyin."
+msgid ""
+"Location is not available on %1 (HTTP %2). Try a different provider or "
+"location."
+msgstr ""
+"Konum %1 üzerinde mevcut değil (HTTP %2). Farklı bir sağlayıcı veya konum "
+"deneyin."
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:270
 msgid "Location name"
@@ -1808,17 +1963,17 @@ msgstr "Düşük sıcaklık"
 #: contents/ui/main.qml:1224
 msgctxt "Alert severity"
 msgid "MINIMAL"
-msgstr ""
+msgstr "MİNİMAL"
 
 #: contents/ui/main.qml:1222
 msgctxt "Alert severity"
 msgid "MINOR"
-msgstr ""
+msgstr "HAFİF"
 
 #: contents/ui/main.qml:1221
 msgctxt "Alert severity"
 msgid "MODERATE"
-msgstr ""
+msgstr "ORTA"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:721
 msgid "Magnetic Field (Bz)"
@@ -1857,11 +2012,12 @@ msgstr "Manuel"
 
 #: contents/ui/config/configGeneral.qml:464
 msgid "Marine and weather data provider. API key required below."
-msgstr "Denizcilik ve hava durumu veri sağlayıcısı. Aşağıda API anahtarı gereklidir."
+msgstr ""
+"Denizcilik ve hava durumu veri sağlayıcısı. Aşağıda API anahtarı gereklidir."
 
 #: contents/ui/config/configGeneral.qml:827
 msgid "MeteoAlarm + NOAA NWS (Native)"
-msgstr ""
+msgstr "MeteoAlarm + NOAA NWS (Yerel)"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:153
 msgid "Metric (°C, km/h, hPa, mm)"
@@ -1891,7 +2047,7 @@ msgstr "Hafif jeomanyetik fırtına."
 msgid "Misc"
 msgstr "Çeşitli"
 
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Mod"
 msgstr "Orta"
 
@@ -1899,7 +2055,7 @@ msgstr "Orta"
 msgid "Mode:"
 msgstr "Mod:"
 
-#: contents/ui/components/RadarWebEngineView.qml:92
+#: contents/ui/components/RadarWebEngineView.qml:144
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -2058,8 +2214,13 @@ msgid "NO₂"
 msgstr "NO₂"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:410
-msgid "Need the coordinates for a place? You can look them up at <a href=\"https://www.mapcoordinates.net/\">mapcoordinates.net</a>."
-msgstr "Bir yerin koordinatlarına mı ihtiyacınız var? Onları <a href=\"https://www.mapcoordinates.net/\">mapcoordinates.net</a> adresinden bulabilirsiniz."
+msgid ""
+"Need the coordinates for a place? You can look them up at <a "
+"href=\"https://www.mapcoordinates.net/\">mapcoordinates.net</a>."
+msgstr ""
+"Bir yerin koordinatlarına mı ihtiyacınız var? Onları <a "
+"href=\"https://www.mapcoordinates.net/\">mapcoordinates.net</a> adresinden "
+"bulabilirsiniz."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:273
 msgid "Network error"
@@ -2083,7 +2244,7 @@ msgstr "Hayır"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:159
 msgid "No data"
-msgstr ""
+msgstr "Veri yok"
 
 #: contents/ui/DetailsView.qml:553
 msgid "No details data"
@@ -2112,22 +2273,26 @@ msgstr "Konum ayarlanmadı"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:160
 msgid "No radar data"
-msgstr ""
+msgstr "Radar verisi yok"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
 msgid "No satellite data"
-msgstr ""
+msgstr "Uydu verisi yok"
 
 #: contents/ui/config/configLocation.qml:1627
-msgid "No saved locations. Save the current location to quickly switch between places."
-msgstr "Kayıtlı konum yok. Yerler arasında hızlıca geçiş yapmak için mevcut konumu kaydedin."
+msgid ""
+"No saved locations. Save the current location to quickly switch between "
+"places."
+msgstr ""
+"Kayıtlı konum yok. Yerler arasında hızlıca geçiş yapmak için mevcut konumu "
+"kaydedin."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:538
 msgid "No weather stations found for '%1'"
 msgstr "'%1' için hava istasyonu bulunamadı"
 
-#: contents/ui/components/RadarWebEngineView.qml:90
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:142
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2151,7 +2316,7 @@ msgstr "Mevcut değil (HTTP %1)"
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
 msgid "Not supported"
-msgstr ""
+msgstr "Desteklenmiyor"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:623
 msgid "Not tested"
@@ -2161,7 +2326,8 @@ msgstr "Test edilmedi"
 msgid "Note: size may be reduced if the panel is not thick enough."
 msgstr "Not: Eğer panel yeterince kalın değilse boyut küçültülebilir."
 
-#: contents/config/config.qml:62 contents/ui/config/configNotifications.qml:224
+#: contents/config/config.qml:62
+#: contents/ui/config/configNotifications.qml:224
 msgid "Notifications"
 msgstr "Bildirimler"
 
@@ -2195,8 +2361,12 @@ msgid "Now: %1%2"
 msgstr "Şu an: %1%2"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:745
-msgid "Number of item rows visible at once. Resize the panel height in KDE settings to match."
-msgstr "Aynı anda görünür olacak öğe satır sayısı. KDE ayarlarından panelin yüksekliğini buna göre boyutlandırın."
+msgid ""
+"Number of item rows visible at once. Resize the panel height in KDE settings"
+" to match."
+msgstr ""
+"Aynı anda görünür olacak öğe satır sayısı. KDE ayarlarından panelin "
+"yüksekliğini buna göre boyutlandırın."
 
 #: contents/ui/config/configAppearance.qml:569
 msgid "OK"
@@ -2233,8 +2403,11 @@ msgid "OpenWeatherMap API Key:"
 msgstr "OpenWeatherMap API Anahtarı:"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:828
-msgid "Opens today's hourly forecast automatically (or the next available day)"
-msgstr "Bugünün saatlik tahminini otomatik olarak açar (veya bir sonraki mevcut günü)"
+msgid ""
+"Opens today's hourly forecast automatically (or the next available day)"
+msgstr ""
+"Bugünün saatlik tahminini otomatik olarak açar (veya bir sonraki mevcut "
+"günü)"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:355
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:420
@@ -2316,7 +2489,7 @@ msgstr "Parçalı bulutlu (gündüz)"
 msgid "Partly cloudy (night)"
 msgstr "Parçalı bulutlu (gece)"
 
-#: contents/ui/components/RadarWebEngineView.qml:87
+#: contents/ui/components/RadarWebEngineView.qml:139
 msgid "Pause"
 msgstr "Duraklat"
 
@@ -2339,8 +2512,12 @@ msgid "Phase + upcoming rise/set"
 msgstr "Evre + yaklaşan doğuş/batış"
 
 #: contents/ui/config/configLocation.qml:1584
-msgid "Pick an exact spot on the map for a more local forecast, such as your neighborhood block or a specific landmark."
-msgstr "Mahalleniz veya belirli bir dönüm noktası gibi daha yerel bir tahmin için haritadan kesin bir nokta seçin."
+msgid ""
+"Pick an exact spot on the map for a more local forecast, such as your "
+"neighborhood block or a specific landmark."
+msgstr ""
+"Mahalleniz veya belirli bir dönüm noktası gibi daha yerel bir tahmin için "
+"haritadan kesin bir nokta seçin."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:869
 msgid "Pipe  |"
@@ -2354,14 +2531,14 @@ msgstr "Pirate Weather (Anahtar Gerekli)"
 msgid "Pirate Weather API Key:"
 msgstr "Pirate Weather API Anahtarı:"
 
-#: contents/ui/components/RadarWebEngineView.qml:86
+#: contents/ui/components/RadarWebEngineView.qml:138
 msgid "Play"
 msgstr "Oynat"
 
 #: contents/ui/config/configAppearance.qml:1408
 #: contents/ui/config/configAppearance.qml:1531
-#: contents/ui/config/configAppearance.qml:1654 contents/ui/DetailsView.qml:327
-#: contents/ui/SimpleView.qml:267
+#: contents/ui/config/configAppearance.qml:1654
+#: contents/ui/DetailsView.qml:327 contents/ui/SimpleView.qml:267
 msgid "Pollen"
 msgstr "Polen"
 
@@ -2400,14 +2577,15 @@ msgstr "Toplam Yağış:"
 
 #: contents/ui/config/configAppearance.qml:1380
 #: contents/ui/config/configAppearance.qml:1503
-#: contents/ui/config/configAppearance.qml:1626 contents/ui/DetailsView.qml:323
-#: contents/ui/SimpleView.qml:263
+#: contents/ui/config/configAppearance.qml:1626
+#: contents/ui/DetailsView.qml:323 contents/ui/SimpleView.qml:263
 msgid "Precipitation"
 msgstr "Yağış"
 
 #: contents/ui/config/configAppearance.qml:1387
 #: contents/ui/config/configAppearance.qml:1510
-#: contents/ui/config/configAppearance.qml:1633 contents/ui/DetailsView.qml:324
+#: contents/ui/config/configAppearance.qml:1633
+#: contents/ui/DetailsView.qml:324
 msgid "Precipitation Sum"
 msgstr "Toplam Yağış"
 
@@ -2425,11 +2603,11 @@ msgstr "Yağış:"
 msgid "Prefix style:"
 msgstr "Önek stili:"
 
-#: contents/ui/components/RadarWebEngineView.qml:77
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configAppearance.qml:1359
 #: contents/ui/config/configAppearance.qml:1461
-#: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
-#: contents/ui/SimpleView.qml:260
+#: contents/ui/config/configAppearance.qml:1605
+#: contents/ui/DetailsView.qml:316 contents/ui/SimpleView.qml:260
 msgid "Pressure"
 msgstr "Basınç"
 
@@ -2489,13 +2667,12 @@ msgid ""
 "Open-Meteo is always tried first - it is free and requires no API key."
 msgstr ""
 "Sağlayıcılar biri başarılı olana kadar sırayla denenir:\n"
-"Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-"Open-Meteo her zaman ilk olarak denenir - ücretsizdir ve API anahtarı gerektirmez."
-
+"Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
+"Open-Meteo her zaman ilk denenir - ücretsizdir ve API anahtarı gerektirmez."
 
 #: contents/ui/config/configNotifications.qml:271
 msgid "Purple"
-msgstr ""
+msgstr "Mor"
 
 #: contents/ui/config/configGeneral.qml:335
 msgid "QWeather (Key Required)"
@@ -2514,8 +2691,12 @@ msgid "QWeather error (code %1). Check your API key."
 msgstr "QWeather hatası (kod %1). API anahtarınızı kontrol edin."
 
 #: contents/ui/ForecastView.qml:828
-msgid "QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecast is still available for this date."
-msgstr "QWeather, 168 saate (7 gün) kadar saatlik tahminler sağlar. Bu tarih için günlük tahmin hala mevcuttur."
+msgid ""
+"QWeather provides hourly forecasts for up to 168 hours (7 days). Daily "
+"forecast is still available for this date."
+msgstr ""
+"QWeather, 168 saate (7 gün) kadar saatlik tahminler sağlar. Bu tarih için "
+"günlük tahmin hala mevcuttur."
 
 #: contents/ui/config/configLocation.qml:1065
 msgid "QtLocation and QtPositioning are not installed"
@@ -2530,19 +2711,20 @@ msgid "Quiet"
 msgstr "Sakin"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:72
+#: contents/ui/components/RadarWebEngineView.qml:124
 #: contents/ui/config/configGeneral.qml:720
-#: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
+#: contents/ui/config/tabs/ConfigWidgetTab.qml:211
+#: contents/ui/FullView.qml:566
 msgid "Radar"
 msgstr "Radar"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:144
 msgid "Radar + Satellite"
-msgstr ""
+msgstr "Radar + Uydu"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
 msgid "Radar color scheme:"
-msgstr ""
+msgstr "Radar renk şeması:"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:234
 msgid "Radar only"
@@ -2550,15 +2732,49 @@ msgstr "Sadece radar"
 
 #: contents/ui/config/configGeneral.qml:742
 msgid "Radar provider:"
-msgstr ""
+msgstr "Radar sağlayıcısı:"
 
 #: contents/ui/config/configGeneral.qml:771
-msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
+msgid ""
+"Radar provider: <a "
+"href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-"
+"source weather radar API. It combines real radar composites from NOAA, "
+"Canadian, and European sources with a global model fallback, and provides "
+"the past 2 hours of radar data plus a short nowcast. It also offers a free "
+"satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and "
+"motion arrows are selected directly in the Radar tab. The map follows your "
+"Plasma light/dark theme automatically."
 msgstr ""
+"Radar sağlayıcısı: <a "
+"href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR, ücretsiz, açık "
+"kaynaklı bir hava durumu radarı API'sidir. NOAA, Kanada ve Avrupa "
+"kaynaklarından gerçek radar bileşimlerini küresel bir model yedeğiyle "
+"birleştirir ve son 2 saatlik radar verisiyle birlikte kısa bir anlık tahmin "
+"sunar. Ayrıca ücretsiz bir uydu (kızılötesi) katmanı da "
+"sağlar.<br/><br/>Katman modu, radar renk şeması ve hareket okları doğrudan "
+"Radar sekmesinden seçilir. Harita, Plasma açık/koyu temanızı otomatik olarak"
+" takip eder."
 
 #: contents/ui/config/configGeneral.qml:762
-msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
-msgstr "Radar sağlayıcısı: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>Araç takımı, 10 dakikalık aralıklarla geçmiş 2 saatlik hava radarı verilerini sağlayan ücretsiz RainViewer API'sini kullanır. Radar tahmini desteklenmez.<br/><br/>Rain Viewer, radar verilerinin kullanılabilirliğini garanti etmez. Bu verilerin sahipleriyle sözleşme yapmazlar. Sahipler verilerini kaldırmalarını, formatı değiştirmelerini veya paylaşımı durdurmalarını isteyebilir. Radar verilerini olabildiğince uzun tutmaya çalışırlar ancak bazen sahipler görüntü sağlamayı durdurur."
+msgid ""
+"Radar provider: <a href='https://www.rainviewer.com/'>Rain "
+"Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides "
+"the past 2 hours of weather radar data in 10-minute intervals. Radar "
+"forecast is not supported.<br/><br/>Rain Viewer does not guarantee the "
+"availability of radar data. They do not conclude contracts with owners of "
+"this data. The reason is that the owners can ask them to remove their data "
+"from Rain Viewer, change the format, or stop sharing the data. They are "
+"trying to keep radar data for as long as possible, but sometimes the owners "
+"just stop providing the images."
+msgstr ""
+"Radar sağlayıcısı: <a href='https://www.rainviewer.com/'>Rain "
+"Viewer</a><br/><br/>Araç takımı, 10 dakikalık aralıklarla geçmiş 2 saatlik "
+"hava radarı verilerini sağlayan ücretsiz RainViewer API'sini kullanır. Radar"
+" tahmini desteklenmez.<br/><br/>Rain Viewer, radar verilerinin "
+"kullanılabilirliğini garanti etmez. Bu verilerin sahipleriyle sözleşme "
+"yapmazlar. Sahipler verilerini kaldırmalarını, formatı değiştirmelerini veya"
+" paylaşımı durdurmalarını isteyebilir. Radar verilerini olabildiğince uzun "
+"tutmaya çalışırlar ancak bazen sahipler görüntü sağlamayı durdurur."
 
 #: contents/ui/FullView.qml:731 contents/ui/FullView.qml:733
 msgid "Radar:"
@@ -2569,10 +2785,11 @@ msgstr "Radar:"
 msgid "Ragweed"
 msgstr "Kanarya Otu"
 
-#: contents/ui/components/RadarWebEngineView.qml:73
+#: contents/ui/components/RadarWebEngineView.qml:125
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
-#: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
+#: contents/ui/main.qml:975 contents/ui/main.qml:1641
+#: contents/ui/main.qml:1929
 msgid "Rain"
 msgstr "Yağmur"
 
@@ -2586,7 +2803,7 @@ msgstr "Yağmur (gece)"
 
 #: contents/ui/config/configGeneral.qml:748
 msgid "Rain Viewer"
-msgstr ""
+msgstr "Rain Viewer"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:59
 msgid "Rain showers"
@@ -2596,11 +2813,11 @@ msgstr "Sağanak yağış"
 msgid "Rain/Storm"
 msgstr "Yağmur/Fırtına"
 
-#: contents/ui/components/RadarWebEngineView.qml:88
+#: contents/ui/components/RadarWebEngineView.qml:140
 msgid "Real-time"
 msgstr "Gerçek zamanlı"
 
-#: contents/ui/components/RadarWebEngineView.qml:85
+#: contents/ui/components/RadarWebEngineView.qml:137
 msgid "Recent"
 msgstr "Son arananlar"
 
@@ -2705,7 +2922,7 @@ msgstr "Yuvarlama değerleri:"
 #: contents/ui/main.qml:1220
 msgctxt "Alert severity"
 msgid "SEVERE"
-msgstr ""
+msgstr "ŞİDDETLİ"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:593
 msgid "SO₂"
@@ -2713,7 +2930,7 @@ msgstr "SO₂"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:139
 msgid "Satellite"
-msgstr ""
+msgstr "Uydu"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:906
 msgid "Saturday"
@@ -2741,8 +2958,14 @@ msgid "Search a weather station to set your location"
 msgstr "Konumunuzu ayarlamak için hava durumu istasyonu arayın"
 
 #: contents/ui/config/configLocation.qml:1576
-msgid "Search by city or place name. Results show the location name, region, and country, and are suitable for general city-level forecasts rather than exact street-level placement."
-msgstr "Şehir veya yer ismine göre arayın. Sonuçlar konum adını, bölgeyi ve ülkeyi gösterir ve sokak seviyesinde yerleşim yerine genel şehir seviyesi tahminler için uygundur."
+msgid ""
+"Search by city or place name. Results show the location name, region, and "
+"country, and are suitable for general city-level forecasts rather than exact"
+" street-level placement."
+msgstr ""
+"Şehir veya yer ismine göre arayın. Sonuçlar konum adını, bölgeyi ve ülkeyi "
+"gösterir ve sokak seviyesinde yerleşim yerine genel şehir seviyesi tahminler"
+" için uygundur."
 
 #: contents/ui/config/configLocation.qml:1569
 msgid "Search for a location or choose it on the map."
@@ -2840,7 +3063,7 @@ msgstr "Detaylarda göster"
 msgid "Show in:"
 msgstr "Burada göster:"
 
-#: contents/ui/components/RadarWebEngineView.qml:89
+#: contents/ui/components/RadarWebEngineView.qml:141
 msgid "Show my location"
 msgstr "Konumumu göster"
 
@@ -2858,7 +3081,7 @@ msgstr "Genişletilmiş görünümde kirleticileri göster:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:309
 msgid "Show precipitation motion arrows"
-msgstr ""
+msgstr "Yağış hareket oklarını göster"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:407
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:476
@@ -2982,8 +3205,8 @@ msgstr "Kar (gece)"
 
 #: contents/ui/config/configAppearance.qml:1429
 #: contents/ui/config/configAppearance.qml:1552
-#: contents/ui/config/configAppearance.qml:1675 contents/ui/DetailsView.qml:330
-#: contents/ui/SimpleView.qml:270
+#: contents/ui/config/configAppearance.qml:1675
+#: contents/ui/DetailsView.qml:330 contents/ui/SimpleView.qml:270
 msgid "Snow Cover"
 msgstr "Kar Örtüsü"
 
@@ -3039,8 +3262,8 @@ msgstr "Boşluk"
 
 #: contents/ui/config/configAppearance.qml:1415
 #: contents/ui/config/configAppearance.qml:1538
-#: contents/ui/config/configAppearance.qml:1661 contents/ui/DetailsView.qml:328
-#: contents/ui/SimpleView.qml:268
+#: contents/ui/config/configAppearance.qml:1661
+#: contents/ui/DetailsView.qml:328 contents/ui/SimpleView.qml:268
 msgid "Space Weather"
 msgstr "Uzay Hava Durumu"
 
@@ -3060,8 +3283,8 @@ msgstr "Standart sağlayıcı. Aşağıda API anahtarı gereklidir."
 msgid "Stats items:"
 msgstr "İstatistik öğeleri:"
 
-#: contents/ui/components/RadarWebEngineView.qml:94
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:146
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "Fırtına"
@@ -3141,7 +3364,8 @@ msgstr "Yalnız doğuş  07:17"
 
 #: contents/ui/config/configAppearance.qml:1330
 #: contents/ui/config/configAppearance.qml:1475
-#: contents/ui/config/configAppearance.qml:1612 contents/ui/DetailsView.qml:318
+#: contents/ui/config/configAppearance.qml:1612
+#: contents/ui/DetailsView.qml:318
 msgid "Sunrise/Sunset"
 msgstr "Gündoğumu/Günbatımı"
 
@@ -3183,8 +3407,12 @@ msgid "Swap order:"
 msgstr "Sırayı değiştir:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:324
-msgid "Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme."
+msgid ""
+"Switch between the light and dark map style. Until first toggled, the map "
+"follows the Plasma theme."
 msgstr ""
+"Açık ve koyu harita stili arasında geçiş yapın. İlk değiştirmeye kadar "
+"harita Plasma temasını takip eder."
 
 #: contents/ui/FullView.qml:328
 msgid "Switch location"
@@ -3226,7 +3454,7 @@ msgstr "Sistem tepsisi görünüm ayarları"
 msgid "System tray icon settings"
 msgstr "Sistem tepsisi simge ayarları"
 
-#: contents/ui/components/RadarWebEngineView.qml:75
+#: contents/ui/components/RadarWebEngineView.qml:127
 #: contents/ui/config/configAppearance.qml:1323
 #: contents/ui/config/configAppearance.qml:1570
 msgid "Temperature"
@@ -3283,20 +3511,28 @@ msgid "Text labels (Temperature, Wind…)"
 msgstr "Metin etiketleri (Sıcaklık, Rüzgar…)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1025
-msgid "Text will follow the system font and expand to fill the available space."
+msgid ""
+"Text will follow the system font and expand to fill the available space."
 msgstr "Metin, sistem yazı tipine uyacak ve panel alanını dolduracaktır."
 
 #: contents/ui/RadarView.qml:166
-msgid "The Radar tab requires the QtWebEngine package, which is not installed on this system."
-msgstr "Radar sekmesi, bu sistemde yüklü olmayan QtWebEngine paketini gerektirir."
+msgid ""
+"The Radar tab requires the QtWebEngine package, which is not installed on "
+"this system."
+msgstr ""
+"Radar sekmesi, bu sistemde yüklü olmayan QtWebEngine paketini gerektirir."
 
 #: contents/ui/config/configLocation.qml:371
 msgid "The auto-detected location is already in your saved list."
 msgstr "Otomatik algılanan konum zaten kayıtlı listenizde."
 
 #: contents/ui/config/configAppearance.qml:465
-msgid "The condition icon will automatically reflect the current weather using your KDE system icon theme. No customisation is needed."
-msgstr "Durum simgesi sistem KDE ikon temanıza göre hava durumuna uyum sağlar. Ek özelleştirmeye gerek yoktur."
+msgid ""
+"The condition icon will automatically reflect the current weather using your"
+" KDE system icon theme. No customisation is needed."
+msgstr ""
+"Durum simgesi sistem KDE ikon temanıza göre hava durumuna uyum sağlar. Ek "
+"özelleştirmeye gerek yoktur."
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:879
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:992
@@ -3304,8 +3540,12 @@ msgid "The geomagnetic (Kp/G) forecast is only available up to 3 days ahead"
 msgstr "Jeomanyetik (Kp/G) tahmini yalnızca 3 gün sonrasına kadar mevcuttur"
 
 #: contents/ui/config/configLocation.qml:1095
-msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
-msgstr "Harita seçici, bu sistemde yüklü olmayan QtLocation ve QtPositioning paketlerini gerektirir."
+msgid ""
+"The map picker requires the QtLocation and QtPositioning packages, which are"
+" not installed on this system."
+msgstr ""
+"Harita seçici, bu sistemde yüklü olmayan QtLocation ve QtPositioning "
+"paketlerini gerektirir."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:682
 msgid "Theme default"
@@ -3377,8 +3617,16 @@ msgid "Timezone:"
 msgstr "Zaman dilimi:"
 
 #: contents/ui/config/configGeneral.qml:780
-msgid "To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): disable Adaptive mode, select OpenWeatherMap as your weather provider, and enter your API key above. When you are ready, you can enable Adaptive mode again."
-msgstr "Ek harita katmanlarının (Yağmur, Bulutlar, Sıcaklık, Rüzgar, Basınç) kilidini açmak için: Uyarlanabilir modu devre dışı bırakın, hava durumu sağlayıcınız olarak OpenWeatherMap'i seçin ve yukarıya API anahtarınızı girin. Hazır olduğunuzda Uyarlanabilir modu tekrar etkinleştirebilirsiniz."
+msgid ""
+"To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure):"
+" disable Adaptive mode, select OpenWeatherMap as your weather provider, and "
+"enter your API key above. When you are ready, you can enable Adaptive mode "
+"again."
+msgstr ""
+"Ek harita katmanlarının (Yağmur, Bulutlar, Sıcaklık, Rüzgar, Basınç) "
+"kilidini açmak için: Uyarlanabilir modu devre dışı bırakın, hava durumu "
+"sağlayıcınız olarak OpenWeatherMap'i seçin ve yukarıya API anahtarınızı "
+"girin. Hazır olduğunuzda Uyarlanabilir modu tekrar etkinleştirebilirsiniz."
 
 #: contents/ui/ForecastView.qml:496 contents/ui/main.qml:1490
 #: contents/ui/SimpleView.qml:423
@@ -3471,12 +3719,12 @@ msgstr "Kırp (tek satır)"
 #: contents/ui/main.qml:1223
 msgctxt "Alert severity"
 msgid "UNKNOWN"
-msgstr ""
+msgstr "BİLİNMİYOR"
 
 #: contents/ui/config/configAppearance.qml:1394
 #: contents/ui/config/configAppearance.qml:1517
-#: contents/ui/config/configAppearance.qml:1640 contents/ui/DetailsView.qml:325
-#: contents/ui/SimpleView.qml:265
+#: contents/ui/config/configAppearance.qml:1640
+#: contents/ui/DetailsView.qml:325 contents/ui/SimpleView.qml:265
 msgid "UV Index"
 msgstr "UV İndeksi"
 
@@ -3555,33 +3803,27 @@ msgstr "Sadece yaklaşan doğuş/batış"
 msgid "Update timed out. Tap to retry."
 msgstr "Güncelleme zaman aşımına uğradı. Tekrar denemek için dokunun."
 
-<<<<<<< HEAD
 #: contents/ui/WeatherService.qml:761
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 gün önce güncellendi"
+msgstr[1] "%1 gün önce güncellendi"
 
 #: contents/ui/WeatherService.qml:759
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 saat önce güncellendi"
+msgstr[1] "%1 saat önce güncellendi"
 
 #: contents/ui/WeatherService.qml:756
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 dakika önce güncellendi"
+msgstr[1] "%1 dakika önce güncellendi"
 
 #: contents/ui/WeatherService.qml:754
 msgid "Updated just now"
-msgstr ""
-=======
-#: contents/ui/WeatherService.qml:708
-msgid "Updated %1"
-msgstr "Güncellendi %1"
->>>>>>> origin/main
+msgstr "Az önce güncellendi"
 
 #: contents/ui/FullView.qml:396
 msgid "Updating…"
@@ -3605,8 +3847,12 @@ msgstr "Bölge varsayılanlarını kullan"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1148
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:277
-msgid "Uses KDE system icons by default. Click the button to customise each item's icon."
-msgstr "Varsayılan olarak KDE sistem simgelerini kullanır. Öğelerin ikonunu özelleştirmek için tıklayın."
+msgid ""
+"Uses KDE system icons by default. Click the button to customise each item's "
+"icon."
+msgstr ""
+"Varsayılan olarak KDE sistem simgelerini kullanır. Öğelerin ikonunu "
+"özelleştirmek için tıklayın."
 
 #: contents/ui/js/airQuality.js:53
 msgid "V.Poor"
@@ -3637,8 +3883,8 @@ msgstr "Çok Kötü"
 msgid "Violent rain showers"
 msgstr "Şiddetli sağanak yağmur"
 
-#: contents/ui/config/configAppearance.qml:1489 contents/ui/DetailsView.qml:320
-#: contents/ui/SimpleView.qml:262
+#: contents/ui/config/configAppearance.qml:1489
+#: contents/ui/DetailsView.qml:320 contents/ui/SimpleView.qml:262
 msgid "Visibility"
 msgstr "Görüş"
 
@@ -3690,7 +3936,7 @@ msgstr "Konumunuz şu şekilde tespit edildi: <b>%1</b>."
 
 #: contents/ui/config/configGeneral.qml:806
 msgid "Weather Alerts"
-msgstr ""
+msgstr "Hava Durumu Uyarıları"
 
 #: contents/ui/config/configGeneral.qml:362
 msgid "Weather Provider"
@@ -3742,6 +3988,14 @@ msgid ""
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
+"Hava durumu uyarısı şiddet düzeyleri, en düşükten en yükseğe:\n"
+"\n"
+"🟡 Sarı — Hafif: koşulların farkında olun.\n"
+"🟠 Turuncu — Orta: hazırlıklı olun.\n"
+"🔴 Kırmızı — Şiddetli: harekete geçin.\n"
+"🟣 Mor — Aşırı: son derece tehlikeli, hemen harekete geçin.\n"
+"\n"
+"Belirli bir şiddet düzeyi için bildirim almayı durdurmak için o düzeyi kapatın."
 
 #: contents/ui/config/configGeneral.qml:311
 msgid "WeatherAPI.com (Key Required)"
@@ -3776,7 +4030,7 @@ msgstr "Araç Takımı Boyutu"
 msgid "Widget panel area:"
 msgstr "Araç takımı panel alanı:"
 
-#: contents/ui/components/RadarWebEngineView.qml:76
+#: contents/ui/components/RadarWebEngineView.qml:128
 #: contents/ui/config/configAppearance.qml:1337
 #: contents/ui/config/configAppearance.qml:1468
 #: contents/ui/config/configAppearance.qml:1591
@@ -3787,7 +4041,7 @@ msgstr "Rüzgar"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:301
 msgid "Wind arrows"
-msgstr ""
+msgstr "Rüzgar okları"
 
 #: contents/ui/config/configAppearance.qml:1469
 #: contents/ui/config/configAppearance.qml:1592
@@ -3831,12 +4085,22 @@ msgstr "Evet, kaldır"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:340
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:431
-msgid "You can see date/time format reference at: <a href=\"https://doc.qt.io/qt-6/qml-qtqml-qt.html#formatDateTime-method\">Qt documentation</a>"
-msgstr "Tarih/saat format referansını şurada görebilirsiniz: <a href=\"https://doc.qt.io/qt-6/qml-qtqml-qt.html#formatDateTime-method\">Qt belgelendirmesi</a>"
+msgid ""
+"You can see date/time format reference at: <a "
+"href=\"https://doc.qt.io/qt-6/qml-qtqml-qt.html#formatDateTime-method\">Qt "
+"documentation</a>"
+msgstr ""
+"Tarih/saat format referansını şurada görebilirsiniz: <a "
+"href=\"https://doc.qt.io/qt-6/qml-qtqml-qt.html#formatDateTime-method\">Qt "
+"belgelendirmesi</a>"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:926
-msgid "You may need to increase the widget's width to see all the selected information"
-msgstr "Seçilen tüm bilgileri görmek için araç takımının genişliğini artırmanız gerekebilir"
+msgid ""
+"You may need to increase the widget's width to see all the selected "
+"information"
+msgstr ""
+"Seçilen tüm bilgileri görmek için araç takımının genişliğini artırmanız "
+"gerekebilir"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:490
 msgid "Zoom in"
@@ -3906,7 +4170,7 @@ msgstr "ft"
 msgid "grains/m³"
 msgstr "tane/m³"
 
-#: contents/ui/components/RadarWebEngineView.qml:551
+#: contents/ui/components/RadarWebEngineView.qml:655
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "hPa"
@@ -3923,11 +4187,11 @@ msgstr "inç"
 msgid "in the next hours"
 msgstr "önümüzdeki saatlerde"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "inç/sa"
 
-#: contents/ui/components/RadarWebEngineView.qml:549
+#: contents/ui/components/RadarWebEngineView.qml:653
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "inHg"
@@ -3938,7 +4202,7 @@ msgstr "inHg"
 msgid "km"
 msgstr "km"
 
-#: contents/ui/components/RadarWebEngineView.qml:544
+#: contents/ui/components/RadarWebEngineView.qml:648
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "km/sa"
@@ -3947,7 +4211,7 @@ msgstr "km/sa"
 msgid "km/s"
 msgstr "km/sn"
 
-#: contents/ui/components/RadarWebEngineView.qml:545
+#: contents/ui/components/RadarWebEngineView.qml:649
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "kn"
@@ -3964,7 +4228,7 @@ msgstr "düşük"
 msgid "m"
 msgstr "m"
 
-#: contents/ui/components/RadarWebEngineView.qml:546
+#: contents/ui/components/RadarWebEngineView.qml:650
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "m/sn"
@@ -3998,11 +4262,11 @@ msgstr "dakikalar"
 msgid "mm"
 msgstr "mm"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "mm/sa"
 
-#: contents/ui/components/RadarWebEngineView.qml:550
+#: contents/ui/components/RadarWebEngineView.qml:654
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "mmHg"
@@ -4011,7 +4275,7 @@ msgstr "mmHg"
 msgid "moderate"
 msgstr "orta"
 
-#: contents/ui/components/RadarWebEngineView.qml:543
+#: contents/ui/components/RadarWebEngineView.qml:647
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "mil/sa"
@@ -4110,3 +4374,15 @@ msgstr "konumunuz"
 #: contents/ui/js/airQuality.js:156
 msgid "µg/m³"
 msgstr "µg/m³"
+
+#~ msgid ""
+#~ "Providers are tried in order until one succeeds:\n"
+#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
+#~ msgstr ""
+#~ "Sağlayıcılar biri başarılı olana kadar sırayla denenir:\n"
+#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
+#~ "Open-Meteo her zaman ilk olarak denenir - ücretsizdir ve API anahtarı gerektirmez."
+
+#~ msgid "Updated %1"
+#~ msgstr "Güncellendi %1"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-07-20 09:31+0300\n"
+"POT-Creation-Date: 2026-07-28 14:52+0300\n"
 "PO-Revision-Date: 2026-07-16 03:39+0300\n"
 "Last-Translator: phantom <dmitrypolyakov1337@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -612,7 +612,7 @@ msgstr "Нажмите на карте, чтобы выбрать местопо
 msgid "Click to configure a location"
 msgstr "Нажмите, чтобы настроить местоположение"
 
-#: contents/ui/components/RadarWebEngineView.qml:74
+#: contents/ui/components/RadarWebEngineView.qml:126
 msgid "Clouds"
 msgstr "Облачно"
 
@@ -1306,8 +1306,8 @@ msgstr "Трава"
 msgid "Headline"
 msgstr "Заголовок"
 
-#: contents/ui/components/RadarWebEngineView.qml:93
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:145
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Heavy"
 msgstr "Сильный"
 
@@ -1624,8 +1624,8 @@ msgstr "Тип макета:"
 msgid "LibreWXR"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:91
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:143
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Light"
 msgstr "Легкий"
 
@@ -1883,7 +1883,7 @@ msgstr "Небольшая магнитная буря."
 msgid "Misc"
 msgstr "Разное"
 
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Mod"
 msgstr "Норм."
 
@@ -1891,7 +1891,7 @@ msgstr "Норм."
 msgid "Mode:"
 msgstr "Режим:"
 
-#: contents/ui/components/RadarWebEngineView.qml:92
+#: contents/ui/components/RadarWebEngineView.qml:144
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -2118,8 +2118,8 @@ msgstr "Нет сохраненных местоположений. Сохран
 msgid "No weather stations found for '%1'"
 msgstr "Метеостанции для '%1' не найдены"
 
-#: contents/ui/components/RadarWebEngineView.qml:90
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:142
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2308,7 +2308,7 @@ msgstr "Переменная облачность (день)"
 msgid "Partly cloudy (night)"
 msgstr "Переменная облачность (ночь)"
 
-#: contents/ui/components/RadarWebEngineView.qml:87
+#: contents/ui/components/RadarWebEngineView.qml:139
 msgid "Pause"
 msgstr "Пауза"
 
@@ -2346,7 +2346,7 @@ msgstr "Pirate Weather (Нужен ключ)"
 msgid "Pirate Weather API Key:"
 msgstr "Ключ API Pirate Weather:"
 
-#: contents/ui/components/RadarWebEngineView.qml:86
+#: contents/ui/components/RadarWebEngineView.qml:138
 msgid "Play"
 msgstr "Воспроизвести"
 
@@ -2417,7 +2417,7 @@ msgstr "Осадки:"
 msgid "Prefix style:"
 msgstr "Стиль префикса:"
 
-#: contents/ui/components/RadarWebEngineView.qml:77
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configAppearance.qml:1359
 #: contents/ui/config/configAppearance.qml:1461
 #: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
@@ -2518,7 +2518,7 @@ msgid "Quiet"
 msgstr "Спокойно"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:72
+#: contents/ui/components/RadarWebEngineView.qml:124
 #: contents/ui/config/configGeneral.qml:720
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
@@ -2557,7 +2557,7 @@ msgstr "Радар:"
 msgid "Ragweed"
 msgstr "Амброзия"
 
-#: contents/ui/components/RadarWebEngineView.qml:73
+#: contents/ui/components/RadarWebEngineView.qml:125
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
 #: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
@@ -2584,11 +2584,11 @@ msgstr "Ливни"
 msgid "Rain/Storm"
 msgstr "Дождь/Гроза"
 
-#: contents/ui/components/RadarWebEngineView.qml:88
+#: contents/ui/components/RadarWebEngineView.qml:140
 msgid "Real-time"
 msgstr "Текущее время"
 
-#: contents/ui/components/RadarWebEngineView.qml:85
+#: contents/ui/components/RadarWebEngineView.qml:137
 msgid "Recent"
 msgstr "Недавно"
 
@@ -2828,7 +2828,7 @@ msgstr "Показать в подробностях"
 msgid "Show in:"
 msgstr "Показывать в:"
 
-#: contents/ui/components/RadarWebEngineView.qml:89
+#: contents/ui/components/RadarWebEngineView.qml:141
 msgid "Show my location"
 msgstr "Показывать мое местоположение"
 
@@ -3048,8 +3048,8 @@ msgstr "Стандартный провайдер. Требуется ключ A
 msgid "Stats items:"
 msgstr "Элементы статистики:"
 
-#: contents/ui/components/RadarWebEngineView.qml:94
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:146
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "Шторм"
@@ -3214,7 +3214,7 @@ msgstr "Настройки отображения системного лотк�
 msgid "System tray icon settings"
 msgstr "Настройка значка системного лотка"
 
-#: contents/ui/components/RadarWebEngineView.qml:75
+#: contents/ui/components/RadarWebEngineView.qml:127
 #: contents/ui/config/configAppearance.qml:1323
 #: contents/ui/config/configAppearance.qml:1570
 msgid "Temperature"
@@ -3761,7 +3761,7 @@ msgstr "Размер виджета"
 msgid "Widget panel area:"
 msgstr "Область панели виджета:"
 
-#: contents/ui/components/RadarWebEngineView.qml:76
+#: contents/ui/components/RadarWebEngineView.qml:128
 #: contents/ui/config/configAppearance.qml:1337
 #: contents/ui/config/configAppearance.qml:1468
 #: contents/ui/config/configAppearance.qml:1591
@@ -3891,7 +3891,7 @@ msgstr "фут"
 msgid "grains/m³"
 msgstr "частиц/м³"
 
-#: contents/ui/components/RadarWebEngineView.qml:551
+#: contents/ui/components/RadarWebEngineView.qml:655
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "гПа"
@@ -3908,11 +3908,11 @@ msgstr "дюйм"
 msgid "in the next hours"
 msgstr "в след. часы"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "дюйм/ч"
 
-#: contents/ui/components/RadarWebEngineView.qml:549
+#: contents/ui/components/RadarWebEngineView.qml:653
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "дюйм рт. ст"
@@ -3923,7 +3923,7 @@ msgstr "дюйм рт. ст"
 msgid "km"
 msgstr "км"
 
-#: contents/ui/components/RadarWebEngineView.qml:544
+#: contents/ui/components/RadarWebEngineView.qml:648
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "км/ч"
@@ -3932,7 +3932,7 @@ msgstr "км/ч"
 msgid "km/s"
 msgstr "км/с"
 
-#: contents/ui/components/RadarWebEngineView.qml:545
+#: contents/ui/components/RadarWebEngineView.qml:649
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "уз"
@@ -3949,7 +3949,7 @@ msgstr "низкий"
 msgid "m"
 msgstr "м"
 
-#: contents/ui/components/RadarWebEngineView.qml:546
+#: contents/ui/components/RadarWebEngineView.qml:650
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "м/с"
@@ -3983,11 +3983,11 @@ msgstr "минут"
 msgid "mm"
 msgstr "мм"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "мм/ч"
 
-#: contents/ui/components/RadarWebEngineView.qml:550
+#: contents/ui/components/RadarWebEngineView.qml:654
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "мм рт. ст"
@@ -3996,7 +3996,7 @@ msgstr "мм рт. ст"
 msgid "moderate"
 msgstr "умеренный"
 
-#: contents/ui/components/RadarWebEngineView.qml:543
+#: contents/ui/components/RadarWebEngineView.qml:647
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "миль/ч"

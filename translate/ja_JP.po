@@ -6,14 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-07-20 09:31+0300\n"
-<<<<<<< HEAD
-"PO-Revision-Date: 2026-06-22 00:00+0900\n"
-"Last-Translator: \n"
-=======
+"POT-Creation-Date: 2026-07-28 14:52+0300\n"
 "PO-Revision-Date: 2026-07-21 00:00+0900\n"
 "Last-Translator: Presire <presire2@gmail.com>\n"
->>>>>>> origin/main
 "Language-Team: Japanese\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
@@ -153,11 +148,7 @@ msgstr "AI 搭載の気象情報サービス。下に API キーが必要です�
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:162
 msgid "API error"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "API エラー"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:219
 msgid "API key is empty."
@@ -258,21 +249,6 @@ msgstr "アラート"
 
 #: contents/ui/config/configGeneral.qml:821
 msgid "Alerts provider:"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:865
-msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:856
-msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:847
-msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr ""
-=======
 msgstr "アラートプロバイダ:"
 
 #: contents/ui/config/configGeneral.qml:865
@@ -286,7 +262,6 @@ msgstr "アラートプロバイダ: <a href='https://librewxr.net/'>LibreWXR</a
 #: contents/ui/config/configGeneral.qml:847
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
 msgstr "アラートプロバイダ: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>ヨーロッパの地域では公式 MeteoAlarm フィード（38 か国）を、米国の地域では NOAA National Weather Service アラート API を使用し、フォールバックとして met.no MetAlerts を使用します。気象プロバイダが独自のアラート（例: WeatherAPI.com、Pirate Weather）を提供している場合は、それが直接使用されます。"
->>>>>>> origin/main
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -432,11 +407,7 @@ msgstr "雪崩"
 
 #: contents/ui/config/configGeneral.qml:303
 msgid "BBC Weather (free)"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "BBC Weather（無料）"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:100
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:374
@@ -478,11 +449,7 @@ msgstr "カバ"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:150
 msgid "Black and White"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "白黒"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:732
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:536
@@ -644,7 +611,7 @@ msgstr "地図をクリックして位置を選択"
 msgid "Click to configure a location"
 msgstr "クリックして位置を設定"
 
-#: contents/ui/components/RadarWebEngineView.qml:74
+#: contents/ui/components/RadarWebEngineView.qml:126
 msgid "Clouds"
 msgstr "雲"
 
@@ -723,11 +690,7 @@ msgstr "位置を確認"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:163
 msgid "Connection failed"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "接続失敗"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:286
 msgid "Connection failed (HTTP %1)."
@@ -797,11 +760,7 @@ msgstr "Dark Sky 互換 API（米国アラート対応）。下に API キーが
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:314
 msgid "Dark map"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "ダークマップ"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:873
 msgid "Dash  –"
@@ -988,11 +947,7 @@ msgstr "二重温度表示"
 #: contents/ui/main.qml:1219
 msgctxt "Alert severity"
 msgid "EXTREME"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "極端"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:696
 msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
@@ -1144,11 +1099,7 @@ msgstr "極めて悪い"
 
 #: contents/ui/config/configGeneral.qml:829
 msgid "FOSS Public Alert Server"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "FOSS Public Alert Server"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:231
 msgid "Fahrenheit (°F)"
@@ -1261,11 +1212,7 @@ msgstr "森林火災"
 
 #: contents/ui/config/configGeneral.qml:472
 msgid "Free BBC Weather service (data from the Met Office). No API key needed."
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Met Office のデータを使用する無料の BBC Weather サービス。API キーは不要です。"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:470
 msgid "Free Norwegian Meteorological Institute service. No API key needed."
@@ -1343,11 +1290,7 @@ msgstr "地磁気活動は %1（Kp %2）になる予想"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "光彩の強度:"
->>>>>>> origin/main
 
 #: contents/ui/js/airQuality.js:49 contents/ui/main.qml:844
 msgid "Good"
@@ -1362,8 +1305,8 @@ msgstr "イネ科"
 msgid "Headline"
 msgstr "見出し"
 
-#: contents/ui/components/RadarWebEngineView.qml:93
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:145
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Heavy"
 msgstr "強い"
 
@@ -1471,11 +1414,7 @@ msgstr "アイコンを先"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:156
 msgid "Icon glow:"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "アイコンの光彩:"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:203
 msgid "Icon only"
@@ -1683,14 +1622,10 @@ msgstr "レイアウトタイプ:"
 #: contents/ui/config/configGeneral.qml:749
 #: contents/ui/config/configGeneral.qml:828
 msgid "LibreWXR"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "LibreWXR"
->>>>>>> origin/main
 
-#: contents/ui/components/RadarWebEngineView.qml:91
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:143
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Light"
 msgstr "弱い"
 
@@ -1757,19 +1692,11 @@ msgstr "予報を読み込み中…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:158
 msgid "Loading frames"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
-msgid "Loading frame…"
-msgstr ""
-=======
 msgstr "フレーム読み込み中"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
 msgid "Loading frame…"
 msgstr "フレーム読み込み中…"
->>>>>>> origin/main
 
 #: contents/ui/ForecastView.qml:829
 msgid "Loading hourly data…"
@@ -1785,11 +1712,7 @@ msgstr "レーダーを読み込み中…"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:156
 msgid "Loading…"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "読み込み中…"
->>>>>>> origin/main
 
 #: contents/config/config.qml:47
 msgid "Location"
@@ -1877,29 +1800,17 @@ msgstr "低温"
 #: contents/ui/main.qml:1224
 msgctxt "Alert severity"
 msgid "MINIMAL"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "最小"
->>>>>>> origin/main
 
 #: contents/ui/main.qml:1222
 msgctxt "Alert severity"
 msgid "MINOR"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "軽微"
->>>>>>> origin/main
 
 #: contents/ui/main.qml:1221
 msgctxt "Alert severity"
 msgid "MODERATE"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "中程度"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:721
 msgid "Magnetic Field (Bz)"
@@ -1942,11 +1853,7 @@ msgstr "海洋・気象データプロバイダ。下に API キーが必要で�
 
 #: contents/ui/config/configGeneral.qml:827
 msgid "MeteoAlarm + NOAA NWS (Native)"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "MeteoAlarm + NOAA NWS（ネイティブ）"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:153
 msgid "Metric (°C, km/h, hPa, mm)"
@@ -1976,7 +1883,7 @@ msgstr "弱い地磁気嵐。"
 msgid "Misc"
 msgstr "その他"
 
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:642
 msgid "Mod"
 msgstr "中"
 
@@ -1984,7 +1891,7 @@ msgstr "中"
 msgid "Mode:"
 msgstr "モード:"
 
-#: contents/ui/components/RadarWebEngineView.qml:92
+#: contents/ui/components/RadarWebEngineView.qml:144
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -2168,11 +2075,7 @@ msgstr "いいえ"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:159
 msgid "No data"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "データなし"
->>>>>>> origin/main
 
 #: contents/ui/DetailsView.qml:553
 msgid "No details data"
@@ -2201,19 +2104,11 @@ msgstr "位置が設定されていません"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:160
 msgid "No radar data"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
-msgid "No satellite data"
-msgstr ""
-=======
 msgstr "レーダーデータなし"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
 msgid "No satellite data"
 msgstr "衛星データなし"
->>>>>>> origin/main
 
 #: contents/ui/config/configLocation.qml:1627
 msgid "No saved locations. Save the current location to quickly switch between places."
@@ -2223,8 +2118,8 @@ msgstr "保存された位置がありません。現在の位置を保存する
 msgid "No weather stations found for '%1'"
 msgstr "'%1' の気象観測所が見つかりません"
 
-#: contents/ui/components/RadarWebEngineView.qml:90
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:142
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2248,11 +2143,7 @@ msgstr "利用できません（HTTP %1）"
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
 msgid "Not supported"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "未対応"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:623
 msgid "Not tested"
@@ -2417,7 +2308,7 @@ msgstr "一部曇り（昼）"
 msgid "Partly cloudy (night)"
 msgstr "一部曇り（夜）"
 
-#: contents/ui/components/RadarWebEngineView.qml:87
+#: contents/ui/components/RadarWebEngineView.qml:139
 msgid "Pause"
 msgstr "一時停止"
 
@@ -2455,7 +2346,7 @@ msgstr "Pirate Weather（キー必須）"
 msgid "Pirate Weather API Key:"
 msgstr "Pirate Weather API キー:"
 
-#: contents/ui/components/RadarWebEngineView.qml:86
+#: contents/ui/components/RadarWebEngineView.qml:138
 msgid "Play"
 msgstr "再生"
 
@@ -2526,7 +2417,7 @@ msgstr "降水量:"
 msgid "Prefix style:"
 msgstr "接頭スタイル:"
 
-#: contents/ui/components/RadarWebEngineView.qml:77
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configAppearance.qml:1359
 #: contents/ui/config/configAppearance.qml:1461
 #: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
@@ -2589,12 +2480,6 @@ msgid ""
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo is always tried first - it is free and requires no API key."
 msgstr ""
-<<<<<<< HEAD
-
-#: contents/ui/config/configNotifications.qml:271
-msgid "Purple"
-msgstr ""
-=======
 "プロバイダは成功するまで順番に試行されます:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo は常に最初に試行されます - 無料で API キーが不要です。"
@@ -2602,7 +2487,6 @@ msgstr ""
 #: contents/ui/config/configNotifications.qml:271
 msgid "Purple"
 msgstr "紫"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:335
 msgid "QWeather (Key Required)"
@@ -2637,7 +2521,7 @@ msgid "Quiet"
 msgstr "静穏"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:72
+#: contents/ui/components/RadarWebEngineView.qml:124
 #: contents/ui/config/configGeneral.qml:720
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
@@ -2645,19 +2529,11 @@ msgstr "レーダー"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:144
 msgid "Radar + Satellite"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
-msgid "Radar color scheme:"
-msgstr ""
-=======
 msgstr "レーダー + 衛星"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
 msgid "Radar color scheme:"
 msgstr "レーダーの配色:"
->>>>>>> origin/main
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:234
 msgid "Radar only"
@@ -2665,19 +2541,11 @@ msgstr "レーダーのみ"
 
 #: contents/ui/config/configGeneral.qml:742
 msgid "Radar provider:"
-<<<<<<< HEAD
-msgstr ""
-
-#: contents/ui/config/configGeneral.qml:771
-msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
-msgstr ""
-=======
 msgstr "レーダープロバイダ:"
 
 #: contents/ui/config/configGeneral.qml:771
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
 msgstr "レーダープロバイダ: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR は無料のオープンソース気象レーダー API です。NOAA、カナダ、ヨーロッパの実際のレーダー合成画像をグローバルモデルのフォールバックと組み合わせ、過去 2 時間のレーダーデータと短時間のナウキャストを提供します。無料の衛星（赤外線）レイヤーも提供しています。<br/><br/>レイヤーモード、レーダー配色、移動方向矢印はレーダータブで直接選択します。マップは Plasma のライト/ダークテーマに自動的に追従します。"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:762
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
@@ -2692,7 +2560,7 @@ msgstr "レーダー:"
 msgid "Ragweed"
 msgstr "ブタクサ"
 
-#: contents/ui/components/RadarWebEngineView.qml:73
+#: contents/ui/components/RadarWebEngineView.qml:125
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
 #: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
@@ -2709,11 +2577,7 @@ msgstr "雨（夜）"
 
 #: contents/ui/config/configGeneral.qml:748
 msgid "Rain Viewer"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "Rain Viewer"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:59
 msgid "Rain showers"
@@ -2723,11 +2587,11 @@ msgstr "にわか雨"
 msgid "Rain/Storm"
 msgstr "雨 / 嵐"
 
-#: contents/ui/components/RadarWebEngineView.qml:88
+#: contents/ui/components/RadarWebEngineView.qml:140
 msgid "Real-time"
 msgstr "リアルタイム"
 
-#: contents/ui/components/RadarWebEngineView.qml:85
+#: contents/ui/components/RadarWebEngineView.qml:137
 msgid "Recent"
 msgstr "最近"
 
@@ -2832,11 +2696,7 @@ msgstr "値の丸め:"
 #: contents/ui/main.qml:1220
 msgctxt "Alert severity"
 msgid "SEVERE"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "重大"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:593
 msgid "SO₂"
@@ -2844,11 +2704,7 @@ msgstr "SO₂"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:139
 msgid "Satellite"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "衛星"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:906
 msgid "Saturday"
@@ -2975,7 +2831,7 @@ msgstr "詳細に表示"
 msgid "Show in:"
 msgstr "表示位置:"
 
-#: contents/ui/components/RadarWebEngineView.qml:89
+#: contents/ui/components/RadarWebEngineView.qml:141
 msgid "Show my location"
 msgstr "現在地を表示"
 
@@ -2993,11 +2849,7 @@ msgstr "展開ビューに汚染物質を表示:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:309
 msgid "Show precipitation motion arrows"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "降水の移動方向矢印を表示"
->>>>>>> origin/main
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:407
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:476
@@ -3199,8 +3051,8 @@ msgstr "標準プロバイダ。下に API キーが必要です。"
 msgid "Stats items:"
 msgstr "統計項目:"
 
-#: contents/ui/components/RadarWebEngineView.qml:94
-#: contents/ui/components/RadarWebEngineView.qml:538
+#: contents/ui/components/RadarWebEngineView.qml:146
+#: contents/ui/components/RadarWebEngineView.qml:642
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "嵐"
@@ -3323,11 +3175,7 @@ msgstr "順序を入れ替え:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:324
 msgid "Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme."
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "ライト/ダークのマップスタイルを切り替えます。初回切替までは、Plasma テーマに追従します。"
->>>>>>> origin/main
 
 #: contents/ui/FullView.qml:328
 msgid "Switch location"
@@ -3369,7 +3217,7 @@ msgstr "システムトレイ表示設定"
 msgid "System tray icon settings"
 msgstr "システムトレイアイコン設定"
 
-#: contents/ui/components/RadarWebEngineView.qml:75
+#: contents/ui/components/RadarWebEngineView.qml:127
 #: contents/ui/config/configAppearance.qml:1323
 #: contents/ui/config/configAppearance.qml:1570
 msgid "Temperature"
@@ -3614,11 +3462,7 @@ msgstr "切り詰め（1 行）"
 #: contents/ui/main.qml:1223
 msgctxt "Alert severity"
 msgid "UNKNOWN"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "不明"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:1394
 #: contents/ui/config/configAppearance.qml:1517
@@ -3705,37 +3549,21 @@ msgstr "更新がタイムアウトしました。タップして再試行。"
 #: contents/ui/WeatherService.qml:761
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
-<<<<<<< HEAD
-msgstr[0] ""
-=======
 msgstr[0] "%1 日前に更新"
->>>>>>> origin/main
 
 #: contents/ui/WeatherService.qml:759
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
-<<<<<<< HEAD
-msgstr[0] ""
-=======
 msgstr[0] "%1 時間前に更新"
->>>>>>> origin/main
 
 #: contents/ui/WeatherService.qml:756
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
-<<<<<<< HEAD
-msgstr[0] ""
-
-#: contents/ui/WeatherService.qml:754
-msgid "Updated just now"
-msgstr ""
-=======
 msgstr[0] "%1 分前に更新"
 
 #: contents/ui/WeatherService.qml:754
 msgid "Updated just now"
 msgstr "たった今更新"
->>>>>>> origin/main
 
 #: contents/ui/FullView.qml:396
 msgid "Updating…"
@@ -3844,11 +3672,7 @@ msgstr "位置を検出しました: <b>%1</b>。"
 
 #: contents/ui/config/configGeneral.qml:806
 msgid "Weather Alerts"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "天気アラート"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:362
 msgid "Weather Provider"
@@ -3900,8 +3724,6 @@ msgid ""
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
-<<<<<<< HEAD
-=======
 "天気アラートの重要度レベル（低→高）:\n"
 "\n"
 "🟡 黄 — 軽微: 状況に注意してください。\n"
@@ -3910,7 +3732,6 @@ msgstr ""
 "🟣 紫 — 極端: 極めて危険です。直ちに行動を起こしてください。\n"
 "\n"
 "レベルをオフにすると、その重要度のアラート通知を受信しなくなります。"
->>>>>>> origin/main
 
 #: contents/ui/config/configGeneral.qml:311
 msgid "WeatherAPI.com (Key Required)"
@@ -3945,7 +3766,7 @@ msgstr "ウィジェットサイズ"
 msgid "Widget panel area:"
 msgstr "ウィジェットのパネル領域:"
 
-#: contents/ui/components/RadarWebEngineView.qml:76
+#: contents/ui/components/RadarWebEngineView.qml:128
 #: contents/ui/config/configAppearance.qml:1337
 #: contents/ui/config/configAppearance.qml:1468
 #: contents/ui/config/configAppearance.qml:1591
@@ -3956,11 +3777,7 @@ msgstr "風"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:301
 msgid "Wind arrows"
-<<<<<<< HEAD
-msgstr ""
-=======
 msgstr "風向矢印"
->>>>>>> origin/main
 
 #: contents/ui/config/configAppearance.qml:1469
 #: contents/ui/config/configAppearance.qml:1592
@@ -4079,7 +3896,7 @@ msgstr "ft"
 msgid "grains/m³"
 msgstr "grains/m³"
 
-#: contents/ui/components/RadarWebEngineView.qml:551
+#: contents/ui/components/RadarWebEngineView.qml:655
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "hPa"
@@ -4096,11 +3913,11 @@ msgstr "in"
 msgid "in the next hours"
 msgstr "これからの数時間で"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "in/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:549
+#: contents/ui/components/RadarWebEngineView.qml:653
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "inHg"
@@ -4111,7 +3928,7 @@ msgstr "inHg"
 msgid "km"
 msgstr "km"
 
-#: contents/ui/components/RadarWebEngineView.qml:544
+#: contents/ui/components/RadarWebEngineView.qml:648
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "km/h"
@@ -4120,7 +3937,7 @@ msgstr "km/h"
 msgid "km/s"
 msgstr "km/s"
 
-#: contents/ui/components/RadarWebEngineView.qml:545
+#: contents/ui/components/RadarWebEngineView.qml:649
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "kn"
@@ -4137,7 +3954,7 @@ msgstr "低い"
 msgid "m"
 msgstr "m"
 
-#: contents/ui/components/RadarWebEngineView.qml:546
+#: contents/ui/components/RadarWebEngineView.qml:650
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "m/s"
@@ -4171,11 +3988,11 @@ msgstr "分"
 msgid "mm"
 msgstr "mm"
 
-#: contents/ui/components/RadarWebEngineView.qml:539 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "mm/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:550
+#: contents/ui/components/RadarWebEngineView.qml:654
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "mmHg"
@@ -4184,7 +4001,7 @@ msgstr "mmHg"
 msgid "moderate"
 msgstr "中程度"
 
-#: contents/ui/components/RadarWebEngineView.qml:543
+#: contents/ui/components/RadarWebEngineView.qml:647
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "mph"
@@ -4283,18 +4100,6 @@ msgstr "あなたの位置"
 #: contents/ui/js/airQuality.js:156
 msgid "µg/m³"
 msgstr "µg/m³"
-
-#~ msgid ""
-#~ "Providers are tried in order until one succeeds:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first - it is free and requires no API key."
-#~ msgstr ""
-#~ "プロバイダは成功するまで順番に試行されます:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo は常に最初に試行されます - 無料で API キーが不要です。"
-
-#~ msgid "Updated %1"
-#~ msgstr "%1 に更新"
 
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
