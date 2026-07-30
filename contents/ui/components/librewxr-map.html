@@ -136,6 +136,67 @@
             stroke-linejoin: round;
         }
 
+        /* === BASE MAP PICKER === */
+        .bg-picker {
+            position: absolute;
+            top: 52px;
+            right: 10px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+        .bg-btn {
+            width: 34px;
+            height: 34px;
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+        .bg-btn:hover {
+            background: var(--btn-hover);
+        }
+        .bg-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: var(--text-secondary);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .bg-menu {
+            display: none;
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            border-radius: 6px;
+            padding: 4px;
+        }
+        .bg-menu.open {
+            display: block;
+        }
+        .bg-menu div {
+            color: var(--text);
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .bg-menu div:hover {
+            background: var(--btn-hover);
+        }
+        .bg-menu div.active {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
         /* === REPLAYER / SCRUBBER === */
         .replayer {
             background: var(--replayer-bg);
@@ -317,6 +378,16 @@
             <line x1="18" y1="12" x2="22" y2="12"/>
         </svg>
     </button>
+    <div class="bg-picker" id="bgPicker">
+        <button class="bg-btn" id="bgBtn">
+            <svg viewBox="0 0 24 24">
+                <polygon points="12,3 21,7.5 12,12 3,7.5"/>
+                <polyline points="3,12 12,16.5 21,12"/>
+                <polyline points="3,16.5 12,21 21,16.5"/>
+            </svg>
+        </button>
+        <div class="bg-menu" id="bgMenu"></div>
+    </div>
 </div>
 
 <!-- Replayer / Scrubber -->
@@ -359,6 +430,12 @@ var SYS_LOCALE = PARAMS.get('locale') || undefined;
 var STRINGS = {};
 try { STRINGS = JSON.parse(PARAMS.get('strings') || '{}'); } catch (e) {}
 function tr(key, fallback) { return STRINGS[key] || fallback; }
+// Base map choices, resolved and translated on the QML side. The "auto" entry
+// is already resolved against the current map theme, but it stays a distinct
+// id so that switching the theme keeps following it (see setBaseMap).
+var BG_LIST = [];
+try { BG_LIST = JSON.parse(PARAMS.get('bglist') || '[]'); } catch (e) {}
+var BG_CURRENT = PARAMS.get('bg') || 'auto';
 
 // === CONFIGURATION ===
 var TILE_SIZE = 512;
@@ -411,24 +488,57 @@ map.getPane('satellite-pane').style.zIndex = 350;
 map.createPane('radar-pane');
 map.getPane('radar-pane').style.zIndex = 450;
 
-var baseMaps = {
-    dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+// Fallback tiles for the (unexpected) case where QML sent no choices at all;
+// these are the two base maps this page used before the picker existed.
+var FALLBACK_BG = {
+    dark: {
+        id: 'auto',
+        url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
         attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a> | <a href="https://librewxr.net/">LibreWXR</a>'
-    }),
-    light: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    },
+    light: {
+        id: 'auto',
+        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         attribution: '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors | <a href="https://librewxr.net/">LibreWXR</a>'
-    })
+    }
 };
+
+function bgEntry(id) {
+    for (var i = 0; i < BG_LIST.length; i++) {
+        if (BG_LIST[i].id === id) return BG_LIST[i];
+    }
+    return null;
+}
+
+/* The "auto" entry sent by QML was resolved against the theme that was active
+ * when the page loaded, so it is re-resolved here on every theme switch. */
+function resolveBg(id, theme) {
+    if (id === 'auto') {
+        var themed = bgEntry(theme === 'dark' ? 'carto-darkmatter' : 'osm-standard');
+        return themed || FALLBACK_BG[theme] || FALLBACK_BG.dark;
+    }
+    return bgEntry(id) || FALLBACK_BG[theme] || FALLBACK_BG.dark;
+}
+
 var currentBaseMap = null;
 
 function setBaseMap(theme) {
+    var e = resolveBg(BG_CURRENT, theme);
     if (currentBaseMap) map.removeLayer(currentBaseMap);
-    currentBaseMap = baseMaps[theme];
+    // Backgrounds stop at different zoom levels; past its own maxZoom a
+    // Leaflet layer renders nothing, so upscale the deepest tiles it has
+    // instead of leaving the base map blank under the radar.
+    currentBaseMap = L.tileLayer(e.url, {
+        attribution: e.attribution,
+        maxNativeZoom: e.maxZoom || 19,
+        maxZoom: 19
+    });
     currentBaseMap.addTo(map);
     currentBaseMap.bringToBack();
 }
 
 setBaseMap(activeTheme);
+renderBgMenu();
 
 L.marker([LAT, LON]).addTo(map);
 
@@ -459,18 +569,61 @@ window.setArrows = function(on) {
     showFrame(animationPosition);
 };
 
+window.setBackground = function(id) {
+    if (id === BG_CURRENT) return;
+    BG_CURRENT = id;
+    setBaseMap(activeTheme);
+    renderBgMenu();
+};
+
 window.setTheme = function(theme) {
     if (theme !== 'light' && theme !== 'dark') return;
     if (theme === activeTheme) return;
     activeTheme = theme;
     document.body.setAttribute('data-theme', activeTheme);
-    setBaseMap(activeTheme);
+    // Only "auto" follows the theme; an explicit background stays put.
+    if (BG_CURRENT === 'auto') setBaseMap(activeTheme);
     // Arrow color follows the map theme, so radar tiles must be re-fetched
     if (arrowsOn && activeLayer !== 'satellite') {
         clearAllLayers();
         showFrame(animationPosition);
     }
 };
+
+// === BASE MAP PICKER UI ===
+function renderBgMenu() {
+    var menu = document.getElementById('bgMenu');
+    if (!menu) return;
+    menu.innerHTML = '';
+    if (BG_LIST.length === 0) {
+        document.getElementById('bgPicker').style.display = 'none';
+        return;
+    }
+    for (var i = 0; i < BG_LIST.length; i++) {
+        (function(entry) {
+            var row = document.createElement('div');
+            row.textContent = entry.label;
+            if (entry.id === BG_CURRENT) row.className = 'active';
+            row.onclick = function(ev) {
+                ev.stopPropagation();
+                menu.classList.remove('open');
+                if (entry.id === BG_CURRENT) return;
+                window.setBackground(entry.id);
+                // Report the choice to QML so it is persisted
+                document.title = 'bg:' + entry.id;
+            };
+            menu.appendChild(row);
+        })(BG_LIST[i]);
+    }
+}
+
+document.getElementById('bgBtn').onclick = function(ev) {
+    ev.stopPropagation();
+    document.getElementById('bgMenu').classList.toggle('open');
+};
+document.addEventListener('click', function() {
+    document.getElementById('bgMenu').classList.remove('open');
+});
 
 // === UTILITIES ===
 function clampPosition(position) {

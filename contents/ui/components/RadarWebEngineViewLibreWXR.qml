@@ -19,6 +19,8 @@
  * - Radar color scheme and motion-arrows toggle, in-widget (not in settings)
  * - Base map follows the KDE Plasma light/dark theme automatically; arrow
  *   color follows the map theme
+ * - In-map picker to pin a different base map (shared with RadarWebEngineView
+ *   through providers/mapProviders.js), which then stops following the theme
  */
 import QtQuick
 import QtQuick.Layouts
@@ -57,6 +59,20 @@ Item {
         if (themeOverride === "light" || themeOverride === "dark")
             return themeOverride;
         return isDark ? "dark" : "light";
+    }
+
+    // ── Base map background ──────────────────────────────────────────────
+    // "auto" keeps the theme-driven pair this map has always used (OSM in
+    // light, Carto Dark Matter in dark); any other id pins one background
+    // regardless of the theme. The page re-resolves "auto" itself on theme
+    // switches, so themeHint only seeds the initial load.
+    readonly property string mapBackground: Plasmoid.configuration.mapBackground || "auto"
+    /** Set while the in-map picker is what changed the background. */
+    property bool _backgroundFromMap: false
+
+    readonly property MapBackgroundChoices backgroundChoices: MapBackgroundChoices {
+        themeHint: radarRoot.mapTheme
+        attributionSuffix: " | <a href=\"https://librewxr.net/\">LibreWXR</a>"
     }
 
     // A manual "Dark map" toggle only sticks until the Plasma theme itself
@@ -162,7 +178,7 @@ Item {
             "apiError": i18n("API error"),
             "connFailed": i18n("Connection failed")
         };
-        return Qt.resolvedUrl("librewxr-map.html") + "?lat=" + radarRoot.lat + "&lon=" + radarRoot.lon + "&zoom=" + radarRoot.initialZoom + "&layer=" + encodeURIComponent(radarRoot.activeLayer) + "&color=" + radarRoot.colorScheme + "&arrows=" + (radarRoot.arrowsOn ? "1" : "0") + "&theme=" + radarRoot.mapTheme + "&server=" + encodeURIComponent(radarRoot.serverUrl) + "&hour12=" + (radarRoot.is24h ? "0" : "1") + "&locale=" + encodeURIComponent(Qt.locale().name.replace("_", "-")) + "&strings=" + encodeURIComponent(JSON.stringify(strings));
+        return Qt.resolvedUrl("librewxr-map.html") + "?lat=" + radarRoot.lat + "&lon=" + radarRoot.lon + "&zoom=" + radarRoot.initialZoom + "&layer=" + encodeURIComponent(radarRoot.activeLayer) + "&color=" + radarRoot.colorScheme + "&arrows=" + (radarRoot.arrowsOn ? "1" : "0") + "&theme=" + radarRoot.mapTheme + "&server=" + encodeURIComponent(radarRoot.serverUrl) + "&hour12=" + (radarRoot.is24h ? "0" : "1") + "&locale=" + encodeURIComponent(Qt.locale().name.replace("_", "-")) + "&strings=" + encodeURIComponent(JSON.stringify(strings)) + "&bg=" + encodeURIComponent(radarRoot.mapBackground) + "&bglist=" + encodeURIComponent(radarRoot.backgroundChoices.toJson());
     }
 
     function _loadPage(reason) {
@@ -397,6 +413,14 @@ Item {
                     if (!isNaN(z) && z !== Plasmoid.configuration.radarZoom) {
                         Plasmoid.configuration.radarZoom = z;
                     }
+                } else if (title.indexOf("bg:") === 0) {
+                    // Picked from the in-map picker: the page already swapped
+                    // its tiles, so persist the choice without reloading.
+                    var bg = title.substring(3);
+                    if (bg.length > 0 && bg !== Plasmoid.configuration.mapBackground) {
+                        radarRoot._backgroundFromMap = true;
+                        Plasmoid.configuration.mapBackground = bg;
+                    }
                 }
             }
 
@@ -416,6 +440,16 @@ Item {
                 function onMapThemeChanged() {
                     console.log("[Advanced Weather Widget Radar/LibreWXR] Plasma theme changed; mapTheme=", radarRoot.mapTheme);
                     webView.runJavaScript("window.setTheme(" + JSON.stringify(radarRoot.mapTheme) + ");");
+                }
+                function onMapBackgroundChanged() {
+                    if (radarRoot._backgroundFromMap) {
+                        // The map itself made the change; swapping tiles again
+                        // would throw away the current pan and zoom.
+                        radarRoot._backgroundFromMap = false;
+                        return;
+                    }
+                    console.log("[Advanced Weather Widget Radar/LibreWXR] map background changed; background=", radarRoot.mapBackground);
+                    webView.runJavaScript("window.setBackground(" + JSON.stringify(radarRoot.mapBackground) + ");");
                 }
             }
         }

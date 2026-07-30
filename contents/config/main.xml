@@ -171,6 +171,11 @@
     <entry name="radarProvider"         type="String"><default>librewxr</default></entry>
     <entry name="radarLayer"            type="String"><default>librewxr</default></entry>
     <entry name="radarZoom"             type="Int"><default>9</default><min>3</min><max>18</max></entry>
+    <!-- Base map tiles under both radar maps. "auto" lets each map decide:
+         LibreWXR follows its own light/dark theme, RainViewer uses standard
+         OpenStreetMap. Any other value is an id from providers/mapProviders.js
+         and applies to both maps. -->
+    <entry name="mapBackground"         type="String"><default>auto</default></entry>
     <entry name="librewxrLayer"         type="String"><default>radar</default></entry>
     <entry name="librewxrColorScheme"   type="Int"><default>2</default><min>0</min><max>12</max></entry>
     <entry name="librewxrArrows"        type="Bool"><default>false</default></entry>
