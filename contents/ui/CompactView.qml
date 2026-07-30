@@ -255,7 +255,7 @@ PlasmaCore.ToolTipArea {
             // compressed: just the icon square + margins
             Math.max(Kirigami.Units.gridUnit * 2, simpleIconSz + 2 * leftRightMargin) :
             // side-by-side / stacked: track actual GridLayout content width
-            Math.max(Kirigami.Units.gridUnit * 2, simpleGrid.implicitWidth + 2 * leftRightMargin))) : compactRow.implicitWidth + 2 * leftRightMargin
+            Math.max(Kirigami.Units.gridUnit * 2, simpleGrid.implicitWidth + 2 * leftRightMargin))) : Math.ceil(compactRow.implicitWidth) + 2 * leftRightMargin + compactRow._widthSafetyPx
 
     // vertical simple type 0 (side-by-side): content height = max(icon, font)+4;
     // no gridUnit floor so the widget stays compact and matches preferredHeight.
@@ -422,6 +422,7 @@ PlasmaCore.ToolTipArea {
             anchors.rightMargin: compactRoot.leftRightMargin
             spacing: compactRoot.itemSpacing
             clip: true
+            readonly property int _widthSafetyPx: 12
 
             Repeater {
                 model: compactRoot.panelItemsData
@@ -445,8 +446,7 @@ PlasmaCore.ToolTipArea {
                         })
                         color: Kirigami.Theme.textColor
                         verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
                     }
                 }
             }
