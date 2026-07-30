@@ -396,7 +396,10 @@ function fetchAirQuality(service, W) {
             o3:    _ppbToUgm3(c.ozoneConcentration, _MOLAR_MASS.o3),
             no2:   _ppbToUgm3(c.no2Concentration, _MOLAR_MASS.no2),
             so2:   _ppbToUgm3(c.so2Concentration, _MOLAR_MASS.so2),
-            co:    _ppbToUgm3(c.coConcentration, _MOLAR_MASS.co)
+            // aqiData.co is mg/m³ by convention
+            // WeatherService.qml's Open-Meteo path, which divides by 1000 for the same reason
+            //  every other pollutant here stays in µg/m³, so only CO gets the extra /1000 after the ppb conversion.
+            co:    _ppbToUgm3(c.coConcentration, _MOLAR_MASS.co) / 1000
         };
 
         service._nativeAqiSetThisGen = true;
