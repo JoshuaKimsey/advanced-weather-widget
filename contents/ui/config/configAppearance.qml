@@ -1070,6 +1070,7 @@ KCM.AbstractKCM {
     property double cfg_panelSimpleTempShadowIntensity: 0.8
     property string cfg_panelSimpleTempShadowColor: ""   // empty = theme background
     property string cfg_simpleTempColor: ""              // empty = theme text color
+    property bool   cfg_simpleTempColorDynamic: false    // true = follow the forecast curve scale
     // Compressed badge options
     property string cfg_compressedBadgePosition: "bottom-right"
     property int cfg_compressedBadgeSpacing: 0

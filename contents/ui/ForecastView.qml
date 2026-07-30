@@ -27,6 +27,7 @@ import org.kde.plasma.plasmoid
 import "js/weather.js" as W
 import "js/iconResolver.js" as IconResolver
 import "js/configUtils.js" as ConfigUtils
+import "js/tempColors.js" as TempColorsJS
 import "components"
 
 Item {
@@ -1030,36 +1031,9 @@ Item {
                                             onDarkThemeChanged: requestPaint()
 
                                             // Map a temperature in °C to a CSS color string
+                                            // (scale shared with the panel temperature, see js/tempColors.js)
                                             function tempColor(t) {
-                                                // Dark theme: bright/pastel stops readable on dark bg
-                                                // Light theme: deeper/saturated stops readable on light bg
-                                                var stops = darkTheme ? [
-                                                    { t: -10, r:  50, g: 100, b: 255 },
-                                                    { t:   0, r:   0, g: 180, b: 255 },
-                                                    { t:  10, r:  80, g: 220, b: 160 },
-                                                    { t:  20, r: 220, g: 220, b:  40 },
-                                                    { t:  30, r: 255, g: 130, b:   0 },
-                                                    { t:  40, r: 220, g:  30, b:  30 }
-                                                ] : [
-                                                    { t: -10, r:  20, g:  60, b: 200 },
-                                                    { t:   0, r:   0, g: 120, b: 210 },
-                                                    { t:  10, r:   0, g: 160, b:  80 },
-                                                    { t:  20, r: 170, g: 150, b:   0 },
-                                                    { t:  30, r: 210, g:  80, b:   0 },
-                                                    { t:  40, r: 180, g:  10, b:  10 }
-                                                ];
-                                                if (t <= stops[0].t) return "rgba(" + stops[0].r + "," + stops[0].g + "," + stops[0].b + ",1.0)";
-                                                if (t >= stops[stops.length-1].t) { var s=stops[stops.length-1]; return "rgba("+s.r+","+s.g+","+s.b+",1.0)"; }
-                                                for (var i = 1; i < stops.length; i++) {
-                                                    if (t <= stops[i].t) {
-                                                        var frac = (t - stops[i-1].t) / (stops[i].t - stops[i-1].t);
-                                                        var r = Math.round(stops[i-1].r + frac * (stops[i].r - stops[i-1].r));
-                                                        var g = Math.round(stops[i-1].g + frac * (stops[i].g - stops[i-1].g));
-                                                        var b = Math.round(stops[i-1].b + frac * (stops[i].b - stops[i-1].b));
-                                                        return "rgba(" + r + "," + g + "," + b + ",1.0)";
-                                                    }
-                                                }
-                                                return "rgba(0,0,0,0.8)";
+                                                return TempColorsJS.cssForTemperature(t, darkTheme);
                                             }
 
                                             onPaint: {
