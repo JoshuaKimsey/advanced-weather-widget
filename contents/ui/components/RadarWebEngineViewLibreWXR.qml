@@ -373,8 +373,18 @@ Item {
 
             onLoadingChanged: function (loadRequest) {
                 console.log("[Advanced Weather Widget Radar/LibreWXR] loading changed:", "status=", loadRequest.status, "url=", loadRequest.url, "errorCode=", loadRequest.errorCode, "error=", loadRequest.errorString);
-                if (loadRequest.status === WebEngineView.LoadSucceededStatus)
+                if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
                     viewportFixTimer.restart();
+                    // mapTheme can still flip while the page is loading: Kirigami
+                    // reports a different background color early in startup, and
+                    // the component is rebuilt every time the popup reopens. Those
+                    // setTheme calls land on a page that does not exist yet and are
+                    // lost, leaving the page on the theme frozen into its URL while
+                    // the Dark map switch already shows the new one. Re-assert it
+                    // here so the switch, the page and the "auto" background agree.
+                    // No-op when they already match.
+                    webView.runJavaScript("window.setTheme(" + JSON.stringify(radarRoot.mapTheme) + ");");
+                }
             }
 
             // After a (re)load, Leaflet may size itself against a stale
