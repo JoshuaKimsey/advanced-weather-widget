@@ -475,6 +475,7 @@ Kirigami.FormLayout {
             width: 24
             height: 24
             radius: 4
+            opacity: panelTab.configRoot.cfg_simpleTempColorDynamic ? 0.4 : 1.0
             border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.3)
             border.width: 1
             color: {
@@ -483,6 +484,7 @@ Kirigami.FormLayout {
             }
             MouseArea {
                 anchors.fill: parent
+                enabled: !panelTab.configRoot.cfg_simpleTempColorDynamic
                 cursorShape: Qt.PointingHandCursor
                 onClicked: simpleTempColorDialog.open()
             }
@@ -490,12 +492,14 @@ Kirigami.FormLayout {
         TextField {
             Layout.preferredWidth: 110
             readOnly: true
+            enabled: !panelTab.configRoot.cfg_simpleTempColorDynamic
             text: {
                 var c = panelTab.configRoot.cfg_simpleTempColor;
                 return (c && c.length > 0) ? c : i18n("Default");
             }
             MouseArea {
                 anchors.fill: parent
+                enabled: !panelTab.configRoot.cfg_simpleTempColorDynamic
                 cursorShape: Qt.PointingHandCursor
                 onClicked: simpleTempColorDialog.open()
             }
@@ -503,7 +507,27 @@ Kirigami.FormLayout {
         Button {
             text: i18n("Reset")
             visible: (panelTab.configRoot.cfg_simpleTempColor || "").length > 0
+            enabled: !panelTab.configRoot.cfg_simpleTempColorDynamic
             onClicked: panelTab.configRoot.cfg_simpleTempColor = ""
+        }
+    }
+
+    // ── Simple mode: temperature color follows the forecast curve ────────────
+    RowLayout {
+        visible: !panelTab.isSystemTrayConfig && panelTab._panelInfoMode === "simple" && (panelTab._simpleLayoutType !== 0 || panelTab.configRoot.cfg_panelSimpleHorizontalContent !== "icon_only")
+        Kirigami.FormData.label: i18n("Color by temperature:")
+        spacing: Kirigami.Units.smallSpacing
+        Switch {
+            checked: panelTab.configRoot.cfg_simpleTempColorDynamic
+            onToggled: panelTab.configRoot.cfg_simpleTempColorDynamic = checked
+
+            ToolTip.visible: hovered
+            ToolTip.text: i18n("Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color.")
+            ToolTip.delay: Kirigami.Units.toolTipDelay
+        }
+        Label {
+            text: panelTab.configRoot.cfg_simpleTempColorDynamic ? i18n("Enabled") : i18n("Disabled")
+            opacity: 0.8
         }
     }
 
