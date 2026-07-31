@@ -91,6 +91,11 @@ PlasmaCore.ToolTipArea {
     readonly property int simpleLayoutType: Plasmoid.configuration.panelSimpleLayoutType || 0
     readonly property int simpleWidgetOrder: Plasmoid.configuration.panelSimpleWidgetOrder || 0
     readonly property string simpleIconStyle: Plasmoid.configuration.panelSimpleIconStyle || "symbolic"
+    // Bundled SVG icon themes shipped under contents/icons/. They render like the
+    // colorful style (full cell, no color mask), only the artwork differs.
+    readonly property bool simpleIconIsBundled: compactRoot.simpleIconStyle === "symbolic-bundled"
+        || compactRoot.simpleIconStyle === "flat-color"
+        || compactRoot.simpleIconStyle === "3d-oxygen"
     readonly property string simpleClickAreaMode: Plasmoid.configuration.panelSimpleClickAreaMode || "auto"
     readonly property int simpleClickAreaSize: Math.max(20, Plasmoid.configuration.panelSimpleClickAreaSize || 96)
     readonly property bool simpleTempShadowEnabled: Plasmoid.configuration.panelSimpleTempShadowEnabled !== false
@@ -881,7 +886,7 @@ PlasmaCore.ToolTipArea {
                 // vertical auto  → fill available width up to the computed icon size
                 // vertical manual / horizontal → fixed square
                 // Base icon cell size from icon style and computed/manual size.
-                readonly property int _baseCellSz: compactRoot.simpleIconStyle === "colorful" ? compactRoot.simpleIconSz : compactRoot.simpleSymbolicIconSz
+                readonly property int _baseCellSz: (compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconIsBundled) ? compactRoot.simpleIconSz : compactRoot.simpleSymbolicIconSz
                 // On horizontal panels cap at panel height so the GridLayout row never
                 // expands beyond simpleGrid.height (prevents icon overflowing downward
                 // and temperature cell shifting).
@@ -945,7 +950,7 @@ PlasmaCore.ToolTipArea {
                     width: parent._cellSz
                     height: parent._cellSz
                     anchors.centerIn: parent
-                    visible: compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconStyle === "custom"
+                    visible: compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconStyle === "custom" || compactRoot.simpleIconIsBundled
                     source: compactRoot.weatherRoot ? compactRoot.weatherRoot.getSimpleModeIconSource() : ""
                     smooth: true
                 }
@@ -1047,7 +1052,7 @@ PlasmaCore.ToolTipArea {
                     width: parent.width
                     height: parent.height
                     anchors.centerIn: parent
-                    visible: compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconStyle === "custom"
+                    visible: compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconStyle === "custom" || compactRoot.simpleIconIsBundled
                     source: compactRoot.weatherRoot ? compactRoot.weatherRoot.getSimpleModeIconSource() : ""
                     smooth: true
                 }
