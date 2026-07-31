@@ -353,6 +353,13 @@ Item {
                 request.accepted = true;
             }
 
+            // Surface console.log/warn/error from inside the page (Leaflet
+            // errors, etc.) in Plasma's own log output — otherwise failures
+            // inside the sandboxed page are invisible.
+            onJavaScriptConsoleMessage: function(level, message, lineNumber, sourceID) {
+                console.log("[Advanced Weather Widget Radar/LibreWXR][page console]", message, "(line", lineNumber + ")");
+            }
+
             Component.onCompleted: pageLoadTimer.restart()
 
             onLoadingChanged: function (loadRequest) {
