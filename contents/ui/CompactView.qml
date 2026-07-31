@@ -53,6 +53,7 @@ import org.kde.kirigami as Kirigami
 
 import "js/weather.js" as W
 import "js/iconResolver.js" as IconResolver
+import "js/tempColors.js" as TempColorsJS
 import "js/configUtils.js" as ConfigUtils
 import "components"
 
@@ -98,7 +99,12 @@ PlasmaCore.ToolTipArea {
         var c = Plasmoid.configuration.panelSimpleTempShadowColor;
         return (c && c.length > 0) ? c : Kirigami.Theme.backgroundColor;
     }
+    // Follows the same cold-to-hot scale as the forecast curve when enabled,
+    // so the panel reading and the curve below it speak the same language.
+    readonly property bool simpleTempColorDynamic: Plasmoid.configuration.simpleTempColorDynamic === true
     readonly property color simpleTempColor: {
+        if (compactRoot.simpleTempColorDynamic && weatherRoot && weatherRoot.temperatureC !== undefined && weatherRoot.temperatureC !== null)
+            return TempColorsJS.colorForTemperature(weatherRoot.temperatureC, TempColorsJS.isDarkBackground(Kirigami.Theme.backgroundColor));
         var c = Plasmoid.configuration.simpleTempColor;
         return (c && c.length > 0) ? c : Kirigami.Theme.textColor;
     }

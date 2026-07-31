@@ -119,6 +119,10 @@
     <entry name="panelSimpleTempShadowIntensity" type="Double"><default>0.8</default></entry>
     <entry name="panelSimpleTempShadowColor" type="String"><default></default></entry>
     <entry name="simpleTempColor" type="String"><default></default></entry>
+    <!-- When true, the panel temperature takes its color from the same
+         cold-to-hot scale as the forecast curve (js/tempColors.js) instead of
+         the fixed simpleTempColor above. -->
+    <entry name="simpleTempColorDynamic" type="Bool"><default>false</default></entry>
     <!-- Compressed mode: badge position, spacing, background color -->
     <entry name="compressedBadgePosition"  type="String"><default>bottom-right</default></entry>
     <entry name="compressedBadgeSpacing"   type="Int"><default>0</default><min>-20</min><max>20</max></entry>
