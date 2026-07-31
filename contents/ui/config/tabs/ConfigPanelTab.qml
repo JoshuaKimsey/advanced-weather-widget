@@ -525,6 +525,10 @@ Kirigami.FormLayout {
             ToolTip.text: i18n("Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color.")
             ToolTip.delay: Kirigami.Units.toolTipDelay
         }
+        Label {
+            text: panelTab.configRoot.cfg_simpleTempColorDynamic ? i18n("Enabled") : i18n("Disabled")
+            opacity: 0.8
+        }
     }
 
     RowLayout {
