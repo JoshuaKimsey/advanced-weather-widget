@@ -952,6 +952,11 @@ PlasmaCore.ToolTipArea {
                     anchors.centerIn: parent
                     visible: compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconStyle === "custom" || compactRoot.simpleIconIsBundled
                     source: compactRoot.weatherRoot ? compactRoot.weatherRoot.getSimpleModeIconSource() : ""
+                    // The bundled symbolic SVGs are drawn with fill="currentColor" and
+                    // stay invisible unless Kirigami tints them; the other bundled
+                    // themes carry their own colours.
+                    isMask: compactRoot.simpleIconStyle === "symbolic-bundled"
+                    color: compactRoot.simpleIconStyle === "symbolic-bundled" ? Kirigami.Theme.textColor : "transparent"
                     smooth: true
                 }
             }
@@ -1054,6 +1059,11 @@ PlasmaCore.ToolTipArea {
                     anchors.centerIn: parent
                     visible: compactRoot.simpleIconStyle === "colorful" || compactRoot.simpleIconStyle === "custom" || compactRoot.simpleIconIsBundled
                     source: compactRoot.weatherRoot ? compactRoot.weatherRoot.getSimpleModeIconSource() : ""
+                    // The bundled symbolic SVGs are drawn with fill="currentColor" and
+                    // stay invisible unless Kirigami tints them; the other bundled
+                    // themes carry their own colours.
+                    isMask: compactRoot.simpleIconStyle === "symbolic-bundled"
+                    color: compactRoot.simpleIconStyle === "symbolic-bundled" ? Kirigami.Theme.textColor : "transparent"
                     smooth: true
                 }
 
