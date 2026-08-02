@@ -1214,8 +1214,14 @@ document.getElementById('locateBtn').addEventListener('click', function() {
     map.setView([LAT, LON], map.getZoom());
 });
 
-// Clean up on pan/zoom
+// Clean up on pan/zoom — but not on the invisible 1px repaint nudge
+// (window.fixViewport below), which is a *real* Leaflet pan as far as
+// movestart/moveend are concerned even though it cancels itself out and
+// the view never actually changes. Without this guard, every resize or
+// popup reopen silently drops the whole preloaded frame cache.
+var suppressMoveCacheClear = false;
 map.on('movestart', function() {
+    if (suppressMoveCacheClear) return;
     preloadAbort = true;
     clearLayerCache();
 });
@@ -1286,8 +1292,15 @@ function startAutoRefresh() {
 // its view and Chromium to repaint the damaged area.
 window.fixViewport = function() {
     map.invalidateSize(false);
+    suppressMoveCacheClear = true;
     map.panBy([1, 0], { animate: false });
     map.panBy([-1, 0], { animate: false });
+    // Both panBy calls above fire movestart synchronously, before either
+    // can complete, so it's safe to drop the guard on the first moveend
+    // that follows. The timeout is just a safety net in case moveend
+    // doesn't fire for some reason (e.g. a zero-size offset).
+    map.once('moveend', function() { suppressMoveCacheClear = false; });
+    setTimeout(function() { suppressMoveCacheClear = false; }, 400);
 };
 
 // Track container size changes directly (widget resizes, popup layout
