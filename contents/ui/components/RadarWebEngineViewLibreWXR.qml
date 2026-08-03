@@ -75,10 +75,31 @@ Item {
         attributionSuffix: " | <a href=\"https://librewxr.net/\">LibreWXR</a>"
     }
 
+    // These pinned layouts each fix their own light/dark style, so the map
+    // page ignores the theme for tile selection while one is active (see
+    // setTheme's "only auto follows the theme" guard in librewxr-map.html).
+    // The Dark map switch is locked read-only while one is selected, since
+    // toggling it would have no visible effect on the base map.
+    readonly property var pinnedBackgroundIds: ["osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "carto-positron", "carto-darkmatter"]
+    readonly property bool darkMapLocked: radarRoot.pinnedBackgroundIds.indexOf(radarRoot.mapBackground) !== -1
+
     // A manual "Dark map" toggle only sticks until the Plasma theme itself
     // actually changes — at that point the override is cleared so the map
     // (and the switch) snap back to following Plasma automatically.
+    property bool _themeGuardArmed: false
+
+    Timer {
+        id: themeGuardTimer
+        interval: 400
+        repeat: false
+        onTriggered: radarRoot._themeGuardArmed = true
+    }
+
     onIsDarkChanged: {
+        if (!radarRoot._themeGuardArmed) {
+            console.log("[Advanced Weather Widget Radar/LibreWXR] ignoring theme read during startup settle");
+            return;
+        }
         if (radarRoot.themeOverride !== "auto") {
             console.log("[Advanced Weather Widget Radar/LibreWXR] Plasma theme changed; clearing manual dark-map override");
             Plasmoid.configuration.librewxrTheme = "auto";
@@ -133,6 +154,7 @@ Item {
 
     Component.onCompleted: {
         console.log("[Advanced Weather Widget Radar/LibreWXR] component completed; lat=", lat, "lon=", lon, "layer=", activeLayer, "zoom=", initialZoom, "colorScheme=", colorScheme, "arrows=", arrowsOn, "theme=", mapTheme, "server=", serverUrl, "qt=", Qt.version, "platform=", Qt.platform.os);
+        themeGuardTimer.restart();
     }
 
     // ── Wi-font icon loader ───────────────────────────────────────────────
@@ -329,6 +351,7 @@ Item {
             PlasmaComponents.Switch {
                 text: i18n("Dark map")
                 checked: radarRoot.mapTheme === "dark"
+                enabled: !radarRoot.darkMapLocked
                 onToggled: {
                     // Manual choice overrides following the Plasma theme
                     // until the Plasma theme itself changes (see onIsDarkChanged)
@@ -337,7 +360,7 @@ Item {
                 }
 
                 PlasmaComponents.ToolTip.visible: hovered
-                PlasmaComponents.ToolTip.text: i18n("Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme.")
+                PlasmaComponents.ToolTip.text: radarRoot.darkMapLocked ? i18n("Not available: the selected base map already has a fixed light or dark style.") : i18n("Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme.")
                 PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
             }
         }
