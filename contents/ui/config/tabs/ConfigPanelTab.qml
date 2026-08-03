@@ -317,6 +317,18 @@ Kirigami.FormLayout {
                     value: "symbolic"
                 },
                 {
+                    text: i18n("Symbolic (Bundled)"),
+                    value: "symbolic-bundled"
+                },
+                {
+                    text: i18n("Flat Color (Bundled)"),
+                    value: "flat-color"
+                },
+                {
+                    text: i18n("3D Oxygen (Bundled)"),
+                    value: "3d-oxygen"
+                },
+                {
                     text: i18n("Custom…"),
                     value: "custom"
                 }
