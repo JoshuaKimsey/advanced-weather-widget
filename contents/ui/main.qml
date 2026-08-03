@@ -1993,6 +1993,14 @@ PlasmoidItem {
             }
             return W.weatherCodeToIcon(code, night);
         }
+        // Bundled SVG themes: the style itself names the folder under contents/icons/.
+        // Only the 32 px variants are requested — every size folder holds the same
+        // artwork (identical viewBox), they differ only by the SVG width attribute,
+        // and Kirigami.Icon sizes the result itself.
+        if (style === "symbolic-bundled" || style === "flat-color" || style === "3d-oxygen") {
+            var bundledTheme = (style === "symbolic-bundled") ? "symbolic" : style;
+            return IconResolver.svgUrl(IconResolver._conditionSvgStem(code, night), 32, _iconsBaseDir, bundledTheme);
+        }
         if (style === "colorful" || theme === "kde" || theme === "custom")
             return W.weatherCodeToIcon(code, night);
         var iconSz = Plasmoid.configuration.panelIconSize || 22;
