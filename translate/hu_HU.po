@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-07-28 14:52+0300\n"
+"POT-Creation-Date: 2026-08-03 15:19+0300\n"
 "PO-Revision-Date: 2026-07-20 14:07+0200\n"
 "Last-Translator: summoner <summoner@disroot.org>\n"
 "Language-Team: Hungarian <>\n"
@@ -53,7 +53,7 @@ msgstr "%1 valószínű: %2."
 msgid "%1 will be %2 with a low of %3 and a high of %4."
 msgstr "%1 %2 lesz, a legkisebb hőmérséklet %3, a legnagyobb pedig %4 lesz."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1049
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1085
 msgctxt "@info %1 size %2 family"
 msgid "%1pt %2"
 msgstr "%1pt %2"
@@ -71,11 +71,11 @@ msgstr "-180 és 180 között (például: 23.3219)"
 msgid "-90 to 90 (e.g. 42.6977)"
 msgstr "-90 és 90 között (például: 42.6977)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:848
+#: contents/ui/config/tabs/ConfigPanelTab.qml:884
 msgid "0 = auto (120 px per chip). Increase if values are truncated."
 msgstr "0 = automatikus (120 px lapkánként). Növelje meg, ha az értékek levágódnak."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:848
+#: contents/ui/config/tabs/ConfigPanelTab.qml:884
 msgid "0 = auto. Increase if items are cut off."
 msgstr "0 = automatikus. Növelje meg, ha az elemek kilógnak."
 
@@ -107,7 +107,8 @@ msgstr "24 órás formátum"
 msgid "24h"
 msgstr "24h"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1083
+#: contents/ui/config/tabs/ConfigPanelTab.qml:328
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1119
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:212
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:44
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:53
@@ -126,6 +127,12 @@ msgstr "<b>Érvényes:</b> %1"
 msgid "<b>Headline:</b> %1"
 msgstr "<b>Címsor:</b> %1"
 
+#: contents/ui/config/configGeneral.qml:899
+msgid ""
+"<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
+"                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
+msgstr ""
+
 #: contents/ui/main.qml:1244
 msgid "<b>Instruction:</b> %1"
 msgstr "<b>Utasítás:</b> %1"
@@ -139,19 +146,19 @@ msgstr "<b>Szolgáltató:</b> %1"
 msgid "<b>Severity:</b> %1%2"
 msgstr "<b>Súlyosság:</b> %1%2"
 
-#: contents/ui/config/configGeneral.qml:788
+#: contents/ui/config/configGeneral.qml:875
 msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
 msgstr "<b>Miért nem egyeznek az OWM rétegek a RainViewer radarral?</b><br/><br/>Az OWM csapadék- és felhőrétegei <b>statikus modellcsempék</b> – simított NWP (számszerű időjárás-előrejelzés) kimenetet mutatnak, nem pedig tényleges radarvisszaverődéseket. Azt jelzik, hogy a <i>modell szerint</i> hol esik az eső, az időjárási állomások és a modellfuttatások közötti interpoláció alapján.<br/><br/>A RainViewer <b>valódi meteorológiai radarkompozitokat</b> használ a radarállomásokról – ténylegesen mért reflektivitást, amely 2–10 percenként frissül. Ez az eltérés várható és ismert jelenség."
 
-#: contents/ui/config/configGeneral.qml:462
+#: contents/ui/config/configGeneral.qml:543
 msgid "AI-powered weather intelligence. API key required below."
 msgstr "Mesterséges intelligenciával támogatott időjárás-elemzés. API-kulcs szükséges alább."
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:162
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:200
 msgid "API error"
 msgstr "API-hiba"
 
-#: contents/ui/config/configGeneral.qml:219
+#: contents/ui/config/configGeneral.qml:300
 msgid "API key is empty."
 msgstr "Az API-kulcs üres."
 
@@ -167,11 +174,15 @@ msgstr "AQI"
 msgid "Active"
 msgstr "Aktív"
 
+#: contents/ui/config/configGeneral.qml:96
+msgid "Active - GPU compositing is currently disabled for the radar map in this session."
+msgstr ""
+
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
 msgstr "Adaptív (Open-Meteo)"
 
-#: contents/ui/config/configGeneral.qml:395
+#: contents/ui/config/configGeneral.qml:476
 msgid "Adaptive (auto-fallback)"
 msgstr "Adaptív (automatikus visszaállítás)"
 
@@ -179,7 +190,7 @@ msgstr "Adaptív (automatikus visszaállítás)"
 msgid "Add Location Manually"
 msgstr "Hely hozzáadása kézzel"
 
-#: contents/ui/CompactView.qml:787 contents/ui/CompactView.qml:1123
+#: contents/ui/CompactView.qml:826 contents/ui/CompactView.qml:1172
 msgid "Add a location"
 msgstr "Hely hozzáadása"
 
@@ -191,9 +202,9 @@ msgstr "Speciális (minden lap)"
 msgid "Afternoon"
 msgstr "Délután"
 
-#: contents/ui/config/configAppearance.qml:1401
-#: contents/ui/config/configAppearance.qml:1524
-#: contents/ui/config/configAppearance.qml:1647 contents/ui/DetailsView.qml:326
+#: contents/ui/config/configAppearance.qml:1402
+#: contents/ui/config/configAppearance.qml:1525
+#: contents/ui/config/configAppearance.qml:1648 contents/ui/DetailsView.qml:326
 #: contents/ui/SimpleView.qml:266
 msgid "Air Quality"
 msgstr "Levegőminőség"
@@ -202,9 +213,9 @@ msgstr "Levegőminőség"
 msgid "Air Quality:"
 msgstr "Levegőminőség:"
 
-#: contents/ui/config/configAppearance.qml:1402
-#: contents/ui/config/configAppearance.qml:1525
-#: contents/ui/config/configAppearance.qml:1648
+#: contents/ui/config/configAppearance.qml:1403
+#: contents/ui/config/configAppearance.qml:1526
+#: contents/ui/config/configAppearance.qml:1649
 msgid "Air quality index"
 msgstr "Levegőminőségi index"
 
@@ -241,26 +252,26 @@ msgstr "Levegőminőségi beállítások"
 msgid "Alder"
 msgstr "Éger"
 
-#: contents/ui/config/configAppearance.qml:1422
-#: contents/ui/config/configAppearance.qml:1545
-#: contents/ui/config/configAppearance.qml:1668 contents/ui/DetailsView.qml:329
+#: contents/ui/config/configAppearance.qml:1423
+#: contents/ui/config/configAppearance.qml:1546
+#: contents/ui/config/configAppearance.qml:1669 contents/ui/DetailsView.qml:329
 #: contents/ui/SimpleView.qml:269
 msgid "Alerts"
 msgstr "Riasztások"
 
-#: contents/ui/config/configGeneral.qml:821
+#: contents/ui/config/configGeneral.qml:973
 msgid "Alerts provider:"
 msgstr "Riasztás-szolgáltató:"
 
-#: contents/ui/config/configGeneral.qml:865
+#: contents/ui/config/configGeneral.qml:1026
 msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
 msgstr "Riasztás-szolgáltató: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>A KDE FOSS Public Alert Server projektje a világ meteorológiai ügynökségeitől gyűjti össze a hivatalos, CAP formátumú veszélyjelzéseket, és az Ön pontos helyzetéhez igazítja azokat. A riasztási értesítések ugyanúgy működnek, mint a natív szolgáltató esetében."
 
-#: contents/ui/config/configGeneral.qml:856
+#: contents/ui/config/configGeneral.qml:1017
 msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
 msgstr "Riasztás-szolgáltató: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>A LibreWXR egy ingyenes, nyílt forráskódú időjárási API, amely világszerte összesíti a hivatalos CAP riasztásokat (WMO Severe Weather Information Centre, NOAA NWS és mások), és azokat az Ön pontos helyzetéhez igazítja. A riasztási értesítések ugyanúgy működnek, mint a natív szolgáltató esetében."
 
-#: contents/ui/config/configGeneral.qml:847
+#: contents/ui/config/configGeneral.qml:1008
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
 msgstr "Riasztás-szolgáltató: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Az európai helyszínek a hivatalos MeteoAlarm-hírcsatornákat használják (38 ország), az amerikai helyszínek a NOAA National Weather Service riasztási API-ját, tartalékként pedig a met.no MetAlerts szolgál. Ha az Ön időjárási szolgáltatója saját riasztásokat biztosít (pl. WeatherAPI.com, Pirate Weather), akkor közvetlenül azokat használja a rendszer."
 
@@ -288,7 +299,7 @@ msgstr "Magasság: %1 %2"
 msgid "Alt: %1 m"
 msgstr "Magasság: %1 m"
 
-#: contents/ui/config/configGeneral.qml:456
+#: contents/ui/config/configGeneral.qml:537
 msgid "Alternative provider. API key required below."
 msgstr "Alternatív szolgáltató. API-kulcs szükséges alább."
 
@@ -304,20 +315,20 @@ msgstr "A magasság megadása nem kötelező, de erősen ajánlott a pontos elő
 msgid "Altitude:"
 msgstr "Magasság:"
 
-#: contents/ui/config/configGeneral.qml:654
+#: contents/ui/config/configGeneral.qml:735
 msgid "An API key is required for %1. Weather data cannot be retrieved without it."
 msgstr "API-kulcs szükséges a(z) %1 szolgáltatóhoz. Az időjárási adatok nem kérhetők le nélküle."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:751
+#: contents/ui/config/tabs/ConfigPanelTab.qml:787
 msgid "Animate row scrolling"
 msgstr "Sorgörgetés animálása"
 
-#: contents/ui/config/configAppearance.qml:1346
+#: contents/ui/config/configAppearance.qml:1347
 msgid "Apparent (feels-like) temperature"
 msgstr "Hőérzet"
 
-#: contents/ui/config/configAppearance.qml:1448
-#: contents/ui/config/configAppearance.qml:1585
+#: contents/ui/config/configAppearance.qml:1449
+#: contents/ui/config/configAppearance.qml:1586
 msgid "Apparent temperature"
 msgstr "Hőérzet"
 
@@ -344,9 +355,9 @@ msgstr "Biztos benne? Ez az utolsó mentett helye. Ha eltávolítja, a kisalkalm
 msgid "Around midnight — "
 msgstr "Éjfél körül — "
 
-#: contents/ui/config/configAppearance.qml:1360
-#: contents/ui/config/configAppearance.qml:1462
-#: contents/ui/config/configAppearance.qml:1606
+#: contents/ui/config/configAppearance.qml:1361
+#: contents/ui/config/configAppearance.qml:1463
+#: contents/ui/config/configAppearance.qml:1607
 msgid "Atmospheric pressure"
 msgstr "Légnyomás"
 
@@ -356,9 +367,9 @@ msgid "Aurora Visibility"
 msgstr "Sarki fény láthatósága"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:257
-#: contents/ui/config/tabs/ConfigPanelTab.qml:352
-#: contents/ui/config/tabs/ConfigPanelTab.qml:434
-#: contents/ui/config/tabs/ConfigPanelTab.qml:799
+#: contents/ui/config/tabs/ConfigPanelTab.qml:364
+#: contents/ui/config/tabs/ConfigPanelTab.qml:446
+#: contents/ui/config/tabs/ConfigPanelTab.qml:835
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:100
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:143
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:453
@@ -388,7 +399,8 @@ msgstr "Az automatikus észlelés frissítette a koordinátákat."
 msgid "Auto-open hourly forecast:"
 msgstr "Óránkénti előrejelzés automatikus megnyitása:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1018
+#: contents/ui/components/MapBackgroundChoices.qml:42
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1054
 msgid "Automatic"
 msgstr "Automatikus"
 
@@ -406,7 +418,7 @@ msgstr "Elérhető"
 msgid "Avalanche"
 msgstr "Lavina"
 
-#: contents/ui/config/configGeneral.qml:303
+#: contents/ui/config/configGeneral.qml:384
 msgid "BBC Weather (free)"
 msgstr "BBC Weather (ingyenes)"
 
@@ -419,23 +431,23 @@ msgstr "BBC Weather (ingyenes)"
 msgid "Back"
 msgstr "Vissza"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:719
+#: contents/ui/config/tabs/ConfigPanelTab.qml:755
 msgid "Badge Background Color"
 msgstr "Jelvény háttérszíne"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:655
+#: contents/ui/config/tabs/ConfigPanelTab.qml:691
 msgid "Badge background:"
 msgstr "Jelvény háttere:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:699
+#: contents/ui/config/tabs/ConfigPanelTab.qml:735
 msgid "Badge opacity:"
 msgstr "Jelvény átlátszatlansága:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:593
+#: contents/ui/config/tabs/ConfigPanelTab.qml:629
 msgid "Badge position:"
 msgstr "Jelvény helyzete:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:639
+#: contents/ui/config/tabs/ConfigPanelTab.qml:675
 msgid "Badge spacing:"
 msgstr "Jelvény térköze:"
 
@@ -448,7 +460,7 @@ msgstr "Viselkedés"
 msgid "Birch"
 msgstr "Nyír"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:150
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:188
 msgid "Black and White"
 msgstr "Fekete-fehér"
 
@@ -462,15 +474,15 @@ msgstr "Mindkettő  07:17 / 18:03"
 msgid "Both (sunrise & sunset)"
 msgstr "Mindkettő (Napkelte és -nyugta)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:617
+#: contents/ui/config/tabs/ConfigPanelTab.qml:653
 msgid "Bottom Center"
 msgstr "Középen lent"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:605
+#: contents/ui/config/tabs/ConfigPanelTab.qml:641
 msgid "Bottom Left"
 msgstr "Balra lent"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:601
+#: contents/ui/config/tabs/ConfigPanelTab.qml:637
 msgid "Bottom Right"
 msgstr "Jobbra lent"
 
@@ -483,7 +495,7 @@ msgstr "Jobbra lent"
 msgid "Browse…"
 msgstr "Böngészés…"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:865
+#: contents/ui/config/tabs/ConfigPanelTab.qml:901
 msgid "Bullet  •"
 msgstr "Pont  •"
 
@@ -529,6 +541,14 @@ msgstr "Kártyák (2 oszlop)"
 msgid "Cards height:"
 msgstr "Kártyák magassága:"
 
+#: contents/ui/components/MapBackgroundChoices.qml:48
+msgid "Carto Dark Matter (dark)"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:47
+msgid "Carto Positron (light)"
+msgstr ""
+
 #: contents/ui/config/tabs/ConfigMiscTab.qml:227
 msgid "Celsius (°C)"
 msgstr "Celsius (°C)"
@@ -537,25 +557,34 @@ msgstr "Celsius (°C)"
 msgid "Changes staged. Click the main Apply button to save."
 msgstr "Változtatások előjegyezve. Kattintson az „Alkalmaz” gombra a mentéshez."
 
-#: contents/ui/config/configGeneral.qml:91
+#: contents/ui/config/configGeneral.qml:915
+msgid "Check Status"
+msgstr ""
+
+#: contents/ui/config/configGeneral.qml:172
 #: contents/ui/config/configLocation.qml:481
 msgid "Checking location availability…"
 msgstr "Hely elérhetőségének ellenőrzése…"
 
-#: contents/ui/config/configGeneral.qml:468
+#: contents/ui/config/configGeneral.qml:139
+#: contents/ui/config/configGeneral.qml:915
+msgid "Checking…"
+msgstr ""
+
+#: contents/ui/config/configGeneral.qml:549
 msgid "Chinese weather provider with global coverage. API key required below."
 msgstr "Kínai időjárás-szolgáltató globális lefedettséggel. API-kulcs szükséges alább."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:945
+#: contents/ui/config/tabs/ConfigPanelTab.qml:981
 msgid "Choose Simple Mode Font"
 msgstr "Egyszerű mód betűtípusának kiválasztása"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1036
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1072
 msgctxt "@action:button"
 msgid "Choose Style…"
 msgstr "Stílus kiválasztása…"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:984
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1020
 msgid "Choose a Panel Font"
 msgstr "Panel betűtípusának kiválasztása"
 
@@ -574,11 +603,11 @@ msgstr "Kiválasztás a térképen"
 msgid "Choose on map"
 msgstr "Kiválasztás a térképen"
 
-#: contents/ui/config/configAppearance.qml:1367
+#: contents/ui/config/configAppearance.qml:1368
 msgid "City / location name"
 msgstr "Város / helység neve"
 
-#: contents/ui/config/configGeneral.qml:615
+#: contents/ui/config/configGeneral.qml:696
 msgid "Clear"
 msgstr "Tiszta"
 
@@ -612,7 +641,7 @@ msgstr "Kattintson a térképre a hely kiválasztásához"
 msgid "Click to configure a location"
 msgstr "Kattintson egy hely beállításához"
 
-#: contents/ui/components/RadarWebEngineView.qml:126
+#: contents/ui/components/RadarWebEngineView.qml:130
 msgid "Clouds"
 msgstr "Felhők"
 
@@ -620,12 +649,20 @@ msgstr "Felhők"
 msgid "Coastal event"
 msgstr "Tengerparti jelenség"
 
+#: contents/ui/config/tabs/ConfigPanelTab.qml:530
+msgid "Color by temperature:"
+msgstr ""
+
+#: contents/ui/config/tabs/ConfigPanelTab.qml:537
+msgid "Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color."
+msgstr ""
+
 #: contents/ui/config/tabs/ConfigPanelTab.qml:303
 #: contents/ui/config/tabs/ConfigPanelTab.qml:312
 msgid "Colorful"
 msgstr "Színes"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:766
+#: contents/ui/config/tabs/ConfigPanelTab.qml:802
 msgid "Colorful (KDE color icons)"
 msgstr "Színes (KDE színes ikonok)"
 
@@ -638,8 +675,8 @@ msgstr "Iránytű az előrejelzésben:"
 msgid "Compressed"
 msgstr "Tömörített"
 
-#: contents/ui/config/configAppearance.qml:1316
-#: contents/ui/config/configAppearance.qml:1577 contents/ui/DetailsView.qml:322
+#: contents/ui/config/configAppearance.qml:1317
+#: contents/ui/config/configAppearance.qml:1578 contents/ui/DetailsView.qml:322
 msgid "Condition"
 msgstr "Körülmények"
 
@@ -668,13 +705,13 @@ msgstr "Ikon konfigurálása — %1"
 msgid "Configure icon…"
 msgstr "Ikon konfigurálása…"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:335
+#: contents/ui/config/tabs/ConfigPanelTab.qml:347
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:150
 msgid "Configure weather icons…"
 msgstr "Időjárásikonok konfigurálása…"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:789
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1202
+#: contents/ui/config/tabs/ConfigPanelTab.qml:825
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1238
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:336
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:730
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:775
@@ -689,15 +726,15 @@ msgstr "Átnevezés megerősítése"
 msgid "Confirm your location"
 msgstr "Saját hely megerősítése"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:163
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:201
 msgid "Connection failed"
 msgstr "Nem sikerült létrehozni a kapcsolatot"
 
-#: contents/ui/config/configGeneral.qml:286
+#: contents/ui/config/configGeneral.qml:367
 msgid "Connection failed (HTTP %1)."
 msgstr "Nem sikerült létrehozni a kapcsolatot (HTTP %1)."
 
-#: contents/ui/config/configGeneral.qml:279
+#: contents/ui/config/configGeneral.qml:360
 msgid "Connection successful! %1 key is valid."
 msgstr "A kapcsolat sikeresen létre lett hozva! A(z) %1 kulcs érvényes."
 
@@ -709,18 +746,18 @@ msgstr "Koordináták"
 msgid "Critical notifications are still shown even when Do Not Disturb is enabled, or while you're playing a game or watching a fullscreen video (if those options are enabled in System Settings → Notifications)."
 msgstr "A kritikus értesítések akkor is megjelennek, ha a „Ne zavarjanak mód” be van kapcsolva, vagy ha Ön éppen játszik, illetve teljes képernyős videót néz (amennyiben ezek a beállítások engedélyezve vannak a Rendszerbeállítások → Értesítések menüpontban)."
 
-#: contents/ui/config/configAppearance.qml:1437
-#: contents/ui/config/configAppearance.qml:1560
-#: contents/ui/config/configAppearance.qml:1683
+#: contents/ui/config/configAppearance.qml:1438
+#: contents/ui/config/configAppearance.qml:1561
+#: contents/ui/config/configAppearance.qml:1684
 msgid "Current date and/or time"
 msgstr "Jelenlegi dátum / idő"
 
-#: contents/ui/config/configAppearance.qml:1374
+#: contents/ui/config/configAppearance.qml:1375
 msgid "Current moon phase"
 msgstr "Jelenlegi holdfázis"
 
-#: contents/ui/config/configAppearance.qml:1324
-#: contents/ui/config/configAppearance.qml:1571
+#: contents/ui/config/configAppearance.qml:1325
+#: contents/ui/config/configAppearance.qml:1572
 msgid "Current temperature"
 msgstr "Jelenlegi hőmérséklet"
 
@@ -742,38 +779,42 @@ msgstr "Egyéni ikon minden körülményhez"
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:735
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:649
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:729
-#: contents/ui/config/tabs/ConfigPanelTab.qml:320
-#: contents/ui/config/tabs/ConfigPanelTab.qml:774
-#: contents/ui/config/tabs/ConfigPanelTab.qml:885
+#: contents/ui/config/tabs/ConfigPanelTab.qml:332
+#: contents/ui/config/tabs/ConfigPanelTab.qml:810
+#: contents/ui/config/tabs/ConfigPanelTab.qml:921
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:54
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:299
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:358
 msgid "Custom…"
 msgstr "Egyéni…"
 
+#: contents/ui/components/MapBackgroundChoices.qml:45
+msgid "CyclOSM (cycling)"
+msgstr ""
+
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:858
 msgid "Daily Forecast Settings"
 msgstr "Napi előrejelzés beállításai"
 
-#: contents/ui/config/configGeneral.qml:458
+#: contents/ui/config/configGeneral.qml:539
 msgid "Dark Sky-compatible API with US alerts. API key required below."
 msgstr "Dark Sky kompatibilis API amerikai riasztásokkal. API-kulcs szükséges alább."
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:314
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:352
 msgid "Dark map"
 msgstr "Sötét térkép"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:873
+#: contents/ui/config/tabs/ConfigPanelTab.qml:909
 msgid "Dash  –"
 msgstr "Gondolatjel  –"
 
-#: contents/ui/config/configGeneral.qml:884
+#: contents/ui/config/configGeneral.qml:1045
 msgid "Data Refresh"
 msgstr "Adatok frissítése"
 
-#: contents/ui/config/configAppearance.qml:1436
-#: contents/ui/config/configAppearance.qml:1559
-#: contents/ui/config/configAppearance.qml:1682 contents/ui/DetailsView.qml:331
+#: contents/ui/config/configAppearance.qml:1437
+#: contents/ui/config/configAppearance.qml:1560
+#: contents/ui/config/configAppearance.qml:1683 contents/ui/DetailsView.qml:331
 msgid "Date / Time"
 msgstr "Dátum / Idő"
 
@@ -813,8 +854,8 @@ msgstr "Nappal"
 msgid "Daylight over"
 msgstr "Véget ért a nappali világosság"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:495
-#: contents/ui/config/tabs/ConfigPanelTab.qml:569
+#: contents/ui/config/tabs/ConfigPanelTab.qml:510
+#: contents/ui/config/tabs/ConfigPanelTab.qml:605
 msgid "Default"
 msgstr "Alapértelmezett"
 
@@ -868,12 +909,12 @@ msgstr "Hely észlelése / módosítása…"
 msgid "Detecting…"
 msgstr "Észlelés…"
 
-#: contents/ui/config/configAppearance.qml:1482 contents/ui/DetailsView.qml:319
+#: contents/ui/config/configAppearance.qml:1483 contents/ui/DetailsView.qml:319
 #: contents/ui/SimpleView.qml:261
 msgid "Dew Point"
 msgstr "Harmatpont"
 
-#: contents/ui/config/configAppearance.qml:1483
+#: contents/ui/config/configAppearance.qml:1484
 msgid "Dew point temperature"
 msgstr "Harmatponti hőmérséklet"
 
@@ -890,7 +931,8 @@ msgstr "Kapcsoljon ki egy típust az elnémításához, vagy adjon meg neki saj�
 msgid "Disable item"
 msgstr "Elem letiltása"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:519
+#: contents/ui/config/tabs/ConfigPanelTab.qml:541
+#: contents/ui/config/tabs/ConfigPanelTab.qml:555
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:47
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:163
 msgid "Disabled"
@@ -921,9 +963,9 @@ msgstr "Megjelenítési mód:"
 msgid "Displaying °C and °F together"
 msgstr "°C és °F együttes megjelenítése"
 
-#: contents/ui/config/configAppearance.qml:1409
-#: contents/ui/config/configAppearance.qml:1532
-#: contents/ui/config/configAppearance.qml:1655
+#: contents/ui/config/configAppearance.qml:1410
+#: contents/ui/config/configAppearance.qml:1533
+#: contents/ui/config/configAppearance.qml:1656
 msgid "Dominant pollen type and index"
 msgstr "Domináns pollentípus és index"
 
@@ -950,7 +992,7 @@ msgctxt "Alert severity"
 msgid "EXTREME"
 msgstr "EXTRÉM"
 
-#: contents/ui/config/configGeneral.qml:696
+#: contents/ui/config/configGeneral.qml:777
 msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
 msgstr "Minden QWeather projekt egyedi API-kiszolgálóval rendelkezik. Sajátját a console.qweather.com oldalon találja a projektbeállítások alatt."
 
@@ -999,7 +1041,8 @@ msgstr "Elem engedélyezése vagy letiltása a panelen"
 
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:126
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:124
-#: contents/ui/config/tabs/ConfigPanelTab.qml:519
+#: contents/ui/config/tabs/ConfigPanelTab.qml:541
+#: contents/ui/config/tabs/ConfigPanelTab.qml:555
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:47
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:163
 msgid "Enabled"
@@ -1025,35 +1068,35 @@ msgstr "Adja meg a pontos szélességi és hosszúsági fokot, valamint a magass
 msgid "Enter manually"
 msgstr "Kézi megadás"
 
-#: contents/ui/config/configGeneral.qml:533
+#: contents/ui/config/configGeneral.qml:614
 msgid "Enter your OpenWeatherMap API key"
 msgstr "Adja meg a saját OpenWeatherMap API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:535
+#: contents/ui/config/configGeneral.qml:616
 msgid "Enter your Pirate Weather API key"
 msgstr "Adja meg a saját Pirate Weather API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:545
+#: contents/ui/config/configGeneral.qml:626
 msgid "Enter your QWeather API key"
 msgstr "Adja meg a saját QWeather API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:541
+#: contents/ui/config/configGeneral.qml:622
 msgid "Enter your StormGlass API key"
 msgstr "Adja meg a saját StormGlass API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:539
+#: contents/ui/config/configGeneral.qml:620
 msgid "Enter your Tomorrow.io API key"
 msgstr "Adja meg a saját Tomorrow.io API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:537
+#: contents/ui/config/configGeneral.qml:618
 msgid "Enter your Visual Crossing API key"
 msgstr "Adja meg a saját Visual Crossing API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:546
+#: contents/ui/config/configGeneral.qml:627
 msgid "Enter your WeatherAPI.com key"
 msgstr "Adja meg a saját WeatherAPI.com kulcsát"
 
-#: contents/ui/config/configGeneral.qml:543
+#: contents/ui/config/configGeneral.qml:624
 msgid "Enter your Weatherbit API key"
 msgstr "Adja meg a saját Weatherbit API-kulcsát"
 
@@ -1073,7 +1116,7 @@ msgstr "Kiváló"
 msgid "Expand all days:"
 msgstr "Minden nap kibontása:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:933
+#: contents/ui/config/tabs/ConfigPanelTab.qml:969
 msgid "Expand widget to fill available panel space"
 msgstr "Kisalkalmazás kibontása a rendelkezésre álló panelterület kitöltéséhez"
 
@@ -1098,7 +1141,7 @@ msgstr "Extrém geomágneses vihar."
 msgid "Extremely Poor"
 msgstr "Rendkívül rossz"
 
-#: contents/ui/config/configGeneral.qml:829
+#: contents/ui/config/configGeneral.qml:988
 msgid "FOSS Public Alert Server"
 msgstr "FOSS Public Alert Server"
 
@@ -1106,11 +1149,11 @@ msgstr "FOSS Public Alert Server"
 msgid "Fahrenheit (°F)"
 msgstr "Fahrenheit (°F)"
 
-#: contents/ui/WeatherService.qml:883
+#: contents/ui/WeatherService.qml:907
 msgid "Failed to load weather providers"
 msgstr "Nem sikerült betölteni az időjárás-szolgáltatókat"
 
-#: contents/ui/WeatherService.qml:870
+#: contents/ui/WeatherService.qml:894
 msgid "Failed: %1"
 msgstr "Sikertelen: %1"
 
@@ -1118,9 +1161,9 @@ msgstr "Sikertelen: %1"
 msgid "Fair"
 msgstr "Megfelelő"
 
-#: contents/ui/config/configAppearance.qml:1345
-#: contents/ui/config/configAppearance.qml:1447
-#: contents/ui/config/configAppearance.qml:1584 contents/ui/DetailsView.qml:314
+#: contents/ui/config/configAppearance.qml:1346
+#: contents/ui/config/configAppearance.qml:1448
+#: contents/ui/config/configAppearance.qml:1585 contents/ui/DetailsView.qml:314
 #: contents/ui/SimpleView.qml:258
 msgid "Feels Like"
 msgstr "Hőérzet"
@@ -1137,7 +1180,7 @@ msgstr "Hőérzet: %1"
 msgid "Fill panel"
 msgstr "Panel kitöltése"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:932
+#: contents/ui/config/tabs/ConfigPanelTab.qml:968
 msgid "Fill panel:"
 msgstr "Panel kitöltése:"
 
@@ -1145,7 +1188,7 @@ msgstr "Panel kitöltése:"
 msgid "Find"
 msgstr "Keresés"
 
-#: contents/ui/main.qml:2082
+#: contents/ui/main.qml:2090
 msgid "First Quarter"
 msgstr "Első negyed"
 
@@ -1157,7 +1200,8 @@ msgstr "Hét első napja:"
 msgid "Flare Warning"
 msgstr "Napkitörés-figyelmeztetés"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1079
+#: contents/ui/config/tabs/ConfigPanelTab.qml:324
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1115
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:208
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:43
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:52
@@ -1176,12 +1220,12 @@ msgstr "Árvíz"
 msgid "Fog"
 msgstr "Köd"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1071
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1107
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:200
 msgid "Font icons (default)"
 msgstr "Betűikonok (alapértelmezett)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:426
+#: contents/ui/config/tabs/ConfigPanelTab.qml:438
 msgid "Font size:"
 msgstr "Betűméret:"
 
@@ -1189,7 +1233,7 @@ msgstr "Betűméret:"
 msgid "Footer:"
 msgstr "Lábléc:"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:155
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:193
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:84
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:210 contents/ui/FullView.qml:565
 msgid "Forecast"
@@ -1211,15 +1255,15 @@ msgstr "Előrejelzés:"
 msgid "Forest fire"
 msgstr "Erdőtűz"
 
-#: contents/ui/config/configGeneral.qml:472
+#: contents/ui/config/configGeneral.qml:553
 msgid "Free BBC Weather service (data from the Met Office). No API key needed."
 msgstr "Ingyenes BBC Weather szolgáltatás (a Met Office adataival). Nem szükséges hozzá API-kulcs."
 
-#: contents/ui/config/configGeneral.qml:470
+#: contents/ui/config/configGeneral.qml:551
 msgid "Free Norwegian Meteorological Institute service. No API key needed."
 msgstr "A Norvég Meteorológiai Intézet szolgáltatása ingyenes és nincs szükség hozzá API-kulcsra."
 
-#: contents/ui/config/configGeneral.qml:473
+#: contents/ui/config/configGeneral.qml:554
 msgid "Free and open-source. No API key needed. Recommended."
 msgstr "Szabad és nyílt forráskódú. API-kulcs megadása nem szükséges, de ajánlott."
 
@@ -1255,7 +1299,7 @@ msgstr "Ónos eső (éjszaka)"
 msgid "Friday"
 msgstr "Péntek"
 
-#: contents/ui/main.qml:2086
+#: contents/ui/main.qml:2094
 msgid "Full Moon"
 msgstr "Telihold"
 
@@ -1306,8 +1350,8 @@ msgstr "Fű"
 msgid "Headline"
 msgstr "Szalagcím"
 
-#: contents/ui/components/RadarWebEngineView.qml:145
-#: contents/ui/components/RadarWebEngineView.qml:642
+#: contents/ui/components/RadarWebEngineView.qml:160
+#: contents/ui/components/RadarWebEngineView.qml:781
 msgid "Heavy"
 msgstr "Heves"
 
@@ -1361,7 +1405,7 @@ msgstr "Előtagikon elrejtése"
 msgid "High"
 msgstr "Magas"
 
-#: contents/ui/config/configGeneral.qml:466
+#: contents/ui/config/configGeneral.qml:547
 msgid "High precision forecast provider. API key required below."
 msgstr "Nagy pontosságú előrejelzés-szolgáltató. API-kulcs szükséges alább."
 
@@ -1369,7 +1413,7 @@ msgstr "Nagy pontosságú előrejelzés-szolgáltató. API-kulcs szükséges al�
 msgid "High temperature"
 msgstr "Magas hőmérséklet"
 
-#: contents/ui/config/configGeneral.qml:460
+#: contents/ui/config/configGeneral.qml:541
 msgid "Historical and forecast data provider. API key required below."
 msgstr "Történelmi és előrejelzési adatok szolgáltatója. API-kulcs szükséges alább."
 
@@ -1385,13 +1429,17 @@ msgstr "Óránkénti előrejelzés beállításai"
 msgid "Hourly layout:"
 msgstr "Óránkénti előrejelzés elrendezése:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:735
+#: contents/ui/config/tabs/ConfigPanelTab.qml:771
 msgid "How often the rows scroll to reveal the next item"
 msgstr "Milyen gyakran görgetve jelenjen meg a következő elem"
 
-#: contents/ui/config/configAppearance.qml:1352
-#: contents/ui/config/configAppearance.qml:1454
-#: contents/ui/config/configAppearance.qml:1598 contents/ui/DetailsView.qml:315
+#: contents/ui/components/MapBackgroundChoices.qml:44
+msgid "Humanitarian (HOT)"
+msgstr ""
+
+#: contents/ui/config/configAppearance.qml:1353
+#: contents/ui/config/configAppearance.qml:1455
+#: contents/ui/config/configAppearance.qml:1599 contents/ui/DetailsView.qml:315
 #: contents/ui/SimpleView.qml:259
 msgid "Humidity"
 msgstr "Páratartalom"
@@ -1421,7 +1469,7 @@ msgstr "Ikon ragyogása:"
 msgid "Icon only"
 msgstr "Csak az ikon"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:344
+#: contents/ui/config/tabs/ConfigPanelTab.qml:356
 msgid "Icon size:"
 msgstr "Ikon mérete:"
 
@@ -1429,7 +1477,7 @@ msgstr "Ikon mérete:"
 msgid "Icon source:"
 msgstr "Ikon forrása:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1063
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1099
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:191
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:517
 msgid "Icon theme:"
@@ -1448,7 +1496,7 @@ msgstr "Ikonok"
 msgid "If this looks correct, apply it. Otherwise, choose your location manually."
 msgstr "Ha ez helyesnek tűnik, akkor vegye használatba. Ellenkező esetben válassza ki a helyet kézzel."
 
-#: contents/ui/config/configGeneral.qml:678
+#: contents/ui/config/configGeneral.qml:759
 msgid "If you have just registered a new OpenWeatherMap API key, it might take up to 2 hours for it to become active. Please try again later if it doesn't work immediately."
 msgstr "Ha most regisztrált új OpenWeatherMap API-kulcsot, az aktiválás akár 2 órát is igénybe vehet. Ha nem működik azonnal, próbálja meg később."
 
@@ -1504,7 +1552,7 @@ msgstr ""
 msgid "Instruction"
 msgstr "Utasítás"
 
-#: contents/ui/config/configGeneral.qml:911
+#: contents/ui/config/configGeneral.qml:1072
 msgid "Interval:"
 msgstr "Időköz:"
 
@@ -1512,7 +1560,7 @@ msgstr "Időköz:"
 msgid "Invalid API key (HTTP %1)"
 msgstr "Érvénytelen API-kulcs (HTTP %1)"
 
-#: contents/ui/config/configGeneral.qml:283
+#: contents/ui/config/configGeneral.qml:364
 msgid "Invalid API key. Please check and try again."
 msgstr "Érvénytelen API-kulcs. Ellenőrizze és próbálja újra."
 
@@ -1520,15 +1568,15 @@ msgstr "Érvénytelen API-kulcs. Ellenőrizze és próbálja újra."
 msgid "Invalid response"
 msgstr "Érvénytelen válasz"
 
-#: contents/ui/config/configGeneral.qml:273
+#: contents/ui/config/configGeneral.qml:354
 msgid "Invalid response from QWeather."
 msgstr "Érvénytelen válasz érkezett a QWeathertől."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:917
+#: contents/ui/config/tabs/ConfigPanelTab.qml:953
 msgid "Item spacing:"
 msgstr "Elem térköze:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:835
+#: contents/ui/config/tabs/ConfigPanelTab.qml:871
 msgid "Item width:"
 msgstr "Elem magassága:"
 
@@ -1536,7 +1584,7 @@ msgstr "Elem magassága:"
 msgid "Items Order:"
 msgstr "Elemek rendezése:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1087
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1123
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:41
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:49
 msgid "KDE Icon Theme"
@@ -1590,7 +1638,7 @@ msgstr "Kp index"
 msgid "Kp index/G forecast:"
 msgstr "Kp index/G előrejelzés:"
 
-#: contents/ui/main.qml:2090
+#: contents/ui/main.qml:2098
 msgid "Last Quarter"
 msgstr "Utolsó negyed"
 
@@ -1620,13 +1668,13 @@ msgstr "Elrendezés"
 msgid "Layout type:"
 msgstr "Elrendezés típusa:"
 
-#: contents/ui/config/configGeneral.qml:749
-#: contents/ui/config/configGeneral.qml:828
+#: contents/ui/config/configGeneral.qml:834
+#: contents/ui/config/configGeneral.qml:984
 msgid "LibreWXR"
 msgstr "LibreWXR"
 
-#: contents/ui/components/RadarWebEngineView.qml:143
-#: contents/ui/components/RadarWebEngineView.qml:642
+#: contents/ui/components/RadarWebEngineView.qml:158
+#: contents/ui/components/RadarWebEngineView.qml:781
 msgid "Light"
 msgstr "Gyenge"
 
@@ -1675,7 +1723,7 @@ msgstr "Gyenge havazás (éjszaka)"
 msgid "Light snow showers"
 msgstr "Gyenge hózáporok"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:739
+#: contents/ui/config/tabs/ConfigPanelTab.qml:775
 msgid "Lines:"
 msgstr "Sorok:"
 
@@ -1687,19 +1735,19 @@ msgstr "Lista"
 msgid "Loading details…"
 msgstr "Részletek betöltése…"
 
-#: contents/ui/ForecastView.qml:366
+#: contents/ui/ForecastView.qml:367
 msgid "Loading forecast…"
 msgstr "Előrejelzés betöltése…"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:158
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:196
 msgid "Loading frames"
 msgstr "Képkockák betöltése"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:157
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:195
 msgid "Loading frame…"
 msgstr "Képkocka betöltése…"
 
-#: contents/ui/ForecastView.qml:829
+#: contents/ui/ForecastView.qml:830
 msgid "Loading hourly data…"
 msgstr "Óránkénti adatok betöltése…"
 
@@ -1711,7 +1759,7 @@ msgstr "Helyek betöltése…"
 msgid "Loading radar…"
 msgstr "Radar betöltése…"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:156
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:194
 msgid "Loading…"
 msgstr "Betöltés…"
 
@@ -1724,7 +1772,7 @@ msgstr "Hely"
 msgid "Location '%1' is already in your saved list. You can apply the selected location, but it will not be saved again."
 msgstr "A(z) „%1” nevű hely már szerepel a mentett listában. Használhatja a kiválasztott helyet, de nem lesz újra mentve."
 
-#: contents/ui/config/configAppearance.qml:1366
+#: contents/ui/config/configAppearance.qml:1367
 msgid "Location Name"
 msgstr "Hely neve"
 
@@ -1736,12 +1784,12 @@ msgstr "A hely automatikusan lett észlelve."
 msgid "Location detection is depending on system configuration and permissions."
 msgstr "A hely észlelése a rendszerbeállításoktól és engedélyektől függ."
 
-#: contents/ui/config/configGeneral.qml:180
+#: contents/ui/config/configGeneral.qml:261
 #: contents/ui/config/configLocation.qml:538
 msgid "Location is available on %1."
 msgstr "A hely elérhető a(z) %1 nevű szolgáltatónál."
 
-#: contents/ui/config/configGeneral.qml:183
+#: contents/ui/config/configGeneral.qml:264
 #: contents/ui/config/configLocation.qml:541
 msgid "Location is not available on %1 (HTTP %2). Try a different provider or location."
 msgstr "A hely nem érhető el a(z) %1 nevű szolgáltatónál (HTTP %2). Próbáljon másik szolgáltatót vagy helyet."
@@ -1766,6 +1814,10 @@ msgstr "A hely előjegyezve. Kattintson az Alkalmaz gombra a mentéshez."
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:346
 msgid "Location:"
 msgstr "Hely:"
+
+#: contents/ui/config/configGeneral.qml:903
+msgid "Log Out Now…"
+msgstr ""
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:602
 msgid "Lon:"
@@ -1817,7 +1869,7 @@ msgstr "KÖZEPES"
 msgid "Magnetic Field (Bz)"
 msgstr "Mágneses mező (Bz)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:757
+#: contents/ui/config/tabs/ConfigPanelTab.qml:793
 msgid "Main icon style:"
 msgstr "Fő ikonstílus:"
 
@@ -1836,9 +1888,9 @@ msgid "Mainly clear (night)"
 msgstr "Többnyire tiszta (éjszaka)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:265
-#: contents/ui/config/tabs/ConfigPanelTab.qml:356
-#: contents/ui/config/tabs/ConfigPanelTab.qml:438
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1018
+#: contents/ui/config/tabs/ConfigPanelTab.qml:368
+#: contents/ui/config/tabs/ConfigPanelTab.qml:450
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1054
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:104
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:147
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:454
@@ -1848,11 +1900,15 @@ msgstr "Többnyire tiszta (éjszaka)"
 msgid "Manual"
 msgstr "Kézi"
 
-#: contents/ui/config/configGeneral.qml:464
+#: contents/ui/components/RadarWebEngineView.qml:150
+msgid "Map background"
+msgstr ""
+
+#: contents/ui/config/configGeneral.qml:545
 msgid "Marine and weather data provider. API key required below."
 msgstr "Tengerészeti és időjárási adatok szolgáltatója. API-kulcs szükséges alább."
 
-#: contents/ui/config/configGeneral.qml:827
+#: contents/ui/config/configGeneral.qml:980
 msgid "MeteoAlarm + NOAA NWS (Native)"
 msgstr "MeteoAlarm és NOAA NWS (natív)"
 
@@ -1880,11 +1936,11 @@ msgstr "Minimális szélesség:"
 msgid "Minor geomagnetic storm."
 msgstr "Kisebb geomágneses vihar."
 
-#: contents/ui/config/configAppearance.qml:1992
+#: contents/ui/config/configAppearance.qml:1993
 msgid "Misc"
 msgstr "Egyéb"
 
-#: contents/ui/components/RadarWebEngineView.qml:642
+#: contents/ui/components/RadarWebEngineView.qml:781
 msgid "Mod"
 msgstr "Mérsékelt"
 
@@ -1892,7 +1948,7 @@ msgstr "Mérsékelt"
 msgid "Mode:"
 msgstr "Mód:"
 
-#: contents/ui/components/RadarWebEngineView.qml:144
+#: contents/ui/components/RadarWebEngineView.qml:159
 #: contents/ui/js/airQuality.js:51 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
 #: contents/ui/main.qml:832 contents/ui/main.qml:846 contents/ui/main.qml:876
@@ -1927,7 +1983,7 @@ msgstr "Hétfő"
 msgid "Moon"
 msgstr "Hold"
 
-#: contents/ui/config/configAppearance.qml:1373
+#: contents/ui/config/configAppearance.qml:1374
 msgid "Moon Phase"
 msgstr "Holdfázis"
 
@@ -1935,8 +1991,8 @@ msgstr "Holdfázis"
 msgid "Moon mode:"
 msgstr "Holdmód:"
 
-#: contents/ui/config/configAppearance.qml:1496
-#: contents/ui/config/configAppearance.qml:1619
+#: contents/ui/config/configAppearance.qml:1497
+#: contents/ui/config/configAppearance.qml:1620
 msgid "Moon phase and moonrise/moonset"
 msgstr "Holdfázis és -kelte/-nyugta"
 
@@ -1958,8 +2014,8 @@ msgstr "Csak Holdfázis"
 msgid "Moon phase options"
 msgstr "Holdfázis beállításai"
 
-#: contents/ui/config/configAppearance.qml:1497
-#: contents/ui/config/configAppearance.qml:1620
+#: contents/ui/config/configAppearance.qml:1498
+#: contents/ui/config/configAppearance.qml:1621
 msgid "Moon phase, moonrise & moonset"
 msgstr "Holdfázis, Holdkelte és -nyugta"
 
@@ -2040,9 +2096,9 @@ msgstr "Üröm"
 msgid "Multiple lines (tall panel)"
 msgstr "Többsoros (magas panel)"
 
-#: contents/ui/config/configAppearance.qml:1416
-#: contents/ui/config/configAppearance.qml:1539
-#: contents/ui/config/configAppearance.qml:1662
+#: contents/ui/config/configAppearance.qml:1417
+#: contents/ui/config/configAppearance.qml:1540
+#: contents/ui/config/configAppearance.qml:1663
 msgid "NOAA Kp index and geomagnetic activity"
 msgstr "NOAA Kp-index és geomágneses aktivitás"
 
@@ -2058,7 +2114,7 @@ msgstr "Szüksége van egy hely koordinátáira? Megtalálhatja őket a <a href=
 msgid "Network error"
 msgstr "Hálózati hiba"
 
-#: contents/ui/main.qml:2078
+#: contents/ui/main.qml:2086
 msgid "New Moon"
 msgstr "Újhold"
 
@@ -2074,7 +2130,7 @@ msgstr "Nitrogén-dioxid (NO₂)"
 msgid "No"
 msgstr "Nem"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:159
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:197
 msgid "No data"
 msgstr "Nincsenek adatok"
 
@@ -2082,7 +2138,7 @@ msgstr "Nincsenek adatok"
 msgid "No details data"
 msgstr "Nincsenek részletes adatok"
 
-#: contents/ui/ForecastView.qml:366
+#: contents/ui/ForecastView.qml:367
 msgid "No forecast data"
 msgstr "Nincsenek előrejelzési adatok"
 
@@ -2090,12 +2146,12 @@ msgstr "Nincsenek előrejelzési adatok"
 msgid "No geomagnetic storm activity."
 msgstr "Nincs geomágneses vihar aktivitás."
 
-#: contents/ui/ForecastView.qml:1273 contents/ui/ForecastView.qml:1277
-#: contents/ui/ForecastView.qml:1739 contents/ui/ForecastView.qml:1743
+#: contents/ui/ForecastView.qml:1247 contents/ui/ForecastView.qml:1251
+#: contents/ui/ForecastView.qml:1713 contents/ui/ForecastView.qml:1717
 msgid "No info"
 msgstr "Nincs adat"
 
-#: contents/ui/ForecastView.qml:637
+#: contents/ui/ForecastView.qml:638
 msgid "No information"
 msgstr "Nincs adat"
 
@@ -2103,11 +2159,11 @@ msgstr "Nincs adat"
 msgid "No location set"
 msgstr "Nincs hely beállítva"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:160
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:198
 msgid "No radar data"
 msgstr "Nincsenek radaradatok"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:161
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:199
 msgid "No satellite data"
 msgstr "Nincsenek műholdadatok"
 
@@ -2119,8 +2175,8 @@ msgstr "Nincsenek mentett helyek. Mentse el a jelenlegi helyet a helyek között
 msgid "No weather stations found for '%1'"
 msgstr "Nem találhatók időjárás-állomások a következőhöz: „%1”"
 
-#: contents/ui/components/RadarWebEngineView.qml:142
-#: contents/ui/components/RadarWebEngineView.qml:642
+#: contents/ui/components/RadarWebEngineView.qml:157
+#: contents/ui/components/RadarWebEngineView.qml:781
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:939
@@ -2140,7 +2196,11 @@ msgstr "Normál"
 msgid "Not available (HTTP %1)"
 msgstr "Nem érhető el (HTTP %1)"
 
-#: contents/ui/ForecastView.qml:1317 contents/ui/ForecastView.qml:1764
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
+msgid "Not available: the selected base map already has a fixed light or dark style."
+msgstr ""
+
+#: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
 msgid "Not supported"
@@ -2150,7 +2210,7 @@ msgstr "Nem támogatott"
 msgid "Not tested"
 msgstr "Nincs tesztelve"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1053
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1089
 msgid "Note: size may be reduced if the panel is not thick enough."
 msgstr "Megjegyzés: a méret csökkenhet, ha a panel nem elég vastag."
 
@@ -2187,7 +2247,7 @@ msgstr "Értesítés a holnapi előrejelzésről"
 msgid "Now: %1%2"
 msgstr "Most: %1%2"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:745
+#: contents/ui/config/tabs/ConfigPanelTab.qml:781
 msgid "Number of item rows visible at once. Resize the panel height in KDE settings to match."
 msgstr "Egyszerre látható elemsorok száma. Állítsa át a panel magasságát a KDE beállításokban ennek megfelelően."
 
@@ -2213,15 +2273,23 @@ msgstr "Telepítési útmutató megnyitása"
 msgid "Open radar in browser"
 msgstr "Radar megnyitása a böngészőben"
 
-#: contents/ui/config/configGeneral.qml:295
+#: contents/ui/config/configGeneral.qml:376
 msgid "Open-Meteo (recommended, free)"
 msgstr "Open-Meteo (ajánlott, ingyenes)"
 
-#: contents/ui/config/configGeneral.qml:307
+#: contents/ui/components/MapBackgroundChoices.qml:43
+msgid "OpenStreetMap (standard)"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:46
+msgid "OpenTopoMap (topographic)"
+msgstr ""
+
+#: contents/ui/config/configGeneral.qml:388
 msgid "OpenWeatherMap (Key Required)"
 msgstr "OpenWeatherMap (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:506
+#: contents/ui/config/configGeneral.qml:587
 msgid "OpenWeatherMap API Key:"
 msgstr "OpenWeatherMap API-kulcs:"
 
@@ -2262,7 +2330,7 @@ msgstr "PM10"
 msgid "PM2.5"
 msgstr "PM2.5"
 
-#: contents/ui/config/configAppearance.qml:1980
+#: contents/ui/config/configAppearance.qml:1981
 #: contents/ui/config/tabs/ConfigMiscTab.qml:132
 msgid "Panel"
 msgstr "Panel"
@@ -2275,15 +2343,15 @@ msgstr "Panelelemek"
 msgid "Panel display settings"
 msgstr "Panel megjelenítésének beállítása"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1002
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1038
 msgid "Panel font:"
 msgstr "Panel betűtípusa:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:939
+#: contents/ui/config/tabs/ConfigPanelTab.qml:975
 msgid "Panel items settings"
 msgstr "Panel elemeinek beállítása"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1167
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1203
 msgid "Panel items:"
 msgstr "Panelelemek:"
 
@@ -2309,7 +2377,7 @@ msgstr "Részben felhős (nappal)"
 msgid "Partly cloudy (night)"
 msgstr "Részben felhős (éjszaka)"
 
-#: contents/ui/components/RadarWebEngineView.qml:139
+#: contents/ui/components/RadarWebEngineView.qml:154
 msgid "Pause"
 msgstr "Szüneteltetés"
 
@@ -2335,25 +2403,25 @@ msgstr "Fázis + következő kelte és nyugta"
 msgid "Pick an exact spot on the map for a more local forecast, such as your neighborhood block or a specific landmark."
 msgstr "Válasszon ki egy pontot a térképen a helyi előrejelzéshez, például az Ön háztömbjét vagy egy adott tereptárgyat."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:869
+#: contents/ui/config/tabs/ConfigPanelTab.qml:905
 msgid "Pipe  |"
 msgstr "Függőleges vonal  |"
 
-#: contents/ui/config/configGeneral.qml:315
+#: contents/ui/config/configGeneral.qml:396
 msgid "Pirate Weather (Key Required)"
 msgstr "Pirate Weather (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:508
+#: contents/ui/config/configGeneral.qml:589
 msgid "Pirate Weather API Key:"
 msgstr "Pirate Weather API-kulcs:"
 
-#: contents/ui/components/RadarWebEngineView.qml:138
+#: contents/ui/components/RadarWebEngineView.qml:153
 msgid "Play"
 msgstr "Lejátszás"
 
-#: contents/ui/config/configAppearance.qml:1408
-#: contents/ui/config/configAppearance.qml:1531
-#: contents/ui/config/configAppearance.qml:1654 contents/ui/DetailsView.qml:327
+#: contents/ui/config/configAppearance.qml:1409
+#: contents/ui/config/configAppearance.qml:1532
+#: contents/ui/config/configAppearance.qml:1655 contents/ui/DetailsView.qml:327
 #: contents/ui/SimpleView.qml:267
 msgid "Pollen"
 msgstr "Pollen"
@@ -2391,22 +2459,22 @@ msgstr "Összes csapadék:"
 msgid "Precip. Sum:"
 msgstr "Összes csapadék:"
 
-#: contents/ui/config/configAppearance.qml:1380
-#: contents/ui/config/configAppearance.qml:1503
-#: contents/ui/config/configAppearance.qml:1626 contents/ui/DetailsView.qml:323
+#: contents/ui/config/configAppearance.qml:1381
+#: contents/ui/config/configAppearance.qml:1504
+#: contents/ui/config/configAppearance.qml:1627 contents/ui/DetailsView.qml:323
 #: contents/ui/SimpleView.qml:263
 msgid "Precipitation"
 msgstr "Csapadék"
 
-#: contents/ui/config/configAppearance.qml:1387
-#: contents/ui/config/configAppearance.qml:1510
-#: contents/ui/config/configAppearance.qml:1633 contents/ui/DetailsView.qml:324
+#: contents/ui/config/configAppearance.qml:1388
+#: contents/ui/config/configAppearance.qml:1511
+#: contents/ui/config/configAppearance.qml:1634 contents/ui/DetailsView.qml:324
 msgid "Precipitation Sum"
 msgstr "Összes csapadék"
 
-#: contents/ui/config/configAppearance.qml:1381
-#: contents/ui/config/configAppearance.qml:1504
-#: contents/ui/config/configAppearance.qml:1627
+#: contents/ui/config/configAppearance.qml:1382
+#: contents/ui/config/configAppearance.qml:1505
+#: contents/ui/config/configAppearance.qml:1628
 msgid "Precipitation rate (mm/h)"
 msgstr "Csapadék intenzitása (mm/h)"
 
@@ -2418,10 +2486,10 @@ msgstr "Csapadék:"
 msgid "Prefix style:"
 msgstr "Előtag stílusa:"
 
-#: contents/ui/components/RadarWebEngineView.qml:129
-#: contents/ui/config/configAppearance.qml:1359
-#: contents/ui/config/configAppearance.qml:1461
-#: contents/ui/config/configAppearance.qml:1605 contents/ui/DetailsView.qml:316
+#: contents/ui/components/RadarWebEngineView.qml:133
+#: contents/ui/config/configAppearance.qml:1360
+#: contents/ui/config/configAppearance.qml:1462
+#: contents/ui/config/configAppearance.qml:1606 contents/ui/DetailsView.qml:316
 #: contents/ui/SimpleView.qml:260
 msgid "Pressure"
 msgstr "Nyomás"
@@ -2452,21 +2520,21 @@ msgstr "Szolgáltató"
 msgid "Provider availability"
 msgstr "Szolgáltató elérhetősége"
 
-#: contents/ui/config/configGeneral.qml:454
-#: contents/ui/config/configGeneral.qml:456
-#: contents/ui/config/configGeneral.qml:458
-#: contents/ui/config/configGeneral.qml:460
-#: contents/ui/config/configGeneral.qml:462
-#: contents/ui/config/configGeneral.qml:464
-#: contents/ui/config/configGeneral.qml:466
-#: contents/ui/config/configGeneral.qml:468
-#: contents/ui/config/configGeneral.qml:470
-#: contents/ui/config/configGeneral.qml:472
-#: contents/ui/config/configGeneral.qml:473
+#: contents/ui/config/configGeneral.qml:535
+#: contents/ui/config/configGeneral.qml:537
+#: contents/ui/config/configGeneral.qml:539
+#: contents/ui/config/configGeneral.qml:541
+#: contents/ui/config/configGeneral.qml:543
+#: contents/ui/config/configGeneral.qml:545
+#: contents/ui/config/configGeneral.qml:547
+#: contents/ui/config/configGeneral.qml:549
+#: contents/ui/config/configGeneral.qml:551
+#: contents/ui/config/configGeneral.qml:553
+#: contents/ui/config/configGeneral.qml:554
 msgid "Provider website:"
 msgstr "Szolgáltató weboldala:"
 
-#: contents/ui/config/configGeneral.qml:425 contents/ui/DetailsView.qml:2098
+#: contents/ui/config/configGeneral.qml:506 contents/ui/DetailsView.qml:2098
 #: contents/ui/DetailsView.qml:2826
 msgid "Provider:"
 msgstr "Szolgáltató:"
@@ -2475,7 +2543,7 @@ msgstr "Szolgáltató:"
 msgid "Provider: %1"
 msgstr "Szolgáltató: %1"
 
-#: contents/ui/config/configGeneral.qml:411
+#: contents/ui/config/configGeneral.qml:492
 msgid ""
 "Providers are tried in order until one succeeds:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
@@ -2489,23 +2557,23 @@ msgstr ""
 msgid "Purple"
 msgstr "Lila"
 
-#: contents/ui/config/configGeneral.qml:335
+#: contents/ui/config/configGeneral.qml:416
 msgid "QWeather (Key Required)"
 msgstr "QWeather (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:689
+#: contents/ui/config/configGeneral.qml:770
 msgid "QWeather API Host:"
 msgstr "QWeather API-kiszolgáló:"
 
-#: contents/ui/config/configGeneral.qml:518
+#: contents/ui/config/configGeneral.qml:599
 msgid "QWeather API Key:"
 msgstr "QWeather API-kulcs:"
 
-#: contents/ui/config/configGeneral.qml:268
+#: contents/ui/config/configGeneral.qml:349
 msgid "QWeather error (code %1). Check your API key."
 msgstr "QWeather hiba (kód: %1). Ellenőrizze az API-kulcsát."
 
-#: contents/ui/ForecastView.qml:828
+#: contents/ui/ForecastView.qml:829
 msgid "QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecast is still available for this date."
 msgstr "A QWeather legfeljebb 168 órára (7 napra) szolgáltat óránkénti előrejelzést. A napi előrejelzések továbbra is elérhetők."
 
@@ -2521,18 +2589,18 @@ msgstr "A QtWebEngine nincs telepítve"
 msgid "Quiet"
 msgstr "Nyugodt"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:134
-#: contents/ui/components/RadarWebEngineView.qml:124
-#: contents/ui/config/configGeneral.qml:720
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:172
+#: contents/ui/components/RadarWebEngineView.qml:128
+#: contents/ui/config/configGeneral.qml:801
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
 msgstr "Radar"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:144
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:182
 msgid "Radar + Satellite"
 msgstr "Radar és műhold"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:276
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:314
 msgid "Radar color scheme:"
 msgstr "Radar színsémája:"
 
@@ -2540,15 +2608,15 @@ msgstr "Radar színsémája:"
 msgid "Radar only"
 msgstr "Csak radar"
 
-#: contents/ui/config/configGeneral.qml:742
+#: contents/ui/config/configGeneral.qml:823
 msgid "Radar provider:"
 msgstr "Radarszolgáltató:"
 
-#: contents/ui/config/configGeneral.qml:771
+#: contents/ui/config/configGeneral.qml:858
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
 msgstr "Radarszolgáltató: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>A LibreWXR egy ingyenes, nyílt forráskódú időjárásiradar-API. Egyesíti a NOAA, valamint a kanadai és európai forrásokból származó valós radar-kompozitokat egy globális modell-tartalékkal, továbbá biztosítja az elmúlt 2 óra radaradatait és egy rövid távú előrejelzést. Emellett egy ingyenes műholdas (infravörös) réteget is kínál.<br/><br/>A rétegmód, a radar színsémája és a mozgásirányt jelző nyilak közvetlenül a radarlapon választhatók ki. A térkép automatikusan követi az Ön világos/sötét Plasma témáját."
 
-#: contents/ui/config/configGeneral.qml:762
+#: contents/ui/config/configGeneral.qml:849
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
 msgstr "Radarszolgáltató: <a href='[https://www.rainviewer.com/](https://www.rainviewer.com/)'>Rain Viewer</a>A kisalkalmazás az ingyenes RainViewer API-t használja, amely az elmúlt 2 óra radaradatait biztosítja 10 perces időközönként. A radarképes előrejelzés nem támogatott. A Rain Viewer nem garantálja a radaradatok elérhetőségét. Nem kötnek szerződést az adatok tulajdonosaival. Ennek az az oka, hogy a tulajdonosok kérhetik adataik eltávolítását a Rain Viewerről, módosíthatják az adatformátumot, vagy leállíthatják a megosztást. A Rain Viewer igyekszik a lehető legtovább elérhetővé tenni az adatokat, de előfordulhat, hogy a tulajdonosok egyszerűen megszüntetik a képek szolgáltatását."
 
@@ -2561,7 +2629,7 @@ msgstr "Radar:"
 msgid "Ragweed"
 msgstr "Parlagfű"
 
-#: contents/ui/components/RadarWebEngineView.qml:125
+#: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configNotifications.qml:50
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
 #: contents/ui/main.qml:975 contents/ui/main.qml:1641 contents/ui/main.qml:1929
@@ -2576,7 +2644,7 @@ msgstr "Eső (nappal)"
 msgid "Rain (night)"
 msgstr "Eső (éjszaka)"
 
-#: contents/ui/config/configGeneral.qml:748
+#: contents/ui/config/configGeneral.qml:830
 msgid "Rain Viewer"
 msgstr "Rain Viewer"
 
@@ -2588,11 +2656,11 @@ msgstr "Esőzáporok"
 msgid "Rain/Storm"
 msgstr "Eső/Vihar"
 
-#: contents/ui/components/RadarWebEngineView.qml:140
+#: contents/ui/components/RadarWebEngineView.qml:155
 msgid "Real-time"
 msgstr "Valós idejű"
 
-#: contents/ui/components/RadarWebEngineView.qml:137
+#: contents/ui/components/RadarWebEngineView.qml:152
 msgid "Recent"
 msgstr "Legutóbbi"
 
@@ -2609,7 +2677,7 @@ msgstr "Vörös"
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: contents/ui/config/configGeneral.qml:900
+#: contents/ui/config/configGeneral.qml:1061
 msgid "Refresh weather automatically"
 msgstr "Időjárás-adatok automatikus frissítése"
 
@@ -2634,12 +2702,12 @@ msgstr "Terület alapértelmezése (hosszú)"
 msgid "Region default (short)"
 msgstr "Terület alapértelmezése (rövid)"
 
-#: contents/ui/config/configAppearance.qml:1455
-#: contents/ui/config/configAppearance.qml:1599
+#: contents/ui/config/configAppearance.qml:1456
+#: contents/ui/config/configAppearance.qml:1600
 msgid "Relative humidity %"
 msgstr "Relatív páratartalom %"
 
-#: contents/ui/config/configAppearance.qml:1353
+#: contents/ui/config/configAppearance.qml:1354
 msgid "Relative humidity percentage"
 msgstr "Relatív páratartalom százalékban"
 
@@ -2672,9 +2740,9 @@ msgstr "Hely lekérése… (%1)"
 #: contents/ui/config/configAppearance.qml:853
 #: contents/ui/config/configAppearance.qml:978
 #: contents/ui/config/configAppearance.qml:1021
-#: contents/ui/config/tabs/ConfigPanelTab.qml:504
-#: contents/ui/config/tabs/ConfigPanelTab.qml:578
-#: contents/ui/config/tabs/ConfigPanelTab.qml:691
+#: contents/ui/config/tabs/ConfigPanelTab.qml:520
+#: contents/ui/config/tabs/ConfigPanelTab.qml:614
+#: contents/ui/config/tabs/ConfigPanelTab.qml:727
 msgid "Reset"
 msgstr "Visszaállítás"
 
@@ -2703,7 +2771,7 @@ msgstr "SÚLYOS"
 msgid "SO₂"
 msgstr "SO₂"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:139
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:177
 msgid "Satellite"
 msgstr "Műhold"
 
@@ -2715,11 +2783,15 @@ msgstr "Szombat"
 msgid "Saved locations"
 msgstr "Mentett helyek"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:749
+#: contents/ui/config/configGeneral.qml:99
+msgid "Saved, but not active yet - log out and back in for it to take effect."
+msgstr ""
+
+#: contents/ui/config/tabs/ConfigPanelTab.qml:785
 msgid "Scroll animation:"
 msgstr "Görgetés animációja:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:729
+#: contents/ui/config/tabs/ConfigPanelTab.qml:765
 msgid "Scroll interval (sec):"
 msgstr "Görgetés időköze (mp-ben)"
 
@@ -2753,7 +2825,7 @@ msgid "Secondary unit shown first (e.g. °F / °C)"
 msgstr "A másodlagos mértékegység jelenik meg először (például: °F / °C)"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:106
-#: contents/ui/config/tabs/ConfigPanelTab.qml:858
+#: contents/ui/config/tabs/ConfigPanelTab.qml:894
 msgid "Separator:"
 msgstr "Elválasztó:"
 
@@ -2777,7 +2849,7 @@ msgstr "Beállítás alapértelmezett helyként"
 msgid "Set as default?"
 msgstr "Beállítja alapértelmezettként?"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1156
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1192
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:285
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:565
 msgid "Set your own icons…"
@@ -2791,15 +2863,15 @@ msgstr "Súlyos geomágneses vihar."
 msgid "Severities:"
 msgstr "Súlyossági szintek:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:973
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1009
 msgid "Shadow Color"
 msgstr "Árnyék színe"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:546
+#: contents/ui/config/tabs/ConfigPanelTab.qml:582
 msgid "Shadow color:"
 msgstr "Árnyék színe:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:526
+#: contents/ui/config/tabs/ConfigPanelTab.qml:562
 msgid "Shadow intensity:"
 msgstr "Árnyék erőssége:"
 
@@ -2812,7 +2884,7 @@ msgstr "Előtagikon megjelenítése / elrejtése"
 msgid "Show / hide the prefix icon on the panel"
 msgstr "Előtag ikon megjelenítése / elrejtése a panelen"
 
-#: contents/ui/config/configGeneral.qml:732
+#: contents/ui/config/configGeneral.qml:813
 msgid "Show Radar tab in widget"
 msgstr "Radarlap megjelenítése a kisalkalmazásban"
 
@@ -2832,7 +2904,7 @@ msgstr "Megjelenítés a részletekben"
 msgid "Show in:"
 msgstr "Megjelenítés ebben:"
 
-#: contents/ui/components/RadarWebEngineView.qml:141
+#: contents/ui/components/RadarWebEngineView.qml:156
 msgid "Show my location"
 msgstr "Saját hely megjelenítése"
 
@@ -2848,7 +2920,7 @@ msgstr "Pollentípusok megjelenítése a kibontott nézetben:"
 msgid "Show pollutants in expanded view:"
 msgstr "Szennyező anyagok megjelenítése a kibontott nézetben:"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:309
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:347
 msgid "Show precipitation motion arrows"
 msgstr "Csapadék mozgásirányát jelző nyilak megjelenítése"
 
@@ -2870,7 +2942,7 @@ msgstr "Hőmérséklet mértékegységének megjelenítése:"
 msgid "Show update time and provider"
 msgstr "Frissítési idő és szolgáltató megjelenítése"
 
-#: contents/ui/config/configGeneral.qml:610
+#: contents/ui/config/configGeneral.qml:691
 msgid "Show/hide key"
 msgstr "Kulcs megjelenítése/elrejtése"
 
@@ -2928,7 +3000,7 @@ msgstr "Egyszerű megjelenítési mód beállításai"
 msgid "Single line (all items at once)"
 msgstr "Egyszerű vonal (minden elem egyszer)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1101
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1137
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:230
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:529
 msgid "Size:"
@@ -2954,7 +3026,7 @@ msgstr "Enyhe hózáporok"
 msgid "Slight snowfall"
 msgstr "Enyhe hóesés"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:881
+#: contents/ui/config/tabs/ConfigPanelTab.qml:917
 msgid "Small circle  ⚬"
 msgstr "Kis kör  ⚬"
 
@@ -2972,9 +3044,9 @@ msgstr "Hó (nappal)"
 msgid "Snow (night)"
 msgstr "Hó (éjszaka)"
 
-#: contents/ui/config/configAppearance.qml:1429
-#: contents/ui/config/configAppearance.qml:1552
-#: contents/ui/config/configAppearance.qml:1675 contents/ui/DetailsView.qml:330
+#: contents/ui/config/configAppearance.qml:1430
+#: contents/ui/config/configAppearance.qml:1553
+#: contents/ui/config/configAppearance.qml:1676 contents/ui/DetailsView.qml:330
 #: contents/ui/SimpleView.qml:270
 msgid "Snow Cover"
 msgstr "Hótakaró"
@@ -2983,9 +3055,9 @@ msgstr "Hótakaró"
 msgid "Snow Cover:"
 msgstr "Hótakaró:"
 
-#: contents/ui/config/configAppearance.qml:1430
-#: contents/ui/config/configAppearance.qml:1553
-#: contents/ui/config/configAppearance.qml:1676
+#: contents/ui/config/configAppearance.qml:1431
+#: contents/ui/config/configAppearance.qml:1554
+#: contents/ui/config/configAppearance.qml:1677
 msgid "Snow depth (cm/in)"
 msgstr "Hótakaró (cm/in)"
 
@@ -3025,13 +3097,13 @@ msgstr "Hó/Jég"
 msgid "Solar Wind"
 msgstr "Napszél"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:877
+#: contents/ui/config/tabs/ConfigPanelTab.qml:913
 msgid "Space"
 msgstr "Űr"
 
-#: contents/ui/config/configAppearance.qml:1415
-#: contents/ui/config/configAppearance.qml:1538
-#: contents/ui/config/configAppearance.qml:1661 contents/ui/DetailsView.qml:328
+#: contents/ui/config/configAppearance.qml:1416
+#: contents/ui/config/configAppearance.qml:1539
+#: contents/ui/config/configAppearance.qml:1662 contents/ui/DetailsView.qml:328
 #: contents/ui/SimpleView.qml:268
 msgid "Space Weather"
 msgstr "Űridőjárás"
@@ -3044,7 +3116,7 @@ msgstr "Űridőjárás:"
 msgid "Space weather options"
 msgstr "Űridőjárás beállításai"
 
-#: contents/ui/config/configGeneral.qml:454
+#: contents/ui/config/configGeneral.qml:535
 msgid "Standard provider. API key required below."
 msgstr "Szabványos szolgáltató. API-kulcs szükséges alább."
 
@@ -3052,17 +3124,17 @@ msgstr "Szabványos szolgáltató. API-kulcs szükséges alább."
 msgid "Stats items:"
 msgstr "Statisztikai elemek:"
 
-#: contents/ui/components/RadarWebEngineView.qml:146
-#: contents/ui/components/RadarWebEngineView.qml:642
+#: contents/ui/components/RadarWebEngineView.qml:161
+#: contents/ui/components/RadarWebEngineView.qml:781
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr "Vihar"
 
-#: contents/ui/config/configGeneral.qml:327
+#: contents/ui/config/configGeneral.qml:408
 msgid "StormGlass (Key Required)"
 msgstr "StormGlass (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:514
+#: contents/ui/config/configGeneral.qml:595
 msgid "StormGlass API Key:"
 msgstr "StormGlass API-kulcs:"
 
@@ -3082,8 +3154,8 @@ msgstr "Erős geomágneses vihar."
 msgid "Sulfur Dioxide (SO₂)"
 msgstr "Kén-dioxid (SO₂)"
 
-#: contents/ui/config/configAppearance.qml:1476
-#: contents/ui/config/configAppearance.qml:1613
+#: contents/ui/config/configAppearance.qml:1477
+#: contents/ui/config/configAppearance.qml:1614
 msgid "Sun rise & set times"
 msgstr "Napkelte és -nyugta időpontjai"
 
@@ -3105,7 +3177,7 @@ msgstr "Vasárnap"
 
 #: contents/ui/DetailsView.qml:3258 contents/ui/DetailsView.qml:3262
 #: contents/ui/DetailsView.qml:3585 contents/ui/DetailsView.qml:3589
-#: contents/ui/ForecastView.qml:1122
+#: contents/ui/ForecastView.qml:1096
 msgid "Sunrise"
 msgstr "Napkelte"
 
@@ -3113,7 +3185,7 @@ msgstr "Napkelte"
 msgid "Sunrise / Sunset:"
 msgstr "Napkelte és -nyugta:"
 
-#: contents/ui/config/configAppearance.qml:1331
+#: contents/ui/config/configAppearance.qml:1332
 msgid "Sunrise and sunset times"
 msgstr "Napkelte és -nyugta ideje"
 
@@ -3131,9 +3203,9 @@ msgstr "Csak Napkelte"
 msgid "Sunrise only  07:17"
 msgstr "Csak Napkelte  07:17"
 
-#: contents/ui/config/configAppearance.qml:1330
-#: contents/ui/config/configAppearance.qml:1475
-#: contents/ui/config/configAppearance.qml:1612 contents/ui/DetailsView.qml:318
+#: contents/ui/config/configAppearance.qml:1331
+#: contents/ui/config/configAppearance.qml:1476
+#: contents/ui/config/configAppearance.qml:1613 contents/ui/DetailsView.qml:318
 msgid "Sunrise/Sunset"
 msgstr "Napkelte és -nyugta"
 
@@ -3174,7 +3246,7 @@ msgstr "Napnyugta:"
 msgid "Swap order:"
 msgstr "Sorrendcsere:"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:324
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
 msgid "Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme."
 msgstr "Váltás a világos és a sötét térképstílus között. Az első átváltásig a térkép a Plasma témát követi."
 
@@ -3187,18 +3259,19 @@ msgstr "Hely váltása"
 msgid "Symbolic"
 msgstr "Szimbolikus"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1075
+#: contents/ui/config/tabs/ConfigPanelTab.qml:320
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1111
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:204
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:42
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:51
 msgid "Symbolic (Bundled)"
 msgstr "Szimbolikus (beépített)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:770
+#: contents/ui/config/tabs/ConfigPanelTab.qml:806
 msgid "Symbolic (follows theme colour)"
 msgstr "Szimbolikus (követi a téma színét)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:719
+#: contents/ui/config/tabs/ConfigPanelTab.qml:755
 msgid "System Tray Badge Background Color"
 msgstr "Értesítési területen megjelenő jelvény háttérszíne"
 
@@ -3206,7 +3279,7 @@ msgstr "Értesítési területen megjelenő jelvény háttérszíne"
 msgid "System location unavailable, trying IP geolocation…"
 msgstr "A rendszer helymeghatározási szolgáltatása nem érhető el, IP-cím alapú helymeghatározás próbálása…"
 
-#: contents/ui/config/configAppearance.qml:1980
+#: contents/ui/config/configAppearance.qml:1981
 msgid "System tray"
 msgstr "Értesítési terület"
 
@@ -3218,21 +3291,21 @@ msgstr "Értesítési terület megjelenésének beállításai"
 msgid "System tray icon settings"
 msgstr "Értesítési terület ikonjának beállításai"
 
-#: contents/ui/components/RadarWebEngineView.qml:127
-#: contents/ui/config/configAppearance.qml:1323
-#: contents/ui/config/configAppearance.qml:1570
+#: contents/ui/components/RadarWebEngineView.qml:131
+#: contents/ui/config/configAppearance.qml:1324
+#: contents/ui/config/configAppearance.qml:1571
 msgid "Temperature"
 msgstr "Hőmérséklet"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:962
+#: contents/ui/config/tabs/ConfigPanelTab.qml:998
 msgid "Temperature Color"
 msgstr "Hőmérséklet színe"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:587
+#: contents/ui/config/tabs/ConfigPanelTab.qml:623
 msgid "Temperature badge"
 msgstr "Hőmérsékletjelvény"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:472
+#: contents/ui/config/tabs/ConfigPanelTab.qml:484
 msgid "Temperature color:"
 msgstr "Hőmérséklet színe:"
 
@@ -3244,7 +3317,7 @@ msgstr "Először a hőmérséklet"
 msgid "Temperature only"
 msgstr "Csak a hőmérséklet"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:512
+#: contents/ui/config/tabs/ConfigPanelTab.qml:548
 msgid "Temperature shadow:"
 msgstr "Hőmérséklet árnyéka:"
 
@@ -3253,7 +3326,7 @@ msgstr "Hőmérséklet árnyéka:"
 msgid "Temperature:"
 msgstr "Hőmérséklet:"
 
-#: contents/ui/config/configGeneral.qml:641
+#: contents/ui/config/configGeneral.qml:722
 msgid "Test API Key"
 msgstr "API-kulcs tesztelése"
 
@@ -3261,11 +3334,11 @@ msgstr "API-kulcs tesztelése"
 msgid "Test across providers"
 msgstr "Szolgáltatók tesztelése"
 
-#: contents/ui/config/configGeneral.qml:223
+#: contents/ui/config/configGeneral.qml:304
 msgid "Testing connection…"
 msgstr "Kapcsolat tesztelése…"
 
-#: contents/ui/config/configGeneral.qml:641
+#: contents/ui/config/configGeneral.qml:722
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:222
 msgid "Testing…"
 msgstr "Tesztelés…"
@@ -3274,7 +3347,7 @@ msgstr "Tesztelés…"
 msgid "Text labels (Temperature, Wind…)"
 msgstr "Szövegcímkék (Hőmérséklet, Szél…)"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1025
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1061
 msgid "Text will follow the system font and expand to fill the available space."
 msgstr "A szöveg követni fogja a rendszer betűtípusát, és kitölti a rendelkezésre álló helyet."
 
@@ -3299,7 +3372,11 @@ msgstr "A geomágneses (Kp/G) előrejelzés legfeljebb 3 napra előre érhető e
 msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
 msgstr "A térképválasztóhoz szükségesek a QtLocation és QtPositioning csomagok, amelyek nincsenek telepítve erre a rendszerre."
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:682
+#: contents/ui/config/configGeneral.qml:102
+msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
+msgstr ""
+
+#: contents/ui/config/tabs/ConfigPanelTab.qml:718
 msgid "Theme default"
 msgstr "Téma alapértelmezett"
 
@@ -3368,18 +3445,18 @@ msgstr "Időtúllépés"
 msgid "Timezone:"
 msgstr "Időzóna:"
 
-#: contents/ui/config/configGeneral.qml:780
+#: contents/ui/config/configGeneral.qml:867
 msgid "To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): disable Adaptive mode, select OpenWeatherMap as your weather provider, and enter your API key above. When you are ready, you can enable Adaptive mode again."
 msgstr "További térképrétegek (Eső, Felhők, Hőmérséklet, Szél, Nyomás) feloldásához: tiltsa le az Adaptív módot és válassza az OpenWeatherMap szolgáltatót, majd adja meg fent az API-kulcsát. Ha készen áll, újra engedélyezheti az Adaptív módot."
 
-#: contents/ui/ForecastView.qml:496 contents/ui/main.qml:1490
+#: contents/ui/ForecastView.qml:497 contents/ui/main.qml:1490
 #: contents/ui/SimpleView.qml:423
 msgid "Today"
 msgstr "Ma"
 
-#: contents/ui/config/configAppearance.qml:1388
-#: contents/ui/config/configAppearance.qml:1511
-#: contents/ui/config/configAppearance.qml:1634
+#: contents/ui/config/configAppearance.qml:1389
+#: contents/ui/config/configAppearance.qml:1512
+#: contents/ui/config/configAppearance.qml:1635
 msgid "Today's total precipitation (mm/in)"
 msgstr "Mai összes csapadék (mm/in)"
 
@@ -3395,11 +3472,11 @@ msgstr "Holnap"
 msgid "Tomorrow forecast"
 msgstr "Holnapi előrejelzés"
 
-#: contents/ui/config/configGeneral.qml:323
+#: contents/ui/config/configGeneral.qml:404
 msgid "Tomorrow.io (Key Required)"
 msgstr "Tomorrow.io (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:512
+#: contents/ui/config/configGeneral.qml:593
 msgid "Tomorrow.io API Key:"
 msgstr "Tomorrow.io API-kulcs:"
 
@@ -3407,7 +3484,7 @@ msgstr "Tomorrow.io API-kulcs:"
 msgid "Tonight"
 msgstr "Ma este"
 
-#: contents/ui/config/configAppearance.qml:1988
+#: contents/ui/config/configAppearance.qml:1989
 #: contents/ui/config/tabs/ConfigMiscTab.qml:137
 msgid "Tooltip"
 msgstr "Buboréksúgó"
@@ -3440,15 +3517,15 @@ msgstr "Buboréksúgó szélessége:"
 msgid "Tooltip:"
 msgstr "Buboréksúgó:"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:621
+#: contents/ui/config/tabs/ConfigPanelTab.qml:657
 msgid "Top Center"
 msgstr "Középen fent"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:613
+#: contents/ui/config/tabs/ConfigPanelTab.qml:649
 msgid "Top Left"
 msgstr "Balra fent"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:609
+#: contents/ui/config/tabs/ConfigPanelTab.qml:645
 msgid "Top Right"
 msgstr "Jobbra fent"
 
@@ -3465,9 +3542,9 @@ msgctxt "Alert severity"
 msgid "UNKNOWN"
 msgstr "ISMERETLEN"
 
-#: contents/ui/config/configAppearance.qml:1394
-#: contents/ui/config/configAppearance.qml:1517
-#: contents/ui/config/configAppearance.qml:1640 contents/ui/DetailsView.qml:325
+#: contents/ui/config/configAppearance.qml:1395
+#: contents/ui/config/configAppearance.qml:1518
+#: contents/ui/config/configAppearance.qml:1641 contents/ui/DetailsView.qml:325
 #: contents/ui/SimpleView.qml:265
 msgid "UV Index"
 msgstr "UV-index"
@@ -3489,9 +3566,9 @@ msgstr "UV-indexelőrejelzés:"
 msgid "UV will be %1 (%2)"
 msgstr "Az UV-index %1 lesz (%2)"
 
-#: contents/ui/config/configAppearance.qml:1395
-#: contents/ui/config/configAppearance.qml:1518
-#: contents/ui/config/configAppearance.qml:1641
+#: contents/ui/config/configAppearance.qml:1396
+#: contents/ui/config/configAppearance.qml:1519
+#: contents/ui/config/configAppearance.qml:1642
 msgid "Ultraviolet index"
 msgstr "Ultraibolya-index"
 
@@ -3543,29 +3620,29 @@ msgstr "Következő (Napkelte vagy -nyugta)"
 msgid "Upcoming rise/set only"
 msgstr "Csak a következő kelte/nyugta"
 
-#: contents/ui/WeatherService.qml:169
+#: contents/ui/WeatherService.qml:173
 msgid "Update timed out. Tap to retry."
 msgstr "A frissítés időtúllépés miatt megszakadt. Koppintson az újrapróbálkozáshoz."
 
-#: contents/ui/WeatherService.qml:761
+#: contents/ui/WeatherService.qml:785
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
 msgstr[0] "Frissítve: %1 nappal ezelőtt"
 msgstr[1] "Frissítve: %1 nappal ezelőtt"
 
-#: contents/ui/WeatherService.qml:759
+#: contents/ui/WeatherService.qml:783
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
 msgstr[0] "Frissítve: %1 órával ezelőtt"
 msgstr[1] "Frissítve: %1 órával ezelőtt"
 
-#: contents/ui/WeatherService.qml:756
+#: contents/ui/WeatherService.qml:780
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
 msgstr[0] "Frissítve: %1 perccel ezelőtt"
 msgstr[1] "Frissítve: %1 perccel ezelőtt"
 
-#: contents/ui/WeatherService.qml:754
+#: contents/ui/WeatherService.qml:778
 msgid "Updated just now"
 msgstr "Frissítve: épp most"
 
@@ -3589,7 +3666,7 @@ msgstr "Kézi megadású hely használata"
 msgid "Use region defaults"
 msgstr "Terület alapértelmezéseinek használata"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1148
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1184
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:277
 msgid "Uses KDE system icons by default. Click the button to customise each item's icon."
 msgstr "Alapértelmezés szerint KDE-rendszerikonok használata. Kattintson a gombra az egyes elemek ikonjának testreszabásához."
@@ -3623,12 +3700,12 @@ msgstr "Nagyon rossz"
 msgid "Violent rain showers"
 msgstr "Heves esőzáporok"
 
-#: contents/ui/config/configAppearance.qml:1489 contents/ui/DetailsView.qml:320
+#: contents/ui/config/configAppearance.qml:1490 contents/ui/DetailsView.qml:320
 #: contents/ui/SimpleView.qml:262
 msgid "Visibility"
 msgstr "Látótávolság"
 
-#: contents/ui/config/configAppearance.qml:1490
+#: contents/ui/config/configAppearance.qml:1491
 msgid "Visibility distance"
 msgstr "Látótávolság"
 
@@ -3642,27 +3719,27 @@ msgstr "Látótávolság:"
 msgid "Visible tabs:"
 msgstr "Látható lapok:"
 
-#: contents/ui/config/configGeneral.qml:319
+#: contents/ui/config/configGeneral.qml:400
 msgid "Visual Crossing (Key Required)"
 msgstr "Visual Crossing (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:510
+#: contents/ui/config/configGeneral.qml:591
 msgid "Visual Crossing API Key:"
 msgstr "Visual Crossing API-kulcs:"
 
-#: contents/ui/main.qml:2092
+#: contents/ui/main.qml:2100
 msgid "Waning Crescent"
 msgstr "Fogyó Holdsarló"
 
-#: contents/ui/main.qml:2088
+#: contents/ui/main.qml:2096
 msgid "Waning Gibbous"
 msgstr "Fogyó Hold"
 
-#: contents/ui/main.qml:2080
+#: contents/ui/main.qml:2088
 msgid "Waxing Crescent"
 msgstr "Növekvő Holdsarló"
 
-#: contents/ui/main.qml:2084
+#: contents/ui/main.qml:2092
 msgid "Waxing Gibbous"
 msgstr "Növekvő Hold"
 
@@ -3674,11 +3751,11 @@ msgstr "Észleltük az Ön koordinátáit: <b>%1°, %2°</b>."
 msgid "We detected your location as: <b>%1</b>."
 msgstr "Észleltük az Ön tartózkodási helyét: <b>%1</b>."
 
-#: contents/ui/config/configGeneral.qml:806
+#: contents/ui/config/configGeneral.qml:958
 msgid "Weather Alerts"
 msgstr "Időjárási riasztások"
 
-#: contents/ui/config/configGeneral.qml:362
+#: contents/ui/config/configGeneral.qml:443
 msgid "Weather Provider"
 msgstr "Időjárás-szolgáltató"
 
@@ -3690,18 +3767,18 @@ msgstr "Időjárás-kisalkalmazás"
 msgid "Weather alert"
 msgstr "Időjárási riasztás"
 
-#: contents/ui/config/configAppearance.qml:1423
-#: contents/ui/config/configAppearance.qml:1546
-#: contents/ui/config/configAppearance.qml:1669
+#: contents/ui/config/configAppearance.qml:1424
+#: contents/ui/config/configAppearance.qml:1547
+#: contents/ui/config/configAppearance.qml:1670
 #: contents/ui/config/configNotifications.qml:241
 msgid "Weather alerts"
 msgstr "Időjárási riasztások"
 
-#: contents/ui/config/configAppearance.qml:1578
+#: contents/ui/config/configAppearance.qml:1579
 msgid "Weather condition text"
 msgstr "Időjárási körülmények szövege"
 
-#: contents/ui/config/configAppearance.qml:1317
+#: contents/ui/config/configAppearance.qml:1318
 msgid "Weather icon + condition text"
 msgstr "Időjárásikon + a körülmények szövege"
 
@@ -3713,7 +3790,7 @@ msgstr "Időjárásikon stílusa:"
 msgid "Weather icon theme:"
 msgstr "Időjárásikon témája:"
 
-#: contents/ui/WeatherService.qml:824
+#: contents/ui/WeatherService.qml:848
 msgid "Weather provider:"
 msgstr "Időjárás-szolgáltató:"
 
@@ -3737,19 +3814,19 @@ msgstr ""
 "\n"
 "Kapcsoljon ki egy szintet, ha a jövőben nem szeretne értesítéseket kapni az ilyen súlyosságú riasztásokról."
 
-#: contents/ui/config/configGeneral.qml:311
+#: contents/ui/config/configGeneral.qml:392
 msgid "WeatherAPI.com (Key Required)"
 msgstr "WeatherAPI.com (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:519
+#: contents/ui/config/configGeneral.qml:600
 msgid "WeatherAPI.com API Key:"
 msgstr "WeatherAPI.com API-kulcs:"
 
-#: contents/ui/config/configGeneral.qml:331
+#: contents/ui/config/configGeneral.qml:412
 msgid "Weatherbit (Key Required)"
 msgstr "Weatherbit (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:516
+#: contents/ui/config/configGeneral.qml:597
 msgid "Weatherbit API Key:"
 msgstr "Weatherbit API-kulcs:"
 
@@ -3757,7 +3834,7 @@ msgstr "Weatherbit API-kulcs:"
 msgid "Website"
 msgstr "Weboldal"
 
-#: contents/ui/config/configAppearance.qml:1984
+#: contents/ui/config/configAppearance.qml:1985
 #: contents/ui/config/tabs/ConfigMiscTab.qml:127
 msgid "Widget"
 msgstr "Kisalkalmazás"
@@ -3770,25 +3847,25 @@ msgstr "Kisalkalmazás mérete"
 msgid "Widget panel area:"
 msgstr "Kisalkalmazás panelterülete:"
 
-#: contents/ui/components/RadarWebEngineView.qml:128
-#: contents/ui/config/configAppearance.qml:1337
-#: contents/ui/config/configAppearance.qml:1468
-#: contents/ui/config/configAppearance.qml:1591
+#: contents/ui/components/RadarWebEngineView.qml:132
+#: contents/ui/config/configAppearance.qml:1338
+#: contents/ui/config/configAppearance.qml:1469
+#: contents/ui/config/configAppearance.qml:1592
 #: contents/ui/config/configNotifications.qml:41
 #: contents/ui/DetailsView.qml:317 contents/ui/main.qml:966
 msgid "Wind"
 msgstr "Szél"
 
-#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:301
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:339
 msgid "Wind arrows"
 msgstr "Szélirány-nyilak"
 
-#: contents/ui/config/configAppearance.qml:1469
-#: contents/ui/config/configAppearance.qml:1592
+#: contents/ui/config/configAppearance.qml:1470
+#: contents/ui/config/configAppearance.qml:1593
 msgid "Wind speed + direction"
 msgstr "Szélsebesség és -irány"
 
-#: contents/ui/config/configAppearance.qml:1338
+#: contents/ui/config/configAppearance.qml:1339
 msgid "Wind speed and direction"
 msgstr "Szélsebesség és -irány"
 
@@ -3801,6 +3878,10 @@ msgstr "Szélsebesség:"
 #: contents/ui/TooltipContent.qml:422
 msgid "Wind:"
 msgstr "Szél:"
+
+#: contents/ui/config/configGeneral.qml:884
+msgid "Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)"
+msgstr ""
 
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:72
 msgid "Wrap to next line"
@@ -3900,7 +3981,7 @@ msgstr "ft"
 msgid "grains/m³"
 msgstr "grains/m³"
 
-#: contents/ui/components/RadarWebEngineView.qml:655
+#: contents/ui/components/RadarWebEngineView.qml:794
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr "hPa"
@@ -3917,11 +3998,11 @@ msgstr "in"
 msgid "in the next hours"
 msgstr "a következő órákban"
 
-#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:787
+#: contents/ui/components/RadarWebEngineView.qml:782 contents/ui/main.qml:787
 msgid "in/h"
 msgstr "in/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:653
+#: contents/ui/components/RadarWebEngineView.qml:792
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr "inHg"
@@ -3932,7 +4013,7 @@ msgstr "inHg"
 msgid "km"
 msgstr "km"
 
-#: contents/ui/components/RadarWebEngineView.qml:648
+#: contents/ui/components/RadarWebEngineView.qml:787
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr "km/h"
@@ -3941,7 +4022,7 @@ msgstr "km/h"
 msgid "km/s"
 msgstr "km/s"
 
-#: contents/ui/components/RadarWebEngineView.qml:649
+#: contents/ui/components/RadarWebEngineView.qml:788
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr "kn"
@@ -3958,12 +4039,12 @@ msgstr "alacsony"
 msgid "m"
 msgstr "m"
 
-#: contents/ui/components/RadarWebEngineView.qml:650
+#: contents/ui/components/RadarWebEngineView.qml:789
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr "m/s"
 
-#: contents/ui/config/configGeneral.qml:299
+#: contents/ui/config/configGeneral.qml:380
 msgid "met.no (free)"
 msgstr "met.no (ingyenes)"
 
@@ -3983,7 +4064,7 @@ msgstr "mi"
 msgid "minor"
 msgstr "kisebb"
 
-#: contents/ui/config/configGeneral.qml:920
+#: contents/ui/config/configGeneral.qml:1081
 #: contents/ui/config/configNotifications.qml:364
 msgid "minutes"
 msgstr "perc"
@@ -3992,11 +4073,11 @@ msgstr "perc"
 msgid "mm"
 msgstr "mm"
 
-#: contents/ui/components/RadarWebEngineView.qml:643 contents/ui/main.qml:788
+#: contents/ui/components/RadarWebEngineView.qml:782 contents/ui/main.qml:788
 msgid "mm/h"
 msgstr "mm/h"
 
-#: contents/ui/components/RadarWebEngineView.qml:654
+#: contents/ui/components/RadarWebEngineView.qml:793
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr "mmHg"
@@ -4005,7 +4086,7 @@ msgstr "mmHg"
 msgid "moderate"
 msgstr "mérsékelt"
 
-#: contents/ui/components/RadarWebEngineView.qml:647
+#: contents/ui/components/RadarWebEngineView.qml:786
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr "mpó"
@@ -4014,7 +4095,7 @@ msgstr "mpó"
 msgid "overcast skies"
 msgstr "borult égbolt"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:844
+#: contents/ui/config/tabs/ConfigPanelTab.qml:880
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:127
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:170
 msgid "px"
