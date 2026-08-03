@@ -156,6 +156,7 @@ For providers that require an API key, you can enter it in the widget's settings
 Thank you to everyone who has contributed code to this project ❤️
 
 - **[Mizu Ikki](https://github.com/mizuikki)** - QWeather provider fixes and perfomance improvements (refresh handling, forecast display, precipitation fallback)
+- **[rcspam](https://github.com/rcspam)** - QWeather provider fixes and perfomance improvements (refresh handling, forecast display, precipitation fallback)
 
 ## 🌐 Translation
 
