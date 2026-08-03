@@ -25,6 +25,7 @@
 
 
 
+
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.
 
 1. Download the translation template:
