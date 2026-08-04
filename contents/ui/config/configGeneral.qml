@@ -39,6 +39,7 @@ KCM.SimpleKCM {
     property string cfg_qwApiHost: ""
     property bool cfg_radarEnabled: true
     property string cfg_radarProvider: "rainviewer"
+    property string cfg_librewxrUrl: "https://api.librewxr.net"
     property bool cfg_radarGpuWorkaround: false
     property string cfg_alertsProvider: "native"
     property string cfg_fossAlertUrl: "https://alerts.kde.org"
@@ -857,6 +858,35 @@ KCM.SimpleKCM {
                 type: Kirigami.MessageType.Information
                 text: i18n("Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>" + "LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>" + "Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically.")
                 onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            // LibreWXR is self-hostable, so let the user point the radar and the
+            // alerts provider at their own instance instead of the public API.
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.topMargin: 8
+                spacing: 8
+                visible: root.cfg_radarEnabled && root.cfg_radarProvider === "librewxr"
+
+                Label {
+                    text: i18n("LibreWXR server:")
+                    font.bold: true
+                }
+                Label {
+                    Layout.fillWidth: true
+                    wrapMode: Text.WordWrap
+                    opacity: 0.7
+                    text: i18n("Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance.")
+                }
+                TextField {
+                    id: librewxrUrlField
+                    Layout.fillWidth: true
+                    placeholderText: "https://api.librewxr.net"
+                    text: root.cfg_librewxrUrl
+                    selectByMouse: true
+                    onTextEdited: root.cfg_librewxrUrl = text
+                    onEditingFinished: root.cfg_librewxrUrl = text.trim()
+                }
             }
 
             Kirigami.InlineMessage {
