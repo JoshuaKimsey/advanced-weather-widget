@@ -125,6 +125,14 @@ msgstr "<b>発効:</b> %1"
 msgid "<b>Headline:</b> %1"
 msgstr "<b>見出し:</b> %1"
 
+#: contents/ui/config/configGeneral.qml:899
+msgid ""
+"<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
+"                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
+msgstr ""
+"<b>ハイブリッド GPU / NVIDIA PRIME + Wayland クラッシュの回避策</b><br/><br/>Wayland を実行している一部のハイブリッド GPU ノート PC では、レーダータブの埋め込みブラウザビューが最初に描画された瞬間に、2 つの GPU 間のドライバレベルの競合により Plasma シェル全体がクラッシュする可能性があります。このオプションは、そのブラウザビュー内の GPU アクセラレーションによるコンポジットを無効化して回避します。<br/><br/>実際にこのクラッシュが発生している場合のみ有効にしてください - レーダーマップのレンダリング性能が若干低下します。<br/><br/><b>この設定を反映するにはログアウトして再ログインする必要があります</b>。Plasma 起動前に設定する必要があるためです。また、セッション全体に適用されるため、Chromium ベースのブラウザビューを埋め込む他のアプリにも同じ設定が適用されます。\n"
+"                <br/><br/>このオプションを有効にすると、次のファイルが作成されます: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
+
 #: contents/ui/main.qml:1244
 msgid "<b>Instruction:</b> %1"
 msgstr "<b>指示:</b> %1"
@@ -165,6 +173,10 @@ msgstr "AQI"
 #: contents/ui/DetailsView.qml:2023 contents/ui/js/spaceWeather.js:175
 msgid "Active"
 msgstr "活動中"
+
+#: contents/ui/config/configGeneral.qml:96
+msgid "Active - GPU compositing is currently disabled for the radar map in this session."
+msgstr "有効 - このセッションではレーダーマップの GPU コンポジットが現在無効化されています。"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
@@ -528,6 +540,14 @@ msgstr "カード（2列）"
 msgid "Cards height:"
 msgstr "カードの高さ:"
 
+#: contents/ui/components/MapBackgroundChoices.qml:48
+msgid "Carto Dark Matter (dark)"
+msgstr "Carto Dark Matter（ダーク）"
+
+#: contents/ui/components/MapBackgroundChoices.qml:47
+msgid "Carto Positron (light)"
+msgstr "Carto Positron（ライト）"
+
 #: contents/ui/config/tabs/ConfigMiscTab.qml:227
 msgid "Celsius (°C)"
 msgstr "摂氏（°C）"
@@ -536,10 +556,19 @@ msgstr "摂氏（°C）"
 msgid "Changes staged. Click the main Apply button to save."
 msgstr "変更がステージングされました。メインの適用ボタンをクリックして保存してください。"
 
-#: contents/ui/config/configGeneral.qml:91
+#: contents/ui/config/configGeneral.qml:915
+msgid "Check Status"
+msgstr "状態確認"
+
+#: contents/ui/config/configGeneral.qml:172
 #: contents/ui/config/configLocation.qml:481
 msgid "Checking location availability…"
 msgstr "位置の利用可能性を確認中…"
+
+#: contents/ui/config/configGeneral.qml:139
+#: contents/ui/config/configGeneral.qml:915
+msgid "Checking…"
+msgstr "確認中…"
 
 #: contents/ui/config/configGeneral.qml:468
 msgid "Chinese weather provider with global coverage. API key required below."
@@ -618,6 +647,14 @@ msgstr "雲"
 #: contents/ui/config/configNotifications.qml:47 contents/ui/main.qml:972
 msgid "Coastal event"
 msgstr "沿岸現象"
+
+#: contents/ui/config/tabs/ConfigPanelTab.qml:530
+msgid "Color by temperature:"
+msgstr "気温で色分け:"
+
+#: contents/ui/config/tabs/ConfigPanelTab.qml:537
+msgid "Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color."
+msgstr "パネルの気温を、固定色ではなく予報曲線と同じ寒色から暖色のスケールで色分けします。"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:303
 #: contents/ui/config/tabs/ConfigPanelTab.qml:312
@@ -749,6 +786,10 @@ msgstr "状態別カスタムアイコン"
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:358
 msgid "Custom…"
 msgstr "カスタム…"
+
+#: contents/ui/components/MapBackgroundChoices.qml:45
+msgid "CyclOSM (cycling)"
+msgstr "CyclOSM（サイクリング）"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:858
 msgid "Daily Forecast Settings"
@@ -1388,6 +1429,10 @@ msgstr "時間別レイアウト:"
 msgid "How often the rows scroll to reveal the next item"
 msgstr "次の項目を表示するための行スクロール間隔"
 
+#: contents/ui/components/MapBackgroundChoices.qml:44
+msgid "Humanitarian (HOT)"
+msgstr "Humanitarian（HOT）"
+
 #: contents/ui/config/configAppearance.qml:1352
 #: contents/ui/config/configAppearance.qml:1454
 #: contents/ui/config/configAppearance.qml:1598 contents/ui/DetailsView.qml:315
@@ -1766,6 +1811,10 @@ msgstr "位置がステージングされました。メインの適用ボタン
 msgid "Location:"
 msgstr "位置:"
 
+#: contents/ui/config/configGeneral.qml:903
+msgid "Log Out Now…"
+msgstr "今すぐログアウト…"
+
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:602
 msgid "Lon:"
 msgstr "経度:"
@@ -1846,6 +1895,10 @@ msgstr "概ね晴れ（夜）"
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:654
 msgid "Manual"
 msgstr "手動"
+
+#: contents/ui/components/RadarWebEngineView.qml:150
+msgid "Map background"
+msgstr "地図の背景"
 
 #: contents/ui/config/configGeneral.qml:464
 msgid "Marine and weather data provider. API key required below."
@@ -2139,6 +2192,10 @@ msgstr "通常"
 msgid "Not available (HTTP %1)"
 msgstr "利用できません（HTTP %1）"
 
+#: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
+msgid "Not available: the selected base map already has a fixed light or dark style."
+msgstr "利用できません: 選択したベースマップはすでに固定のライトまたはダークスタイルです。"
+
 #: contents/ui/ForecastView.qml:1317 contents/ui/ForecastView.qml:1764
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
@@ -2215,6 +2272,14 @@ msgstr "ブラウザでレーダーを開く"
 #: contents/ui/config/configGeneral.qml:295
 msgid "Open-Meteo (recommended, free)"
 msgstr "Open-Meteo（推奨、無料）"
+
+#: contents/ui/components/MapBackgroundChoices.qml:43
+msgid "OpenStreetMap (standard)"
+msgstr "OpenStreetMap（標準）"
+
+#: contents/ui/components/MapBackgroundChoices.qml:46
+msgid "OpenTopoMap (topographic)"
+msgstr "OpenTopoMap（地形図）"
 
 #: contents/ui/config/configGeneral.qml:307
 msgid "OpenWeatherMap (Key Required)"
@@ -2713,6 +2778,10 @@ msgstr "土曜日"
 #: contents/ui/config/configLocation.qml:1611
 msgid "Saved locations"
 msgstr "保存した位置"
+
+#: contents/ui/config/configGeneral.qml:99
+msgid "Saved, but not active yet - log out and back in for it to take effect."
+msgstr "保存されましたが、まだ有効ではありません - ログアウトして再ログインすると反映されます。"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:749
 msgid "Scroll animation:"
@@ -3298,6 +3367,10 @@ msgstr "地磁気（Kp / G）予報は最大 3 日先まで利用可能です"
 msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
 msgstr "地図ピッカーには QtLocation と QtPositioning パッケージが必要ですが、このシステムにはインストールされていません。"
 
+#: contents/ui/config/configGeneral.qml:102
+msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
+msgstr "回避策スクリプトがディスクに見つかりませんでした。オプションをオフにして再度オンにしてみてください。"
+
 #: contents/ui/config/tabs/ConfigPanelTab.qml:682
 msgid "Theme default"
 msgstr "テーマのデフォルト"
@@ -3798,6 +3871,10 @@ msgstr "風速:"
 msgid "Wind:"
 msgstr "風:"
 
+#: contents/ui/config/configGeneral.qml:884
+msgid "Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)"
+msgstr "ハイブリッド GPU システムでレーダーマップのクラッシュを回避（実験的）"
+
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:72
 msgid "Wrap to next line"
 msgstr "次の行に折り返す"
@@ -4100,27 +4177,3 @@ msgstr "あなたの位置"
 #: contents/ui/js/airQuality.js:156
 msgid "µg/m³"
 msgstr "µg/m³"
-
-#~ msgid ""
-#~ "Providers are tried in order until one succeeds:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first - it is free and requires no API key."
-#~ msgstr ""
-#~ "プロバイダは成功するまで順番に試行されます:\n"
-#~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo は常に最初に試行されます - 無料で API キーが不要です。"
-
-#~ msgid "Updated %1"
-#~ msgstr "%1 に更新"
-
-#~ msgid "Postpone %1 min"
-#~ msgstr "%1 分延期"
-
-#~ msgid "Repeat reminder every:"
-#~ msgstr "リマインダーの繰り返し間隔:"
-
-#~ msgid "Reload radar"
-#~ msgstr "レーダーを再読み込み"
-
-#~ msgid "this night"
-#~ msgstr "今夜"
