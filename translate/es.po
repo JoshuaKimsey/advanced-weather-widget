@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-03 15:19+0300\n"
-"PO-Revision-Date: 2026-07-20 12:29-0600\n"
+"PO-Revision-Date: 2026-08-03 20:47-0600\n"
 "Last-Translator: Broxi <broxygames.zf@gmail.com>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "Language: es\n"
@@ -133,6 +133,8 @@ msgid ""
 "<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
 "                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 msgstr ""
+"<b>Solución alternativa para los cierres inesperados con GPU híbrida / NVIDIA PRIME + Wayland</b><br/><br/>En algunos portátiles con GPU híbrida que usan Wayland, la vista de navegador integrada en la pestaña Radar puede provocar el cierre inesperado de todo el escritorio Plasma en cuanto se dibuja por primera vez, debido a un conflicto entre las dos GPU a nivel de controlador. Esta opción deshabilita la composición acelerada por GPU dentro de esa vista de navegador para evitarlo.<br/><br/>Habilítala solo si realmente sufres ese fallo: reduce algo el rendimiento de renderizado del mapa de radar.<br/><br/><b>Es necesario cerrar la sesión y volver a iniciarla para que surta efecto</b>, ya que debe establecerse antes de que se inicie Plasma. Además, se aplica a toda la sesión, por lo que cualquier otra aplicación que integre una vista de navegador basada en Chromium adoptará la misma configuración.\n"
+"                <br/><br/>Si habilitas esta opción, se creará el siguiente archivo en: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 
 #: contents/ui/main.qml:1244
 msgid "<b>Instruction:</b> %1"
@@ -177,7 +179,7 @@ msgstr "Activo"
 
 #: contents/ui/config/configGeneral.qml:96
 msgid "Active - GPU compositing is currently disabled for the radar map in this session."
-msgstr ""
+msgstr "Activo: la composición por GPU está deshabilitada actualmente para el mapa de radar en esta sesión."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
@@ -266,15 +268,15 @@ msgstr "Proveedor de alertas:"
 
 #: contents/ui/config/configGeneral.qml:1026
 msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Proveedor de alertas: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>El FOSS Public Alert Server de KDE recopila avisos oficiales de fenómenos meteorológicos adversos en formato CAP de agencias de todo el mundo y los asocia a su ubicación exacta. Las notificaciones de alertas funcionan igual que con el proveedor nativo."
+msgstr "Proveedor de alertas: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>El FOSS Public Alert Server de KDE recopila avisos oficiales de fenómenos meteorológicos adversos en formato CAP de agencias de todo el mundo y los asocia a tu ubicación exacta. Las notificaciones de alertas funcionan igual que con el proveedor nativo."
 
 #: contents/ui/config/configGeneral.qml:1017
 msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Proveedor de alertas: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR es una API meteorológica gratuita y de código abierto que reúne alertas oficiales en formato CAP de todo el mundo (Centro de Información sobre Fenómenos Meteorológicos Adversos de la OMM, NOAA NWS y otras) y las asocia a su ubicación exacta. Las notificaciones de alertas funcionan igual que con el proveedor nativo."
+msgstr "Proveedor de alertas: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR es una API meteorológica gratuita y de código abierto que reúne alertas oficiales en formato CAP de todo el mundo (Centro de Información sobre Fenómenos Meteorológicos Adversos de la OMM, NOAA NWS y otras) y las asocia a tu ubicación exacta. Las notificaciones de alertas funcionan igual que con el proveedor nativo."
 
 #: contents/ui/config/configGeneral.qml:1008
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr "Proveedor de alertas: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Las ubicaciones europeas usan las fuentes oficiales de MeteoAlarm (38 países) y las estadounidenses, la API de alertas del Servicio Meteorológico Nacional de la NOAA, con MetAlerts de met.no como alternativa. Si su proveedor meteorológico ofrece sus propias alertas (por ejemplo, WeatherAPI.com o Pirate Weather), se utilizan directamente."
+msgstr "Proveedor de alertas: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Las ubicaciones europeas usan las fuentes oficiales de MeteoAlarm (38 países) y las estadounidenses, la API de alertas del Servicio Meteorológico Nacional de la NOAA, con MetAlerts de met.no como alternativa. Si tu proveedor meteorológico ofrece sus propias alertas (por ejemplo, WeatherAPI.com o Pirate Weather), se utilizan directamente."
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -544,11 +546,11 @@ msgstr "Altura de las tarjetas:"
 
 #: contents/ui/components/MapBackgroundChoices.qml:48
 msgid "Carto Dark Matter (dark)"
-msgstr ""
+msgstr "Carto Dark Matter (oscuro)"
 
 #: contents/ui/components/MapBackgroundChoices.qml:47
 msgid "Carto Positron (light)"
-msgstr ""
+msgstr "Carto Positron (claro)"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:227
 msgid "Celsius (°C)"
@@ -560,7 +562,7 @@ msgstr "Cambios preparados. Haz clic en el botón Aplicar principal para guardar
 
 #: contents/ui/config/configGeneral.qml:915
 msgid "Check Status"
-msgstr ""
+msgstr "Comprobar estado"
 
 #: contents/ui/config/configGeneral.qml:172
 #: contents/ui/config/configLocation.qml:481
@@ -570,7 +572,7 @@ msgstr "Comprobando disponibilidad de ubicación…"
 #: contents/ui/config/configGeneral.qml:139
 #: contents/ui/config/configGeneral.qml:915
 msgid "Checking…"
-msgstr ""
+msgstr "Comprobando…"
 
 #: contents/ui/config/configGeneral.qml:549
 msgid "Chinese weather provider with global coverage. API key required below."
@@ -652,11 +654,11 @@ msgstr "Fenómeno costero"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:530
 msgid "Color by temperature:"
-msgstr ""
+msgstr "Colorear según la temperatura:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:537
 msgid "Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color."
-msgstr ""
+msgstr "Colorea la temperatura del panel con la misma escala de frío a calor que la curva del pronóstico, en lugar de usar un color fijo."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:303
 #: contents/ui/config/tabs/ConfigPanelTab.qml:312
@@ -791,7 +793,7 @@ msgstr "Personalizado…"
 
 #: contents/ui/components/MapBackgroundChoices.qml:45
 msgid "CyclOSM (cycling)"
-msgstr ""
+msgstr "CyclOSM (ciclismo)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:858
 msgid "Daily Forecast Settings"
@@ -1436,7 +1438,7 @@ msgstr "Con qué frecuencia se desplazan las filas para mostrar el siguiente ele
 
 #: contents/ui/components/MapBackgroundChoices.qml:44
 msgid "Humanitarian (HOT)"
-msgstr ""
+msgstr "Humanitarian (HOT)"
 
 #: contents/ui/config/configAppearance.qml:1353
 #: contents/ui/config/configAppearance.qml:1455
@@ -1818,7 +1820,7 @@ msgstr "Ubicación:"
 
 #: contents/ui/config/configGeneral.qml:903
 msgid "Log Out Now…"
-msgstr ""
+msgstr "Cerrar sesión ahora…"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:602
 msgid "Lon:"
@@ -1903,7 +1905,7 @@ msgstr "Manual"
 
 #: contents/ui/components/RadarWebEngineView.qml:150
 msgid "Map background"
-msgstr ""
+msgstr "Fondo del mapa"
 
 #: contents/ui/config/configGeneral.qml:545
 msgid "Marine and weather data provider. API key required below."
@@ -2199,7 +2201,7 @@ msgstr "No disponible (HTTP %1)"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
 msgid "Not available: the selected base map already has a fixed light or dark style."
-msgstr ""
+msgstr "No disponible: el mapa base seleccionado ya tiene un estilo claro u oscuro fijo."
 
 #: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
@@ -2280,11 +2282,11 @@ msgstr "Open-Meteo (recomendado, gratuito)"
 
 #: contents/ui/components/MapBackgroundChoices.qml:43
 msgid "OpenStreetMap (standard)"
-msgstr ""
+msgstr "OpenStreetMap (estándar)"
 
 #: contents/ui/components/MapBackgroundChoices.qml:46
 msgid "OpenTopoMap (topographic)"
-msgstr ""
+msgstr "OpenTopoMap (topográfico)"
 
 #: contents/ui/config/configGeneral.qml:388
 msgid "OpenWeatherMap (Key Required)"
@@ -2786,7 +2788,7 @@ msgstr "Ubicaciones guardadas"
 
 #: contents/ui/config/configGeneral.qml:99
 msgid "Saved, but not active yet - log out and back in for it to take effect."
-msgstr ""
+msgstr "Guardado, pero aún no está activo: cierra la sesión y vuelve a iniciarla para que surta efecto."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:785
 msgid "Scroll animation:"
@@ -3375,7 +3377,7 @@ msgstr "El selector de mapa requiere los paquetes QtLocation y QtPositioning, qu
 
 #: contents/ui/config/configGeneral.qml:102
 msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
-msgstr ""
+msgstr "No se encontró el script de la solución alternativa en el disco. Prueba a desactivar y volver a activar la opción."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:718
 msgid "Theme default"
@@ -3882,7 +3884,7 @@ msgstr "Viento:"
 
 #: contents/ui/config/configGeneral.qml:884
 msgid "Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)"
-msgstr ""
+msgstr "Solucionar los cierres inesperados del mapa de radar en sistemas con GPU híbrida (EXPERIMENTAL)"
 
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:72
 msgid "Wrap to next line"
