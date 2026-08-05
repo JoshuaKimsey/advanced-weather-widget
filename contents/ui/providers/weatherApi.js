@@ -97,14 +97,17 @@ function fetchCurrent(service, W, chain, idx) {
             service._tryProvider(chain, idx + 1);
             return;
         }
+        // Only the index is contributed here — the pollutant concentrations
+        // and pollen come from the shared Open-Meteo air-quality fetch that
+        // runs in parallel. Merging (rather than assigning aqiData) keeps
+        // whichever of the two responses lands second from dropping the
+        // other's fields.
         var aq = d.current.air_quality;
         var epa = aq ? aq["us-epa-index"] : undefined;
-        if (aq) {
-            r.aqiDataStaged = { index: (epa !== undefined) ? epa : NaN, label: _waAqiLabel(epa) };
-        } else {
-            r.aqiData = null;
+        if (epa !== undefined) {
+            service._mergeAqiData({ index: epa, label: _waAqiLabel(epa) });
+            service._nativeAqiSetThisGen = true;
         }
-        r.pollenData = [];
         var astro = (d.forecast && d.forecast.forecastday && d.forecast.forecastday.length > 0)
             ? d.forecast.forecastday[0].astro : null;
         var nd = [];

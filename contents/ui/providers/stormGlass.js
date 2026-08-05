@@ -196,8 +196,9 @@ function fetchCurrent(service, W, chain, idx) {
         }
         _cur.dailyData = nd;
         r.weatherDataStaged = _cur;
-        r.aqiData = null;
-        r.pollenData = [];
+        // No native air quality or pollen — both are supplied by the shared
+        // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
+        // them here would race that fetch and discard its result.
         r.loading = false;
         r.updateText = service._formatUpdateText("stormGlass");
 

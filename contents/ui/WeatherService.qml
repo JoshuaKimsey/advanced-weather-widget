@@ -155,6 +155,16 @@ QtObject {
     // fall back to AlertsJS without having to blank weatherRoot.weatherAlerts
     // up front (which would hide a still-valid alert for the fetch duration).
     property bool _nativeAlertsSetThisGen: false
+    // True once the selected provider has written a native air-quality index
+    // for this refresh generation. The shared Open-Meteo air-quality fetch
+    // always runs alongside it, and uses this flag to contribute only the
+    // pollutant concentrations rather than overwriting the provider's index.
+    property bool _nativeAqiSetThisGen: false
+    // Per-generation accumulator behind _mergeAqiData(), which merges the
+    // provider's index with the shared Open-Meteo fetch's pollutants instead
+    // of letting the later response overwrite the earlier one.
+    property var _aqiAccum: null
+    property int _aqiAccumGen: -1
 
     // Safety timer — if loading stays true for 20 s, force-reset state
     // so the widget never gets stuck in "Loading…" forever.
@@ -205,6 +215,7 @@ QtObject {
         // alert from the UI for the whole duration of the fetch. The provider
         // (or the AlertsJS fallback) replaces it once new data is actually in.
         _nativeAlertsSetThisGen = false;
+        _nativeAqiSetThisGen = false;
 
         var provider = Plasmoid.configuration.weatherProvider || "adaptive";
         var chain = (provider === "adaptive") ? ["openMeteo", "bbc", "metno", "pirateWeather", "visualCrossing", "tomorrowIo", "stormGlass", "weatherbit", "qWeather", "openWeather", "weatherApi"] : [provider];
@@ -889,6 +900,53 @@ QtObject {
     // ─── Shared Open-Meteo air-quality + pollen fallback ────────────────────
 
     /**
+     * Merges a partial air-quality patch into weatherRoot.aqiDataStaged.
+     *
+     * Two independent sources write air-quality data on every refresh: the
+     * selected provider (index + label, on its own scale) and the shared
+     * Open-Meteo fetch below (the six pollutant concentrations). They race,
+     * so a plain assignment lets whichever response lands second discard the
+     * other's fields — which is what used to leave PM2.5 and the rest of the
+     * pollutant rows showing "--" under OpenWeather / WeatherAPI / QWeather.
+     *
+     * Ownership is therefore split: providers merge {index, label} and set
+     * _nativeAqiSetThisGen; the shared fetch merges the pollutants and only
+     * fills in the index when no provider claimed it. Neither clobbers the
+     * other regardless of arrival order.
+     *
+     * At the start of each refresh generation the accumulator is seeded from
+     * the data already on screen rather than from an empty object, so the
+     * card doesn't flash "--" between the first and second response of the
+     * new generation (same reasoning as weatherAlerts in refreshNow()). A
+     * successful shared fetch rewrites all six pollutant keys, so a stale
+     * reading only survives a fetch that failed outright.
+     */
+    function _mergeAqiData(patch) {
+        if (!patch)
+            return;
+        if (_aqiAccumGen !== _refreshGen) {
+            _aqiAccum = weatherRoot.aqiData || {};
+            _aqiAccumGen = _refreshGen;
+        }
+        var merged = {};
+        var k;
+        for (k in _aqiAccum)
+            merged[k] = _aqiAccum[k];
+        for (k in patch) {
+            if (patch[k] === undefined)
+                continue;
+            merged[k] = patch[k];
+        }
+        _aqiAccum = merged;
+        // Hand the staging property a fresh object — QML compares by
+        // reference, so mutating the accumulator in place would not notify.
+        var out = {};
+        for (k in merged)
+            out[k] = merged[k];
+        weatherRoot.aqiDataStaged = out;
+    }
+
+    /**
      * Fetches AQI, pollutant concentrations, and pollen from the Open-Meteo
      * air-quality API and writes them into weatherRoot.
      * Called by providers that don't supply this data natively.
@@ -922,9 +980,10 @@ QtObject {
                     else if (aqi <= 100) label = "Very Poor";
                     else                 label = "Hazardous";
                 }
-                r.aqiDataStaged = {
-                    index: (aqi !== undefined) ? aqi : NaN,
-                    label: label,
+                // Pollutants always come from here — they are the only source
+                // the UI's per-pollutant sub-index bars have. The index is
+                // contributed only when the provider did not supply its own.
+                var patch = {
                     pm10:  (c.pm10            !== undefined) ? c.pm10            : NaN,
                     pm2_5: (c.pm2_5           !== undefined) ? c.pm2_5           : NaN,
                     no2:   (c.nitrogen_dioxide !== undefined) ? c.nitrogen_dioxide : NaN,
@@ -932,6 +991,11 @@ QtObject {
                     o3:    (c.ozone            !== undefined) ? c.ozone            : NaN,
                     co:    (c.carbon_monoxide  !== undefined) ? c.carbon_monoxide / 1000.0 : NaN
                 };
+                if (!_nativeAqiSetThisGen) {
+                    patch.index = (aqi !== undefined) ? aqi : NaN;
+                    patch.label = label;
+                }
+                _mergeAqiData(patch);
                 var pollenKeys = [
                     { key: "alder",   field: "alder_pollen"   },
                     { key: "birch",   field: "birch_pollen"   },

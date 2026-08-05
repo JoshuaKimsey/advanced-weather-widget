@@ -118,8 +118,9 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  c.sunset  || "--",
             dailyData:       []
         };
-        r.aqiData = null;
-        r.pollenData = [];
+        // No native air quality or pollen — both are supplied by the shared
+        // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
+        // them here would race that fetch and discard its result.
         _fetchDailyForecast(service, W, gen);
     };
     req.send();
