@@ -40,6 +40,12 @@
          Written atomically by applyLocation() to avoid 6 separate config-change signals. -->
     <entry name="activeLocation"     type="String"><default>{}</default></entry>
     <entry name="weatherProvider"    type="String"><default>adaptive</default></entry>
+    <!-- Open-Meteo forecast model selection (only used when weatherProvider is
+         "adaptive"/"openMeteo"). "auto" picks the official national high-res
+         model by country (DWD/AROME/UKMO/HRRR/…), falling back to the global
+         best_match where no national model is available. "default" forces the
+         global best_match. Any other value is a literal Open-Meteo models= id. -->
+    <entry name="openMeteoModel"     type="String"><default>auto</default></entry>
     <!-- Saved locations: JSON array of {name, lat, lon, altitude, timezone, countryCode} -->
     <entry name="savedLocations"     type="String"><default>[]</default></entry>
     <!-- User API keys -->
@@ -55,6 +61,11 @@
 
     <!-- ── Behaviour ─────────────────────────────────────────────────── -->
     <entry name="keepOpen"           type="Bool"><default>false</default></entry>
+
+    <!-- ── Visual effects ────────────────────────────────────────────── -->
+    <!-- Static (non-animated) glow rendered behind weather icons. -->
+    <entry name="iconGlowEnabled"    type="Bool"><default>false</default></entry>
+    <entry name="iconGlowIntensity"  type="Double"><default>0.85</default><min>0.1</min><max>1.0</max></entry>
 
     <!-- ── Units ─────────────────────────────────────────────────────── -->
     <!-- unitsMode: "metric" | "imperial" | "kde" | "custom" -->
@@ -108,6 +119,10 @@
     <entry name="panelSimpleTempShadowIntensity" type="Double"><default>0.8</default></entry>
     <entry name="panelSimpleTempShadowColor" type="String"><default></default></entry>
     <entry name="simpleTempColor" type="String"><default></default></entry>
+    <!-- When true, the panel temperature takes its color from the same
+         cold-to-hot scale as the forecast curve (js/tempColors.js) instead of
+         the fixed simpleTempColor above. -->
+    <entry name="simpleTempColorDynamic" type="Bool"><default>false</default></entry>
     <!-- Compressed mode: badge position, spacing, background color -->
     <entry name="compressedBadgePosition"  type="String"><default>bottom-right</default></entry>
     <entry name="compressedBadgeSpacing"   type="Int"><default>0</default><min>-20</min><max>20</max></entry>
@@ -157,8 +172,19 @@
     <entry name="widgetSimpleDetailsOrder" type="String"><default>humidity;pressure;preciprate;precipsum</default></entry>
     <entry name="widgetSimpleDetailsItemIcons" type="String"><default>humidity=1;pressure=1;preciprate=1;precipsum=1</default></entry>
     <entry name="radarEnabled"          type="Bool"><default>true</default></entry>
-    <entry name="radarLayer"            type="String"><default>rainviewer</default></entry>
+    <entry name="radarProvider"         type="String"><default>librewxr</default></entry>
+    <entry name="radarLayer"            type="String"><default>librewxr</default></entry>
     <entry name="radarZoom"             type="Int"><default>9</default><min>3</min><max>18</max></entry>
+    <!-- Base map tiles under both radar maps. "auto" lets each map decide:
+         LibreWXR follows its own light/dark theme, RainViewer uses standard
+         OpenStreetMap. Any other value is an id from providers/mapProviders.js
+         and applies to both maps. -->
+    <entry name="mapBackground"         type="String"><default>auto</default></entry>
+    <entry name="librewxrLayer"         type="String"><default>radar</default></entry>
+    <entry name="librewxrColorScheme"   type="Int"><default>2</default><min>0</min><max>12</max></entry>
+    <entry name="librewxrArrows"        type="Bool"><default>false</default></entry>
+    <entry name="librewxrTheme"         type="String"><default>auto</default></entry>
+    <entry name="librewxrUrl"           type="String"><default>https://api.librewxr.net</default></entry>
 
     <!-- ── Widget — details view ──────────────────────────────────────── -->
     <entry name="widgetDetailsOrder"    type="String"><default>humidity;pressure;wind;dewpoint;visibility;precipsum;moonphase;suntimes;preciprate;uvindex;airquality;pollen;spaceweather;alerts;datetime;snowcover</default></entry>
@@ -278,11 +304,21 @@
     <entry name="autoRefresh"            type="Bool"><default>true</default></entry>
     <entry name="showUpdateText"         type="Bool"><default>true</default></entry>
 
+    <!-- ── Weather alerts ────────────────────────────────────────────── -->
+    <!-- Alert source: "native" = MeteoAlarm (Europe) + NOAA NWS (US) with
+         met.no fallback; "librewxr" = LibreWXR worldwide CAP alerts API;
+         "foss" = KDE FOSS Public Alert Server (worldwide CAP alerts). -->
+    <entry name="alertsProvider" type="String"><default>foss</default></entry>
+    <!-- Base URL of the FOSS Public Alert Server (self-hostable; default is
+         KDE's public instance). -->
+    <entry name="fossAlertUrl"   type="String"><default>https://alerts.kde.org</default></entry>
+
     <!-- ── Notifications ─────────────────────────────────────────────── -->
     <entry name="alertNotificationsEnabled" type="Bool"><default>true</default></entry>
     <entry name="alertNotificationsYellowEnabled" type="Bool"><default>true</default></entry>
     <entry name="alertNotificationsOrangeEnabled" type="Bool"><default>true</default></entry>
     <entry name="alertNotificationsRedEnabled"    type="Bool"><default>true</default></entry>
+    <entry name="alertNotificationsPurpleEnabled" type="Bool"><default>true</default></entry>
     <entry name="alertNotificationsCriticalEnabled" type="Bool"><default>true</default></entry>
     <!-- When false, each alert is shown only once (no repeat, no Dismiss/Postpone actions). -->
     <entry name="alertNotificationsRepeatEnabled" type="Bool"><default>true</default></entry>

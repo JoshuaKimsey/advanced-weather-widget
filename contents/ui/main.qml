@@ -735,6 +735,7 @@ PlasmoidItem {
         return Plasmoid.configuration.temperatureUnit || "C";
     }
     function tempValue(celsius, context) {
+        if (W.isNotSupported(celsius)) return i18n("Not supported");
         var unit = _tempUnit();
         var primary = W.formatTemp(celsius, unit, Plasmoid.configuration.roundValues, Plasmoid.configuration.showTempUnit);
         if (!Plasmoid.configuration.dualTempEnabled) return primary;
@@ -767,6 +768,7 @@ PlasmoidItem {
         return Plasmoid.configuration.pressureUnit || "hPa";
     }
     function pressureValue(hpa) {
+        if (W.isNotSupported(hpa)) return i18n("Not supported");
         if (isNaN(hpa) || hpa === null || hpa === undefined) return "--";
         var unit = _pressureUnit();
         return W.formatPressureValue(hpa, unit) + " " + i18n(W.pressureUnitLabel(unit));
@@ -779,6 +781,7 @@ PlasmoidItem {
     }
 
     function precipValue(mmh) {
+        if (W.isNotSupported(mmh)) return i18n("Not supported");
         if (isNaN(mmh)) return "--";
         if (_isImperial())
             return (mmh / 25.4).toFixed(2) + " " + i18n("in/h");
@@ -786,6 +789,7 @@ PlasmoidItem {
     }
 
     function precipSumText(mm) {
+        if (W.isNotSupported(mm)) return i18n("Not supported");
         if (isNaN(mm)) return "--";
         if (_isImperial())
             return (mm / 25.4).toFixed(2) + " " + i18n("in");
@@ -793,6 +797,7 @@ PlasmoidItem {
     }
 
     function visibilityValue(km) {
+        if (W.isNotSupported(km)) return i18n("Not supported");
         if (isNaN(km)) return "--";
         if (_isImperial())
             return (km * 0.621371).toFixed(1) + " " + i18n("mi");
@@ -820,6 +825,7 @@ PlasmoidItem {
     }
 
     function uvIndexText(uv) {
+        if (W.isNotSupported(uv)) return i18n("Not supported");
         if (isNaN(uv)) return "--";
         var v = Math.round(uv * 10) / 10;
         if (v <= 2) return v + " (" + i18n("Low") + ")";
@@ -1067,8 +1073,9 @@ PlasmoidItem {
         return nowM >= t;
     }
 
-    function _alertColorAllowed(color) {
+    function _alertColorAllowed(color, severity) {
         var c = (color || "").toLowerCase();
+        var s = (severity || "").toLowerCase();
         // Backward-compatible fallback to old minSeverity if new switches are absent.
         var hasSwitches = (Plasmoid.configuration.alertNotificationsYellowEnabled !== undefined)
             && (Plasmoid.configuration.alertNotificationsOrangeEnabled !== undefined)
@@ -1082,6 +1089,12 @@ PlasmoidItem {
                 return p >= 1;
             return p >= 2;
         }
+        // Extreme is its own "purple" tier — the parsers map it to color "red",
+        // so distinguish it by severity here. When the purple switch is absent
+        // (older config), fall through to the red switch so extreme alerts are
+        // never silently dropped.
+        if (s === "extreme" && Plasmoid.configuration.alertNotificationsPurpleEnabled !== undefined)
+            return Plasmoid.configuration.alertNotificationsPurpleEnabled === true;
         if (c === "red")
             return Plasmoid.configuration.alertNotificationsRedEnabled === true;
         if (c === "orange")
@@ -1182,9 +1195,13 @@ PlasmoidItem {
         return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    /** Maps an alert severity color to a colored-circle emoji — KDE notification
-     *  bodies strip <font color>, but emoji glyphs keep their own color. */
-    function _alertSeverityEmoji(color) {
+    /** Maps an alert severity/color to a colored-circle emoji — KDE notification
+     *  bodies strip <font color>, but emoji glyphs keep their own color.
+     *  Extreme gets its own purple marker so it's visually distinct from
+     *  Severe (both of which the parsers map to color "red"). */
+    function _alertSeverityEmoji(color, severity) {
+        var s = (severity || "").toLowerCase();
+        if (s === "extreme") return "🟣"; // 🟣 purple — Extreme
         var c = (color || "").toLowerCase();
         if (c === "red")    return "🔴"; // 🔴
         if (c === "orange") return "🟠"; // 🟠
@@ -1192,14 +1209,31 @@ PlasmoidItem {
         return "";
     }
 
+    /** Translatable, uppercased severity label. Maps the CAP severity enum
+     *  (Extreme/Severe/Moderate/Minor/Unknown) and the color fallbacks
+     *  (red/orange/yellow/green) to localized strings; unknown values fall
+     *  back to the raw string, uppercased. */
+    function _alertSeverityLabel(severity) {
+        var s = (severity || "").trim().toLowerCase();
+        switch (s) {
+        case "extreme":              return i18nc("Alert severity", "EXTREME");
+        case "severe":  case "red":  return i18nc("Alert severity", "SEVERE");
+        case "moderate": case "orange": return i18nc("Alert severity", "MODERATE");
+        case "minor":   case "yellow": return i18nc("Alert severity", "MINOR");
+        case "unknown":              return i18nc("Alert severity", "UNKNOWN");
+        case "green":                return i18nc("Alert severity", "MINIMAL");
+        }
+        return (severity || "").toUpperCase();
+    }
+
     /** Notification body: severity, headline, effective range, instruction, provider. */
     function _alertNotificationBody(a) {
         var lines = [];
-        var emoji = _alertSeverityEmoji(a.color);
         var severity = (a.severity || a.color || "").trim();
+        var emoji = _alertSeverityEmoji(a.color, a.severity);
         if (severity.length > 0) {
             var marker = emoji.length > 0 ? (emoji + " ") : "";
-            lines.push(i18n("<b>Severity:</b> %1%2", marker, _escapeHtml(severity.toUpperCase())));
+            lines.push(i18n("<b>Severity:</b> %1%2", marker, _escapeHtml(_alertSeverityLabel(severity))));
         }
         lines.push(i18n("<b>Headline:</b> %1", _escapeHtml(a.displayName || a.headline || i18n("Weather alert"))));
         var range = _alertEffectiveRangeText(a);
@@ -1377,7 +1411,7 @@ PlasmoidItem {
             var a = alerts[i];
             if (!_isAlertActiveNow(a, now))
                 continue;
-            if (!_alertColorAllowed(a.color))
+            if (!_alertColorAllowed(a.color, a.severity))
                 continue;
             if (!_alertTypeEnabled(a.awarenessType))
                 continue;
@@ -1958,6 +1992,14 @@ PlasmoidItem {
                     return customMap[condKey];
             }
             return W.weatherCodeToIcon(code, night);
+        }
+        // Bundled SVG themes: the style itself names the folder under contents/icons/.
+        // Only the 32 px variants are requested — every size folder holds the same
+        // artwork (identical viewBox), they differ only by the SVG width attribute,
+        // and Kirigami.Icon sizes the result itself.
+        if (style === "symbolic-bundled" || style === "flat-color" || style === "3d-oxygen") {
+            var bundledTheme = (style === "symbolic-bundled") ? "symbolic" : style;
+            return IconResolver.svgUrl(IconResolver._conditionSvgStem(code, night), 32, _iconsBaseDir, bundledTheme);
         }
         if (style === "colorful" || theme === "kde" || theme === "custom")
             return W.weatherCodeToIcon(code, night);

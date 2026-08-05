@@ -1070,6 +1070,7 @@ KCM.AbstractKCM {
     property double cfg_panelSimpleTempShadowIntensity: 0.8
     property string cfg_panelSimpleTempShadowColor: ""   // empty = theme background
     property string cfg_simpleTempColor: ""              // empty = theme text color
+    property bool   cfg_simpleTempColorDynamic: false    // true = follow the forecast curve scale
     // Compressed badge options
     property string cfg_compressedBadgePosition: "bottom-right"
     property int cfg_compressedBadgeSpacing: 0
@@ -1117,6 +1118,8 @@ KCM.AbstractKCM {
     property string cfg_widgetIconTheme: "symbolic"   // "kde" | "wi-font" | "flat-color" | "symbolic" | "3d-oxygen"
     property string cfg_conditionIconTheme: "kde"      // controls main hero condition icon in widget popup
     property string cfg_widgetConditionCustomIcons: ""   // custom per-condition icons for the widget popup
+    property bool cfg_iconGlowEnabled: false           // static glow behind weather icons
+    property double cfg_iconGlowIntensity: 0.85        // glow strength 0.1–1.0
     property string cfg_widgetLayoutMode: "advanced"  // "advanced" | "simple"
     property string cfg_widgetSimpleDetailsOrder: "humidity;pressure;preciprate;precipsum"
     property string cfg_widgetSimpleDetailsItemIcons: "humidity=1;pressure=1;preciprate=1;precipsum=1"

@@ -20,6 +20,7 @@ import QtQuick.Controls
 import QtWebEngine
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
+import "../providers/mapProviders.js" as MapProvidersJS
 
 Item {
     id: radarRoot
@@ -29,8 +30,62 @@ Item {
     readonly property double lat:    weatherRoot ? (Plasmoid.configuration.latitude  || 0) : 0
     readonly property double lon:    weatherRoot ? (Plasmoid.configuration.longitude || 0) : 0
     readonly property string owmKey: Plasmoid.configuration.owApiKey || ""
-    readonly property string activeLayer: Plasmoid.configuration.radarLayer || "rainviewer"
+    // Plasmoid.configuration.radarLayer should only ever be "rainviewer" or one
+    // of the layers[] ids below. It has been observed holding "librewxr" —
+    // a value that belongs in the separate radarProvider key instead — which
+    // silently took the "OWM overlay, no key" branch everywhere downstream
+    // (no RainViewer API call, createLayer() returns null, nothing renders).
+    // Guard against any value we don't recognize rather than trusting it.
+    readonly property string activeLayer: {
+        var v = Plasmoid.configuration.radarLayer || "rainviewer";
+        for (var i = 0; i < layers.length; i++) {
+            if (layers[i].id === v) return v;
+        }
+        console.warn("[Advanced Weather Widget Radar/WebEngine] radarLayer config has unrecognized value:", v, "- falling back to rainviewer");
+        return "rainviewer";
+    }
     readonly property int    initialZoom: Plasmoid.configuration.radarZoom || 9
+    readonly property string mapBackground: Plasmoid.configuration.mapBackground || "auto"
+    /** Set while the in-map layer button is what changed the background. */
+    property bool _backgroundFromMap: false
+
+    // The RainViewer weather-maps.json fetch used to be done with an XHR
+    // *inside* the WebEngineView page. Pages created via loadHtml() can end
+    // up with an opaque/unique security origin in QtWebEngine even when a
+    // baseUrl is given, which makes that in-page XHR fail as a silent CORS
+    // error (no onerror before this fix) — the base map (image tiles, which
+    // aren't subject to CORS) still renders fine, so nothing *looked* broken
+    // except the missing radar overlay. We now also fetch this JSON from the
+    // QML/JS engine, which isn't a browser security context and isn't
+    // affected by that restriction, and push the result into the page.
+    property string rainviewerApiJson: ""
+    property bool webViewPageReady: false
+
+    onRainviewerApiJsonChanged: _pushApiToPage()
+    onWebViewPageReadyChanged: _pushApiToPage()
+
+    function _pushApiToPage() {
+        if (!webViewPageReady || !rainviewerApiJson) return;
+        webView.runJavaScript("window.applyRainviewerApi && window.applyRainviewerApi(" + JSON.stringify(rainviewerApiJson) + ");");
+    }
+
+    function _fetchRainviewerApi() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://api.rainviewer.com/public/weather-maps.json", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return;
+            if (xhr.status === 200) {
+                console.log("[Advanced Weather Widget Radar/WebEngine] host-side RainViewer API fetch OK; length=", xhr.responseText.length);
+                radarRoot.rainviewerApiJson = xhr.responseText;
+            } else {
+                console.warn("[Advanced Weather Widget Radar/WebEngine] host-side RainViewer API fetch failed; status=", xhr.status);
+            }
+        };
+        xhr.onerror = function() {
+            console.warn("[Advanced Weather Widget Radar/WebEngine] host-side RainViewer API fetch network error");
+        };
+        xhr.send();
+    }
 
     readonly property var localeInfo: {
         var d = new Date(2025, 0, 31); // January 31
@@ -57,6 +112,7 @@ Item {
                     "lon=", lon, "layer=", activeLayer,
                     "zoom=", initialZoom, "owmKeyPresent=", owmKey.length > 0,
                     "qt=", Qt.version, "platform=", Qt.platform.os);
+        _fetchRainviewerApi();
     }
 
     // ── Wi-font icon loader ───────────────────────────────────────────────
@@ -77,10 +133,21 @@ Item {
         { id: "pressure_new",      label: i18n("Pressure"),    glyph: "\uF079", freeKey: false }
     ]
 
+    // ── Base map choices offered by the in-map layer button ──────────────
+    // RainViewer has no light/dark theme of its own, so themeHint stays empty
+    // and "auto" resolves to the standard OSM tiles this map always used.
+    readonly property MapBackgroundChoices backgroundChoices: MapBackgroundChoices {}
+
     // ── Build the Leaflet HTML page ──────────────────────────────────────
-    function _buildHtml(lat, lon, owmKey, layer, initZoom) {
+    function _buildHtml(lat, lon, owmKey, layer, initZoom, mapBackground) {
         var owmKeyJs   = JSON.stringify(owmKey || "");
         var layerJs    = JSON.stringify(layer  || "rainviewer");
+        var baseMap    = MapProvidersJS.resolveMapBackground(mapBackground);
+        var baseUrlJs  = JSON.stringify(baseMap.tileUrlTemplate);
+        var baseAttrJs = JSON.stringify(baseMap.attribution);
+        var bgListJs   = radarRoot.backgroundChoices.toJson();
+        var bgCurrJs   = JSON.stringify(mapBackground || "auto");
+        var titleBg    = JSON.stringify(i18n("Map background"));
         var fontFamily = JSON.stringify(Kirigami.Theme.defaultFont.family || "sans-serif");
         var titlePrev  = JSON.stringify(i18n("Recent"));
         var titlePlay  = JSON.stringify(i18n("Play"));
@@ -101,6 +168,7 @@ Item {
         var svgPause = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="white" d="M4 3h3v10H4zm5 0h3v10H9z"/><\/svg>';
         var svgNext  = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="white" d="M10.5 3H12v10h-1.5zM4.5 3l6 5-6 5z"/><\/svg>';
         var svgLoc   = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="3" fill="white"/><path fill="white" d="M8 1v2M8 13v2M1 8h2M13 8h2" stroke="white" stroke-width="1.5"/><circle cx="8" cy="8" r="6" fill="none" stroke="white" stroke-width="1.2"/><\/svg>';
+        var svgLayers = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="white" d="M8 1.5L1.5 5 8 8.5 14.5 5 8 1.5z"/><path fill="none" stroke="white" stroke-width="1.3" d="M1.8 8.2L8 11.5l6.2-3.3M1.8 11.2L8 14.5l6.2-3.3"/><\/svg>';
         return '<!DOCTYPE html>\
 <html>\
 <head>\
@@ -133,6 +201,28 @@ Item {
   .base-dimmed img { filter: saturate(0.8) brightness(0.85); }\
   #timeLabel { font-size:10px; font-weight:bold; color:#fff; white-space:nowrap; \
     font-family:' + fontFamily + '; background:rgba(0,0,0,0.55); border-radius:6px; padding:2px 6px; }\
+  /* Sits inside #controls, under the player row, so the layers button is in\
+     the same corner as the one on the LibreWXR map. */\
+  #bgControl {\
+    display:flex; flex-direction:column; align-items:flex-end; gap:4px;\
+    font-family:' + fontFamily + ';\
+  }\
+  #btnBg {\
+    background:rgba(0,0,0,0.55); border:none; border-radius:6px;\
+    width:28px; height:28px; padding:0; cursor:pointer;\
+    display:flex; align-items:center; justify-content:center;\
+  }\
+  #btnBg:hover { background:rgba(0,0,0,0.75); }\
+  #btnBg img { width:16px; height:16px; display:block; }\
+  #bgMenu {\
+    display:none; background:rgba(0,0,0,0.75); border-radius:6px; padding:4px;\
+  }\
+  #bgMenu div {\
+    color:#fff; font-size:11px; padding:4px 8px; border-radius:4px;\
+    cursor:pointer; white-space:nowrap;\
+  }\
+  #bgMenu div:hover { background:rgba(255,255,255,0.2); }\
+  #bgMenu div.active { font-weight:bold; }\
 <\/style>\
 <\/head>\
 <body>\
@@ -146,6 +236,10 @@ Item {
     <button id="btnLoc" title=' + titleLoc   + '><img src="data:image/svg+xml,' + encodeURIComponent(svgLoc) + '"/><\/button>\
   <\/div>\
   <span id="timeLabel">Loading...<\/span>\
+  <div id="bgControl">\
+    <button id="btnBg" title=' + titleBg + '><img src="data:image/svg+xml,' + encodeURIComponent(svgLayers) + '"/><\/button>\
+    <div id="bgMenu"><\/div>\
+  <\/div>\
 <\/div>\
 <script>\
 var LAT = ' + lat + ';\
@@ -156,6 +250,17 @@ var ACTIVE_LAYER = ' + layerJs + ';\
 var SYS_LOCALE = ' + localeJs + ';\
 var LOC_INFO = ' + locInfoJs + ';\
 var HOUR12 = ' + hour12Js + ';\
+var BASE_TILE_URL = ' + baseUrlJs + ';\
+var BASE_ATTRIBUTION = ' + baseAttrJs + ';\
+var BASE_MAX_ZOOM = ' + baseMap.maxZoom + ';\
+var BG_LIST = ' + bgListJs + ';\
+var BG_CURRENT = ' + bgCurrJs + ';\
+/* Backgrounds stop at different zoom levels (OpenTopoMap at 17, OSM at 19),\
+   and radarZoom goes up to 18. Past its own maxZoom a Leaflet layer renders\
+   nothing at all, which would leave the base map blank under the radar, so\
+   cap every background at the same MAP_MAX_ZOOM and let Leaflet upscale the\
+   deepest tiles it does have through maxNativeZoom. */\
+var MAP_MAX_ZOOM = 19;\
 var TILE_SIZE = 512;\
 var RADAR_OPACITY = 0.6;\
 var OWM_OPACITY  = 1.00;\
@@ -168,10 +273,12 @@ var map = L.map("map", { zoomControl: true, attributionControl: true })\
 map.on("zoomend", function() { document.title = "zoom:" + map.getZoom(); });\
 \
 var _baseClass = (ACTIVE_LAYER !== "rainviewer") ? "base-dimmed" : "";\
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {\
-    attribution: "\u00a9 <a href=\'https://www.openstreetmap.org/copyright\'>OpenStreetMap</a> contributors",\
-    maxZoom: 19,\
-    className: _baseClass\
+var baseLayer = L.tileLayer(BASE_TILE_URL, {\
+    attribution: BASE_ATTRIBUTION,\
+    maxNativeZoom: BASE_MAX_ZOOM,\
+    maxZoom: MAP_MAX_ZOOM,\
+    className: _baseClass,\
+    zIndex: 1\
 }).addTo(map);\
 \
 L.marker([LAT, LON]).addTo(map);\
@@ -184,6 +291,7 @@ var animTimer = null;\
 var currentLayer = null;\
 var layerCache = {};\
 var isLoading = false;\
+var cachedApiJson = null;\
 \
 function wrapPos(p, wrap) {\
     if (wrap) {\
@@ -320,16 +428,52 @@ function loadApi() {\
     }\
     document.getElementById("ctrlRow").style.display = "flex";\
     document.getElementById("timeLabel").style.display = "";\
+    if (cachedApiJson) {\
+        try {\
+            initFrames(JSON.parse(cachedApiJson));\
+            return;\
+        } catch(e) { /* fall through to network fetch */ }\
+    }\
     var xhr = new XMLHttpRequest();\
     xhr.open("GET", API_URL, true);\
+    xhr.timeout = 8000;\
     xhr.onload = function() {\
+        if (xhr.status !== 200) {\
+            console.error("[radar] RainViewer API HTTP " + xhr.status + " " + xhr.statusText);\
+            return;\
+        }\
         try {\
             apiData = JSON.parse(xhr.responseText);\
+            cachedApiJson = xhr.responseText;\
             initFrames(apiData);\
-        } catch(e) {}\
+        } catch(e) {\
+            console.error("[radar] RainViewer API JSON parse failed: " + e);\
+        }\
+    };\
+    xhr.onerror = function() {\
+        console.error("[radar] RainViewer API request failed (network/CORS) - waiting for host-side fetch");\
+    };\
+    xhr.ontimeout = function() {\
+        console.error("[radar] RainViewer API request timed out - waiting for host-side fetch");\
     };\
     xhr.send();\
 }\
+\
+/* Fallback / primary data path: QML runs outside the page\'s browser security\
+ * context, so it is not subject to the CORS restrictions that can silently\
+ * kill the in-page XHR above (e.g. the opaque origin QtWebEngine sometimes\
+ * assigns to pages created via loadHtml()). radarRoot fetches\
+ * weather-maps.json itself and calls this once it has the data. */\
+window.applyRainviewerApi = function(jsonText) {\
+    cachedApiJson = jsonText;\
+    if (ACTIVE_LAYER !== "rainviewer") return;\
+    try {\
+        apiData = JSON.parse(jsonText);\
+        initFrames(apiData);\
+    } catch(e) {\
+        console.error("[radar] applyRainviewerApi parse failed: " + e);\
+    }\
+};\
 \
 var TITLE_PLAY  = ' + titlePlay  + ';\
 var TITLE_PAUSE = ' + titlePause + ';\
@@ -358,6 +502,72 @@ document.getElementById("slider").oninput   = function() { stopAnim(); showFrame
 document.getElementById("btnLoc").onclick   = function() { map.setView([LAT, LON], map.getZoom()); };\
 \
 map.on("movestart", clearCache);\
+\
+function bgEntry(id) {\
+    for (var i = 0; i < BG_LIST.length; i++) if (BG_LIST[i].id === id) return BG_LIST[i];\
+    return BG_LIST[0];\
+}\
+\
+/* Keep the base map dimmed while an OWM overlay is on top, so precipitation\
+   stays readable. Applied to the live container, since the class has to follow\
+   layer switches and not just the initial page load.\
+   Block comment on purpose: this script is emitted as a single line. */\
+function updateBaseDim() {\
+    if (!baseLayer) return;\
+    var c = baseLayer.getContainer();\
+    if (!c) return;\
+    if (ACTIVE_LAYER !== "rainviewer") c.classList.add("base-dimmed");\
+    else c.classList.remove("base-dimmed");\
+}\
+\
+function applyBackground(id) {\
+    var e = bgEntry(id);\
+    BG_CURRENT = e.id;\
+    var next = L.tileLayer(e.url, {\
+        attribution: e.attribution,\
+        maxNativeZoom: e.maxZoom,\
+        maxZoom: MAP_MAX_ZOOM,\
+        zIndex: 1\
+    }).addTo(map);\
+    if (baseLayer) map.removeLayer(baseLayer);\
+    baseLayer = next;\
+    updateBaseDim();\
+    renderBgMenu();\
+}\
+\
+function renderBgMenu() {\
+    var menu = document.getElementById("bgMenu");\
+    menu.innerHTML = "";\
+    for (var i = 0; i < BG_LIST.length; i++) {\
+        (function(entry) {\
+            var row = document.createElement("div");\
+            row.textContent = entry.label;\
+            if (entry.id === BG_CURRENT) row.className = "active";\
+            row.onclick = function(ev) {\
+                ev.stopPropagation();\
+                menu.style.display = "none";\
+                if (entry.id === BG_CURRENT) return;\
+                applyBackground(entry.id);\
+                document.title = "bg:" + entry.id;\
+            };\
+            menu.appendChild(row);\
+        })(BG_LIST[i]);\
+    }\
+}\
+\
+document.getElementById("btnBg").onclick = function(ev) {\
+    ev.stopPropagation();\
+    var menu = document.getElementById("bgMenu");\
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";\
+};\
+document.addEventListener("click", function() {\
+    document.getElementById("bgMenu").style.display = "none";\
+});\
+renderBgMenu();\
+\
+window.setBackground = function(id) {\
+    if (id !== BG_CURRENT) applyBackground(id);\
+};\
 \
 window.setLayer = function(layer, owmKey) {\
     ACTIVE_LAYER = layer;\
@@ -464,9 +674,17 @@ loadApi();\
             onContextMenuRequested: function(request) { request.accepted = true; }
 
             Component.onCompleted: {
-                var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom);
+                var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom, radarRoot.mapBackground);
                 console.log("[Advanced Weather Widget Radar/WebEngine] WebEngineView completed; calling loadHtml, htmlLength=", html.length);
+                radarRoot.webViewPageReady = false;
                 webView.loadHtml(html, "https://rainviewer.com/");
+            }
+
+            // Surface console.log/warn/error from inside the page (RainViewer
+            // XHR failures, Leaflet errors, etc.) in Plasma's own log output —
+            // otherwise failures inside the sandboxed page are invisible.
+            onJavaScriptConsoleMessage: function(level, message, lineNumber, sourceID) {
+                console.log("[Advanced Weather Widget Radar/WebEngine][page console]", message, "(line", lineNumber + ")");
             }
 
             onLoadingChanged: function(loadRequest) {
@@ -475,6 +693,9 @@ loadApi();\
                             "url=", loadRequest.url,
                             "errorCode=", loadRequest.errorCode,
                             "error=", loadRequest.errorString);
+                if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
+                    radarRoot.webViewPageReady = true;
+                }
             }
 
             onRenderProcessTerminated: function(terminationStatus, exitCode) {
@@ -488,6 +709,14 @@ loadApi();\
                     if (!isNaN(z) && z !== Plasmoid.configuration.radarZoom) {
                         Plasmoid.configuration.radarZoom = z;
                     }
+                } else if (title.indexOf("bg:") === 0) {
+                    // Picked from the in-map layer button: the page already swapped
+                    // its tiles, so persist the choice without reloading the page.
+                    var bg = title.substring(3);
+                    if (bg.length > 0 && bg !== Plasmoid.configuration.mapBackground) {
+                        radarRoot._backgroundFromMap = true;
+                        Plasmoid.configuration.mapBackground = bg;
+                    }
                 }
             }
 
@@ -495,14 +724,28 @@ loadApi();\
             Connections {
                 target: radarRoot
                 function onLatChanged() {
-                    var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom);
+                    var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom, radarRoot.mapBackground);
                     console.log("[Advanced Weather Widget Radar/WebEngine] latitude changed; reloading html, lat=", radarRoot.lat, "lon=", radarRoot.lon);
+                    radarRoot.webViewPageReady = false;
+                    radarRoot._fetchRainviewerApi();
                     webView.loadHtml(html, "https://rainviewer.com/");
                 }
                 function onLonChanged() {
-                    var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom);
+                    var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom, radarRoot.mapBackground);
                     console.log("[Advanced Weather Widget Radar/WebEngine] longitude changed; reloading html, lat=", radarRoot.lat, "lon=", radarRoot.lon);
+                    radarRoot.webViewPageReady = false;
+                    radarRoot._fetchRainviewerApi();
                     webView.loadHtml(html, "https://rainviewer.com/");
+                }
+                function onMapBackgroundChanged() {
+                    if (radarRoot._backgroundFromMap) {
+                        // The map itself made the change; swapping tiles again
+                        // would throw away the current pan and zoom.
+                        radarRoot._backgroundFromMap = false;
+                        return;
+                    }
+                    console.log("[Advanced Weather Widget Radar/WebEngine] map background changed; background=", radarRoot.mapBackground);
+                    webView.runJavaScript("window.setBackground(" + JSON.stringify(radarRoot.mapBackground) + ");");
                 }
             }
         }
@@ -602,10 +845,12 @@ loadApi();\
     }
 
     function reload() {
-        var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom);
+        var html = radarRoot._buildHtml(radarRoot.lat, radarRoot.lon, radarRoot.owmKey, radarRoot.activeLayer, radarRoot.initialZoom, radarRoot.mapBackground);
         console.log("[Advanced Weather Widget Radar/WebEngine] reload; htmlLength=", html.length,
                     "lat=", radarRoot.lat, "lon=", radarRoot.lon,
                     "layer=", radarRoot.activeLayer);
+        radarRoot.webViewPageReady = false;
+        radarRoot._fetchRainviewerApi();
         webView.loadHtml(html, "https://rainviewer.com/");
     }
 }
