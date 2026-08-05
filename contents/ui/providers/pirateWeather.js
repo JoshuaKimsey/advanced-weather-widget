@@ -171,10 +171,9 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  day0 && day0.sunsetTime  ? Qt.formatTime(new Date(day0.sunsetTime  * 1000), "HH:mm") : "--",
             dailyData:       nd
         };
-        // Air quality is now fetched natively — see fetchAirQuality() below.
-        // (Previously this line nulled r.aqiData out immediately, since PW
-        // had no AQI support and the shared/universal fetch owned this field.)
-        r.pollenData = [];
+        // No native air quality or pollen — both are supplied by the shared
+        // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
+        // them here would race that fetch and discard its result.
         r.loading = false;
         r.updateText = service._formatUpdateText("pirateWeather");
 
@@ -344,19 +343,20 @@ function _aqiBandKey(index) {
  * concentrations (pm25/pm10 in µg/m³, the rest in ppb) don't change with
  * units, so this request is intentionally scoped to `currently` only.
  *
- * Gas concentrations are converted ppb -> µg/m³ to match pm10/pm2_5 and
- * (assumed) what AQI.js's per-pollutant bands expect — flag this if your
- * AQI.js actually wants ppb or mg/m³ for CO, and the conversion can be
- * dropped or adjusted.
+ * Gas concentrations are converted ppb -> µg/m³ to match pm10/pm2_5, which
+ * is what airQuality.js's per-pollutant bands expect for o3/no2/so2. CO is
+ * the exception: its band table is in mg/m³, so it takes a further /1000.
+ *
+ * NOTE: this function is not currently dispatched from Providers.qml — Pirate
+ * Weather's air quality is served by the shared Open-Meteo fetch like every
+ * other provider's. It is kept here, conforming to the _mergeAqiData()
+ * contract, for whenever the native path is wired up.
  */
 function fetchAirQuality(service, W) {
     var gen = service._refreshGen;
-    var r = service.weatherRoot;
     var key = service._pwKey();
-    if (!key) {
-        service._fetchAqiIfNeeded();
+    if (!key)
         return;
-    }
 
     var url = "https://api.pirateweather.net/forecast/"
         + encodeURIComponent(key) + "/"
@@ -370,25 +370,21 @@ function fetchAirQuality(service, W) {
         if (req.readyState !== XMLHttpRequest.DONE)
             return;
         if (service._refreshGen !== gen) return;
-        if (req.status !== 200) {
-            service._fetchAqiIfNeeded();
+        if (req.status !== 200)
             return;
-        }
         try {
             var d = JSON.parse(req.responseText);
         } catch (e) {
-            service._fetchAqiIfNeeded();
             return;
         }
 
         var c = d.currently;
         // -999 is PW's sentinel for "not available at this location/time"
-        if (!c || c.airQualityIndex === undefined || c.airQualityIndex === -999) {
-            service._fetchAqiIfNeeded();
+        if (!c || c.airQualityIndex === undefined || c.airQualityIndex === -999)
             return;
-        }
 
-        r.aqiDataStaged = {
+        var co = _ppbToUgm3(c.coConcentration, _MOLAR_MASS.co);
+        service._mergeAqiData({
             index: c.airQualityIndex,
             label: _aqiBandKey(c.airQualityIndex),
             pm10:  (c.pm10 !== undefined) ? c.pm10 : NaN,
@@ -396,18 +392,9 @@ function fetchAirQuality(service, W) {
             o3:    _ppbToUgm3(c.ozoneConcentration, _MOLAR_MASS.o3),
             no2:   _ppbToUgm3(c.no2Concentration, _MOLAR_MASS.no2),
             so2:   _ppbToUgm3(c.so2Concentration, _MOLAR_MASS.so2),
-            // aqiData.co is mg/m³ by convention
-            // WeatherService.qml's Open-Meteo path, which divides by 1000 for the same reason
-            //  every other pollutant here stays in µg/m³, so only CO gets the extra /1000 after the ppb conversion.
-            co:    _ppbToUgm3(c.coConcentration, _MOLAR_MASS.co) / 1000
-        };
-
+            co:    isNaN(co) ? NaN : co / 1000.0   // airQuality.js bands CO in mg/m³
+        });
         service._nativeAqiSetThisGen = true;
-
-        // Mirrors _fetchAlertsIfNeeded(): call unconditionally so the
-        // shared/universal AQI source only fills in when PW didn't
-        // deliver native data this generation.
-        service._fetchAqiIfNeeded();
     };
     req.send();
 }

@@ -160,14 +160,19 @@ function _owAqiLabel(aqi) {
     return "";
 }
 
+/**
+ * OpenWeather supplies only its own 1–5 index here, not the pollutant
+ * concentrations the details card charts. Those arrive from the shared
+ * Open-Meteo air-quality fetch that WeatherService.refreshNow() runs in
+ * parallel, so every exit path below leaves weatherRoot.aqiData alone
+ * rather than nulling it — clearing it here would race that fetch and
+ * blank the pollutant rows depending on which response landed last.
+ */
 function _fetchAirQuality(service, W) {
     var gen = service._refreshGen;
-    var r = service.weatherRoot;
     var key = service._owKey();
-    if (!key) {
-        r.aqiData = null;
+    if (!key)
         return;
-    }
     var url = "https://api.openweathermap.org/data/2.5/air_pollution?lat="
         + service.latitude + "&lon=" + service.longitude
         + "&appid=" + encodeURIComponent(key);
@@ -177,19 +182,16 @@ function _fetchAirQuality(service, W) {
         if (req.readyState !== XMLHttpRequest.DONE)
             return;
         if (service._refreshGen !== gen) return;
-        if (req.status !== 200) {
-            r.aqiData = null;
-            r.pollenData = [];
+        if (req.status !== 200)
             return;
-        }
         var d = JSON.parse(req.responseText);
         if (d.list && d.list.length > 0 && d.list[0].main) {
             var aqi = d.list[0].main.aqi;
-            r.aqiDataStaged = { index: aqi, label: _owAqiLabel(aqi) };
-        } else {
-            r.aqiData = null;
+            service._mergeAqiData({ index: aqi, label: _owAqiLabel(aqi) });
+            service._nativeAqiSetThisGen = true;
         }
-        r.pollenData = []; // not available in OpenWeather free tier
+        // Pollen is not available in the OpenWeather free tier; the shared
+        // Open-Meteo fetch supplies it.
     };
     req.send();
 }

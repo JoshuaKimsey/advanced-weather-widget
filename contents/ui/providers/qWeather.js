@@ -271,8 +271,14 @@ function _qwAqiLabel(category) {
     return "";
 }
 
+/**
+ * QWeather contributes only its own index here. The pollutant concentrations
+ * charted by the details card come from the shared Open-Meteo air-quality
+ * fetch running in parallel, so the exit paths below leave
+ * weatherRoot.aqiData untouched instead of nulling it — clearing it would
+ * race that fetch and blank the pollutant rows.
+ */
 function _fetchAirQuality(service, W, key, loc, gen, base) {
-    var r = service.weatherRoot;
     var url = base + "/airquality/v1/current?location=" + encodeURIComponent(loc);
 
     var req = new XMLHttpRequest();
@@ -281,25 +287,20 @@ function _fetchAirQuality(service, W, key, loc, gen, base) {
     req.onreadystatechange = function () {
         if (req.readyState !== XMLHttpRequest.DONE) return;
         if (service._refreshGen !== gen) return;
-        if (req.status !== 200) {
-            r.aqiData = null;
-            r.pollenData = [];
+        if (req.status !== 200)
             return;
-        }
         var d;
         try { d = JSON.parse(req.responseText); } catch (e) {
-            r.aqiData = null;
-            r.pollenData = [];
             return;
         }
         if (d.code === "200" && d.indexes && d.indexes.length > 0) {
             var idx = d.indexes[0];
-            var aqi = parseFloat(idx.aqiDisplay) || NaN;
-            r.aqiDataStaged = { index: aqi, label: _qwAqiLabel(parseInt(idx.category, 10)) };
-        } else {
-            r.aqiData = null;
+            var aqi = parseFloat(idx.aqiDisplay);
+            if (!isNaN(aqi)) {
+                service._mergeAqiData({ index: aqi, label: _qwAqiLabel(parseInt(idx.category, 10)) });
+                service._nativeAqiSetThisGen = true;
+            }
         }
-        r.pollenData = [];
     };
     req.send();
 }
