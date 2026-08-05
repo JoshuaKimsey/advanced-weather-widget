@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-03 15:19+0300\n"
-"PO-Revision-Date: 2026-07-20 21:25+0800\n"
+"PO-Revision-Date: 2026-08-04 17:04+0800\n"
 "Last-Translator: Yo\n"
 "Language-Team: \n"
 "Language: zh_TW\n"
@@ -133,6 +133,8 @@ msgid ""
 "<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
 "                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 msgstr ""
+"<b>混合 GPU / NVIDIA PRIME + Wayland 當機解決方案</b><br/><br/>在部分執行 Wayland 的混合 GPU 筆電上，由於兩張 GPU 之間存在驅動程式層級的衝突，雷達分頁內嵌的瀏覽器畫面在首次繪製時可能導致整個 Plasma shell 當機。此選項會停用該瀏覽器畫面內的 GPU 加速合成功能，以避免這個問題。<br/><br/>只有在您實際遇到這個當機問題時才建議開啟──這會犧牲雷達地圖的一些繪圖效能。<br/><br/><b>此設定需要登出再登入才會生效</b>，因為必須在 Plasma 啟動前就設定好。此設定也會套用到整個工作階段，因此任何其他內嵌 Chromium 瀏覽器畫面的應用程式，都會套用相同設定。\n"
+"                <br/><br/>若啟用此選項，將會建立以下檔案：~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 
 #: contents/ui/main.qml:1244
 msgid "<b>Instruction:</b> %1"
@@ -177,7 +179,7 @@ msgstr "活躍"
 
 #: contents/ui/config/configGeneral.qml:96
 msgid "Active - GPU compositing is currently disabled for the radar map in this session."
-msgstr ""
+msgstr "已生效──此工作階段的雷達地圖 GPU 合成功能已停用。"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
@@ -544,11 +546,11 @@ msgstr "卡片高度："
 
 #: contents/ui/components/MapBackgroundChoices.qml:48
 msgid "Carto Dark Matter (dark)"
-msgstr ""
+msgstr "Carto Dark Matter（深色）"
 
 #: contents/ui/components/MapBackgroundChoices.qml:47
 msgid "Carto Positron (light)"
-msgstr ""
+msgstr "Carto Positron（淺色）"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:227
 msgid "Celsius (°C)"
@@ -560,7 +562,7 @@ msgstr "變更已暫存，點擊主套用按鈕以儲存。"
 
 #: contents/ui/config/configGeneral.qml:915
 msgid "Check Status"
-msgstr ""
+msgstr "檢查狀態"
 
 #: contents/ui/config/configGeneral.qml:172
 #: contents/ui/config/configLocation.qml:481
@@ -570,7 +572,7 @@ msgstr "正在檢查位置可用性⋯"
 #: contents/ui/config/configGeneral.qml:139
 #: contents/ui/config/configGeneral.qml:915
 msgid "Checking…"
-msgstr ""
+msgstr "檢查中⋯"
 
 #: contents/ui/config/configGeneral.qml:549
 msgid "Chinese weather provider with global coverage. API key required below."
@@ -652,11 +654,11 @@ msgstr "沿海事件"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:530
 msgid "Color by temperature:"
-msgstr ""
+msgstr "依溫度上色："
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:537
 msgid "Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color."
-msgstr ""
+msgstr "面板溫度改用與預報曲線相同的冷熱漸層上色，而非固定顏色。"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:303
 #: contents/ui/config/tabs/ConfigPanelTab.qml:312
@@ -791,7 +793,7 @@ msgstr "自訂⋯"
 
 #: contents/ui/components/MapBackgroundChoices.qml:45
 msgid "CyclOSM (cycling)"
-msgstr ""
+msgstr "CyclOSM（自行車）"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:858
 msgid "Daily Forecast Settings"
@@ -1436,7 +1438,7 @@ msgstr "列捲動以顯示下一個項目的頻率"
 
 #: contents/ui/components/MapBackgroundChoices.qml:44
 msgid "Humanitarian (HOT)"
-msgstr ""
+msgstr "Humanitarian (HOT)"
 
 #: contents/ui/config/configAppearance.qml:1353
 #: contents/ui/config/configAppearance.qml:1455
@@ -1818,7 +1820,7 @@ msgstr "位置："
 
 #: contents/ui/config/configGeneral.qml:903
 msgid "Log Out Now…"
-msgstr ""
+msgstr "立即登出⋯"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:602
 msgid "Lon:"
@@ -1903,7 +1905,7 @@ msgstr "手動"
 
 #: contents/ui/components/RadarWebEngineView.qml:150
 msgid "Map background"
-msgstr ""
+msgstr "地圖底圖"
 
 #: contents/ui/config/configGeneral.qml:545
 msgid "Marine and weather data provider. API key required below."
@@ -2199,7 +2201,7 @@ msgstr "無法使用（HTTP %1）"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
 msgid "Not available: the selected base map already has a fixed light or dark style."
-msgstr ""
+msgstr "無法使用：所選底圖本身已固定為淺色或深色樣式。"
 
 #: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
@@ -2280,11 +2282,11 @@ msgstr "Open-Meteo（推薦，免費）"
 
 #: contents/ui/components/MapBackgroundChoices.qml:43
 msgid "OpenStreetMap (standard)"
-msgstr ""
+msgstr "OpenStreetMap（標準）"
 
 #: contents/ui/components/MapBackgroundChoices.qml:46
 msgid "OpenTopoMap (topographic)"
-msgstr ""
+msgstr "OpenTopoMap（地形）"
 
 #: contents/ui/config/configGeneral.qml:388
 msgid "OpenWeatherMap (Key Required)"
@@ -2786,7 +2788,7 @@ msgstr "已儲存的地點"
 
 #: contents/ui/config/configGeneral.qml:99
 msgid "Saved, but not active yet - log out and back in for it to take effect."
-msgstr ""
+msgstr "已儲存但尚未生效──登出再登入即可套用。"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:785
 msgid "Scroll animation:"
@@ -3375,7 +3377,7 @@ msgstr "地圖選取器需要 QtLocation 和 QtPositioning 套件，但此系統
 
 #: contents/ui/config/configGeneral.qml:102
 msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
-msgstr ""
+msgstr "找不到解決方案的指令碼檔案，請嘗試將選項關閉後再重新開啟。"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:718
 msgid "Theme default"
@@ -3879,7 +3881,7 @@ msgstr "風："
 
 #: contents/ui/config/configGeneral.qml:884
 msgid "Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)"
-msgstr ""
+msgstr "解決混合 GPU 系統的雷達地圖當機問題（實驗性）"
 
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:72
 msgid "Wrap to next line"
