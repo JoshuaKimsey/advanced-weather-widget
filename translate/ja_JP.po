@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-08-03 15:19+0300\n"
+"POT-Creation-Date: 2026-08-07 11:29+0300\n"
 "PO-Revision-Date: 2026-07-21 00:00+0900\n"
 "Last-Translator: Presire <presire2@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -572,7 +572,7 @@ msgstr "位置の利用可能性を確認中…"
 msgid "Checking…"
 msgstr "確認中…"
 
-#: contents/ui/config/configGeneral.qml:468
+#: contents/ui/config/configGeneral.qml:549
 msgid "Chinese weather provider with global coverage. API key required below."
 msgstr "グローバルカバレッジの中国気象プロバイダ。下に API キーが必要です。"
 
@@ -1150,11 +1150,11 @@ msgstr "FOSS Public Alert Server"
 msgid "Fahrenheit (°F)"
 msgstr "華氏（°F）"
 
-#: contents/ui/WeatherService.qml:907
+#: contents/ui/WeatherService.qml:913
 msgid "Failed to load weather providers"
 msgstr "気象プロバイダの読み込みに失敗しました"
 
-#: contents/ui/WeatherService.qml:894
+#: contents/ui/WeatherService.qml:900
 msgid "Failed: %1"
 msgstr "失敗: %1"
 
@@ -1438,9 +1438,9 @@ msgstr "次の項目を表示するための行スクロール間隔"
 msgid "Humanitarian (HOT)"
 msgstr "Humanitarian（HOT）"
 
-#: contents/ui/config/configAppearance.qml:1352
-#: contents/ui/config/configAppearance.qml:1454
-#: contents/ui/config/configAppearance.qml:1598 contents/ui/DetailsView.qml:315
+#: contents/ui/config/configAppearance.qml:1353
+#: contents/ui/config/configAppearance.qml:1455
+#: contents/ui/config/configAppearance.qml:1599 contents/ui/DetailsView.qml:315
 #: contents/ui/SimpleView.qml:259
 msgid "Humidity"
 msgstr "湿度"
@@ -1905,7 +1905,7 @@ msgstr "手動"
 msgid "Map background"
 msgstr "地図の背景"
 
-#: contents/ui/config/configGeneral.qml:464
+#: contents/ui/config/configGeneral.qml:545
 msgid "Marine and weather data provider. API key required below."
 msgstr "海洋・気象データプロバイダ。下に API キーが必要です。"
 
@@ -2201,7 +2201,7 @@ msgstr "利用できません（HTTP %1）"
 msgid "Not available: the selected base map already has a fixed light or dark style."
 msgstr "利用できません: 選択したベースマップはすでに固定のライトまたはダークスタイルです。"
 
-#: contents/ui/ForecastView.qml:1317 contents/ui/ForecastView.qml:1764
+#: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
 #: contents/ui/main.qml:792 contents/ui/main.qml:800 contents/ui/main.qml:828
 msgid "Not supported"
@@ -2286,7 +2286,7 @@ msgstr "OpenStreetMap（標準）"
 msgid "OpenTopoMap (topographic)"
 msgstr "OpenTopoMap（地形図）"
 
-#: contents/ui/config/configGeneral.qml:307
+#: contents/ui/config/configGeneral.qml:388
 msgid "OpenWeatherMap (Key Required)"
 msgstr "OpenWeatherMap（キー必須）"
 
@@ -2788,7 +2788,7 @@ msgstr "保存した位置"
 msgid "Saved, but not active yet - log out and back in for it to take effect."
 msgstr "保存されましたが、まだ有効ではありません - ログアウトして再ログインすると反映されます。"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:749
+#: contents/ui/config/tabs/ConfigPanelTab.qml:785
 msgid "Scroll animation:"
 msgstr "スクロールアニメーション:"
 
@@ -3377,7 +3377,7 @@ msgstr "地図ピッカーには QtLocation と QtPositioning パッケージが
 msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
 msgstr "回避策スクリプトがディスクに見つかりませんでした。オプションをオフにして再度オンにしてみてください。"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:682
+#: contents/ui/config/tabs/ConfigPanelTab.qml:718
 msgid "Theme default"
 msgstr "テーマのデフォルト"
 
@@ -3621,26 +3621,26 @@ msgstr "今後（次の日の出または日の入り）"
 msgid "Upcoming rise/set only"
 msgstr "今後の出入りのみ"
 
-#: contents/ui/WeatherService.qml:173
+#: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
 msgstr "更新がタイムアウトしました。タップして再試行。"
 
-#: contents/ui/WeatherService.qml:785
+#: contents/ui/WeatherService.qml:791
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
 msgstr[0] "%1 日前に更新"
 
-#: contents/ui/WeatherService.qml:783
+#: contents/ui/WeatherService.qml:789
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
 msgstr[0] "%1 時間前に更新"
 
-#: contents/ui/WeatherService.qml:780
+#: contents/ui/WeatherService.qml:786
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
 msgstr[0] "%1 分前に更新"
 
-#: contents/ui/WeatherService.qml:778
+#: contents/ui/WeatherService.qml:784
 msgid "Updated just now"
 msgstr "たった今更新"
 
@@ -3788,7 +3788,7 @@ msgstr "天気アイコンのスタイル:"
 msgid "Weather icon theme:"
 msgstr "天気アイコンテーマ:"
 
-#: contents/ui/WeatherService.qml:848
+#: contents/ui/WeatherService.qml:854
 msgid "Weather provider:"
 msgstr "気象プロバイダ:"
 

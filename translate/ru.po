@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-08-03 15:19+0300\n"
+"POT-Creation-Date: 2026-08-07 11:29+0300\n"
 "PO-Revision-Date: 2026-07-29 18:45+0300\n"
 "Last-Translator: Polyakov Dmitry <dmitrypolyakov1337@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -1149,11 +1149,11 @@ msgstr "Сервер оповещения общественности FOSS"
 msgid "Fahrenheit (°F)"
 msgstr "Фаренгейт (°F)"
 
-#: contents/ui/WeatherService.qml:907
+#: contents/ui/WeatherService.qml:913
 msgid "Failed to load weather providers"
 msgstr "Не удалось загрузить провайдеров данных"
 
-#: contents/ui/WeatherService.qml:894
+#: contents/ui/WeatherService.qml:900
 msgid "Failed: %1"
 msgstr "Ошибка: %1"
 
@@ -3619,32 +3619,32 @@ msgstr "Будущее (след. восход или закат)"
 msgid "Upcoming rise/set only"
 msgstr "Только след. восход/закат"
 
-#: contents/ui/WeatherService.qml:173
+#: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
 msgstr "Ошибка обновления, Нажмите, чтобы повторить"
 
-#: contents/ui/WeatherService.qml:785
+#: contents/ui/WeatherService.qml:791
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
 msgstr[0] "Обновлено %1 день назад"
 msgstr[1] "Обновлено %1 дня назад"
 msgstr[2] "Обновлено %1 дней назад"
 
-#: contents/ui/WeatherService.qml:783
+#: contents/ui/WeatherService.qml:789
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
 msgstr[0] "Обновлено %1 час назад"
 msgstr[1] "Обновлено %1 часа назад"
 msgstr[2] "Обновлено %1 часов назад"
 
-#: contents/ui/WeatherService.qml:780
+#: contents/ui/WeatherService.qml:786
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
 msgstr[0] "Обновлено %1 минуту назад"
 msgstr[1] "Обновлено %1 минуты назад"
 msgstr[2] "Обновлено %1 минут назад"
 
-#: contents/ui/WeatherService.qml:778
+#: contents/ui/WeatherService.qml:784
 msgid "Updated just now"
 msgstr "Обновлено прямо сейчас"
 
@@ -3792,7 +3792,7 @@ msgstr "Стиль значков погоды:"
 msgid "Weather icon theme:"
 msgstr "Стиль значков погоды:"
 
-#: contents/ui/WeatherService.qml:848
+#: contents/ui/WeatherService.qml:854
 msgid "Weather provider:"
 msgstr "Провайдер данных:"
 
