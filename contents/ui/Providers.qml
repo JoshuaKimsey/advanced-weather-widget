@@ -92,4 +92,14 @@ QtObject {
     function fetchAlertsLibreWxr(service) { LibreWxrAlertsJS.fetchAlerts(service); }
     function fetchAlertsFoss(service)      { FossAlertsJS.fetchAlerts(service); }
     function fetchSpaceWeather(service) { SpaceWeatherJS.fetchSpaceWeather(service); }
+
+    /** Native air-quality fetch for providers that support it. Returns true if
+     *  handled (a native request is in flight), false if this provider has no
+     *  native AQI support and the caller should go straight to Open-Meteo. */
+    function fetchAirQuality(p, service) {
+        switch (p) {
+        case "pirateWeather": PirateWeatherJS.fetchAirQuality(service, W); return true;
+        default:              return false;
+        }
+    }
 }

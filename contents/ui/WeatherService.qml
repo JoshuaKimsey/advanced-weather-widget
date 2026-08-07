@@ -222,9 +222,14 @@ QtObject {
         chain._gen = _refreshGen;
 
         _tryProvider(chain, 0);
-        // Fetch air quality + pollen in parallel with the main weather request
-        // (independent of provider — always uses Open-Meteo air-quality API)
-        _fetchAirQualityOpenMeteo();
+        // Fetch air quality + pollen in parallel with the main weather request.
+        // Pirate Weather supplies AQI natively; other providers (and pollen,
+        // which has no PW equivalent) fall back to Open-Meteo.
+        var ap = (provider === "adaptive") ? "openMeteo" : provider;
+        var _pAQ = _providers();
+        if (!_pAQ || !_pAQ.fetchAirQuality(ap, service)) {
+            _fetchAqiIfNeeded();
+        }
         // Fetch NOAA space weather independently (location-independent)
         // Skip if data was fetched recently (< 10 min) since it doesn't change
         // with location — unless this is a forced (manual) refresh
@@ -742,6 +747,20 @@ QtObject {
             if (_pA) _pA.fetchAlerts(service);
         } else {
             console.log("[WeatherService] Provider set", (r.weatherAlerts || []).length, "native alert(s) → skipping AlertsJS");
+        }
+    }
+
+    /**
+     * Called after a provider's native AQI fetch settles (success or failure).
+     * If the provider didn't write usable native AQI data this generation,
+     * falls back to the Open-Meteo air-quality API.
+     */
+    function _fetchAqiIfNeeded() {
+        if (!_nativeAqiSetThisGen) {
+            console.log("[WeatherService] No native AQI → fetching via Open-Meteo");
+            _fetchAirQualityOpenMeteo();
+        } else {
+            console.log("[WeatherService] Provider set native AQI → skipping Open-Meteo");
         }
     }
 

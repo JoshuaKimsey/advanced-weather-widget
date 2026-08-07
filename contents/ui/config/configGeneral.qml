@@ -21,6 +21,7 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
+import org.kde.plasma.plasma5support as Plasma5Support
 
 KCM.SimpleKCM {
     id: root
@@ -38,6 +39,7 @@ KCM.SimpleKCM {
     property string cfg_qwApiHost: ""
     property bool cfg_radarEnabled: true
     property string cfg_radarProvider: "rainviewer"
+    property bool cfg_radarGpuWorkaround: false
     property string cfg_alertsProvider: "native"
     property string cfg_fossAlertUrl: "https://alerts.kde.org"
     property bool cfg_autoRefresh: true
@@ -66,6 +68,85 @@ KCM.SimpleKCM {
     property int apiTestState: 0
     property string apiTestMessage: ""
     property int _testGen: 0
+
+    // ── Radar GPU-compositing workaround (hybrid-GPU/Wayland crash) ───────
+    // Writes/removes a plasma-workspace session env script. This can only be
+    // consumed by plasmashell at next login (env scripts run before the
+    // session starts), so toggling this has no live effect on the current
+    // session — the InlineMessage below makes that explicit to the user.
+    readonly property string _radarGpuScriptPath: "~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
+    // TODO: point this at the real tracker issue for the hybrid-GPU crash before shipping.
+    readonly property string _radarGpuIssueUrl: "https://github.com/OWNER/REPO/issues/ISSUE_NUMBER"
+
+    // 0 = idle, 1 = checking, 2 = active this session, 3 = saved but needs a
+    // logout, 4 = script missing/mismatched despite being enabled
+    property int radarGpuTestState: 0
+    property string radarGpuTestMessage: ""
+    property var _radarGpuScriptPresent: undefined
+    property var _radarGpuLiveActive: undefined
+
+    function _evaluateGpuStatus() {
+        // Both checks are async and land independently — wait for both before
+        // deciding on a combined status.
+        if (root._radarGpuScriptPresent === undefined || root._radarGpuLiveActive === undefined)
+            return;
+
+        if (root._radarGpuLiveActive) {
+            root.radarGpuTestState = 2;
+            root.radarGpuTestMessage = i18n("Active - GPU compositing is currently disabled for the radar map in this session.");
+        } else if (root._radarGpuScriptPresent) {
+            root.radarGpuTestState = 3;
+            root.radarGpuTestMessage = i18n("Saved, but not active yet - log out and back in for it to take effect.");
+        } else {
+            root.radarGpuTestState = 4;
+            root.radarGpuTestMessage = i18n("The workaround script wasn't found on disk. Try toggling the option off and on again.");
+        }
+        console.log("[Advanced Weather Widget Config] radar GPU workaround status:", root.radarGpuTestMessage);
+    }
+
+    Plasma5Support.DataSource {
+        id: radarGpuWorkaroundExec
+        engine: "executable"
+        connectedSources: []
+        onNewData: function (sourceName, data) {
+            var out = (data["stdout"] || "").toString().trim();
+            if (sourceName.indexOf("if grep -qs") === 0) {
+                root._radarGpuScriptPresent = out.indexOf("SCRIPT:PRESENT") !== -1;
+                console.log("[Advanced Weather Widget Config] radar GPU workaround script on disk:", root._radarGpuScriptPresent ? "present, contains the expected export line" : "missing, or doesn't match the expected export line", "(" + root._radarGpuScriptPath + ")");
+                root._evaluateGpuStatus();
+            } else if (sourceName.indexOf("if [ \"$QTWEBENGINE_CHROMIUM_FLAGS\"") === 0) {
+                root._radarGpuLiveActive = out.indexOf("LIVE:ACTIVE") !== -1;
+                console.log("[Advanced Weather Widget Config] QTWEBENGINE_CHROMIUM_FLAGS in this session:", root._radarGpuLiveActive ? "\"--disable-gpu-compositing\" — workaround is active" : "not set to the workaround value — not active in this session yet");
+                root._evaluateGpuStatus();
+            } else if (data["exit code"] !== 0) {
+                console.warn("[Advanced Weather Widget Config] radar GPU workaround command failed:", sourceName, "stderr=", data["stderr"]);
+            } else {
+                console.log("[Advanced Weather Widget Config] radar GPU workaround command OK:", sourceName);
+            }
+            disconnectSource(sourceName);
+        }
+        function apply(enabled) {
+            var cmd = enabled ? "mkdir -p ~/.config/plasma-workspace/env && printf '%s\\n' 'export QTWEBENGINE_CHROMIUM_FLAGS=\"--disable-gpu-compositing\"' > " + root._radarGpuScriptPath : "rm -f " + root._radarGpuScriptPath;
+            connectSource(cmd);
+            // Any earlier status check is stale now — clear it until re-checked.
+            root.radarGpuTestState = 0;
+            root.radarGpuTestMessage = "";
+            root._radarGpuScriptPresent = undefined;
+            root._radarGpuLiveActive = undefined;
+        }
+        function checkStatus() {
+            root.radarGpuTestState = 1;
+            root.radarGpuTestMessage = i18n("Checking…");
+            root._radarGpuScriptPresent = undefined;
+            root._radarGpuLiveActive = undefined;
+            console.log("[Advanced Weather Widget Config] checking radar GPU workaround status: script path =", root._radarGpuScriptPath, ", expected export = QTWEBENGINE_CHROMIUM_FLAGS=\"--disable-gpu-compositing\"");
+            connectSource("if grep -qs 'QTWEBENGINE_CHROMIUM_FLAGS=\"--disable-gpu-compositing\"' " + root._radarGpuScriptPath + "; then echo SCRIPT:PRESENT; else echo SCRIPT:MISSING; fi");
+            connectSource("if [ \"$QTWEBENGINE_CHROMIUM_FLAGS\" = \"--disable-gpu-compositing\" ]; then echo LIVE:ACTIVE; else echo LIVE:INACTIVE; fi");
+        }
+        function logout() {
+            connectSource("qdbus org.kde.Shutdown /Shutdown org.kde.Shutdown.logout");
+        }
+    }
 
     // ── Provider location check state ─────────────────────────────────
     // 0 = idle, 1 = checking, 2 = ok, 3 = error
@@ -745,8 +826,14 @@ KCM.SimpleKCM {
                     id: radarProviderCombo
                     Layout.preferredWidth: 280
                     model: [
-                        { text: i18n("Rain Viewer"), value: "rainviewer" },
-                        { text: i18n("LibreWXR"),    value: "librewxr" }
+                        {
+                            text: i18n("Rain Viewer"),
+                            value: "rainviewer"
+                        },
+                        {
+                            text: i18n("LibreWXR"),
+                            value: "librewxr"
+                        }
                     ]
                     textRole: "text"
                     currentIndex: root.cfg_radarProvider === "librewxr" ? 1 : 0
@@ -787,6 +874,71 @@ KCM.SimpleKCM {
                 type: Kirigami.MessageType.Warning
                 text: i18n("<b>Why OWM layers may not match RainViewer radar</b><br/><br/>" + "OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. " + "They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>" + "RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. " + "This discrepancy is expected and known.")
             }
+
+            Item {
+                Layout.preferredHeight: 4
+            }
+
+            Switch {
+                visible: root.cfg_radarEnabled
+                text: i18n("Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)")
+                checked: root.cfg_radarGpuWorkaround
+                onToggled: {
+                    root.cfg_radarGpuWorkaround = checked;
+                    radarGpuWorkaroundExec.apply(checked);
+                    if (checked)
+                        radarGpuWorkaroundExec.checkStatus();
+                }
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_radarEnabled && root.cfg_radarGpuWorkaround
+                showCloseButton: false
+                type: Kirigami.MessageType.Warning
+                text: i18n("<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>" + "On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>" + "Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/>" + `<b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.
+                <br/><br/>` + "If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh")
+                actions: [
+                    Kirigami.Action {
+                        text: i18n("Log Out Now…")
+                        icon.name: "system-log-out"
+                        onTriggered: radarGpuWorkaroundExec.logout()
+                    }
+                ]
+            }
+
+            RowLayout {
+                visible: root.cfg_radarEnabled && root.cfg_radarGpuWorkaround
+                Layout.fillWidth: true
+
+                Button {
+                    text: root.radarGpuTestState === 1 ? i18n("Checking…") : i18n("Check Status")
+                    icon.name: "view-refresh"
+                    enabled: root.radarGpuTestState !== 1
+                    onClicked: radarGpuWorkaroundExec.checkStatus()
+                }
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_radarEnabled && root.cfg_radarGpuWorkaround && root.radarGpuTestState === 2
+                type: Kirigami.MessageType.Positive
+                text: root.radarGpuTestMessage
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_radarEnabled && root.cfg_radarGpuWorkaround && root.radarGpuTestState === 3
+                type: Kirigami.MessageType.Warning
+                text: root.radarGpuTestMessage
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                visible: root.cfg_radarEnabled && root.cfg_radarGpuWorkaround && root.radarGpuTestState === 4
+                type: Kirigami.MessageType.Error
+                text: root.radarGpuTestMessage
+            }
         }
 
         Item {
@@ -824,9 +976,18 @@ KCM.SimpleKCM {
                     id: alertsProviderCombo
                     Layout.preferredWidth: 280
                     model: [
-                        { text: i18n("MeteoAlarm + NOAA NWS (Native)"), value: "native" },
-                        { text: i18n("LibreWXR"),                       value: "librewxr" },
-                        { text: i18n("FOSS Public Alert Server"),       value: "foss" }
+                        {
+                            text: i18n("MeteoAlarm + NOAA NWS (Native)"),
+                            value: "native"
+                        },
+                        {
+                            text: i18n("LibreWXR"),
+                            value: "librewxr"
+                        },
+                        {
+                            text: i18n("FOSS Public Alert Server"),
+                            value: "foss"
+                        }
                     ]
                     textRole: "text"
                     currentIndex: {

@@ -266,7 +266,7 @@ PlasmaCore.ToolTipArea {
             // compressed: just the icon square + margins
             Math.max(Kirigami.Units.gridUnit * 2, simpleIconSz + 2 * leftRightMargin) :
             // side-by-side / stacked: track actual GridLayout content width
-            Math.max(Kirigami.Units.gridUnit * 2, simpleGrid.implicitWidth + 2 * leftRightMargin))) : compactRow.implicitWidth + 2 * leftRightMargin
+            Math.max(Kirigami.Units.gridUnit * 2, simpleGrid.implicitWidth + 2 * leftRightMargin))) : Math.ceil(compactRow.implicitWidth) + 2 * leftRightMargin + compactRow._widthSafetyPx
 
     // vertical simple type 0 (side-by-side): content height = max(icon, font)+4;
     // no gridUnit floor so the widget stays compact and matches preferredHeight.
@@ -284,10 +284,10 @@ PlasmaCore.ToolTipArea {
     // (= widget width) so the click area grows as the panel gets wider.
     // vertical single-line: fillHeight when "Fill panel" is on (expands to full panel height)
     // vertical: fillHeight when "Fill panel" is on — works for all display modes
-    // vertical single-line: fillHeight when "Fill panel" is on
-    // Fill-panel for vertical single-line mirrors the horizontal pattern:
-    //   horizontal: fillWidth:true  + preferredWidth:-1
-    //   vertical:   fillHeight:true + preferredHeight:-1
+    // Fill-panel just toggles Layout.fillWidth/fillHeight so the widget CAN
+    // grow into slack space; Layout.preferredWidth/Height still report the
+    // real content size as a floor (see notes below) so the widget never
+    // collapses when a competing flexible panel item is also present.
     readonly property bool vertFill: vertical && !isSimpleMode && !isMultiLine && Plasmoid.configuration.panelFillWidth
 
     Layout.fillHeight: !vertical || compactRoot.vertFill || (compactRoot.isSimpleMode && compactRoot.vertical && compactRoot.simpleClickAreaMode === "fill")
@@ -295,7 +295,17 @@ PlasmaCore.ToolTipArea {
 
     Layout.preferredWidth: (compactRoot.isSimpleMode && !compactRoot.vertical)
         ? (compactRoot.simpleClickAreaMode === "fill" ? -1 : (compactRoot.simpleClickAreaMode === "manual" ? compactRoot.simpleClickAreaSize : implicitWidth))
-        : (vertical || Plasmoid.configuration.panelFillWidth) ? -1 : isMultiLine ? mlIconSize + 6 + (Plasmoid.configuration.panelWidth || 110) + 2 * leftRightMargin : implicitWidth
+        // NOTE: panelFillWidth intentionally does NOT map to -1 here. A -1
+        // preferredWidth gives Plasma's panel layout no baseline to anchor
+        // on, so when another flexible item (e.g. a user-added Panel
+        // Spacer) is also competing for space, Plasma can end up granting
+        // this widget almost nothing (collapsing toward Layout.minimumWidth)
+        // and handing the spacer everything instead — the widget's content
+        // effectively disappears. Using implicitWidth as the baseline keeps
+        // the full weather info as a floor; Layout.fillWidth (still driven
+        // by panelFillWidth below) is what lets it additionally grow into
+        // any real slack space.
+        : vertical ? -1 : isMultiLine ? mlIconSize + 6 + (Plasmoid.configuration.panelWidth || 110) + 2 * leftRightMargin : implicitWidth
     Layout.preferredHeight: {
         if (compactRoot.isSimpleMode && compactRoot.vertical) {
             if (compactRoot.simpleClickAreaMode === "fill")
@@ -303,10 +313,11 @@ PlasmaCore.ToolTipArea {
             if (compactRoot.simpleClickAreaMode === "manual")
                 return compactRoot.simpleClickAreaSize;
         }
-        // Vertical single-line + fill: return -1 so fillHeight can expand freely
-        // (mirrors preferredWidth:-1 used for horizontal fill)
-        if (compactRoot.vertFill)
-            return -1;
+        // NOTE: vertFill intentionally does NOT return -1 here anymore — see
+        // the matching note on Layout.preferredWidth above. Falling through
+        // to the content-based height below gives Plasma a real baseline;
+        // Layout.fillHeight (still driven by vertFill) handles growing into
+        // any actual slack space.
         if (vertical && isMultiLine)
             return compactRoot.mlVertIconSz + compactRoot.multiLines * compactRoot.mlVertRowH + 8;
         if (vertical && !compactRoot.isSimpleMode && !isMultiLine) {
@@ -434,6 +445,14 @@ PlasmaCore.ToolTipArea {
             spacing: compactRoot.itemSpacing
             clip: true
 
+            // Cheap insurance against Text implicitWidth under-measuring the
+            // actually-painted text (e.g. the air-quality chip embeds a
+            // color emoji glyph, and font-fallback shaping used at paint
+            // time can end up a few px wider than the implicitWidth the
+            // layout was sized from). Without this, the shortfall gets
+            // hard-clipped off the last item by this RowLayout's clip:true.
+            readonly property int _widthSafetyPx: 12
+
             Repeater {
                 model: compactRoot.panelItemsData
                 delegate: RowLayout {
@@ -456,8 +475,17 @@ PlasmaCore.ToolTipArea {
                         })
                         color: Kirigami.Theme.textColor
                         verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter
+                        // Intentionally NOT elide/Layout.fillWidth: those mark this
+                        // Label as "flexible", letting the RowLayout squeeze it below
+                        // its implicit (full-text) width whenever the panel is slow to
+                        // grant the widget its updated preferredWidth (e.g. next to an
+                        // expanding spacer). Without fillWidth, this Label always sizes
+                        // to its own implicitWidth, which is exactly what already drives
+                        // compactRow.implicitWidth → compactRoot.implicitWidth →
+                        // Layout.preferredWidth, so Plasma is asked for the full width
+                        // localized text needs instead of whatever it happened to grant
+                        // on an earlier layout pass.
                     }
                 }
             }

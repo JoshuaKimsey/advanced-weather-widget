@@ -6,24 +6,22 @@
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
 | Template |     918 |       |
-| bg       | 899/918 |   97% |
+| bg       | 918/918 |  100% |
 | cs_CZ    | 835/918 |   90% |
 | de       | 899/918 |   97% |
-| es       | 899/918 |   97% |
-| fr       | 899/918 |   97% |
-| hu_HU    | 899/918 |   97% |
+| es       | 918/918 |  100% |
+| fr       | 918/918 |  100% |
+| hu_HU    | 918/918 |  100% |
 | it_IT    | 899/918 |   97% |
-| ja_JP    | 899/918 |   97% |
-| nl       | 899/918 |   97% |
+| ja_JP    | 918/918 |  100% |
+| nl       | 918/918 |  100% |
 | pl_PL    | 899/918 |   97% |
 | pt_BR    | 288/918 |   31% |
 | ru       | 899/918 |   97% |
 | tr_TR    | 899/918 |   97% |
-| uk       | 899/918 |   97% |
-| zh_CN    | 899/918 |   97% |
-| zh_TW    | 899/918 |   97% |
-
-
+| uk       | 915/918 |   99% |
+| zh_CN    | 918/918 |  100% |
+| zh_TW    | 918/918 |  100% |
 
 
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.

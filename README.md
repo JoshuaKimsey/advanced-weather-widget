@@ -126,7 +126,7 @@ For providers that require an API key, you can enter it in the widget's settings
 
 | Provider | Key Required | Signup Link |
 |---|:---:|---|
-| **Open-Meteo / MET Norway** | No | - |
+| **[Open-Meteo](https://open-meteo.com/) / [MET Norway](https://www.met.no/)** | No | - |
 | **OpenWeatherMap** | ✅ | [Sign Up](https://openweathermap.org/api) |
 | **WeatherAPI** | ✅ | [Sign Up](https://www.weatherapi.com/) |
 | **Pirate Weather** | ✅ | [Sign Up](https://pirateweather.net/) |
@@ -156,7 +156,8 @@ For providers that require an API key, you can enter it in the widget's settings
 Thank you to everyone who has contributed code to this project ❤️
 
 - **[Mizu Ikki](https://github.com/mizuikki)** - QWeather provider fixes and perfomance improvements (refresh handling, forecast display, precipitation fallback)
-
+- **[rcspam](https://github.com/rcspam)** - [PR-151](https://github.com/pnedyalkov91/advanced-weather-widget/pull/151), [PR-146](https://github.com/pnedyalkov91/advanced-weather-widget/pull/146), [PR-157](https://github.com/pnedyalkov91/advanced-weather-widget/pull/157)
+- **[ydimitrof](https://github.com/ydimitrof)** - [PR-168](https://github.com/pnedyalkov91/advanced-weather-widget/pull/168)
 ## 🌐 Translation
 
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.
@@ -216,7 +217,7 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Italian** - [Aldo Latino](https://github.com/aldolat)
 - **Hungarian** - [summoner001](https://github.com/summoner001)
 - **Polish** - [l3monik](https://github.com/l3monik)
-- **Ukrainian** - [NaviMen (Oleksandr)](https://github.com/NaviMen)
+- **Ukrainian** - [NaviMen](https://github.com/NaviMen)
 - **Japanese** - [presire](https://github.com/presire)
 - **Bulgarian** - Petar Nedyalkov (Author)
 
