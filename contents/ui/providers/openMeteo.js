@@ -126,7 +126,7 @@ function _aqiLabel(aqi) {
 function _aqiLabel_US(aqi_us) {
     if (aqi_us <= 50) return "Good";
     if (aqi_us <= 100) return "Moderate";
-    if (aqi_us <= 150) return "Unhealthy for sensitive groups";
+    if (aqi_us <= 150) return "Unhealthy for Sensitive Groups";
     if (aqi_us <= 200) return "Unhealthy";
     if (aqi_us <= 300) return "Very Unhealthy";
     return "Hazardous";
