@@ -521,6 +521,11 @@
       var SAT_ANIMATION_DELAY = 800;
       var SAT_ANIMATION_PAUSE = 2000;
       var AUTO_REFRESH_MS = 5 * 60 * 1000; // 5 minutes
+      // Upper bound on how long a single frame may take to load before the
+      // player gives up on it. Generous on purpose: a cold frame on a busy
+      // server can legitimately take several seconds, and this is only a
+      // safety net, not a normal code path.
+      var FRAME_LOAD_TIMEOUT_MS = 15000;
 
       // === STATE ===
       var apiData = {};
@@ -1075,7 +1080,6 @@
         position = clampPosition(position);
         var frame = mapFrames[position];
 
-        updateTimestamp(frame, position);
         animationPosition = position;
         updateScrubberPosition();
 
@@ -1090,6 +1094,7 @@
             activeLayer === "satellite" ? SATELLITE_OPACITY : RADAR_OPACITY;
           layerCache[position].setOpacity(opacity);
           currentLayer = layerCache[position];
+          updateTimestamp(frame, position);
 
           if (isPlaying) {
             animationTimer = setTimeout(function () {
@@ -1113,25 +1118,54 @@
           targetOpacity = RADAR_OPACITY;
         }
 
-        // .once so the handler doesn't re-fire on subsequent pan/zoom tile
-        // reloads — Leaflet fires `load` every time all visible tiles for a
-        // layer finish requesting, and a cached layer still attached to the
-        // map with opacity 0 keeps requesting tiles when the viewport changes.
-        newLayer.once("load", function () {
-          newLayer.setOpacity(targetOpacity);
-          if (oldLayer && oldLayer !== newLayer) {
-            oldLayer.setOpacity(0);
-          }
-          layerCache[position] = newLayer;
-          currentLayer = newLayer;
+        // A layer that never fires `load` would pin `isLoading` forever, and
+        // the guard at the top of this function then rejects every later
+        // frame, including the animation's own — the player stops until the
+        // page is recreated. `createTile` reports both onload and onerror, so
+        // a 404 or a refused connection is fine; what hangs is a request left
+        // pending, which is what an unreachable or restarting server gives.
+        var settled = false;
+
+        function advance() {
+          if (settled) return;
+          settled = true;
           isLoading = false;
           hideLoadingIndicator();
-
           if (isPlaying) {
             animationTimer = setTimeout(function () {
               showFrame(position + 1);
             }, getFrameDelay(position));
           }
+        }
+
+        var loadGuard = setTimeout(advance, FRAME_LOAD_TIMEOUT_MS);
+
+        // .once so the handler doesn't re-fire on subsequent pan/zoom tile
+        // reloads — Leaflet fires `load` every time all visible tiles for a
+        // layer finish requesting, and a cached layer still attached to the
+        // map with opacity 0 keeps requesting tiles when the viewport changes.
+        newLayer.once("load", function () {
+          clearTimeout(loadGuard);
+          layerCache[position] = newLayer;
+
+          // The guard may already have moved the player on while this layer
+          // was still loading. Keep the layer cached, since it is valid and
+          // costs nothing, but don't paint a stale frame over the current one.
+          if (position !== animationPosition) {
+            newLayer.setOpacity(0);
+            return;
+          }
+
+          newLayer.setOpacity(targetOpacity);
+          if (oldLayer && oldLayer !== newLayer) {
+            oldLayer.setOpacity(0);
+          }
+          currentLayer = newLayer;
+          // Only now does the frame the label announces match the frame on
+          // screen. Updating it earlier labels the previous image with the
+          // new time for as long as the load takes.
+          updateTimestamp(frame, position);
+          advance();
         });
 
         newLayer.addTo(map);
