@@ -105,12 +105,30 @@ function fetchCurrent(service, chain, idx) {
     req.send();
 }
 
+// European Air Quality Index
+// AQI Determined from highest pollutant, interpolated over EU breakpoints (which is a step function)
+// https://airindex.eea.europa.eu/AQI/index.html#
+// Open-Meteo returns a out-of-one-hundred value using a similar formula to the official US AQI
 function _aqiLabel(aqi) {
     if (aqi <= 20) return "Good";
     if (aqi <= 40) return "Fair";
     if (aqi <= 60) return "Moderate";
     if (aqi <= 80) return "Poor";
     if (aqi <= 100) return "Very Poor";
+    return "Extremely Poor";
+}
+
+// US Air Quality Index
+// AQI determined from highest pollutant linearly interpolated to the nearest integer as per:
+// https://document.airnow.gov/technical-assistance-document-for-the-reporting-of-daily-air-quailty.pdf
+// US EPA necessitates the interpolation of the pollutant concentration across defined breakpoints,
+// resulting in an AQI value between 0 and 500
+function _aqiLabel_US(aqi_us) {
+    if (aqi_us <= 50) return "Good";
+    if (aqi_us <= 100) return "Moderate";
+    if (aqi_us <= 150) return "Unhealthy for Sensitive Groups";
+    if (aqi_us <= 200) return "Unhealthy";
+    if (aqi_us <= 300) return "Very Unhealthy";
     return "Hazardous";
 }
 
@@ -121,7 +139,7 @@ function _fetchAirQuality(service) {
     var url = "https://air-quality-api.open-meteo.com/v1/air-quality"
         + "?latitude=" + service.latitude
         + "&longitude=" + service.longitude
-        + "&current=european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
+        + "&current=european_aqi,us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
         + ",alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen"
         + "&timezone=" + encodeURIComponent(tz.length > 0 ? tz : "auto");
     var req = new XMLHttpRequest();
@@ -138,9 +156,12 @@ function _fetchAirQuality(service) {
         var d = JSON.parse(req.responseText);
         var c = d.current || {};
         var aqi = c.european_aqi;
+        var aqi_us = c.us_aqi;
         r.aqiDataStaged = {
             index: (aqi !== undefined) ? aqi : NaN,
             label: (aqi !== undefined) ? _aqiLabel(aqi) : "",
+            index: (aqi_us !== undefined) ? aqi_us : NaN,
+            label: (aqi_us !== undefined) ? _aqiLabel_US(aqi_us) : "",
             pm10:  (c.pm10            !== undefined) ? c.pm10            : NaN,
             pm2_5: (c.pm2_5           !== undefined) ? c.pm2_5           : NaN,
             no2:   (c.nitrogen_dioxide !== undefined) ? c.nitrogen_dioxide : NaN,
