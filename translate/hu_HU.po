@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-08-07 11:29+0300\n"
+"POT-Creation-Date: 2026-08-09 19:27+0300\n"
 "PO-Revision-Date: 2026-08-04 08:14+0200\n"
 "Last-Translator: summoner <summoner@disroot.org>\n"
 "Language-Team: Hungarian <>\n"
@@ -127,7 +127,7 @@ msgstr "<b>Érvényes:</b> %1"
 msgid "<b>Headline:</b> %1"
 msgstr "<b>Címsor:</b> %1"
 
-#: contents/ui/config/configGeneral.qml:899
+#: contents/ui/config/configGeneral.qml:929
 msgid ""
 "<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
 "                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
@@ -148,11 +148,11 @@ msgstr "<b>Szolgáltató:</b> %1"
 msgid "<b>Severity:</b> %1%2"
 msgstr "<b>Súlyosság:</b> %1%2"
 
-#: contents/ui/config/configGeneral.qml:875
+#: contents/ui/config/configGeneral.qml:905
 msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
 msgstr "<b>Miért nem egyeznek az OWM rétegek a RainViewer radarral?</b><br/><br/>Az OWM csapadék- és felhőrétegei <b>statikus modellcsempék</b> – simított NWP (számszerű időjárás-előrejelzés) kimenetet mutatnak, nem pedig tényleges radarvisszaverődéseket. Azt jelzik, hogy a <i>modell szerint</i> hol esik az eső, az időjárási állomások és a modellfuttatások közötti interpoláció alapján.<br/><br/>A RainViewer <b>valódi meteorológiai radarkompozitokat</b> használ a radarállomásokról – ténylegesen mért reflektivitást, amely 2–10 percenként frissül. Ez az eltérés várható és ismert jelenség."
 
-#: contents/ui/config/configGeneral.qml:543
+#: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
 msgstr "Mesterséges intelligenciával támogatott időjárás-elemzés. API-kulcs szükséges alább."
 
@@ -160,7 +160,7 @@ msgstr "Mesterséges intelligenciával támogatott időjárás-elemzés. API-kul
 msgid "API error"
 msgstr "API-hiba"
 
-#: contents/ui/config/configGeneral.qml:300
+#: contents/ui/config/configGeneral.qml:301
 msgid "API key is empty."
 msgstr "Az API-kulcs üres."
 
@@ -176,7 +176,7 @@ msgstr "AQI"
 msgid "Active"
 msgstr "Aktív"
 
-#: contents/ui/config/configGeneral.qml:96
+#: contents/ui/config/configGeneral.qml:97
 msgid "Active - GPU compositing is currently disabled for the radar map in this session."
 msgstr "Aktív – Ebben a munkamenetben a radartérkép esetében a GPU-alapú összetétel jelenleg ki van kapcsolva."
 
@@ -184,7 +184,7 @@ msgstr "Aktív – Ebben a munkamenetben a radartérkép esetében a GPU-alapú 
 msgid "Adaptive (Open-Meteo)"
 msgstr "Adaptív (Open-Meteo)"
 
-#: contents/ui/config/configGeneral.qml:476
+#: contents/ui/config/configGeneral.qml:477
 msgid "Adaptive (auto-fallback)"
 msgstr "Adaptív (automatikus visszaállítás)"
 
@@ -261,19 +261,19 @@ msgstr "Éger"
 msgid "Alerts"
 msgstr "Riasztások"
 
-#: contents/ui/config/configGeneral.qml:973
+#: contents/ui/config/configGeneral.qml:1003
 msgid "Alerts provider:"
 msgstr "Riasztás-szolgáltató:"
 
-#: contents/ui/config/configGeneral.qml:1026
+#: contents/ui/config/configGeneral.qml:1056
 msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
 msgstr "Riasztás-szolgáltató: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>A KDE FOSS Public Alert Server projektje a világ meteorológiai ügynökségeitől gyűjti össze a hivatalos, CAP formátumú veszélyjelzéseket, és az Ön pontos helyzetéhez igazítja azokat. A riasztási értesítések ugyanúgy működnek, mint a natív szolgáltató esetében."
 
-#: contents/ui/config/configGeneral.qml:1017
+#: contents/ui/config/configGeneral.qml:1047
 msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
 msgstr "Riasztás-szolgáltató: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>A LibreWXR egy ingyenes, nyílt forráskódú időjárási API, amely világszerte összesíti a hivatalos CAP riasztásokat (WMO Severe Weather Information Centre, NOAA NWS és mások), és azokat az Ön pontos helyzetéhez igazítja. A riasztási értesítések ugyanúgy működnek, mint a natív szolgáltató esetében."
 
-#: contents/ui/config/configGeneral.qml:1008
+#: contents/ui/config/configGeneral.qml:1038
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
 msgstr "Riasztás-szolgáltató: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Az európai helyszínek a hivatalos MeteoAlarm-hírcsatornákat használják (38 ország), az amerikai helyszínek a NOAA National Weather Service riasztási API-ját, tartalékként pedig a met.no MetAlerts szolgál. Ha az Ön időjárási szolgáltatója saját riasztásokat biztosít (pl. WeatherAPI.com, Pirate Weather), akkor közvetlenül azokat használja a rendszer."
 
@@ -301,7 +301,7 @@ msgstr "Magasság: %1 %2"
 msgid "Alt: %1 m"
 msgstr "Magasság: %1 m"
 
-#: contents/ui/config/configGeneral.qml:537
+#: contents/ui/config/configGeneral.qml:538
 msgid "Alternative provider. API key required below."
 msgstr "Alternatív szolgáltató. API-kulcs szükséges alább."
 
@@ -317,7 +317,7 @@ msgstr "A magasság megadása nem kötelező, de erősen ajánlott a pontos elő
 msgid "Altitude:"
 msgstr "Magasság:"
 
-#: contents/ui/config/configGeneral.qml:735
+#: contents/ui/config/configGeneral.qml:736
 msgid "An API key is required for %1. Weather data cannot be retrieved without it."
 msgstr "API-kulcs szükséges a(z) %1 szolgáltatóhoz. Az időjárási adatok nem kérhetők le nélküle."
 
@@ -420,7 +420,7 @@ msgstr "Elérhető"
 msgid "Avalanche"
 msgstr "Lavina"
 
-#: contents/ui/config/configGeneral.qml:384
+#: contents/ui/config/configGeneral.qml:385
 msgid "BBC Weather (free)"
 msgstr "BBC Weather (ingyenes)"
 
@@ -559,21 +559,21 @@ msgstr "Celsius (°C)"
 msgid "Changes staged. Click the main Apply button to save."
 msgstr "Változtatások előjegyezve. Kattintson az „Alkalmaz” gombra a mentéshez."
 
-#: contents/ui/config/configGeneral.qml:915
+#: contents/ui/config/configGeneral.qml:945
 msgid "Check Status"
 msgstr "Állapot ellenőrzése"
 
-#: contents/ui/config/configGeneral.qml:172
+#: contents/ui/config/configGeneral.qml:173
 #: contents/ui/config/configLocation.qml:481
 msgid "Checking location availability…"
 msgstr "Hely elérhetőségének ellenőrzése…"
 
-#: contents/ui/config/configGeneral.qml:139
-#: contents/ui/config/configGeneral.qml:915
+#: contents/ui/config/configGeneral.qml:140
+#: contents/ui/config/configGeneral.qml:945
 msgid "Checking…"
 msgstr "Ellenőrzés…"
 
-#: contents/ui/config/configGeneral.qml:549
+#: contents/ui/config/configGeneral.qml:550
 msgid "Chinese weather provider with global coverage. API key required below."
 msgstr "Kínai időjárás-szolgáltató globális lefedettséggel. API-kulcs szükséges alább."
 
@@ -609,7 +609,7 @@ msgstr "Kiválasztás a térképen"
 msgid "City / location name"
 msgstr "Város / helység neve"
 
-#: contents/ui/config/configGeneral.qml:696
+#: contents/ui/config/configGeneral.qml:697
 msgid "Clear"
 msgstr "Tiszta"
 
@@ -732,11 +732,11 @@ msgstr "Saját hely megerősítése"
 msgid "Connection failed"
 msgstr "Nem sikerült létrehozni a kapcsolatot"
 
-#: contents/ui/config/configGeneral.qml:367
+#: contents/ui/config/configGeneral.qml:368
 msgid "Connection failed (HTTP %1)."
 msgstr "Nem sikerült létrehozni a kapcsolatot (HTTP %1)."
 
-#: contents/ui/config/configGeneral.qml:360
+#: contents/ui/config/configGeneral.qml:361
 msgid "Connection successful! %1 key is valid."
 msgstr "A kapcsolat sikeresen létre lett hozva! A(z) %1 kulcs érvényes."
 
@@ -798,7 +798,7 @@ msgstr "CyclOSM (kerékpározás)"
 msgid "Daily Forecast Settings"
 msgstr "Napi előrejelzés beállításai"
 
-#: contents/ui/config/configGeneral.qml:539
+#: contents/ui/config/configGeneral.qml:540
 msgid "Dark Sky-compatible API with US alerts. API key required below."
 msgstr "Dark Sky kompatibilis API amerikai riasztásokkal. API-kulcs szükséges alább."
 
@@ -810,7 +810,7 @@ msgstr "Sötét térkép"
 msgid "Dash  –"
 msgstr "Gondolatjel  –"
 
-#: contents/ui/config/configGeneral.qml:1045
+#: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
 msgstr "Adatok frissítése"
 
@@ -994,7 +994,7 @@ msgctxt "Alert severity"
 msgid "EXTREME"
 msgstr "EXTRÉM"
 
-#: contents/ui/config/configGeneral.qml:777
+#: contents/ui/config/configGeneral.qml:778
 msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
 msgstr "Minden QWeather projekt egyedi API-kiszolgálóval rendelkezik. Sajátját a console.qweather.com oldalon találja a projektbeállítások alatt."
 
@@ -1070,35 +1070,35 @@ msgstr "Adja meg a pontos szélességi és hosszúsági fokot, valamint a magass
 msgid "Enter manually"
 msgstr "Kézi megadás"
 
-#: contents/ui/config/configGeneral.qml:614
+#: contents/ui/config/configGeneral.qml:615
 msgid "Enter your OpenWeatherMap API key"
 msgstr "Adja meg a saját OpenWeatherMap API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:616
+#: contents/ui/config/configGeneral.qml:617
 msgid "Enter your Pirate Weather API key"
 msgstr "Adja meg a saját Pirate Weather API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:626
+#: contents/ui/config/configGeneral.qml:627
 msgid "Enter your QWeather API key"
 msgstr "Adja meg a saját QWeather API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:622
+#: contents/ui/config/configGeneral.qml:623
 msgid "Enter your StormGlass API key"
 msgstr "Adja meg a saját StormGlass API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:620
+#: contents/ui/config/configGeneral.qml:621
 msgid "Enter your Tomorrow.io API key"
 msgstr "Adja meg a saját Tomorrow.io API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:618
+#: contents/ui/config/configGeneral.qml:619
 msgid "Enter your Visual Crossing API key"
 msgstr "Adja meg a saját Visual Crossing API-kulcsát"
 
-#: contents/ui/config/configGeneral.qml:627
+#: contents/ui/config/configGeneral.qml:628
 msgid "Enter your WeatherAPI.com key"
 msgstr "Adja meg a saját WeatherAPI.com kulcsát"
 
-#: contents/ui/config/configGeneral.qml:624
+#: contents/ui/config/configGeneral.qml:625
 msgid "Enter your Weatherbit API key"
 msgstr "Adja meg a saját Weatherbit API-kulcsát"
 
@@ -1143,7 +1143,7 @@ msgstr "Extrém geomágneses vihar."
 msgid "Extremely Poor"
 msgstr "Rendkívül rossz"
 
-#: contents/ui/config/configGeneral.qml:988
+#: contents/ui/config/configGeneral.qml:1018
 msgid "FOSS Public Alert Server"
 msgstr "FOSS Public Alert Server"
 
@@ -1190,7 +1190,7 @@ msgstr "Panel kitöltése:"
 msgid "Find"
 msgstr "Keresés"
 
-#: contents/ui/main.qml:2090
+#: contents/ui/main.qml:2096
 msgid "First Quarter"
 msgstr "Első negyed"
 
@@ -1257,15 +1257,15 @@ msgstr "Előrejelzés:"
 msgid "Forest fire"
 msgstr "Erdőtűz"
 
-#: contents/ui/config/configGeneral.qml:553
+#: contents/ui/config/configGeneral.qml:554
 msgid "Free BBC Weather service (data from the Met Office). No API key needed."
 msgstr "Ingyenes BBC Weather szolgáltatás (a Met Office adataival). Nem szükséges hozzá API-kulcs."
 
-#: contents/ui/config/configGeneral.qml:551
+#: contents/ui/config/configGeneral.qml:552
 msgid "Free Norwegian Meteorological Institute service. No API key needed."
 msgstr "A Norvég Meteorológiai Intézet szolgáltatása ingyenes és nincs szükség hozzá API-kulcsra."
 
-#: contents/ui/config/configGeneral.qml:554
+#: contents/ui/config/configGeneral.qml:555
 msgid "Free and open-source. No API key needed. Recommended."
 msgstr "Szabad és nyílt forráskódú. API-kulcs megadása nem szükséges, de ajánlott."
 
@@ -1301,7 +1301,7 @@ msgstr "Ónos eső (éjszaka)"
 msgid "Friday"
 msgstr "Péntek"
 
-#: contents/ui/main.qml:2094
+#: contents/ui/main.qml:2100
 msgid "Full Moon"
 msgstr "Telihold"
 
@@ -1407,7 +1407,7 @@ msgstr "Előtagikon elrejtése"
 msgid "High"
 msgstr "Magas"
 
-#: contents/ui/config/configGeneral.qml:547
+#: contents/ui/config/configGeneral.qml:548
 msgid "High precision forecast provider. API key required below."
 msgstr "Nagy pontosságú előrejelzés-szolgáltató. API-kulcs szükséges alább."
 
@@ -1415,7 +1415,7 @@ msgstr "Nagy pontosságú előrejelzés-szolgáltató. API-kulcs szükséges al�
 msgid "High temperature"
 msgstr "Magas hőmérséklet"
 
-#: contents/ui/config/configGeneral.qml:541
+#: contents/ui/config/configGeneral.qml:542
 msgid "Historical and forecast data provider. API key required below."
 msgstr "Történelmi és előrejelzési adatok szolgáltatója. API-kulcs szükséges alább."
 
@@ -1498,7 +1498,7 @@ msgstr "Ikonok"
 msgid "If this looks correct, apply it. Otherwise, choose your location manually."
 msgstr "Ha ez helyesnek tűnik, akkor vegye használatba. Ellenkező esetben válassza ki a helyet kézzel."
 
-#: contents/ui/config/configGeneral.qml:759
+#: contents/ui/config/configGeneral.qml:760
 msgid "If you have just registered a new OpenWeatherMap API key, it might take up to 2 hours for it to become active. Please try again later if it doesn't work immediately."
 msgstr "Ha most regisztrált új OpenWeatherMap API-kulcsot, az aktiválás akár 2 órát is igénybe vehet. Ha nem működik azonnal, próbálja meg később."
 
@@ -1554,7 +1554,7 @@ msgstr ""
 msgid "Instruction"
 msgstr "Utasítás"
 
-#: contents/ui/config/configGeneral.qml:1072
+#: contents/ui/config/configGeneral.qml:1102
 msgid "Interval:"
 msgstr "Időköz:"
 
@@ -1562,7 +1562,7 @@ msgstr "Időköz:"
 msgid "Invalid API key (HTTP %1)"
 msgstr "Érvénytelen API-kulcs (HTTP %1)"
 
-#: contents/ui/config/configGeneral.qml:364
+#: contents/ui/config/configGeneral.qml:365
 msgid "Invalid API key. Please check and try again."
 msgstr "Érvénytelen API-kulcs. Ellenőrizze és próbálja újra."
 
@@ -1570,7 +1570,7 @@ msgstr "Érvénytelen API-kulcs. Ellenőrizze és próbálja újra."
 msgid "Invalid response"
 msgstr "Érvénytelen válasz"
 
-#: contents/ui/config/configGeneral.qml:354
+#: contents/ui/config/configGeneral.qml:355
 msgid "Invalid response from QWeather."
 msgstr "Érvénytelen válasz érkezett a QWeathertől."
 
@@ -1640,7 +1640,7 @@ msgstr "Kp index"
 msgid "Kp index/G forecast:"
 msgstr "Kp index/G előrejelzés:"
 
-#: contents/ui/main.qml:2098
+#: contents/ui/main.qml:2104
 msgid "Last Quarter"
 msgstr "Utolsó negyed"
 
@@ -1670,10 +1670,18 @@ msgstr "Elrendezés"
 msgid "Layout type:"
 msgstr "Elrendezés típusa:"
 
-#: contents/ui/config/configGeneral.qml:834
-#: contents/ui/config/configGeneral.qml:984
+#: contents/ui/config/configGeneral.qml:879
+msgid "Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance."
+msgstr ""
+
+#: contents/ui/config/configGeneral.qml:835
+#: contents/ui/config/configGeneral.qml:1014
 msgid "LibreWXR"
 msgstr "LibreWXR"
+
+#: contents/ui/config/configGeneral.qml:872
+msgid "LibreWXR server:"
+msgstr ""
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 #: contents/ui/components/RadarWebEngineView.qml:781
@@ -1786,12 +1794,12 @@ msgstr "A hely automatikusan lett észlelve."
 msgid "Location detection is depending on system configuration and permissions."
 msgstr "A hely észlelése a rendszerbeállításoktól és engedélyektől függ."
 
-#: contents/ui/config/configGeneral.qml:261
+#: contents/ui/config/configGeneral.qml:262
 #: contents/ui/config/configLocation.qml:538
 msgid "Location is available on %1."
 msgstr "A hely elérhető a(z) %1 nevű szolgáltatónál."
 
-#: contents/ui/config/configGeneral.qml:264
+#: contents/ui/config/configGeneral.qml:265
 #: contents/ui/config/configLocation.qml:541
 msgid "Location is not available on %1 (HTTP %2). Try a different provider or location."
 msgstr "A hely nem érhető el a(z) %1 nevű szolgáltatónál (HTTP %2). Próbáljon másik szolgáltatót vagy helyet."
@@ -1817,7 +1825,7 @@ msgstr "A hely előjegyezve. Kattintson az Alkalmaz gombra a mentéshez."
 msgid "Location:"
 msgstr "Hely:"
 
-#: contents/ui/config/configGeneral.qml:903
+#: contents/ui/config/configGeneral.qml:933
 msgid "Log Out Now…"
 msgstr "Kijelentkezés most…"
 
@@ -1906,11 +1914,11 @@ msgstr "Kézi"
 msgid "Map background"
 msgstr "Térkép háttere"
 
-#: contents/ui/config/configGeneral.qml:545
+#: contents/ui/config/configGeneral.qml:546
 msgid "Marine and weather data provider. API key required below."
 msgstr "Tengerészeti és időjárási adatok szolgáltatója. API-kulcs szükséges alább."
 
-#: contents/ui/config/configGeneral.qml:980
+#: contents/ui/config/configGeneral.qml:1010
 msgid "MeteoAlarm + NOAA NWS (Native)"
 msgstr "MeteoAlarm és NOAA NWS (natív)"
 
@@ -2116,7 +2124,7 @@ msgstr "Szüksége van egy hely koordinátáira? Megtalálhatja őket a <a href=
 msgid "Network error"
 msgstr "Hálózati hiba"
 
-#: contents/ui/main.qml:2086
+#: contents/ui/main.qml:2092
 msgid "New Moon"
 msgstr "Újhold"
 
@@ -2275,7 +2283,7 @@ msgstr "Telepítési útmutató megnyitása"
 msgid "Open radar in browser"
 msgstr "Radar megnyitása a böngészőben"
 
-#: contents/ui/config/configGeneral.qml:376
+#: contents/ui/config/configGeneral.qml:377
 msgid "Open-Meteo (recommended, free)"
 msgstr "Open-Meteo (ajánlott, ingyenes)"
 
@@ -2287,11 +2295,11 @@ msgstr "OpenStreetMap (szabványos)"
 msgid "OpenTopoMap (topographic)"
 msgstr "OpenTopoMap (domborzati)"
 
-#: contents/ui/config/configGeneral.qml:388
+#: contents/ui/config/configGeneral.qml:389
 msgid "OpenWeatherMap (Key Required)"
 msgstr "OpenWeatherMap (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:587
+#: contents/ui/config/configGeneral.qml:588
 msgid "OpenWeatherMap API Key:"
 msgstr "OpenWeatherMap API-kulcs:"
 
@@ -2409,11 +2417,11 @@ msgstr "Válasszon ki egy pontot a térképen a helyi előrejelzéshez, példáu
 msgid "Pipe  |"
 msgstr "Függőleges vonal  |"
 
-#: contents/ui/config/configGeneral.qml:396
+#: contents/ui/config/configGeneral.qml:397
 msgid "Pirate Weather (Key Required)"
 msgstr "Pirate Weather (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:589
+#: contents/ui/config/configGeneral.qml:590
 msgid "Pirate Weather API Key:"
 msgstr "Pirate Weather API-kulcs:"
 
@@ -2522,21 +2530,21 @@ msgstr "Szolgáltató"
 msgid "Provider availability"
 msgstr "Szolgáltató elérhetősége"
 
-#: contents/ui/config/configGeneral.qml:535
-#: contents/ui/config/configGeneral.qml:537
-#: contents/ui/config/configGeneral.qml:539
-#: contents/ui/config/configGeneral.qml:541
-#: contents/ui/config/configGeneral.qml:543
-#: contents/ui/config/configGeneral.qml:545
-#: contents/ui/config/configGeneral.qml:547
-#: contents/ui/config/configGeneral.qml:549
-#: contents/ui/config/configGeneral.qml:551
-#: contents/ui/config/configGeneral.qml:553
+#: contents/ui/config/configGeneral.qml:536
+#: contents/ui/config/configGeneral.qml:538
+#: contents/ui/config/configGeneral.qml:540
+#: contents/ui/config/configGeneral.qml:542
+#: contents/ui/config/configGeneral.qml:544
+#: contents/ui/config/configGeneral.qml:546
+#: contents/ui/config/configGeneral.qml:548
+#: contents/ui/config/configGeneral.qml:550
+#: contents/ui/config/configGeneral.qml:552
 #: contents/ui/config/configGeneral.qml:554
+#: contents/ui/config/configGeneral.qml:555
 msgid "Provider website:"
 msgstr "Szolgáltató weboldala:"
 
-#: contents/ui/config/configGeneral.qml:506 contents/ui/DetailsView.qml:2098
+#: contents/ui/config/configGeneral.qml:507 contents/ui/DetailsView.qml:2098
 #: contents/ui/DetailsView.qml:2826
 msgid "Provider:"
 msgstr "Szolgáltató:"
@@ -2545,7 +2553,7 @@ msgstr "Szolgáltató:"
 msgid "Provider: %1"
 msgstr "Szolgáltató: %1"
 
-#: contents/ui/config/configGeneral.qml:492
+#: contents/ui/config/configGeneral.qml:493
 msgid ""
 "Providers are tried in order until one succeeds:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
@@ -2559,19 +2567,19 @@ msgstr ""
 msgid "Purple"
 msgstr "Lila"
 
-#: contents/ui/config/configGeneral.qml:416
+#: contents/ui/config/configGeneral.qml:417
 msgid "QWeather (Key Required)"
 msgstr "QWeather (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:770
+#: contents/ui/config/configGeneral.qml:771
 msgid "QWeather API Host:"
 msgstr "QWeather API-kiszolgáló:"
 
-#: contents/ui/config/configGeneral.qml:599
+#: contents/ui/config/configGeneral.qml:600
 msgid "QWeather API Key:"
 msgstr "QWeather API-kulcs:"
 
-#: contents/ui/config/configGeneral.qml:349
+#: contents/ui/config/configGeneral.qml:350
 msgid "QWeather error (code %1). Check your API key."
 msgstr "QWeather hiba (kód: %1). Ellenőrizze az API-kulcsát."
 
@@ -2593,7 +2601,7 @@ msgstr "Nyugodt"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:172
 #: contents/ui/components/RadarWebEngineView.qml:128
-#: contents/ui/config/configGeneral.qml:801
+#: contents/ui/config/configGeneral.qml:802
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
 msgstr "Radar"
@@ -2610,15 +2618,15 @@ msgstr "Radar színsémája:"
 msgid "Radar only"
 msgstr "Csak radar"
 
-#: contents/ui/config/configGeneral.qml:823
+#: contents/ui/config/configGeneral.qml:824
 msgid "Radar provider:"
 msgstr "Radarszolgáltató:"
 
-#: contents/ui/config/configGeneral.qml:858
+#: contents/ui/config/configGeneral.qml:859
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
 msgstr "Radarszolgáltató: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>A LibreWXR egy ingyenes, nyílt forráskódú időjárásiradar-API. Egyesíti a NOAA, valamint a kanadai és európai forrásokból származó valós radar-kompozitokat egy globális modell-tartalékkal, továbbá biztosítja az elmúlt 2 óra radaradatait és egy rövid távú előrejelzést. Emellett egy ingyenes műholdas (infravörös) réteget is kínál.<br/><br/>A rétegmód, a radar színsémája és a mozgásirányt jelző nyilak közvetlenül a radarlapon választhatók ki. A térkép automatikusan követi az Ön világos/sötét Plasma témáját."
 
-#: contents/ui/config/configGeneral.qml:849
+#: contents/ui/config/configGeneral.qml:850
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
 msgstr "Radarszolgáltató: <a href='[https://www.rainviewer.com/](https://www.rainviewer.com/)'>Rain Viewer</a>A kisalkalmazás az ingyenes RainViewer API-t használja, amely az elmúlt 2 óra radaradatait biztosítja 10 perces időközönként. A radarképes előrejelzés nem támogatott. A Rain Viewer nem garantálja a radaradatok elérhetőségét. Nem kötnek szerződést az adatok tulajdonosaival. Ennek az az oka, hogy a tulajdonosok kérhetik adataik eltávolítását a Rain Viewerről, módosíthatják az adatformátumot, vagy leállíthatják a megosztást. A Rain Viewer igyekszik a lehető legtovább elérhetővé tenni az adatokat, de előfordulhat, hogy a tulajdonosok egyszerűen megszüntetik a képek szolgáltatását."
 
@@ -2646,7 +2654,7 @@ msgstr "Eső (nappal)"
 msgid "Rain (night)"
 msgstr "Eső (éjszaka)"
 
-#: contents/ui/config/configGeneral.qml:830
+#: contents/ui/config/configGeneral.qml:831
 msgid "Rain Viewer"
 msgstr "Rain Viewer"
 
@@ -2679,7 +2687,7 @@ msgstr "Vörös"
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: contents/ui/config/configGeneral.qml:1061
+#: contents/ui/config/configGeneral.qml:1091
 msgid "Refresh weather automatically"
 msgstr "Időjárás-adatok automatikus frissítése"
 
@@ -2785,7 +2793,7 @@ msgstr "Szombat"
 msgid "Saved locations"
 msgstr "Mentett helyek"
 
-#: contents/ui/config/configGeneral.qml:99
+#: contents/ui/config/configGeneral.qml:100
 msgid "Saved, but not active yet - log out and back in for it to take effect."
 msgstr "Mentve, de még nem aktív – jelentkezzen ki, majd jelentkezzen be újra, hogy a változás érvénybe lépjen."
 
@@ -2886,7 +2894,7 @@ msgstr "Előtagikon megjelenítése / elrejtése"
 msgid "Show / hide the prefix icon on the panel"
 msgstr "Előtag ikon megjelenítése / elrejtése a panelen"
 
-#: contents/ui/config/configGeneral.qml:813
+#: contents/ui/config/configGeneral.qml:814
 msgid "Show Radar tab in widget"
 msgstr "Radarlap megjelenítése a kisalkalmazásban"
 
@@ -2944,7 +2952,7 @@ msgstr "Hőmérséklet mértékegységének megjelenítése:"
 msgid "Show update time and provider"
 msgstr "Frissítési idő és szolgáltató megjelenítése"
 
-#: contents/ui/config/configGeneral.qml:691
+#: contents/ui/config/configGeneral.qml:692
 msgid "Show/hide key"
 msgstr "Kulcs megjelenítése/elrejtése"
 
@@ -3118,7 +3126,7 @@ msgstr "Űridőjárás:"
 msgid "Space weather options"
 msgstr "Űridőjárás beállításai"
 
-#: contents/ui/config/configGeneral.qml:535
+#: contents/ui/config/configGeneral.qml:536
 msgid "Standard provider. API key required below."
 msgstr "Szabványos szolgáltató. API-kulcs szükséges alább."
 
@@ -3132,11 +3140,11 @@ msgstr "Statisztikai elemek:"
 msgid "Storm"
 msgstr "Vihar"
 
-#: contents/ui/config/configGeneral.qml:408
+#: contents/ui/config/configGeneral.qml:409
 msgid "StormGlass (Key Required)"
 msgstr "StormGlass (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:595
+#: contents/ui/config/configGeneral.qml:596
 msgid "StormGlass API Key:"
 msgstr "StormGlass API-kulcs:"
 
@@ -3328,7 +3336,7 @@ msgstr "Hőmérséklet árnyéka:"
 msgid "Temperature:"
 msgstr "Hőmérséklet:"
 
-#: contents/ui/config/configGeneral.qml:722
+#: contents/ui/config/configGeneral.qml:723
 msgid "Test API Key"
 msgstr "API-kulcs tesztelése"
 
@@ -3336,11 +3344,11 @@ msgstr "API-kulcs tesztelése"
 msgid "Test across providers"
 msgstr "Szolgáltatók tesztelése"
 
-#: contents/ui/config/configGeneral.qml:304
+#: contents/ui/config/configGeneral.qml:305
 msgid "Testing connection…"
 msgstr "Kapcsolat tesztelése…"
 
-#: contents/ui/config/configGeneral.qml:722
+#: contents/ui/config/configGeneral.qml:723
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:222
 msgid "Testing…"
 msgstr "Tesztelés…"
@@ -3374,7 +3382,7 @@ msgstr "A geomágneses (Kp/G) előrejelzés legfeljebb 3 napra előre érhető e
 msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
 msgstr "A térképválasztóhoz szükségesek a QtLocation és QtPositioning csomagok, amelyek nincsenek telepítve erre a rendszerre."
 
-#: contents/ui/config/configGeneral.qml:102
+#: contents/ui/config/configGeneral.qml:103
 msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
 msgstr "A problémamegoldó parancsfájlt nem sikerült megtalálni a lemezen. Próbálja meg kikapcsolni, majd újra bekapcsolni a beállítást."
 
@@ -3447,7 +3455,7 @@ msgstr "Időtúllépés"
 msgid "Timezone:"
 msgstr "Időzóna:"
 
-#: contents/ui/config/configGeneral.qml:867
+#: contents/ui/config/configGeneral.qml:897
 msgid "To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): disable Adaptive mode, select OpenWeatherMap as your weather provider, and enter your API key above. When you are ready, you can enable Adaptive mode again."
 msgstr "További térképrétegek (Eső, Felhők, Hőmérséklet, Szél, Nyomás) feloldásához: tiltsa le az Adaptív módot és válassza az OpenWeatherMap szolgáltatót, majd adja meg fent az API-kulcsát. Ha készen áll, újra engedélyezheti az Adaptív módot."
 
@@ -3474,11 +3482,11 @@ msgstr "Holnap"
 msgid "Tomorrow forecast"
 msgstr "Holnapi előrejelzés"
 
-#: contents/ui/config/configGeneral.qml:404
+#: contents/ui/config/configGeneral.qml:405
 msgid "Tomorrow.io (Key Required)"
 msgstr "Tomorrow.io (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:593
+#: contents/ui/config/configGeneral.qml:594
 msgid "Tomorrow.io API Key:"
 msgstr "Tomorrow.io API-kulcs:"
 
@@ -3721,27 +3729,27 @@ msgstr "Látótávolság:"
 msgid "Visible tabs:"
 msgstr "Látható lapok:"
 
-#: contents/ui/config/configGeneral.qml:400
+#: contents/ui/config/configGeneral.qml:401
 msgid "Visual Crossing (Key Required)"
 msgstr "Visual Crossing (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:591
+#: contents/ui/config/configGeneral.qml:592
 msgid "Visual Crossing API Key:"
 msgstr "Visual Crossing API-kulcs:"
 
-#: contents/ui/main.qml:2100
+#: contents/ui/main.qml:2106
 msgid "Waning Crescent"
 msgstr "Fogyó Holdsarló"
 
-#: contents/ui/main.qml:2096
+#: contents/ui/main.qml:2102
 msgid "Waning Gibbous"
 msgstr "Fogyó Hold"
 
-#: contents/ui/main.qml:2088
+#: contents/ui/main.qml:2094
 msgid "Waxing Crescent"
 msgstr "Növekvő Holdsarló"
 
-#: contents/ui/main.qml:2092
+#: contents/ui/main.qml:2098
 msgid "Waxing Gibbous"
 msgstr "Növekvő Hold"
 
@@ -3753,11 +3761,11 @@ msgstr "Észleltük az Ön koordinátáit: <b>%1°, %2°</b>."
 msgid "We detected your location as: <b>%1</b>."
 msgstr "Észleltük az Ön tartózkodási helyét: <b>%1</b>."
 
-#: contents/ui/config/configGeneral.qml:958
+#: contents/ui/config/configGeneral.qml:988
 msgid "Weather Alerts"
 msgstr "Időjárási riasztások"
 
-#: contents/ui/config/configGeneral.qml:443
+#: contents/ui/config/configGeneral.qml:444
 msgid "Weather Provider"
 msgstr "Időjárás-szolgáltató"
 
@@ -3816,19 +3824,19 @@ msgstr ""
 "\n"
 "Kapcsoljon ki egy szintet, ha a jövőben nem szeretne értesítéseket kapni az ilyen súlyosságú riasztásokról."
 
-#: contents/ui/config/configGeneral.qml:392
+#: contents/ui/config/configGeneral.qml:393
 msgid "WeatherAPI.com (Key Required)"
 msgstr "WeatherAPI.com (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:600
+#: contents/ui/config/configGeneral.qml:601
 msgid "WeatherAPI.com API Key:"
 msgstr "WeatherAPI.com API-kulcs:"
 
-#: contents/ui/config/configGeneral.qml:412
+#: contents/ui/config/configGeneral.qml:413
 msgid "Weatherbit (Key Required)"
 msgstr "Weatherbit (API-kulcs szükséges)"
 
-#: contents/ui/config/configGeneral.qml:597
+#: contents/ui/config/configGeneral.qml:598
 msgid "Weatherbit API Key:"
 msgstr "Weatherbit API-kulcs:"
 
@@ -3881,7 +3889,7 @@ msgstr "Szélsebesség:"
 msgid "Wind:"
 msgstr "Szél:"
 
-#: contents/ui/config/configGeneral.qml:884
+#: contents/ui/config/configGeneral.qml:914
 msgid "Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)"
 msgstr "A hibrid GPU-rendszereken előforduló radartérkép-összeomlások ideiglenes megoldása (KÍSÉRLETI)"
 
@@ -4046,7 +4054,7 @@ msgstr "m"
 msgid "m/s"
 msgstr "m/s"
 
-#: contents/ui/config/configGeneral.qml:380
+#: contents/ui/config/configGeneral.qml:381
 msgid "met.no (free)"
 msgstr "met.no (ingyenes)"
 
@@ -4066,7 +4074,7 @@ msgstr "mi"
 msgid "minor"
 msgstr "kisebb"
 
-#: contents/ui/config/configGeneral.qml:1081
+#: contents/ui/config/configGeneral.qml:1111
 #: contents/ui/config/configNotifications.qml:364
 msgid "minutes"
 msgstr "perc"

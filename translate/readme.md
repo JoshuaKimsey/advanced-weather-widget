@@ -5,23 +5,24 @@
 
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |     918 |       |
-| bg       | 918/918 |  100% |
-| cs_CZ    | 835/918 |   90% |
-| de       | 899/918 |   97% |
-| es       | 918/918 |  100% |
-| fr       | 918/918 |  100% |
-| hu_HU    | 918/918 |  100% |
-| it_IT    | 899/918 |   97% |
-| ja_JP    | 918/918 |  100% |
-| nl       | 918/918 |  100% |
-| pl_PL    | 899/918 |   97% |
-| pt_BR    | 288/918 |   31% |
-| ru       | 899/918 |   97% |
-| tr_TR    | 899/918 |   97% |
-| uk       | 915/918 |   99% |
-| zh_CN    | 918/918 |  100% |
-| zh_TW    | 918/918 |  100% |
+| Template |     920 |       |
+| bg       | 917/920 |   99% |
+| cs_CZ    | 835/920 |   90% |
+| de       | 917/920 |   99% |
+| es       | 917/920 |   99% |
+| fr       | 917/920 |   99% |
+| hu_HU    | 917/920 |   99% |
+| it_IT    | 917/920 |   99% |
+| ja_JP    | 917/920 |   99% |
+| ko_KR    | 917/920 |   99% |
+| nl       | 917/920 |   99% |
+| pl_PL    | 917/920 |   99% |
+| pt_BR    | 288/920 |   31% |
+| ru       | 899/920 |   97% |
+| tr_TR    | 899/920 |   97% |
+| uk       | 915/920 |   99% |
+| zh_CN    | 917/920 |   99% |
+| zh_TW    | 917/920 |   99% |
 
 
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.
@@ -82,3 +83,4 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Polish** - [l3monik](https://github.com/l3monik)
 - **Ukrainian** - [NaviMen (Oleksandr)](https://github.com/NaviMen)
 - **Japanese** - [presire](https://github.com/presire)
+- **Korean** - [vitneum](https://github.com/vitneum)

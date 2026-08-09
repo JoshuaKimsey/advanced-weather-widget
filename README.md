@@ -219,6 +219,7 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Polish** - [l3monik](https://github.com/l3monik)
 - **Ukrainian** - [NaviMen](https://github.com/NaviMen)
 - **Japanese** - [presire](https://github.com/presire)
+- **Korean** - [vitneum](https://github.com/vitneum)
 - **Bulgarian** - Petar Nedyalkov (Author)
 
 ---

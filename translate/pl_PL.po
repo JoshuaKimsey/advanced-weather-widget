@@ -147,9 +147,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
-"Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/"
-"issues\n"
-"POT-Creation-Date: 2026-08-03 15:19+0300\n"
+"Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
+"POT-Creation-Date: 2026-08-09 19:27+0300\n"
 "PO-Revision-Date: 2026-08-08 12:36+0200\n"
 "Last-Translator: Konrad Lemanowski <lokalize@ajnulo.ovh>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -157,8 +156,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 |"
-"| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 26.04.3\n"
 
 #: contents/ui/DetailsView.qml:3493 contents/ui/DetailsView.qml:3495
@@ -271,38 +269,13 @@ msgstr "<b>Od:</b> %1"
 msgid "<b>Headline:</b> %1"
 msgstr "<b>Zjawisko:</b> %1"
 
-#: contents/ui/config/configGeneral.qml:899
+#: contents/ui/config/configGeneral.qml:929
 msgid ""
-"<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some h"
-"ybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can c"
-"rash the whole Plasma shell the moment it first paints, due to a driver-level "
-"conflict between the two GPUs. This option disables GPU-accelerated compositin"
-"g inside that browser view to avoid it.<br/><br/>Only enable this if you're ac"
-"tually experiencing that crash - it costs some rendering performance on the ra"
-"dar map.<br/><br/><b>This needs a log out and back in to take effect</b>, sinc"
-"e it has to be set before Plasma starts. It also applies to the whole session,"
-" so any other app that embeds a Chromium-based browser view will pick up the s"
-"ame setting.\n"
-"                <br/><br/>If you enable this option, the following file will b"
-"e created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu"
-"-workaround.sh"
+"<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
+"                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 msgstr ""
-"<b>Rozwiązanie problemu awarii hybrydowego układu graficznego / NVIDIA PRIME w"
-" Wayland</b><br/><br/>Na niektórych laptopach z hybrydowym układem graficznym,"
-" na których działa Wayland, widok wbudowanej przeglądarki w zakładce „Radar” m"
-"oże spowodować awarię całego środowiska Plasma w momencie pierwszego odświeżen"
-"ia obrazu, z powodu konfliktu na poziomie sterowników między dwoma układami gr"
-"aficznymi. Ta opcja wyłącza kompozycję przyspieszaną przez procesor graficzny "
-"w tym widoku przeglądarki, aby tego uniknąć.<br/><br/>Włącz tę opcję tylko wte"
-"dy, gdy faktycznie doświadczasz tego problemu — powoduje to pewien spadek wyda"
-"jności renderowania mapy radarowej.<br/><br/><b>Aby zmiana zaczęła obowiązywać"
-", konieczne jest wylogowanie się i ponowne zalogowanie</b>, ponieważ ustawieni"
-"e to musi zostać skonfigurowane przed uruchomieniem Plasma. Dotyczy to również"
-" całej sesji, więc każda inna aplikacja wykorzystująca widok przeglądarki opar"
-"tej na Chromium przejmie to samo ustawienie.\n"
-"                <br/><br/>Jeśli włączysz tę opcję, zostanie utworzony następuj"
-"ący plik: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-wor"
-"karound.sh"
+"<b>Rozwiązanie problemu awarii hybrydowego układu graficznego / NVIDIA PRIME w Wayland</b><br/><br/>Na niektórych laptopach z hybrydowym układem graficznym, na których działa Wayland, widok wbudowanej przeglądarki w zakładce „Radar” może spowodować awarię całego środowiska Plasma w momencie pierwszego odświeżenia obrazu, z powodu konfliktu na poziomie sterowników między dwoma układami graficznymi. Ta opcja wyłącza kompozycję przyspieszaną przez procesor graficzny w tym widoku przeglądarki, aby tego uniknąć.<br/><br/>Włącz tę opcję tylko wtedy, gdy faktycznie doświadczasz tego problemu — powoduje to pewien spadek wydajności renderowania mapy radarowej.<br/><br/><b>Aby zmiana zaczęła obowiązywać, konieczne jest wylogowanie się i ponowne zalogowanie</b>, ponieważ ustawienie to musi zostać skonfigurowane przed uruchomieniem Plasma. Dotyczy to również całej sesji, więc każda inna aplikacja wykorzystująca widok przeglądarki opartej na Chromium przejmie to samo ustawienie.\n"
+"                <br/><br/>Jeśli włączysz tę opcję, zostanie utworzony następujący plik: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 
 #: contents/ui/main.qml:1244
 msgid "<b>Instruction:</b> %1"
@@ -317,36 +290,19 @@ msgstr "<b>Dostawca:</b> %1"
 msgid "<b>Severity:</b> %1%2"
 msgstr "<b>Stopień:</b> %1%2"
 
-#: contents/ui/config/configGeneral.qml:875
-msgid ""
-"<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitatio"
-"n/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numer"
-"ical Weather Prediction) output, not actual radar returns. They represent wher"
-"e the model <i>thinks</i> it is raining based on interpolation between weather"
-" stations and model runs.<br/><br/>RainViewer uses <b>real weather radar compo"
-"sites</b> from radar stations - actual measured reflectivity updated every 2–1"
-"0 minutes. This discrepancy is expected and known."
-msgstr ""
-"<b>Dlaczego warstwy OWM mogą różnić się od radaru RainViewer</b><br/><br/>Wars"
-"twy opadu/chmur OWM są<b>kafelkami modelu statycznego</b> - pokazują wygładzon"
-"y wynik NPP (Numerycznej Prognozy Pogody), a nie aktualne dane radarowe. Pokaz"
-"ują one gdzie model <i>myśli</i> że pada, na podstawie interpolacji pomiędzy s"
-"tacjami pogodowymi a iteracjami modelowania.<br/><br/>RainViewer używa <b>praw"
-"dziwych map kompozytowych z radarów meteorologicznych</b> ze stacji radarowych"
-" - faktycznie zmierzonej reflektancji zachmurzenia, aktualizowanej co 2 – 10 m"
-"inut. Ta rozbieżność jest spodziewana i znana."
+#: contents/ui/config/configGeneral.qml:905
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+msgstr "<b>Dlaczego warstwy OWM mogą różnić się od radaru RainViewer</b><br/><br/>Warstwy opadu/chmur OWM są<b>kafelkami modelu statycznego</b> - pokazują wygładzony wynik NPP (Numerycznej Prognozy Pogody), a nie aktualne dane radarowe. Pokazują one gdzie model <i>myśli</i> że pada, na podstawie interpolacji pomiędzy stacjami pogodowymi a iteracjami modelowania.<br/><br/>RainViewer używa <b>prawdziwych map kompozytowych z radarów meteorologicznych</b> ze stacji radarowych - faktycznie zmierzonej reflektancji zachmurzenia, aktualizowanej co 2 – 10 minut. Ta rozbieżność jest spodziewana i znana."
 
-#: contents/ui/config/configGeneral.qml:543
+#: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
-msgstr ""
-"Informacje pogodowe wspomagane sztuczną inteligencją. Klucz API wymagany poniż"
-"ej."
+msgstr "Informacje pogodowe wspomagane sztuczną inteligencją. Klucz API wymagany poniżej."
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:200
 msgid "API error"
 msgstr "Błąd API"
 
-#: contents/ui/config/configGeneral.qml:300
+#: contents/ui/config/configGeneral.qml:301
 msgid "API key is empty."
 msgstr "Klucz API jest pusty."
 
@@ -362,19 +318,15 @@ msgstr "AQI"
 msgid "Active"
 msgstr "Aktywnie"
 
-#: contents/ui/config/configGeneral.qml:96
-msgid ""
-"Active - GPU compositing is currently disabled for the radar map in this sessi"
-"on."
-msgstr ""
-"Aktywne — w tej sesji kompozycja obrazu za pomocą procesora graficznego jest o"
-"becnie wyłączona dla mapy radarowej."
+#: contents/ui/config/configGeneral.qml:97
+msgid "Active - GPU compositing is currently disabled for the radar map in this session."
+msgstr "Aktywne — w tej sesji kompozycja obrazu za pomocą procesora graficznego jest obecnie wyłączona dla mapy radarowej."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
 msgstr "Adaptacyjny (Open-Meteo)"
 
-#: contents/ui/config/configGeneral.qml:476
+#: contents/ui/config/configGeneral.qml:477
 msgid "Adaptive (auto-fallback)"
 msgstr "Adaptacyjny (automatyczny wybór)"
 
@@ -451,54 +403,21 @@ msgstr "Olcha"
 msgid "Alerts"
 msgstr "Alerty"
 
-#: contents/ui/config/configGeneral.qml:973
+#: contents/ui/config/configGeneral.qml:1003
 msgid "Alerts provider:"
 msgstr "Dostawca alertów:"
 
-#: contents/ui/config/configGeneral.qml:1026
-msgid ""
-"Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a"
-"><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather war"
-"nings in CAP format from agencies worldwide and matches them to your exact loc"
-"ation. Alert notifications work the same as with the native provider."
-msgstr ""
-"Dostawca alertów: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</"
-"a><br/><br/>FOSS Public Alert Server od KDE gromadzi oficjalne ostrzeżenia o t"
-"rudnych warunkach pogodowych w formacie CAP od agencji z całego świata i przyp"
-"isuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działa"
-"ją tak samo, jak w przypadku natywnego dostawcy."
+#: contents/ui/config/configGeneral.qml:1056
+msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
+msgstr "Dostawca alertów: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>FOSS Public Alert Server od KDE gromadzi oficjalne ostrzeżenia o trudnych warunkach pogodowych w formacie CAP od agencji z całego świata i przypisuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działają tak samo, jak w przypadku natywnego dostawcy."
 
-#: contents/ui/config/configGeneral.qml:1017
-msgid ""
-"Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWX"
-"R is a free, open-source weather API that aggregates official CAP alerts world"
-"wide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches"
-" them to your exact location. Alert notifications work the same as with the na"
-"tive provider."
-msgstr ""
-"Dostawca alertów: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreW"
-"XR to bezpłatny, pogodowy interfejs API typu open source, który gromadzi oficj"
-"alne ostrzeżenia CAP z całego świata (Centrum Informacji o Zagrożeniach Pogodo"
-"wych WMO, NOAA NWS i inne) oraz dopasowuje je do Twojej dokładnej lokalizacji."
-" Powiadomienia o ostrzeżeniach działają tak samo jak w przypadku natywnego dos"
-"tawcy."
+#: contents/ui/config/configGeneral.qml:1047
+msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
+msgstr "Dostawca alertów: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR to bezpłatny, pogodowy interfejs API typu open source, który gromadzi oficjalne ostrzeżenia CAP z całego świata (Centrum Informacji o Zagrożeniach Pogodowych WMO, NOAA NWS i inne) oraz dopasowuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działają tak samo jak w przypadku natywnego dostawcy."
 
-#: contents/ui/config/configGeneral.qml:1008
-msgid ""
-"Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a>"
-" + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations"
-" use the official MeteoAlarm feeds (38 countries), US locations use the NOAA N"
-"ational Weather Service alerts API, with met.no MetAlerts as a fallback. If yo"
-"ur weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weath"
-"er), those are used directly."
-msgstr ""
-"Dostawca alertów: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a"
-"> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/> w przypadku loka"
-"lizacji w Europie wykorzystywane są oficjalne kanały MeteoAlarm (38 krajów), n"
-"atomiast w przypadku lokalizacji w Stanach Zjednoczonych – interfejs API alert"
-"ów Narodowej Służby Meteorologicznej NOAA, z MetAlerts od met.no jako rozwiąza"
-"niem rezerwowym. Jeśli dostawca danych pogodowych udostępnia własne alerty (np"
-". WeatherAPI.com, Pirate Weather), są one wykorzystywane bezpośrednio."
+#: contents/ui/config/configGeneral.qml:1038
+msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
+msgstr "Dostawca alertów: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/> w przypadku lokalizacji w Europie wykorzystywane są oficjalne kanały MeteoAlarm (38 krajów), natomiast w przypadku lokalizacji w Stanach Zjednoczonych – interfejs API alertów Narodowej Służby Meteorologicznej NOAA, z MetAlerts od met.no jako rozwiązaniem rezerwowym. Jeśli dostawca danych pogodowych udostępnia własne alerty (np. WeatherAPI.com, Pirate Weather), są one wykorzystywane bezpośrednio."
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -524,7 +443,7 @@ msgstr "Wys: %1 %2"
 msgid "Alt: %1 m"
 msgstr "Wys:"
 
-#: contents/ui/config/configGeneral.qml:537
+#: contents/ui/config/configGeneral.qml:538
 msgid "Alternative provider. API key required below."
 msgstr "Alternatywny dostawca. Klucz API wymagany poniżej."
 
@@ -533,25 +452,16 @@ msgid "Altitude (%1):"
 msgstr "Wysokość n.p.m. (%1):"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:483
-msgid ""
-"Altitude is optional, but strongly recommended for accurate forecasts. MET Nor"
-"way (met.no) uses it to correct temperature and pressure for elevation; leavin"
-"g it at 0 for a mountain location will return sea-level values."
-msgstr ""
-"Wysokość jest opcjonalna, ale mocno rekomendowana dla dokładności prognoz. MET"
-" Norway (met.no) używa jej do korekcji temperatury i ciśnienia; pozostawienie "
-"jej na 0 dla wysoko położonej lokalizacji zwróci wartości dla poziomu morza."
+msgid "Altitude is optional, but strongly recommended for accurate forecasts. MET Norway (met.no) uses it to correct temperature and pressure for elevation; leaving it at 0 for a mountain location will return sea-level values."
+msgstr "Wysokość jest opcjonalna, ale mocno rekomendowana dla dokładności prognoz. MET Norway (met.no) używa jej do korekcji temperatury i ciśnienia; pozostawienie jej na 0 dla wysoko położonej lokalizacji zwróci wartości dla poziomu morza."
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:610
 msgid "Altitude:"
 msgstr "Wysokość:"
 
-#: contents/ui/config/configGeneral.qml:735
-msgid ""
-"An API key is required for %1. Weather data cannot be retrieved without it."
-msgstr ""
-"Klucz API jest wymagany dla %1. Bez niego dane pogodowe nie mogą zostać pobran"
-"e."
+#: contents/ui/config/configGeneral.qml:736
+msgid "An API key is required for %1. Weather data cannot be retrieved without it."
+msgstr "Klucz API jest wymagany dla %1. Bez niego dane pogodowe nie mogą zostać pobrane."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:787
 msgid "Animate row scrolling"
@@ -582,12 +492,8 @@ msgid "Apply detected location"
 msgstr "Zastosuj wykrytą lokalizację"
 
 #: contents/ui/config/configLocation.qml:1380
-msgid ""
-"Are you sure? This is your last saved location. If you remove it, the widget w"
-"ill no longer show weather information."
-msgstr ""
-"Czy na pewno? To Twoja ostania zapisana lokalizacja. Jeżeli ją usuniesz, widże"
-"t nie będzie pokazywać informacji pogodowej."
+msgid "Are you sure? This is your last saved location. If you remove it, the widget will no longer show weather information."
+msgstr "Czy na pewno? To Twoja ostania zapisana lokalizacja. Jeżeli ją usuniesz, widżet nie będzie pokazywać informacji pogodowej."
 
 #: contents/ui/DetailsView.qml:3495
 msgid "Around midnight — "
@@ -622,31 +528,12 @@ msgid "Auto (detect on save)"
 msgstr "Auto (wykryj przy zapisie)"
 
 #: contents/ui/config/configLocation.qml:1524
-msgid ""
-"Auto-detection first asks GeoClue2, the system location service, for your curr"
-"ent position. If system location is unavailable, the widget estimates your loc"
-"ation from your public IP address, which is usually less precise and only upda"
-"tes when detection runs again."
-msgstr ""
-"Auto-detekcja najpierw odpytuje o Twoją aktualną pozycję GeoClue2, systemową u"
-"sługę lokalizacji. Jeżeli lokalizacja systemowa jest niedostępna, widżet okreś"
-"la lokalizację na podstawie Twojego publicznego adresu IP, który zazwyczaj jes"
-"t mniej dokładny i aktualizuje się tylko jeżeli detekcja jest uruchomiona pono"
-"wnie."
+msgid "Auto-detection first asks GeoClue2, the system location service, for your current position. If system location is unavailable, the widget estimates your location from your public IP address, which is usually less precise and only updates when detection runs again."
+msgstr "Auto-detekcja najpierw odpytuje o Twoją aktualną pozycję GeoClue2, systemową usługę lokalizacji. Jeżeli lokalizacja systemowa jest niedostępna, widżet określa lokalizację na podstawie Twojego publicznego adresu IP, który zazwyczaj jest mniej dokładny i aktualizuje się tylko jeżeli detekcja jest uruchomiona ponownie."
 
 #: contents/ui/config/configLocation.qml:1485
-msgid ""
-"Auto-detection is limited without QtLocation and QtPositioning. It will fall b"
-"ack to IP-based detection, which may be less accurate and will not update in r"
-"eal time as you move. If you want to improve auto-detection accuracy, please i"
-"nstall the required packages for your distribution. For more details, see the "
-"install guide."
-msgstr ""
-"Auto-detekcja jest ograniczona bez QtLocation i QtPositioning. System przełącz"
-"y się na detekcję na podstawie adresu IP, która może być mniej dokładna i nie "
-"będzie aktualizować się jeżeli się przemieszczasz. Jeżeli chcesz zwiększyć dok"
-"ładność auto-detekcji zainstaluj pakiety wymagane dla Twojej dystrybucji. Po w"
-"ięcej szczegółów sprawdź instrukcje instalacji."
+msgid "Auto-detection is limited without QtLocation and QtPositioning. It will fall back to IP-based detection, which may be less accurate and will not update in real time as you move. If you want to improve auto-detection accuracy, please install the required packages for your distribution. For more details, see the install guide."
+msgstr "Auto-detekcja jest ograniczona bez QtLocation i QtPositioning. System przełączy się na detekcję na podstawie adresu IP, która może być mniej dokładna i nie będzie aktualizować się jeżeli się przemieszczasz. Jeżeli chcesz zwiększyć dokładność auto-detekcji zainstaluj pakiety wymagane dla Twojej dystrybucji. Po więcej szczegółów sprawdź instrukcje instalacji."
 
 #: contents/ui/config/configLocation.qml:753
 msgid "Auto-detection updated coordinates."
@@ -675,7 +562,7 @@ msgstr "Dostępne"
 msgid "Avalanche"
 msgstr "Lawina"
 
-#: contents/ui/config/configGeneral.qml:384
+#: contents/ui/config/configGeneral.qml:385
 msgid "BBC Weather (free)"
 msgstr "BBC Weather (darmowy)"
 
@@ -814,21 +701,21 @@ msgstr "Celsjusz (°C)"
 msgid "Changes staged. Click the main Apply button to save."
 msgstr "Zmiany zdefiniowane. Kliknij Zastosuj aby zapisać."
 
-#: contents/ui/config/configGeneral.qml:915
+#: contents/ui/config/configGeneral.qml:945
 msgid "Check Status"
 msgstr "Sprawdź Status"
 
-#: contents/ui/config/configGeneral.qml:172
+#: contents/ui/config/configGeneral.qml:173
 #: contents/ui/config/configLocation.qml:481
 msgid "Checking location availability…"
 msgstr "Sprawdzam dostępność lokalizacji..."
 
-#: contents/ui/config/configGeneral.qml:139
-#: contents/ui/config/configGeneral.qml:915
+#: contents/ui/config/configGeneral.qml:140
+#: contents/ui/config/configGeneral.qml:945
 msgid "Checking…"
 msgstr "Sprawdzanie..."
 
-#: contents/ui/config/configGeneral.qml:549
+#: contents/ui/config/configGeneral.qml:550
 msgid "Chinese weather provider with global coverage. API key required below."
 msgstr "Chiński dostawca z globalnym pokryciem. Klucz API wymagany poniżej."
 
@@ -864,7 +751,7 @@ msgstr "Wybierz na Mapie"
 msgid "City / location name"
 msgstr "Nazwa miasta / lokalizacji"
 
-#: contents/ui/config/configGeneral.qml:696
+#: contents/ui/config/configGeneral.qml:697
 msgid "Clear"
 msgstr "Bezchmurnie"
 
@@ -887,14 +774,8 @@ msgid "Clear sky"
 msgstr "Bezchmurne niebo"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:581
-msgid ""
-"Click \"Test across providers\" to check if the coordinates are serviceable by"
-" each supported weather provider. Providers requiring an API key that is not c"
-"onfigured will be skipped."
-msgstr ""
-"Kliknij \"Przetestuj dostawców\" aby sprawdzić czy dostawcy pogody obsługują w"
-"prowadzone współrzędne. Dostawcy wymagający klucza API, który nie został skonf"
-"igurowany zostaną pominięci."
+msgid "Click \"Test across providers\" to check if the coordinates are serviceable by each supported weather provider. Providers requiring an API key that is not configured will be skipped."
+msgstr "Kliknij \"Przetestuj dostawców\" aby sprawdzić czy dostawcy pogody obsługują wprowadzone współrzędne. Dostawcy wymagający klucza API, który nie został skonfigurowany zostaną pominięci."
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:635
 msgid "Click on the map to select a location"
@@ -917,12 +798,8 @@ msgid "Color by temperature:"
 msgstr "Koloruj w zależności od temperatury:"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:537
-msgid ""
-"Color the panel temperature with the same cold to hot scale as the forecast cu"
-"rve, instead of a fixed color."
-msgstr ""
-"Zamiast stałego koloru, koloruj panel temperatury zgodnie z tą samą skalą od z"
-"imnego do gorącego, co krzywa prognozy."
+msgid "Color the panel temperature with the same cold to hot scale as the forecast curve, instead of a fixed color."
+msgstr "Zamiast stałego koloru, koloruj panel temperatury zgodnie z tą samą skalą od zimnego do gorącego, co krzywa prognozy."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:303
 #: contents/ui/config/tabs/ConfigPanelTab.qml:312
@@ -997,11 +874,11 @@ msgstr "Potwierdź Twoją lokalizację"
 msgid "Connection failed"
 msgstr "Połączenie nieudane"
 
-#: contents/ui/config/configGeneral.qml:367
+#: contents/ui/config/configGeneral.qml:368
 msgid "Connection failed (HTTP %1)."
 msgstr "Połączenie nieudane (HTTP %1)"
 
-#: contents/ui/config/configGeneral.qml:360
+#: contents/ui/config/configGeneral.qml:361
 msgid "Connection successful! %1 key is valid."
 msgstr "Połączenie udane! Klucz %1 jest poprawny."
 
@@ -1010,14 +887,8 @@ msgid "Coordinates"
 msgstr "Współrzędne"
 
 #: contents/ui/config/configNotifications.qml:303
-msgid ""
-"Critical notifications are still shown even when Do Not Disturb is enabled, or"
-" while you're playing a game or watching a fullscreen video (if those options "
-"are enabled in System Settings → Notifications)."
-msgstr ""
-"Ważne powiadomienia zostaną wyświetlone nawet jeżeli tryb nie-przeszkadzać jes"
-"t włączony lub kiedy grasz bądź oglądasz pełnoekranowe wideo (jeżeli te opcje "
-"są włączone w Ustawienia systemowe → Powiadomienia)"
+msgid "Critical notifications are still shown even when Do Not Disturb is enabled, or while you're playing a game or watching a fullscreen video (if those options are enabled in System Settings → Notifications)."
+msgstr "Ważne powiadomienia zostaną wyświetlone nawet jeżeli tryb nie-przeszkadzać jest włączony lub kiedy grasz bądź oglądasz pełnoekranowe wideo (jeżeli te opcje są włączone w Ustawienia systemowe → Powiadomienia)"
 
 #: contents/ui/config/configAppearance.qml:1438
 #: contents/ui/config/configAppearance.qml:1561
@@ -1069,10 +940,9 @@ msgstr "CyclOSM (rowerowa)"
 msgid "Daily Forecast Settings"
 msgstr "Ustawienia prognozy dziennej"
 
-#: contents/ui/config/configGeneral.qml:539
+#: contents/ui/config/configGeneral.qml:540
 msgid "Dark Sky-compatible API with US alerts. API key required below."
-msgstr ""
-"API kompatybilne z Dark Sky z alertami z USA. Klucz API wymagany poniżej."
+msgstr "API kompatybilne z Dark Sky z alertami z USA. Klucz API wymagany poniżej."
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:352
 msgid "Dark map"
@@ -1082,7 +952,7 @@ msgstr "Ciemna mapa"
 msgid "Dash  –"
 msgstr "Półpauza –"
 
-#: contents/ui/config/configGeneral.qml:1045
+#: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
 msgstr "Odświeżanie danych"
 
@@ -1197,13 +1067,8 @@ msgid "Dew point:"
 msgstr "Punkt rosy:"
 
 #: contents/ui/config/configNotifications.qml:336
-msgid ""
-"Disable a type to silence it, or give it its own repeat interval. The interval"
-" is used only when 'Repeat reminder until dismissed' is on."
-msgstr ""
-"Wyłącz dany typ, aby wyciszyć go, lub ustaw dla niego własny interwał powtarza"
-"nia. Interwał ten jest stosowany tylko wtedy, gdy włączona jest opcja „Powtarz"
-"aj przypomnienie do momentu odrzucenia”."
+msgid "Disable a type to silence it, or give it its own repeat interval. The interval is used only when 'Repeat reminder until dismissed' is on."
+msgstr "Wyłącz dany typ, aby wyciszyć go, lub ustaw dla niego własny interwał powtarzania. Interwał ten jest stosowany tylko wtedy, gdy włączona jest opcja „Powtarzaj przypomnienie do momentu odrzucenia”."
 
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:488
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:483
@@ -1271,27 +1136,17 @@ msgctxt "Alert severity"
 msgid "EXTREME"
 msgstr "EKSTREMALNY"
 
-#: contents/ui/config/configGeneral.qml:777
-msgid ""
-"Each QWeather project has a unique API host. Find yours at console.qweather.co"
-"m under your project settings."
-msgstr ""
-"Każdy projekt QWeather ma unikatowego hosta API. Znajdź swojego na console.qwe"
-"ather.com, w ustawieniach Twojego projektu."
+#: contents/ui/config/configGeneral.qml:778
+msgid "Each QWeather project has a unique API host. Find yours at console.qweather.com under your project settings."
+msgstr "Każdy projekt QWeather ma unikatowego hosta API. Znajdź swojego na console.qweather.com, w ustawieniach Twojego projektu."
 
 #: contents/ui/config/configNotifications.qml:319
 msgid "Each alert is shown only once, without Dismiss and Postpone buttons."
-msgstr ""
-"Każde powiadomienie wyświetla się tylko raz, bez przycisków „Odrzuć” i „Odłóż”"
-"."
+msgstr "Każde powiadomienie wyświetla się tylko raz, bez przycisków „Odrzuć” i „Odłóż”."
 
 #: contents/ui/config/configNotifications.qml:233
-msgid ""
-"Each notification type can be enabled independently, with its own daily time w"
-"here applicable."
-msgstr ""
-"Każdy rodzaj powiadomienia może być ustawiony oddzielnie wraz z godziną swojej"
-" aktywacji (jeżeli dotyczy)."
+msgid "Each notification type can be enabled independently, with its own daily time where applicable."
+msgstr "Każdy rodzaj powiadomienia może być ustawiony oddzielnie wraz z godziną swojej aktywacji (jeżeli dotyczy)."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:386
 msgid "Edit Saved Location"
@@ -1346,54 +1201,46 @@ msgid "Enter Manually"
 msgstr "Wprowadź ręcznie"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:545
-msgid ""
-"Enter a location name and valid coordinates, then click the main Apply button."
-msgstr ""
-"Wprowadź nazwę lokalizacji i poprawne współrzędne, a następnie kliknij przycis"
-"k Zastosuj"
+msgid "Enter a location name and valid coordinates, then click the main Apply button."
+msgstr "Wprowadź nazwę lokalizacji i poprawne współrzędne, a następnie kliknij przycisk Zastosuj"
 
 #: contents/ui/config/configLocation.qml:1598
-msgid ""
-"Enter exact latitude, longitude, and optional elevation for a more local forec"
-"ast. You can copy coordinates from OpenStreetMap, GeoNames, or Google Maps."
-msgstr ""
-"Wprowadź dokładną szerokość i długość geograficzną, i opcjonalnie wysokość n.p"
-".m. dla dokładniejszej prognozy lokalnej. Możesz skopiować współrzędne z OpenS"
-"treetMap, GeoNames lub Map Google."
+msgid "Enter exact latitude, longitude, and optional elevation for a more local forecast. You can copy coordinates from OpenStreetMap, GeoNames, or Google Maps."
+msgstr "Wprowadź dokładną szerokość i długość geograficzną, i opcjonalnie wysokość n.p.m. dla dokładniejszej prognozy lokalnej. Możesz skopiować współrzędne z OpenStreetMap, GeoNames lub Map Google."
 
 #: contents/ui/config/configLocation.qml:1185
 msgid "Enter manually"
 msgstr "Wprowadź ręcznie"
 
-#: contents/ui/config/configGeneral.qml:614
+#: contents/ui/config/configGeneral.qml:615
 msgid "Enter your OpenWeatherMap API key"
 msgstr "Wprowadź Twój klucz API OpenWeatherMap"
 
-#: contents/ui/config/configGeneral.qml:616
+#: contents/ui/config/configGeneral.qml:617
 msgid "Enter your Pirate Weather API key"
 msgstr "Wprowadź Twój klucz API Pirate Weather"
 
-#: contents/ui/config/configGeneral.qml:626
+#: contents/ui/config/configGeneral.qml:627
 msgid "Enter your QWeather API key"
 msgstr "Wprowadź Twój klucz API QWeather"
 
-#: contents/ui/config/configGeneral.qml:622
+#: contents/ui/config/configGeneral.qml:623
 msgid "Enter your StormGlass API key"
 msgstr "Wprowadź Twój klucz API StormGlass"
 
-#: contents/ui/config/configGeneral.qml:620
+#: contents/ui/config/configGeneral.qml:621
 msgid "Enter your Tomorrow.io API key"
 msgstr "Wprowadź Twój klucz API tomorrow.io"
 
-#: contents/ui/config/configGeneral.qml:618
+#: contents/ui/config/configGeneral.qml:619
 msgid "Enter your Visual Crossing API key"
 msgstr "Wprowadź Twój klucz API Visual Crossing"
 
-#: contents/ui/config/configGeneral.qml:627
+#: contents/ui/config/configGeneral.qml:628
 msgid "Enter your WeatherAPI.com key"
 msgstr "Wprowadź Twój klucz API WeatherAPI.com"
 
-#: contents/ui/config/configGeneral.qml:624
+#: contents/ui/config/configGeneral.qml:625
 msgid "Enter your Weatherbit API key"
 msgstr "Wprowadź Twój klucz API Weatherbit"
 
@@ -1438,7 +1285,7 @@ msgstr "Ekstremalna burza geomagnetyczna"
 msgid "Extremely Poor"
 msgstr "Bardzo zła"
 
-#: contents/ui/config/configGeneral.qml:988
+#: contents/ui/config/configGeneral.qml:1018
 msgid "FOSS Public Alert Server"
 msgstr "Serwer alertów publicznych FOSS"
 
@@ -1446,11 +1293,11 @@ msgstr "Serwer alertów publicznych FOSS"
 msgid "Fahrenheit (°F)"
 msgstr "Fahrenheit (°F)"
 
-#: contents/ui/WeatherService.qml:907
+#: contents/ui/WeatherService.qml:913
 msgid "Failed to load weather providers"
 msgstr "Nie udało się załadować dostawców danych pogodowych"
 
-#: contents/ui/WeatherService.qml:894
+#: contents/ui/WeatherService.qml:900
 msgid "Failed: %1"
 msgstr "Nie powiodło się: %1"
 
@@ -1485,7 +1332,7 @@ msgstr "Wypełnij panel:"
 msgid "Find"
 msgstr "Szukaj"
 
-#: contents/ui/main.qml:2090
+#: contents/ui/main.qml:2096
 msgid "First Quarter"
 msgstr "Pierwsza Kwadra"
 
@@ -1552,19 +1399,15 @@ msgstr "Prognoza:"
 msgid "Forest fire"
 msgstr "Pożar lasu"
 
-#: contents/ui/config/configGeneral.qml:553
-msgid "Free BBC Weather service (data from the Met Office). No API key needed."
-msgstr ""
-"Bezpłatna usługa pogodowa BBC (dane z Met Office). Klucz API nie jest wymagany"
-"."
-
-#: contents/ui/config/configGeneral.qml:551
-msgid "Free Norwegian Meteorological Institute service. No API key needed."
-msgstr ""
-"Darmowy serwis Norweskiego Instytutu Meteorologicznego. Klucz API nie jest wym"
-"agany."
-
 #: contents/ui/config/configGeneral.qml:554
+msgid "Free BBC Weather service (data from the Met Office). No API key needed."
+msgstr "Bezpłatna usługa pogodowa BBC (dane z Met Office). Klucz API nie jest wymagany."
+
+#: contents/ui/config/configGeneral.qml:552
+msgid "Free Norwegian Meteorological Institute service. No API key needed."
+msgstr "Darmowy serwis Norweskiego Instytutu Meteorologicznego. Klucz API nie jest wymagany."
+
+#: contents/ui/config/configGeneral.qml:555
 msgid "Free and open-source. No API key needed. Recommended."
 msgstr "Darmowy i otwartoźródłowy. Nie wymaga klucza API. Rekomendowany."
 
@@ -1600,7 +1443,7 @@ msgstr "Marznący deszcz (Noc)"
 msgid "Friday"
 msgstr "Piątek"
 
-#: contents/ui/main.qml:2094
+#: contents/ui/main.qml:2100
 msgid "Full Moon"
 msgstr "Pełnia"
 
@@ -1609,12 +1452,8 @@ msgid "Future alerts"
 msgstr "Przyszłe alerty"
 
 #: contents/ui/config/configLocation.qml:1536
-msgid ""
-"GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using I"
-"P-based detection."
-msgstr ""
-"GPS / GeoClue2 niedostępne (zainstaluj qt6-qtlocator dla najlepszej dokładnośc"
-"i). Używam detekcji opartej na adresie IP."
+msgid "GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using IP-based detection."
+msgstr "GPS / GeoClue2 niedostępne (zainstaluj qt6-qtlocator dla najlepszej dokładności). Używam detekcji opartej na adresie IP."
 
 #: contents/config/config.qml:52 contents/ui/config/tabs/ConfigWidgetTab.qml:76
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:799
@@ -1710,7 +1549,7 @@ msgstr "Ukryj ikonę"
 msgid "High"
 msgstr "Wys."
 
-#: contents/ui/config/configGeneral.qml:547
+#: contents/ui/config/configGeneral.qml:548
 msgid "High precision forecast provider. API key required below."
 msgstr "Dostawca pogody o wysokiej dokładności. Klucz API wymagany poniżej."
 
@@ -1718,7 +1557,7 @@ msgstr "Dostawca pogody o wysokiej dokładności. Klucz API wymagany poniżej."
 msgid "High temperature"
 msgstr "Wysoka temperatura"
 
-#: contents/ui/config/configGeneral.qml:541
+#: contents/ui/config/configGeneral.qml:542
 msgid "Historical and forecast data provider. API key required below."
 msgstr "Dostawca danych historycznych i prognoz. Klucz API wymagany poniżej."
 
@@ -1798,33 +1637,20 @@ msgid "Icons"
 msgstr "Ikony"
 
 #: contents/ui/config/configLocation.qml:1161
-msgid ""
-"If this looks correct, apply it. Otherwise, choose your location manually."
-msgstr ""
-"Jeżeli lokalizacja się zgadza, zatwierdź ją. Jeżeli nie, wybierz ją ręcznie."
+msgid "If this looks correct, apply it. Otherwise, choose your location manually."
+msgstr "Jeżeli lokalizacja się zgadza, zatwierdź ją. Jeżeli nie, wybierz ją ręcznie."
 
-#: contents/ui/config/configGeneral.qml:759
-msgid ""
-"If you have just registered a new OpenWeatherMap API key, it might take up to "
-"2 hours for it to become active. Please try again later if it doesn't work imm"
-"ediately."
-msgstr ""
-"Jeżeli właśnie zarejestrowano nowy klucz API OpenWeatherMap, jego aktywacja mo"
-"że potrwać do 2 godzin. Proszę spróbuj ponownie później, jeżeli nie działa on "
-"od razu."
+#: contents/ui/config/configGeneral.qml:760
+msgid "If you have just registered a new OpenWeatherMap API key, it might take up to 2 hours for it to become active. Please try again later if it doesn't work immediately."
+msgstr "Jeżeli właśnie zarejestrowano nowy klucz API OpenWeatherMap, jego aktywacja może potrwać do 2 godzin. Proszę spróbuj ponownie później, jeżeli nie działa on od razu."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:157
 msgid "Imperial (°F, mph, inHg, in)"
 msgstr "Imperialne (°F, mph, inHg, in)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:132
-msgid ""
-"In a vertical panel, long item labels may be truncated. Consider using \"Simpl"
-"e\" mode, increasing the panel width, or reducing the font size."
-msgstr ""
-"W pionowym panelu długie etykiety mogą zostać przycięte. Rozważ użycie trybu "
-"\"Prostego\", zwiększenie szerokości panelu, lub zmniejszenie wielkości czcion"
-"ki."
+msgid "In a vertical panel, long item labels may be truncated. Consider using \"Simple\" mode, increasing the panel width, or reducing the font size."
+msgstr "W pionowym panelu długie etykiety mogą zostać przycięte. Rozważ użycie trybu \"Prostego\", zwiększenie szerokości panelu, lub zmniejszenie wielkości czcionki."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:314
 msgid ""
@@ -1843,23 +1669,16 @@ msgid ""
 "Install it for your distribution:\n"
 "  • Fedora / RHEL / Arch: qt6-qtlocation\n"
 "  • openSUSE: qt6-location\n"
-"  • Debian / Kubuntu / KDE Neon: qml6-module-qtlocation and qml6-module-qtposi"
-"tioning\n"
+"  • Debian / Kubuntu / KDE Neon: qml6-module-qtlocation and qml6-module-qtpositioning\n"
 "\n"
-"You can still search for a location or enter coordinates manually. Note that a"
-"uto-detection will continue to work using an IP fallback, but it may be less a"
-"ccurate and won’t update in real time as you move around."
+"You can still search for a location or enter coordinates manually. Note that auto-detection will continue to work using an IP fallback, but it may be less accurate and won’t update in real time as you move around."
 msgstr ""
 "Zainstaluj dla swojej dystrybucji:\n"
 "  • Fedora / RHEL / Arch: qt6-qtlocation\n"
 "  • openSUSE: qt6-location\n"
-"  • Debian / Kubuntu / KDE Neon: qml6-module-qtlocation and qml6-module-qtposi"
-"tioning\n"
+"  • Debian / Kubuntu / KDE Neon: qml6-module-qtlocation and qml6-module-qtpositioning\n"
 "\n"
-"Możesz wciąż wyszukać lokalizację lub wpisać współrzędne ręcznie. Pamiętaj, że"
-" auto-detekcja będzie wciąż działać używając IP, ale może być mniej dokładna i"
-" nie będzie aktualizować się w czasie rzeczywistym, kiedy będziesz się przemie"
-"szczać."
+"Możesz wciąż wyszukać lokalizację lub wpisać współrzędne ręcznie. Pamiętaj, że auto-detekcja będzie wciąż działać używając IP, ale może być mniej dokładna i nie będzie aktualizować się w czasie rzeczywistym, kiedy będziesz się przemieszczać."
 
 #: contents/ui/RadarView.qml:181
 msgid ""
@@ -1877,7 +1696,7 @@ msgstr ""
 msgid "Instruction"
 msgstr "Zalecenia"
 
-#: contents/ui/config/configGeneral.qml:1072
+#: contents/ui/config/configGeneral.qml:1102
 msgid "Interval:"
 msgstr "Interwał:"
 
@@ -1885,7 +1704,7 @@ msgstr "Interwał:"
 msgid "Invalid API key (HTTP %1)"
 msgstr "Niewłaściwy klucz API (HTTP %1)"
 
-#: contents/ui/config/configGeneral.qml:364
+#: contents/ui/config/configGeneral.qml:365
 msgid "Invalid API key. Please check and try again."
 msgstr "Niewłaściwy klucz API. Proszę sprawdź go i spróbuj ponownie."
 
@@ -1893,7 +1712,7 @@ msgstr "Niewłaściwy klucz API. Proszę sprawdź go i spróbuj ponownie."
 msgid "Invalid response"
 msgstr "Niewłaściwa odpowiedź"
 
-#: contents/ui/config/configGeneral.qml:354
+#: contents/ui/config/configGeneral.qml:355
 msgid "Invalid response from QWeather."
 msgstr "Niewłaściwa odpowiedź z QWeather"
 
@@ -1924,12 +1743,8 @@ msgid "KDE System Icons (automatic, follows weather code)"
 msgstr "Ikony Systemowe KDE (automatyczne, śledzą kod pogody)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:561
-msgid ""
-"KDE icon themes don't fully support many item icons. You can set your own icon"
-"s by clicking \"Set your own icons\"."
-msgstr ""
-"Motywy ikon KDE nie wspierają w pełni wielu ikon elementów. Możesz ustawić wła"
-"sne ikony klikając \"Ustaw własne ikony\"."
+msgid "KDE icon themes don't fully support many item icons. You can set your own icons by clicking \"Set your own icons\"."
+msgstr "Motywy ikon KDE nie wspierają w pełni wielu ikon elementów. Możesz ustawić własne ikony klikając \"Ustaw własne ikony\"."
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:61
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:50
@@ -1967,7 +1782,7 @@ msgstr "Indeks Kp"
 msgid "Kp index/G forecast:"
 msgstr "Prognoza indeksu Kp / skali G:"
 
-#: contents/ui/main.qml:2098
+#: contents/ui/main.qml:2104
 msgid "Last Quarter"
 msgstr "Ostatnia Kwadra"
 
@@ -1997,10 +1812,18 @@ msgstr "Układ"
 msgid "Layout type:"
 msgstr "Układ:"
 
-#: contents/ui/config/configGeneral.qml:834
-#: contents/ui/config/configGeneral.qml:984
+#: contents/ui/config/configGeneral.qml:879
+msgid "Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance."
+msgstr ""
+
+#: contents/ui/config/configGeneral.qml:835
+#: contents/ui/config/configGeneral.qml:1014
 msgid "LibreWXR"
 msgstr "LibreWXR"
+
+#: contents/ui/config/configGeneral.qml:872
+msgid "LibreWXR server:"
+msgstr ""
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 #: contents/ui/components/RadarWebEngineView.qml:781
@@ -2098,12 +1921,8 @@ msgstr "Lokalizacja"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:513
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:92
-msgid ""
-"Location '%1' is already in your saved list. You can apply the selected locati"
-"on, but it will not be saved again."
-msgstr ""
-"Lokalizacja '%1' jest już na Twojej liście zapisanych. Możesz zastosować zazna"
-"czoną lokalizację, ale nie będzie ona zapisana ponownie."
+msgid "Location '%1' is already in your saved list. You can apply the selected location, but it will not be saved again."
+msgstr "Lokalizacja '%1' jest już na Twojej liście zapisanych. Możesz zastosować zaznaczoną lokalizację, ale nie będzie ona zapisana ponownie."
 
 #: contents/ui/config/configAppearance.qml:1367
 msgid "Location Name"
@@ -2114,23 +1933,18 @@ msgid "Location auto-detected."
 msgstr "Lokalizacja wykryta automatycznie."
 
 #: contents/ui/config/configLocation.qml:1536
-msgid ""
-"Location detection is depending on system configuration and permissions."
+msgid "Location detection is depending on system configuration and permissions."
 msgstr "Wykrywanie lokalizacji jest zależne od ustawień systemu i uprawnień."
 
-#: contents/ui/config/configGeneral.qml:261
+#: contents/ui/config/configGeneral.qml:262
 #: contents/ui/config/configLocation.qml:538
 msgid "Location is available on %1."
 msgstr "Lokalizacja jest dostępna w %1."
 
-#: contents/ui/config/configGeneral.qml:264
+#: contents/ui/config/configGeneral.qml:265
 #: contents/ui/config/configLocation.qml:541
-msgid ""
-"Location is not available on %1 (HTTP %2). Try a different provider or locatio"
-"n."
-msgstr ""
-"Lokalizacja nie jest dostępna w %1 (HTTP %2). Spróbuj innego dostawcę lub loka"
-"lizację."
+msgid "Location is not available on %1 (HTTP %2). Try a different provider or location."
+msgstr "Lokalizacja nie jest dostępna w %1 (HTTP %2). Spróbuj innego dostawcę lub lokalizację."
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:270
 msgid "Location name"
@@ -2153,7 +1967,7 @@ msgstr "Lokalizacja zdefiniowana. Kliknij przycisk Zastosuj aby zapisać."
 msgid "Location:"
 msgstr "Lokalizacja:"
 
-#: contents/ui/config/configGeneral.qml:903
+#: contents/ui/config/configGeneral.qml:933
 msgid "Log Out Now…"
 msgstr "Wylogowywanie…"
 
@@ -2242,11 +2056,11 @@ msgstr "Ręcznie"
 msgid "Map background"
 msgstr "Podkład mapy"
 
-#: contents/ui/config/configGeneral.qml:545
+#: contents/ui/config/configGeneral.qml:546
 msgid "Marine and weather data provider. API key required below."
 msgstr "Dostawca danych morskich i pogody. Klucz API wymagany poniżej."
 
-#: contents/ui/config/configGeneral.qml:980
+#: contents/ui/config/configGeneral.qml:1010
 msgid "MeteoAlarm + NOAA NWS (Native)"
 msgstr "MeteoAlarm + NOAA NWS (Natywny)"
 
@@ -2445,18 +2259,14 @@ msgid "NO₂"
 msgstr "NO₂"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:410
-msgid ""
-"Need the coordinates for a place? You can look them up at <a href=\"https://ww"
-"w.mapcoordinates.net/\">mapcoordinates.net</a>."
-msgstr ""
-"Potrzebujesz współrzędnych dla miejsca? Możesz sprawdzić je na <a href=\"https"
-"://www.mapcoordinates.net/\">mapcoordinates.net</a>."
+msgid "Need the coordinates for a place? You can look them up at <a href=\"https://www.mapcoordinates.net/\">mapcoordinates.net</a>."
+msgstr "Potrzebujesz współrzędnych dla miejsca? Możesz sprawdzić je na <a href=\"https://www.mapcoordinates.net/\">mapcoordinates.net</a>."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:273
 msgid "Network error"
 msgstr "Błąd sieci"
 
-#: contents/ui/main.qml:2086
+#: contents/ui/main.qml:2092
 msgid "New Moon"
 msgstr "Nów"
 
@@ -2510,12 +2320,8 @@ msgid "No satellite data"
 msgstr "Brak danych satelitarnych"
 
 #: contents/ui/config/configLocation.qml:1627
-msgid ""
-"No saved locations. Save the current location to quickly switch between places"
-"."
-msgstr ""
-"Brak zapisanych lokalizacji. Zapisz obecną lokalizację aby szybko przełączać s"
-"ię między miejscami."
+msgid "No saved locations. Save the current location to quickly switch between places."
+msgstr "Brak zapisanych lokalizacji. Zapisz obecną lokalizację aby szybko przełączać się między miejscami."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:538
 msgid "No weather stations found for '%1'"
@@ -2543,10 +2349,8 @@ msgid "Not available (HTTP %1)"
 msgstr "Niedostępne (HTTP %1)"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
-msgid ""
-"Not available: the selected base map already has a fixed light or dark style."
-msgstr ""
-"Niedostępne: wybrany podkład mapowy ma już ustalony styl jasny lub ciemny."
+msgid "Not available: the selected base map already has a fixed light or dark style."
+msgstr "Niedostępne: wybrany podkład mapowy ma już ustalony styl jasny lub ciemny."
 
 #: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
 #: contents/ui/main.qml:738 contents/ui/main.qml:771 contents/ui/main.qml:784
@@ -2560,9 +2364,7 @@ msgstr "Nie testowano"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1089
 msgid "Note: size may be reduced if the panel is not thick enough."
-msgstr ""
-"Uwaga: rozmiar może być zmniejszony jeżeli panel nie jest wystarczająco wysoki"
-"."
+msgstr "Uwaga: rozmiar może być zmniejszony jeżeli panel nie jest wystarczająco wysoki."
 
 #: contents/config/config.qml:62 contents/ui/config/configNotifications.qml:224
 msgid "Notifications"
@@ -2598,12 +2400,8 @@ msgid "Now: %1%2"
 msgstr "Teraz: %1%2"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:781
-msgid ""
-"Number of item rows visible at once. Resize the panel height in KDE settings t"
-"o match."
-msgstr ""
-"Liczba wierszy widoczna jednocześnie. Dostosuj rozmiar panelu w ustawieniach K"
-"DE."
+msgid "Number of item rows visible at once. Resize the panel height in KDE settings to match."
+msgstr "Liczba wierszy widoczna jednocześnie. Dostosuj rozmiar panelu w ustawieniach KDE."
 
 #: contents/ui/config/configAppearance.qml:569
 msgid "OK"
@@ -2627,7 +2425,7 @@ msgstr "Otwórz instrukcję instalacji"
 msgid "Open radar in browser"
 msgstr "Otwórz radar w przeglądarce"
 
-#: contents/ui/config/configGeneral.qml:376
+#: contents/ui/config/configGeneral.qml:377
 msgid "Open-Meteo (recommended, free)"
 msgstr "Open-Meteo (rekomendowany, darmowy)"
 
@@ -2639,19 +2437,17 @@ msgstr "OpenStreetMap (standard)"
 msgid "OpenTopoMap (topographic)"
 msgstr "OpenTopoMap (topograficzna)"
 
-#: contents/ui/config/configGeneral.qml:388
+#: contents/ui/config/configGeneral.qml:389
 msgid "OpenWeatherMap (Key Required)"
 msgstr "OpenWeatherMap (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:587
+#: contents/ui/config/configGeneral.qml:588
 msgid "OpenWeatherMap API Key:"
 msgstr "Klucz API OpenWeatherMap:"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:828
 msgid "Opens today's hourly forecast automatically (or the next available day)"
-msgstr ""
-"Otwiera dzisiejszą prognozę godzinową automatycznie (lub dla następnego dostęp"
-"nego dnia)"
+msgstr "Otwiera dzisiejszą prognozę godzinową automatycznie (lub dla następnego dostępnego dnia)"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:355
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:420
@@ -2756,22 +2552,18 @@ msgid "Phase + upcoming rise/set"
 msgstr "Faza + najbliższy wschód/zachód"
 
 #: contents/ui/config/configLocation.qml:1584
-msgid ""
-"Pick an exact spot on the map for a more local forecast, such as your neighbor"
-"hood block or a specific landmark."
-msgstr ""
-"Dla bardziej dobranej prognozy wybierz dokładne miejsce na mapie, np. Twoje os"
-"iedle lub wybrany punkt orientacyjny."
+msgid "Pick an exact spot on the map for a more local forecast, such as your neighborhood block or a specific landmark."
+msgstr "Dla bardziej dobranej prognozy wybierz dokładne miejsce na mapie, np. Twoje osiedle lub wybrany punkt orientacyjny."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:905
 msgid "Pipe  |"
 msgstr "Kreska pionowa |"
 
-#: contents/ui/config/configGeneral.qml:396
+#: contents/ui/config/configGeneral.qml:397
 msgid "Pirate Weather (Key Required)"
 msgstr "Pirate Weather (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:589
+#: contents/ui/config/configGeneral.qml:590
 msgid "Pirate Weather API Key:"
 msgstr "Klucz API Pirate Weather:"
 
@@ -2880,21 +2672,21 @@ msgstr "Dostawca"
 msgid "Provider availability"
 msgstr "Dostępność dostawców"
 
-#: contents/ui/config/configGeneral.qml:535
-#: contents/ui/config/configGeneral.qml:537
-#: contents/ui/config/configGeneral.qml:539
-#: contents/ui/config/configGeneral.qml:541
-#: contents/ui/config/configGeneral.qml:543
-#: contents/ui/config/configGeneral.qml:545
-#: contents/ui/config/configGeneral.qml:547
-#: contents/ui/config/configGeneral.qml:549
-#: contents/ui/config/configGeneral.qml:551
-#: contents/ui/config/configGeneral.qml:553
+#: contents/ui/config/configGeneral.qml:536
+#: contents/ui/config/configGeneral.qml:538
+#: contents/ui/config/configGeneral.qml:540
+#: contents/ui/config/configGeneral.qml:542
+#: contents/ui/config/configGeneral.qml:544
+#: contents/ui/config/configGeneral.qml:546
+#: contents/ui/config/configGeneral.qml:548
+#: contents/ui/config/configGeneral.qml:550
+#: contents/ui/config/configGeneral.qml:552
 #: contents/ui/config/configGeneral.qml:554
+#: contents/ui/config/configGeneral.qml:555
 msgid "Provider website:"
 msgstr "Strona dostawcy:"
 
-#: contents/ui/config/configGeneral.qml:506 contents/ui/DetailsView.qml:2098
+#: contents/ui/config/configGeneral.qml:507 contents/ui/DetailsView.qml:2098
 #: contents/ui/DetailsView.qml:2826
 msgid "Provider:"
 msgstr "Dostawca:"
@@ -2903,48 +2695,39 @@ msgstr "Dostawca:"
 msgid "Provider: %1"
 msgstr "Dostawca: %1"
 
-#: contents/ui/config/configGeneral.qml:492
+#: contents/ui/config/configGeneral.qml:493
 msgid ""
 "Providers are tried in order until one succeeds:\n"
-"Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  "
-"→  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  "
-"→  WeatherAPI.com\n"
+"Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
 "Open-Meteo is always tried first - it is free and requires no API key."
 msgstr ""
 "Dostawcy są sprawdzani po kolei, aż jeden z nich połączy się z powodzeniem:\n"
-"Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  "
-"→  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  "
-"→  WeatherAPI.com\n"
-"Zawsze najpierw sprawdzane jest Open-Meteo – jest bezpłatne i nie wymaga klucz"
-"a API."
+"Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
+"Zawsze najpierw sprawdzane jest Open-Meteo – jest bezpłatne i nie wymaga klucza API."
 
 #: contents/ui/config/configNotifications.qml:271
 msgid "Purple"
 msgstr "Fioletowy"
 
-#: contents/ui/config/configGeneral.qml:416
+#: contents/ui/config/configGeneral.qml:417
 msgid "QWeather (Key Required)"
 msgstr "QWeather (Wymagany klucz"
 
-#: contents/ui/config/configGeneral.qml:770
+#: contents/ui/config/configGeneral.qml:771
 msgid "QWeather API Host:"
 msgstr "Host API QWeather:"
 
-#: contents/ui/config/configGeneral.qml:599
+#: contents/ui/config/configGeneral.qml:600
 msgid "QWeather API Key:"
 msgstr "Klucz API QWeather:"
 
-#: contents/ui/config/configGeneral.qml:349
+#: contents/ui/config/configGeneral.qml:350
 msgid "QWeather error (code %1). Check your API key."
 msgstr "BłądQWeather (kod %1). Sprawdź swój klucz API."
 
 #: contents/ui/ForecastView.qml:829
-msgid ""
-"QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecas"
-"t is still available for this date."
-msgstr ""
-"QWeather udostępnia prognozy godzinowe na okres do 168 godzin (7 dni). Prognoz"
-"a dzienna jest nadal dostępna dla tej daty."
+msgid "QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecast is still available for this date."
+msgstr "QWeather udostępnia prognozy godzinowe na okres do 168 godzin (7 dni). Prognoza dzienna jest nadal dostępna dla tej daty."
 
 #: contents/ui/config/configLocation.qml:1065
 msgid "QtLocation and QtPositioning are not installed"
@@ -2960,7 +2743,7 @@ msgstr "Spokojnie"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:172
 #: contents/ui/components/RadarWebEngineView.qml:128
-#: contents/ui/config/configGeneral.qml:801
+#: contents/ui/config/configGeneral.qml:802
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:211 contents/ui/FullView.qml:566
 msgid "Radar"
 msgstr "Radar"
@@ -2977,49 +2760,17 @@ msgstr "Schemat kolorów radaru:"
 msgid "Radar only"
 msgstr "Tylko radar"
 
-#: contents/ui/config/configGeneral.qml:823
+#: contents/ui/config/configGeneral.qml:824
 msgid "Radar provider:"
 msgstr "Dostawca radaru:"
 
-#: contents/ui/config/configGeneral.qml:858
-msgid ""
-"Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR"
-" is a free, open-source weather radar API. It combines real radar composites f"
-"rom NOAA, Canadian, and European sources with a global model fallback, and pro"
-"vides the past 2 hours of radar data plus a short nowcast. It also offers a fr"
-"ee satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and mo"
-"tion arrows are selected directly in the Radar tab. The map follows your Plasm"
-"a light/dark theme automatically."
-msgstr ""
-"Dostawca radaru: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWX"
-"R to darmowy interfejs API radaru pogodowego typu open source. Łączy on rzeczy"
-"wiste kompozycje radarowe pochodzące z NOAA oraz kanadyjskich i europejskich ź"
-"ródeł z globalnym modelem rezerwowym oraz udostępnia dane radarowe z ostatnich"
-" 2 godzin wraz z krótką prognozą bieżącą. Oferuje również bezpłatną warstwę sa"
-"telitarną (w podczerwieni).<br/><br/>Tryb warstwy, schemat kolorów radaru oraz"
-" strzałki ruchu wybiera się bezpośrednio w zakładce „Radar”. Mapa automatyczni"
-"e dostosowuje się do jasnego lub ciemnego motywu Plazmy."
+#: contents/ui/config/configGeneral.qml:859
+msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
+msgstr "Dostawca radaru: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR to darmowy interfejs API radaru pogodowego typu open source. Łączy on rzeczywiste kompozycje radarowe pochodzące z NOAA oraz kanadyjskich i europejskich źródeł z globalnym modelem rezerwowym oraz udostępnia dane radarowe z ostatnich 2 godzin wraz z krótką prognozą bieżącą. Oferuje również bezpłatną warstwę satelitarną (w podczerwieni).<br/><br/>Tryb warstwy, schemat kolorów radaru oraz strzałki ruchu wybiera się bezpośrednio w zakładce „Radar”. Mapa automatycznie dostosowuje się do jasnego lub ciemnego motywu Plazmy."
 
-#: contents/ui/config/configGeneral.qml:849
-msgid ""
-"Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/"
-">The widget uses the free RainViewer API, which provides the past 2 hours of w"
-"eather radar data in 10-minute intervals. Radar forecast is not supported.<br/"
-"><br/>Rain Viewer does not guarantee the availability of radar data. They do n"
-"ot conclude contracts with owners of this data. The reason is that the owners "
-"can ask them to remove their data from Rain Viewer, change the format, or stop"
-" sharing the data. They are trying to keep radar data for as long as possible,"
-" but sometimes the owners just stop providing the images."
-msgstr ""
-"Dostawca Radaru: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br"
-"/>Widżet używa darmowego API RainViewer, które dostarcza dane pogodowe z ostat"
-"nich 2 godzin w 10-minutowych interwałach. Prognoza radarowa nie jest wspieran"
-"a.<br/><br/>Rain Viewer nie gwarantuje dostępności danych radarowych. Nie zawi"
-"erają oni umów z właścicielami tych danych. Skutkiem jest to, że właściciele d"
-"anych mogą poprosić ich o usunięcie danych z Rain Viewer, zmianę formatu lub z"
-"aprzestanie ich udostępniania. Starają się oni przechowywać dane radarowe tak "
-"długo, jak to możliwe, ale czasami właściciele danych po prostu przestają udos"
-"tępniać obrazy."
+#: contents/ui/config/configGeneral.qml:850
+msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
+msgstr "Dostawca Radaru: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>Widżet używa darmowego API RainViewer, które dostarcza dane pogodowe z ostatnich 2 godzin w 10-minutowych interwałach. Prognoza radarowa nie jest wspierana.<br/><br/>Rain Viewer nie gwarantuje dostępności danych radarowych. Nie zawierają oni umów z właścicielami tych danych. Skutkiem jest to, że właściciele danych mogą poprosić ich o usunięcie danych z Rain Viewer, zmianę formatu lub zaprzestanie ich udostępniania. Starają się oni przechowywać dane radarowe tak długo, jak to możliwe, ale czasami właściciele danych po prostu przestają udostępniać obrazy."
 
 #: contents/ui/FullView.qml:731 contents/ui/FullView.qml:733
 msgid "Radar:"
@@ -3045,7 +2796,7 @@ msgstr "Deszcz (dzień)"
 msgid "Rain (night)"
 msgstr "Deszcz (noc)"
 
-#: contents/ui/config/configGeneral.qml:830
+#: contents/ui/config/configGeneral.qml:831
 msgid "Rain Viewer"
 msgstr "Rain Viewer"
 
@@ -3078,7 +2829,7 @@ msgstr "Czerwony"
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: contents/ui/config/configGeneral.qml:1061
+#: contents/ui/config/configGeneral.qml:1091
 msgid "Refresh weather automatically"
 msgstr "Odświeżaj pogodę automatycznie"
 
@@ -3184,11 +2935,9 @@ msgstr "Sobota"
 msgid "Saved locations"
 msgstr "Zapisane lokalizacje"
 
-#: contents/ui/config/configGeneral.qml:99
+#: contents/ui/config/configGeneral.qml:100
 msgid "Saved, but not active yet - log out and back in for it to take effect."
-msgstr ""
-"Zapisano, ale nie aktywowano – wyloguj się i zaloguj ponownie, aby zmiany zacz"
-"ęły obowiązywać."
+msgstr "Zapisano, ale nie aktywowano – wyloguj się i zaloguj ponownie, aby zmiany zaczęły obowiązywać."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:785
 msgid "Scroll animation:"
@@ -3208,14 +2957,8 @@ msgid "Search a weather station to set your location"
 msgstr "Wyszukaj stację pogodową, aby ustawić swoją lokalizację"
 
 #: contents/ui/config/configLocation.qml:1576
-msgid ""
-"Search by city or place name. Results show the location name, region, and coun"
-"try, and are suitable for general city-level forecasts rather than exact stree"
-"t-level placement."
-msgstr ""
-"Wyszukaj po nazwie miasta lub miejsca. Wyniki pokazują nazwę lokalizacji, regi"
-"on oraz kraj i są bardziej odpowiednie dla ogólnej prognozy na poziomie miasta"
-" niż np. dla konkretnej ulicy."
+msgid "Search by city or place name. Results show the location name, region, and country, and are suitable for general city-level forecasts rather than exact street-level placement."
+msgstr "Wyszukaj po nazwie miasta lub miejsca. Wyniki pokazują nazwę lokalizacji, region oraz kraj i są bardziej odpowiednie dla ogólnej prognozy na poziomie miasta niż np. dla konkretnej ulicy."
 
 #: contents/ui/config/configLocation.qml:1569
 msgid "Search for a location or choose it on the map."
@@ -3293,7 +3036,7 @@ msgstr "Pokaż / ukryj ikonę"
 msgid "Show / hide the prefix icon on the panel"
 msgstr "Pokaż / ukryj ikonę na panelu"
 
-#: contents/ui/config/configGeneral.qml:813
+#: contents/ui/config/configGeneral.qml:814
 msgid "Show Radar tab in widget"
 msgstr "Pokazuj w widżecie zakładkę Radar"
 
@@ -3351,7 +3094,7 @@ msgstr "Pokaż jednostkę temperatury:"
 msgid "Show update time and provider"
 msgstr "Pokaż czas aktualizacji oraz dostawcę"
 
-#: contents/ui/config/configGeneral.qml:691
+#: contents/ui/config/configGeneral.qml:692
 msgid "Show/hide key"
 msgstr "Pokaż/ukryj klucz"
 
@@ -3525,7 +3268,7 @@ msgstr "Pogoda Kosmiczna:"
 msgid "Space weather options"
 msgstr "Opcje pogody kosmicznej"
 
-#: contents/ui/config/configGeneral.qml:535
+#: contents/ui/config/configGeneral.qml:536
 msgid "Standard provider. API key required below."
 msgstr "Standardowy dostawca. Klucz API wymagany poniżej."
 
@@ -3539,11 +3282,11 @@ msgstr "Pokazuj elementy:"
 msgid "Storm"
 msgstr "Burza"
 
-#: contents/ui/config/configGeneral.qml:408
+#: contents/ui/config/configGeneral.qml:409
 msgid "StormGlass (Key Required)"
 msgstr "StormGlass (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:595
+#: contents/ui/config/configGeneral.qml:596
 msgid "StormGlass API Key:"
 msgstr "Klucz API StormGlass"
 
@@ -3656,12 +3399,8 @@ msgid "Swap order:"
 msgstr "Zamień kolejność:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
-msgid ""
-"Switch between the light and dark map style. Until first toggled, the map foll"
-"ows the Plasma theme."
-msgstr ""
-"Przełączaj między jasnym a ciemnym stylem mapy. Dopóki nie zostanie to zmienio"
-"ne, mapa dostosowuje się do motywu Plazmy."
+msgid "Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme."
+msgstr "Przełączaj między jasnym a ciemnym stylem mapy. Dopóki nie zostanie to zmienione, mapa dostosowuje się do motywu Plazmy."
 
 #: contents/ui/FullView.qml:328
 msgid "Switch location"
@@ -3690,8 +3429,7 @@ msgstr "Kolor tła znacznika"
 
 #: contents/ui/config/configLocation.qml:832
 msgid "System location unavailable, trying IP geolocation…"
-msgstr ""
-"Lokalizacja systemowa niedostępna, próbuję odczytać geolokalizację IP..."
+msgstr "Lokalizacja systemowa niedostępna, próbuję odczytać geolokalizację IP..."
 
 #: contents/ui/config/configAppearance.qml:1981
 msgid "System tray"
@@ -3740,7 +3478,7 @@ msgstr "Cień temperatury:"
 msgid "Temperature:"
 msgstr "Temperatura:"
 
-#: contents/ui/config/configGeneral.qml:722
+#: contents/ui/config/configGeneral.qml:723
 msgid "Test API Key"
 msgstr "Przetestuj klucz API"
 
@@ -3748,11 +3486,11 @@ msgstr "Przetestuj klucz API"
 msgid "Test across providers"
 msgstr "Przetestuj dostawców"
 
-#: contents/ui/config/configGeneral.qml:304
+#: contents/ui/config/configGeneral.qml:305
 msgid "Testing connection…"
 msgstr "Testuję połączenie..."
 
-#: contents/ui/config/configGeneral.qml:722
+#: contents/ui/config/configGeneral.qml:723
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:222
 msgid "Testing…"
 msgstr "Testuję..."
@@ -3762,32 +3500,20 @@ msgid "Text labels (Temperature, Wind…)"
 msgstr "Etykiety tekstowe (Temperatura, Wiatr...)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1061
-msgid ""
-"Text will follow the system font and expand to fill the available space."
-msgstr ""
-"Tekst będzie odzwierciedlać systemowe ustawienia czcionki i rozszerzać się aby"
-" wypełnić dostępną przestrzeń."
+msgid "Text will follow the system font and expand to fill the available space."
+msgstr "Tekst będzie odzwierciedlać systemowe ustawienia czcionki i rozszerzać się aby wypełnić dostępną przestrzeń."
 
 #: contents/ui/RadarView.qml:166
-msgid ""
-"The Radar tab requires the QtWebEngine package, which is not installed on this"
-" system."
-msgstr ""
-"Zakładka Radar wymaga usługi QtWebEngine, która nie jest zainstalowana w tym s"
-"ystemie."
+msgid "The Radar tab requires the QtWebEngine package, which is not installed on this system."
+msgstr "Zakładka Radar wymaga usługi QtWebEngine, która nie jest zainstalowana w tym systemie."
 
 #: contents/ui/config/configLocation.qml:371
 msgid "The auto-detected location is already in your saved list."
-msgstr ""
-"Automatycznie wykryta lokalizacja jest już na Twojej liście zapisanych."
+msgstr "Automatycznie wykryta lokalizacja jest już na Twojej liście zapisanych."
 
 #: contents/ui/config/configAppearance.qml:465
-msgid ""
-"The condition icon will automatically reflect the current weather using your K"
-"DE system icon theme. No customisation is needed."
-msgstr ""
-"Ikona warunków będzie automatycznie odzwierciedlać obecną pogodę używając Twoj"
-"ego motywu ikon systemu KDE. Ręczne dostosowywanie nie jest konieczne."
+msgid "The condition icon will automatically reflect the current weather using your KDE system icon theme. No customisation is needed."
+msgstr "Ikona warunków będzie automatycznie odzwierciedlać obecną pogodę używając Twojego motywu ikon systemu KDE. Ręczne dostosowywanie nie jest konieczne."
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:879
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:992
@@ -3795,20 +3521,12 @@ msgid "The geomagnetic (Kp/G) forecast is only available up to 3 days ahead"
 msgstr "Prognoza geomagnetyczna (Kp/G) jest dostępna tylko na 3 dni do przodu"
 
 #: contents/ui/config/configLocation.qml:1095
-msgid ""
-"The map picker requires the QtLocation and QtPositioning packages, which are n"
-"ot installed on this system."
-msgstr ""
-"Wybierak mapowy wymaga usług QtLocation i QtPositioning, które nie są zainstal"
-"owane w tym systemie."
+msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
+msgstr "Wybierak mapowy wymaga usług QtLocation i QtPositioning, które nie są zainstalowane w tym systemie."
 
-#: contents/ui/config/configGeneral.qml:102
-msgid ""
-"The workaround script wasn't found on disk. Try toggling the option off and on"
-" again."
-msgstr ""
-"Nie znaleziono skryptu na dysku. Spróbuj wyłączyć tę opcję, a następnie włączy"
-"ć ją ponownie."
+#: contents/ui/config/configGeneral.qml:103
+msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
+msgstr "Nie znaleziono skryptu na dysku. Spróbuj wyłączyć tę opcję, a następnie włączyć ją ponownie."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:718
 msgid "Theme default"
@@ -3879,16 +3597,9 @@ msgstr "Przekroczono limit czasu"
 msgid "Timezone:"
 msgstr "Strefa czasowa:"
 
-#: contents/ui/config/configGeneral.qml:867
-msgid ""
-"To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): d"
-"isable Adaptive mode, select OpenWeatherMap as your weather provider, and ente"
-"r your API key above. When you are ready, you can enable Adaptive mode again."
-msgstr ""
-"Aby odblokować dodatkowe warstwy mapowe (Deszcz, Chmury, Temperatura, Wiatr, C"
-"iśnienie): wyłącz tryb adaptacyjny, wybierz OpenWeatherMap jako swojego dostaw"
-"cę pogody i wpisz klucz API powyżej. Kiedy będziesz gotowy, możesz włączyć try"
-"b Adaptacyjny ponownie."
+#: contents/ui/config/configGeneral.qml:897
+msgid "To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): disable Adaptive mode, select OpenWeatherMap as your weather provider, and enter your API key above. When you are ready, you can enable Adaptive mode again."
+msgstr "Aby odblokować dodatkowe warstwy mapowe (Deszcz, Chmury, Temperatura, Wiatr, Ciśnienie): wyłącz tryb adaptacyjny, wybierz OpenWeatherMap jako swojego dostawcę pogody i wpisz klucz API powyżej. Kiedy będziesz gotowy, możesz włączyć tryb Adaptacyjny ponownie."
 
 #: contents/ui/ForecastView.qml:497 contents/ui/main.qml:1490
 #: contents/ui/SimpleView.qml:423
@@ -3913,11 +3624,11 @@ msgstr "Jutro"
 msgid "Tomorrow forecast"
 msgstr "Prognoza na jutro"
 
-#: contents/ui/config/configGeneral.qml:404
+#: contents/ui/config/configGeneral.qml:405
 msgid "Tomorrow.io (Key Required)"
 msgstr "Tomorrow.io (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:593
+#: contents/ui/config/configGeneral.qml:594
 msgid "Tomorrow.io API Key:"
 msgstr "Klucz API tomorrow.io:"
 
@@ -4061,32 +3772,32 @@ msgstr "Nadchodzący (następny wschód lub zachód)"
 msgid "Upcoming rise/set only"
 msgstr "Tylko najbliższy wschód/zachód"
 
-#: contents/ui/WeatherService.qml:173
+#: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
 msgstr "Aktualizacja przekroczyła limit czasu. Kliknij aby ponowić."
 
-#: contents/ui/WeatherService.qml:785
+#: contents/ui/WeatherService.qml:791
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
 msgstr[0] "Zaktualizowano %1 dzień temu"
 msgstr[1] "Zaktualizowano %1 dni temu"
 msgstr[2] "Zaktualizowano %1 dni temu"
 
-#: contents/ui/WeatherService.qml:783
+#: contents/ui/WeatherService.qml:789
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
 msgstr[0] "Zaktualizowano %1 godz. temu"
 msgstr[1] "Zaktualizowano %1 godz. temu"
 msgstr[2] "Zaktualizowano %1 godz. temu"
 
-#: contents/ui/WeatherService.qml:780
+#: contents/ui/WeatherService.qml:786
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
 msgstr[0] "Zaktualizowano %1 min temu"
 msgstr[1] "Zaktualizowano %1 min temu"
 msgstr[2] "Zaktualizowano %1 min temu"
 
-#: contents/ui/WeatherService.qml:778
+#: contents/ui/WeatherService.qml:784
 msgid "Updated just now"
 msgstr "Właśnie zaktualizowano"
 
@@ -4112,12 +3823,8 @@ msgstr "Użyj domyślnych ustawień regionu"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1184
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:277
-msgid ""
-"Uses KDE system icons by default. Click the button to customise each item's ic"
-"on."
-msgstr ""
-"Używa domyślnych ikon systemowych KDE. Kliknij przycisk aby dostosować ikonę k"
-"ażdego elementu."
+msgid "Uses KDE system icons by default. Click the button to customise each item's icon."
+msgstr "Używa domyślnych ikon systemowych KDE. Kliknij przycisk aby dostosować ikonę każdego elementu."
 
 #: contents/ui/js/airQuality.js:53
 msgid "V.Poor"
@@ -4167,27 +3874,27 @@ msgstr "Widzialność:"
 msgid "Visible tabs:"
 msgstr "Widoczne zakładki:"
 
-#: contents/ui/config/configGeneral.qml:400
+#: contents/ui/config/configGeneral.qml:401
 msgid "Visual Crossing (Key Required)"
 msgstr "Visual Crossing (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:591
+#: contents/ui/config/configGeneral.qml:592
 msgid "Visual Crossing API Key:"
 msgstr "Klucz API Visual Crossing:"
 
-#: contents/ui/main.qml:2100
+#: contents/ui/main.qml:2106
 msgid "Waning Crescent"
 msgstr "Ubywający Sierp"
 
-#: contents/ui/main.qml:2096
+#: contents/ui/main.qml:2102
 msgid "Waning Gibbous"
 msgstr "Ubywający Garb"
 
-#: contents/ui/main.qml:2088
+#: contents/ui/main.qml:2094
 msgid "Waxing Crescent"
 msgstr "Przybywający Sierp"
 
-#: contents/ui/main.qml:2092
+#: contents/ui/main.qml:2098
 msgid "Waxing Gibbous"
 msgstr "Przybywający Garb"
 
@@ -4199,11 +3906,11 @@ msgstr "Twoje wykryte współrzędne to: <b>%1°, %2°</b>."
 msgid "We detected your location as: <b>%1</b>."
 msgstr "Twoja wykryta lokalizacja to:<b>%1</b>."
 
-#: contents/ui/config/configGeneral.qml:958
+#: contents/ui/config/configGeneral.qml:988
 msgid "Weather Alerts"
 msgstr "Alerty pogodowe"
 
-#: contents/ui/config/configGeneral.qml:443
+#: contents/ui/config/configGeneral.qml:444
 msgid "Weather Provider"
 msgstr "Dostawca pogody"
 
@@ -4238,7 +3945,7 @@ msgstr "Styl ikony pogody:"
 msgid "Weather icon theme:"
 msgstr "Motyw ikon pogody:"
 
-#: contents/ui/WeatherService.qml:848
+#: contents/ui/WeatherService.qml:854
 msgid "Weather provider:"
 msgstr "Dostawca pogody:"
 
@@ -4258,25 +3965,23 @@ msgstr ""
 "🟡 Żółty — Niski: miej świadomość warunków.\n"
 "🟠 Pomarańczowy — Moderate: bądź w gotowości.\n"
 "🔴 Czerwony — Wysoki: podejmij działania.\n"
-"🟣 Fioletowy — Ekstremalny: niezwykle niebezpieczny, podejmij działania natych"
-"miast.\n"
+"🟣 Fioletowy — Ekstremalny: niezwykle niebezpieczny, podejmij działania natychmiast.\n"
 "\n"
-"Wyłącz poziom, aby przestać otrzymywać powiadomienia o alertach o tej ważności"
-"."
+"Wyłącz poziom, aby przestać otrzymywać powiadomienia o alertach o tej ważności."
 
-#: contents/ui/config/configGeneral.qml:392
+#: contents/ui/config/configGeneral.qml:393
 msgid "WeatherAPI.com (Key Required)"
 msgstr "WeatherAPI.com (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:600
+#: contents/ui/config/configGeneral.qml:601
 msgid "WeatherAPI.com API Key:"
 msgstr "Klucz API WeatherAPI.com:"
 
-#: contents/ui/config/configGeneral.qml:412
+#: contents/ui/config/configGeneral.qml:413
 msgid "Weatherbit (Key Required)"
 msgstr "Weatherbit (Wymagany klucz)"
 
-#: contents/ui/config/configGeneral.qml:597
+#: contents/ui/config/configGeneral.qml:598
 msgid "Weatherbit API Key:"
 msgstr "Klucz API Weatherbit:"
 
@@ -4329,11 +4034,9 @@ msgstr "Prędkość wiatru:"
 msgid "Wind:"
 msgstr "Wiatr:"
 
-#: contents/ui/config/configGeneral.qml:884
+#: contents/ui/config/configGeneral.qml:914
 msgid "Workaround radar map crashes on hybrid-GPU systems (EXPERIMENTAL)"
-msgstr ""
-"Rozwiązanie tymczasowe dotyczące awarii mapy radarowej w systemach z hybrydowy"
-"mi procesorami graficznymi (EKSPERYMENTALNE)"
+msgstr "Rozwiązanie tymczasowe dotyczące awarii mapy radarowej w systemach z hybrydowymi procesorami graficznymi (EKSPERYMENTALNE)"
 
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:72
 msgid "Wrap to next line"
@@ -4358,20 +4061,12 @@ msgstr "Tak, usuń"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:340
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:431
-msgid ""
-"You can see date/time format reference at: <a href=\"https://doc.qt.io/qt-6/qm"
-"l-qtqml-qt.html#formatDateTime-method\">Qt documentation</a>"
-msgstr ""
-"Możesz zobaczyć przykłady formatów daty/czasu w: <a href=\"https://doc.qt.io/q"
-"t-6/qml-qtqml-qt.html#formatDateTime-method\">Dokumentacji Qt</a>"
+msgid "You can see date/time format reference at: <a href=\"https://doc.qt.io/qt-6/qml-qtqml-qt.html#formatDateTime-method\">Qt documentation</a>"
+msgstr "Możesz zobaczyć przykłady formatów daty/czasu w: <a href=\"https://doc.qt.io/qt-6/qml-qtqml-qt.html#formatDateTime-method\">Dokumentacji Qt</a>"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:926
-msgid ""
-"You may need to increase the widget's width to see all the selected informatio"
-"n"
-msgstr ""
-"Konieczne może być zwiększenie szerokości widżetu, aby wyświetlić wszystkie wy"
-"brane informacje"
+msgid "You may need to increase the widget's width to see all the selected information"
+msgstr "Konieczne może być zwiększenie szerokości widżetu, aby wyświetlić wszystkie wybrane informacje"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:490
 msgid "Zoom in"
@@ -4504,7 +4199,7 @@ msgstr "m"
 msgid "m/s"
 msgstr "m/s"
 
-#: contents/ui/config/configGeneral.qml:380
+#: contents/ui/config/configGeneral.qml:381
 msgid "met.no (free)"
 msgstr "met.no (darmowy)"
 
@@ -4524,7 +4219,7 @@ msgstr "mi"
 msgid "minor"
 msgstr "niska"
 
-#: contents/ui/config/configGeneral.qml:1081
+#: contents/ui/config/configGeneral.qml:1111
 #: contents/ui/config/configNotifications.qml:364
 msgid "minutes"
 msgstr "minut"
