@@ -1288,7 +1288,7 @@ Item {
                                                         visible: !parent._isSun
                                                         text: {
                                                             var uv = modelData.uvIndex;
-                                                            if (W.isNotSupported(uv)) return i18n("Not supported");
+                                                            if (W.isNotSupported(uv)) return i18n("N/A");
                                                             return (uv === undefined || isNaN(uv)) ? "--" : "UV " + uv.toFixed(1);
                                                         }
                                                         color: forecastRoot.themeTextColor
@@ -1735,7 +1735,7 @@ Item {
                                                                 Label {
                                                                     text: {
                                                                         var uv = modelData.uvIndex;
-                                                                        if (W.isNotSupported(uv)) return i18n("Not supported");
+                                                                        if (W.isNotSupported(uv)) return i18n("N/A");
                                                                         return (uv === undefined || isNaN(uv)) ? "--" : "UV " + uv.toFixed(1);
                                                                     }
                                                                     color: forecastRoot.themeTextColor
