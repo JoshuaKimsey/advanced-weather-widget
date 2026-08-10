@@ -68,17 +68,31 @@ function _formatSummary(data) {
     return parts.join(" · ");
 }
 
-function _auroraVisibilityPercent(kp, latitude) {
+// Kept in sync with auroraVisibilityPercent() in js/spaceWeather.js — this
+// file is not a .pragma library (it needs XMLHttpRequest), and a plain
+// script importing a .pragma library is fine, but that hasn't been wired up
+// here yet, so the logic is duplicated for now. See spaceWeather.js for the
+// full rationale (darkness gate + the Kp→boundary-latitude table).
+function _auroraVisibilityPercent(kp, latitude, isDark) {
     if (isNaN(kp) || isNaN(latitude)) return 0;
+    if (!isDark) return 0; // not dark → not visible, regardless of Kp
+
     var absLat = Math.abs(latitude);
-    var aurovalLat = 65 - (kp / 2);  // Higher Kp shifts aurora south
-    if (kp >= 9) aurovalLat = 30;    // Extreme storms reach equator
-    var distance = Math.abs(absLat - aurovalLat);
-    var visibility = Math.max(0, 100 - (distance * 2.5));
-    if (kp >= 7 && absLat >= 40) visibility = Math.max(visibility, 50);
-    if (kp >= 8 && absLat >= 35) visibility = Math.max(visibility, 60);
-    if (kp >= 9 && absLat >= 30) visibility = Math.max(visibility, 70);
-    return Math.round(visibility);
+    var boundary = [66.5, 64.5, 62.4, 60.4, 58.3, 56.3, 54.2, 52.2, 50.1, 48.1];
+    var kpClamped = Math.max(0, Math.min(9, kp));
+    var lo = Math.floor(kpClamped);
+    var hi = Math.min(9, lo + 1);
+    var frac = kpClamped - lo;
+    var boundaryLat = boundary[lo] + (boundary[hi] - boundary[lo]) * frac;
+
+    var distance = absLat - boundaryLat;
+    var visibility;
+    if (distance >= 0) {
+        visibility = 70 + Math.min(25, distance * 5);
+    } else {
+        visibility = 70 * Math.exp(distance / 4);
+    }
+    return Math.round(Math.max(0, Math.min(95, visibility)));
 }
 
 /**
@@ -111,7 +125,8 @@ function fetchSpaceWeather(service) {
         var gScale        = _kpToGScale(kp);
         var xrayClass     = _getXrayClass(flux);
         var xrayClassFull = _getXrayClassFull(flux);
-        var auroraProb    = _auroraVisibilityPercent(kp, service.latitude);
+        var isDark        = (r && typeof r.isNightTime === "function") ? r.isNightTime() : false;
+        var auroraProb    = _auroraVisibilityPercent(kp, service.latitude, isDark);
 
         var data = {
             kp:           kp,
