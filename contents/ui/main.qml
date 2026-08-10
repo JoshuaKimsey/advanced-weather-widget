@@ -40,6 +40,7 @@ import org.kde.kirigami as Kirigami
 import "js/weather.js" as W
 import "js/moonphase.js" as Moon
 import "js/suncalc.js" as SC
+import "js/sunpath.js" as SunPath
 import "js/iconResolver.js" as IconResolver
 import "js/configUtils.js" as ConfigUtils
 
@@ -107,6 +108,12 @@ PlasmoidItem {
     property var weatherData: null
     function _applyWeatherData() { weatherData = weatherDataStaged; }
     onWeatherDataStagedChanged: Qt.callLater(_applyWeatherData)
+    // Sunrise/sunset (and therefore isNightTime()) only settle once weatherData
+    // lands for the new location — which can be after the location-switch
+    // refresh already ran its (network-free) aurora recompute. Re-run it here
+    // too so a distant-timezone location change still ends up with the right
+    // day/night state instead of briefly inheriting the previous city's.
+    onWeatherDataChanged: weatherService.recomputeAuroraForLocation()
 
     readonly property real   temperatureC:          weatherData ? weatherData.temperatureC          : NaN
     readonly property real   apparentC:             weatherData ? weatherData.apparentC             : NaN
@@ -2060,8 +2067,24 @@ PlasmoidItem {
         // forecast below it in agreement. Trusting the provider's day/night
         // flag ahead of these is what let BBC's `isNight` put a moon on a
         // sunny afternoon while the forecast right underneath showed suns.
-        var now = new Date();
-        var nowMins = now.getHours() * 60 + now.getMinutes();
+        //
+        // "now" has to be the TARGET LOCATION's own local clock, not the
+        // device's — sunriseTimeText/sunsetTimeText are already
+        // location-local "HH:mm" strings (WeatherService fetches them with
+        // an explicit timezone= param), so comparing them against the
+        // device's own system time silently breaks the moment the two
+        // zones diverge. Barely noticeable switching between nearby
+        // cities, but badly wrong for far-away ones (e.g. Sofia →
+        // Antarctica, ~10-13h apart) — it can flip day/night outright.
+        // And because this only runs when something explicitly triggers a
+        // recompute rather than continuously, the wrong result then sits
+        // there looking "stuck" until a manual refresh happens to be
+        // issued at a moment where the mismatch is less visible, giving
+        // the impression that only the refresh button "fixes" it.
+        // DetailsView already solves this the same way for its sun/moon
+        // widgets via SunPath.nowMinsAt(locationUtcOffsetMins); reuse that
+        // here instead of re-deriving the math.
+        var nowMins = SunPath.nowMinsAt(locationUtcOffsetMins);
         function parseMins(t) {
             if (!t || t === "--")
                 return -1;

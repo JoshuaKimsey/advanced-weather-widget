@@ -232,13 +232,40 @@ QtObject {
         }
         // Fetch NOAA space weather independently (location-independent)
         // Skip if data was fetched recently (< 10 min) since it doesn't change
-        // with location — unless this is a forced (manual) refresh
+        // with location — unless this is a forced (manual) refresh.
+        // NOTE: _lastSpaceWeatherFetch is stamped by the provider itself, only
+        // once it actually has data back (see spaceWeather_provider.js) — not
+        // eagerly here at request time. Stamping it here unconditionally used
+        // to mean that if the fetch failed outright (e.g. no network yet at
+        // Plasma startup), the throttle still treated it as "fresh" and
+        // silently blocked every automatic retry for the next 10 minutes,
+        // leaving space weather empty until someone hit the manual refresh
+        // button (which passes force=true and bypasses the throttle).
         var now = Date.now();
         if (force === true || !_lastSpaceWeatherFetch || (now - _lastSpaceWeatherFetch) > 600000) {
-            _lastSpaceWeatherFetch = now;
             var _pSW = _providers();
             if (_pSW) _pSW.fetchSpaceWeather(service);
+        } else {
+            // Kp/solar wind/Bz/X-ray really don't change with location, so
+            // skipping the NOAA re-fetch above is correct. But the derived
+            // aurora-visibility percentage bundled into the same object DOES
+            // depend on the observer's latitude and local darkness — both of
+            // which may have just changed if this refresh was triggered by a
+            // location switch. Recompute just that value from the still-fresh
+            // cached Kp instead of leaving it stuck showing the old city's
+            // number.
+            var _pSW2 = _providers();
+            if (_pSW2) _pSW2.recomputeAuroraForLocation(service);
         }
+    }
+
+    /** Recomputes only the aurora-visibility percentage in weatherRoot.spaceWeather
+     *  for the current latitude/darkness, without hitting the network. Used when
+     *  the location changes but the NOAA data itself is still within its 10-min
+     *  throttle window (see refreshNow). Safe to call at any time. */
+    function recomputeAuroraForLocation() {
+        var _p = _providers();
+        if (_p) _p.recomputeAuroraForLocation(service);
     }
 
     /** Hourly data fetch for a specific date string (yyyy-MM-dd) */

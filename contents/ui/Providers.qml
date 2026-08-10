@@ -92,6 +92,7 @@ QtObject {
     function fetchAlertsLibreWxr(service) { LibreWxrAlertsJS.fetchAlerts(service); }
     function fetchAlertsFoss(service)      { FossAlertsJS.fetchAlerts(service); }
     function fetchSpaceWeather(service) { SpaceWeatherJS.fetchSpaceWeather(service); }
+    function recomputeAuroraForLocation(service) { SpaceWeatherJS.recomputeAuroraForLocation(service); }
 
     /** Native air-quality fetch for providers that support it. Returns true if
      *  handled (a native request is in flight), false if this provider has no
