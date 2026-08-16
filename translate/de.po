@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-07 11:29+0300\n"
-"PO-Revision-Date: 2026-08-09 14:16+0200\n"
+"PO-Revision-Date: 2026-08-16 10:38+0200\n"
 "Last-Translator: TomfromBerlin <tom-at-github@quantentunnel.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -74,7 +74,7 @@ msgstr "-90 bis 90 (z.B. 42.6977)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:884
 msgid "0 = auto (120 px per chip). Increase if values are truncated."
-msgstr "0 = automatisch (120 px pro Chip). Erhöhen, wenn Werte abgeschnitten werden."
+msgstr "0 = automatisch (120 px pro Panel). Erhöhen, wenn Werte abgeschnitten werden."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:884
 msgid "0 = auto. Increase if items are cut off."
@@ -122,11 +122,11 @@ msgstr "68°F"
 
 #: contents/ui/main.qml:1241
 msgid "<b>Effective:</b> %1"
-msgstr "<b>Effektiv:</b> %1"
+msgstr "<b>Gültig:</b> %1"
 
 #: contents/ui/main.qml:1238
 msgid "<b>Headline:</b> %1"
-msgstr "<b>Überschrift:</b> %1"
+msgstr "<b>Meldung:</b> %1"
 
 #: contents/ui/config/configGeneral.qml:899
 msgid ""
@@ -2239,7 +2239,7 @@ msgstr "Benachrichtigung mit heutiger Prognose"
 
 #: contents/ui/config/configNotifications.qml:465
 msgid "Notify with today's geomagnetic activity forecast"
-msgstr "Benachrichtigung mit heutiger Prognose zu geomagnetischer Aktivität"
+msgstr "Benachrichtigung mit heutiger Prognose zur geomagnetischen Aktivität"
 
 #: contents/ui/config/configNotifications.qml:397
 msgid "Notify with tomorrow's forecast"
@@ -3567,7 +3567,7 @@ msgstr "UV-Index Prognose:"
 
 #: contents/ui/main.qml:1762
 msgid "UV will be %1 (%2)"
-msgstr "UV wird %1 (%2) sein."
+msgstr "UV-Index wird %1 (%2) sein."
 
 #: contents/ui/config/configAppearance.qml:1396
 #: contents/ui/config/configAppearance.qml:1519
@@ -3684,7 +3684,7 @@ msgstr "Werte werden auf ganze Zahlen gerundet"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:55
 msgid "Values show decimal places"
-msgstr "Werte zeigen Dezimalstellen"
+msgstr "Werte mit Dezimalstellen"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:158
 msgid "Vertical"
