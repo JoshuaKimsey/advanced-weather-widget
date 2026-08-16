@@ -115,7 +115,7 @@
     <entry name="panelSimpleHorizontalContent" type="String"><default>both</default></entry>
     <entry name="panelSimpleClickAreaMode"     type="String"><default>auto</default></entry>
     <entry name="panelSimpleClickAreaSize"     type="Int"><default>96</default><min>20</min><max>600</max></entry>
-    <entry name="panelSimpleTempShadowEnabled" type="Bool"><default>true</default></entry>
+    <entry name="panelSimpleTempShadowEnabled" type="Bool"><default>false</default></entry>
     <entry name="panelSimpleTempShadowIntensity" type="Double"><default>0.8</default></entry>
     <entry name="panelSimpleTempShadowColor" type="String"><default></default></entry>
     <entry name="simpleTempColor" type="String"><default></default></entry>
@@ -137,11 +137,12 @@
     <entry name="simpleIconSizeMode"    type="String"><default>auto</default></entry>
     <entry name="simpleIconSizeManual"  type="Int"><default>32</default><min>16</min><max>72</max></entry>
     <entry name="simpleFontSizeMode"    type="String"><default>auto</default></entry>
-    <entry name="simpleFontSizeManual"  type="Int"><default>14</default><min>8</min><max>48</max></entry>
-    <!-- Live auto-computed px values written by CompactView; read-only in config -->
+    <entry name="simpleFontSizeManual"  type="Int"><default>14</default><min>8</min><max>72</max></entry>
+    <!-- Live auto/large-computed px values written by CompactView; read-only in config -->
     <entry name="simpleIconAutoSz"      type="Int"><default>0</default></entry>
     <entry name="simpleFontAutoSz"      type="Int"><default>0</default></entry>
     <entry name="simplePanelDim"        type="Int"><default>48</default></entry>
+    <entry name="simplePanelLargeDim"   type="Int"><default>0</default></entry>
     <entry name="simplePanelIsVertical" type="Bool"><default>false</default></entry>
 
     <!-- ── Panel — icons and font ─────────────────────────────────────── -->
