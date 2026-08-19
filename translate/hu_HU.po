@@ -51,7 +51,7 @@ msgstr "%1 valószínű: %2."
 
 #: contents/ui/main.qml:1544
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
-msgstr "%1, %2 kell számítani, a legalacsonyabb hőmérséklet: %3, a legmagasabb hőmérséklet pedig: %4 körül várható."
+msgstr "%1, %2 várható, a hőmérséklet pedig %3 és %4 között alakulhat."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1103
 msgctxt "@info %1 size %2 family"
