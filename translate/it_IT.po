@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-19 12:24+0300\n"
-"PO-Revision-Date: 2026-08-08 11:01+0200\n"
+"PO-Revision-Date: 2026-08-19 19:42+0200\n"
 "Last-Translator: Aldo Latino <aldolat@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it_IT\n"
@@ -52,7 +52,7 @@ msgstr "Possibile %1 %2."
 
 #: contents/ui/main.qml:1544
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
-msgstr ""
+msgstr "Previsioni di %1: %2 con una minima di %3 e una massima di %4."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1103
 msgctxt "@info %1 size %2 family"
@@ -130,11 +130,27 @@ msgstr "<b>Titolo:</b> %1"
 
 #: contents/ui/config/configGeneral.qml:929
 msgid ""
-"<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
-"                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
+"<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/>"
+"<br/>"
+"On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/>"
+"<br/>"
+"Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/>"
+"<br/>"
+"<b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
+"                <br/>"
+"<br/>"
+"If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 msgstr ""
-"<b>Workaround per i crash su sistemi con GPU Ibrida / NVIDIA PRIME + Wayland</b><br/><br/>Su alcuni portatili con GPU ibrida che utilizzano Wayland, la vista del browser integrata nella scheda Radar può causare il crash dell'intera shell di Plasma al primo rendering, a causa di un conflitto a livello di driver tra le due GPU. Per evitare ciò, questa opzione disabilita la composizione accelerata via GPU all'interno di quella vista del browser.<br/><br/>Abilita questa opzione solo se si verifica effettivamente questo crash: comporta un calo delle prestazioni di rendering sulla mappa radar.<br/><br/><b>Poiché deve essere impostato prima dell'avvio di Plasma, richiede di terminare la sessione e di riaccedere affinché abbia effetto</b>. Si applica inoltre all'intera sessione, quindi qualsiasi altra applicazione che integra una vista browser basata su Chromium adotterà la stessa impostazione.\n"
-"                <br/><br/>Se si abilita questa opzione, verrà creato il seguente file in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
+"<b>Workaround per i crash su sistemi con GPU Ibrida / NVIDIA PRIME + Wayland</b><br/>"
+"<br/>"
+"Su alcuni portatili con GPU ibrida che utilizzano Wayland, la vista del browser integrata nella scheda Radar può causare il crash dell'intera shell di Plasma al primo rendering, a causa di un conflitto a livello di driver tra le due GPU. Per evitare ciò, questa opzione disabilita la composizione accelerata via GPU all'interno di quella vista del browser.<br/>"
+"<br/>"
+"Abilita questa opzione solo se si verifica effettivamente questo crash: comporta un calo delle prestazioni di rendering sulla mappa radar.<br/>"
+"<br/>"
+"<b>Poiché deve essere impostato prima dell'avvio di Plasma, richiede di terminare la sessione e di riaccedere affinché abbia effetto</b>. Si applica inoltre all'intera sessione, quindi qualsiasi altra applicazione che integra una vista browser basata su Chromium adotterà la stessa impostazione.\n"
+"                <br/>"
+"<br/>"
+"Se si abilita questa opzione, verrà creato il seguente file in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 
 #: contents/ui/main.qml:1264
 msgid "<b>Instruction:</b> %1"
@@ -151,11 +167,21 @@ msgstr "<b>Gravità:</b> %1%2"
 
 #: contents/ui/main.qml:1336
 msgid "<b>Starts:</b> %1"
-msgstr ""
+msgstr "<b>Inizio:</b> %1"
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Perché i livelli OWM potrebbero non corrispondere al radar RainViewer</b><br/><br/>I livelli di precipitazione/nuvole OWM sono <b>tile di modello statici</b> - mostrano un output NWP (Numerical Weather Prediction) smussato, non ritorni radar reali. Rappresentano dove il modello <i>pensa</i> stia piovendo in base all'interpolazione tra stazioni meteorologiche e esecuzioni del modello.<br/><br/>RainViewer utilizza <b>compositi radar meteorologici reali</b> da stazioni radar - riflettività effettivamente misurata aggiornata ogni 2–10 minuti. Questa discrepanza è prevista e nota."
+msgid ""
+"<b>Why OWM layers may not match RainViewer radar</b><br/>"
+"<br/>"
+"OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/>"
+"<br/>"
+"RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+msgstr ""
+"<b>Perché i livelli OWM potrebbero non corrispondere al radar RainViewer</b><br/>"
+"<br/>"
+"I livelli di precipitazione/nuvole OWM sono <b>tile di modello statici</b> - mostrano un output NWP (Numerical Weather Prediction) smussato, non ritorni radar reali. Rappresentano dove il modello <i>pensa</i> stia piovendo in base all'interpolazione tra stazioni meteorologiche e esecuzioni del modello.<br/>"
+"<br/>"
+"RainViewer utilizza <b>compositi radar meteorologici reali</b> da stazioni radar - riflettività effettivamente misurata aggiornata ogni 2–10 minuti. Questa discrepanza è prevista e nota."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -271,16 +297,34 @@ msgid "Alerts provider:"
 msgstr "Fornitore delle allerte:"
 
 #: contents/ui/config/configGeneral.qml:1056
-msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Fornitore delle allerte: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>Il server pubblico di allerte FOSS di KDE raccoglie le allerte ufficiali di maltempo in formato CAP dalle agenzie di tutto il mondo e le associa alla tua posizione esatta. Le notifiche delle allerte funzionano allo stesso modo del fornitore nativo."
+msgid ""
+"Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/>"
+"<br/>"
+"KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
+msgstr ""
+"Fornitore delle allerte: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/>"
+"<br/>"
+"Il server pubblico di allerte FOSS di KDE raccoglie le allerte ufficiali di maltempo in formato CAP dalle agenzie di tutto il mondo e le associa alla tua posizione esatta. Le notifiche delle allerte funzionano allo stesso modo del fornitore nativo."
 
 #: contents/ui/config/configGeneral.qml:1047
-msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Fornitore delle allerte: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR è un'API meteorologica gratuita e open source che aggrega le allerte CAP ufficiali di tutto il mondo (WMO Severe Weather Information Centre, NOAA NWS e altri) e le associa alla tua posizione esatta. Le notifiche delle allerte funzionano allo stesso modo del fornitore nativo."
+msgid ""
+"Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/>"
+"<br/>"
+"LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
+msgstr ""
+"Fornitore delle allerte: <a href='https://librewxr.net/'>LibreWXR</a><br/>"
+"<br/>"
+"LibreWXR è un'API meteorologica gratuita e open source che aggrega le allerte CAP ufficiali di tutto il mondo (WMO Severe Weather Information Centre, NOAA NWS e altri) e le associa alla tua posizione esatta. Le notifiche delle allerte funzionano allo stesso modo del fornitore nativo."
 
 #: contents/ui/config/configGeneral.qml:1038
-msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr "Fornitore delle allerte: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>Le località europee utilizzano i feed ufficiali di MeteoAlarm (38 paesi), le località statunitensi utilizzano l'API delle allerte del NOAA National Weather Service, con i MetAlerts di met.no come riserva. Se il tuo fornitore meteorologico fornisce le proprie allerte (es. WeatherAPI.com, Pirate Weather), queste vengono utilizzate direttamente."
+msgid ""
+"Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/>"
+"<br/>"
+"European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
+msgstr ""
+"Fornitore delle allerte: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/>"
+"<br/>"
+"Le località europee utilizzano i feed ufficiali di MeteoAlarm (38 paesi), le località statunitensi utilizzano l'API delle allerte del NOAA National Weather Service, con i MetAlerts di met.no come riserva. Se il tuo fornitore meteorologico fornisce le proprie allerte (es. WeatherAPI.com, Pirate Weather), queste vengono utilizzate direttamente."
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -1338,7 +1382,7 @@ msgstr "Attività geomagnetica"
 
 #: contents/ui/main.qml:1875
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
-msgstr ""
+msgstr "L'attività geomagnetica sarà %1 (Kp %2)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
@@ -1648,7 +1692,7 @@ msgstr "Previsioni indice Kp e G:"
 #: contents/ui/config/tabs/ConfigPanelTab.qml:368
 #: contents/ui/config/tabs/ConfigPanelTab.qml:457
 msgid "Large"
-msgstr ""
+msgstr "Grande"
 
 #: contents/ui/main.qml:2188
 msgid "Last Quarter"
@@ -1682,7 +1726,7 @@ msgstr "Tipo layout:"
 
 #: contents/ui/config/configGeneral.qml:879
 msgid "Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance."
-msgstr ""
+msgstr "Lasciare vuoto questo campo se si usa il server pubblico. Qualora si usi un'istanza personale di LibreWXR, inserire qui il proprio indirizzo."
 
 #: contents/ui/config/configGeneral.qml:835
 #: contents/ui/config/configGeneral.qml:1014
@@ -1691,7 +1735,7 @@ msgstr "LibreWXR"
 
 #: contents/ui/config/configGeneral.qml:872
 msgid "LibreWXR server:"
-msgstr ""
+msgstr "Server LibreWXR:"
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 #: contents/ui/components/RadarWebEngineView.qml:781
@@ -2240,7 +2284,7 @@ msgstr "Notifiche"
 
 #: contents/ui/config/configNotifications.qml:310
 msgid "Notify about upcoming alerts before they start"
-msgstr ""
+msgstr "Abilita la notifica per le allerte in arrivo prima del loro inizio"
 
 #: contents/ui/config/configNotifications.qml:434
 msgid "Notify about upcoming rain/storms"
@@ -2637,12 +2681,32 @@ msgid "Radar provider:"
 msgstr "Fornitore del radar:"
 
 #: contents/ui/config/configGeneral.qml:859
-msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
-msgstr "Fornitore del radar: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR è un'API per radar meteorologici gratuita e open source. Combina compositi radar reali provenienti da fonti NOAA, canadesi ed europee con un modello globale di riserva, e fornisce le ultime 2 ore di dati radar oltre a un breve nowcast. Offre anche un livello satellitare (infrarossi) gratuito.<br/><br/>La modalità del livello, lo schema di colori del radar e le frecce di movimento vengono selezionati direttamente nella scheda Radar. La mappa segue automaticamente il tema chiaro/scuro di Plasma."
+msgid ""
+"Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/>"
+"<br/>"
+"LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/>"
+"<br/>"
+"Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
+msgstr ""
+"Fornitore del radar: <a href='https://librewxr.net/'>LibreWXR</a><br/>"
+"<br/>"
+"LibreWXR è un'API per radar meteorologici gratuita e open source. Combina compositi radar reali provenienti da fonti NOAA, canadesi ed europee con un modello globale di riserva, e fornisce le ultime 2 ore di dati radar oltre a un breve nowcast. Offre anche un livello satellitare (infrarossi) gratuito.<br/>"
+"<br/>"
+"La modalità del livello, lo schema di colori del radar e le frecce di movimento vengono selezionati direttamente nella scheda Radar. La mappa segue automaticamente il tema chiaro/scuro di Plasma."
 
 #: contents/ui/config/configGeneral.qml:850
-msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
-msgstr "Fornitore radar: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>Il widget utilizza l'API gratuita di RainViewer, che fornisce i dati radar meteo delle ultime 2 ore a intervalli di 10 minuti. Le previsioni radar non sono supportate.<br/><br/>Rain Viewer non garantisce la disponibilità dei dati radar. Non stipulano contratti con i proprietari di questi dati. Il motivo è che i proprietari possono chiedere loro di rimuovere i propri dati da Rain Viewer, modificarne il formato o interrompere la condivisione. Cercano di mantenere i dati radar il più a lungo possibile, ma a volte i proprietari smettono semplicemente di fornire le immagini."
+msgid ""
+"Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/>"
+"<br/>"
+"The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/>"
+"<br/>"
+"Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
+msgstr ""
+"Fornitore radar: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/>"
+"<br/>"
+"Il widget utilizza l'API gratuita di RainViewer, che fornisce i dati radar meteo delle ultime 2 ore a intervalli di 10 minuti. Le previsioni radar non sono supportate.<br/>"
+"<br/>"
+"Rain Viewer non garantisce la disponibilità dei dati radar. Non stipulano contratti con i proprietari di questi dati. Il motivo è che i proprietari possono chiedere loro di rimuovere i propri dati da Rain Viewer, modificarne il formato o interrompere la condivisione. Cercano di mantenere i dati radar il più a lungo possibile, ma a volte i proprietari smettono semplicemente di fornire le immagini."
 
 #: contents/ui/FullView.qml:731 contents/ui/FullView.qml:733
 msgid "Radar:"
@@ -2850,7 +2914,7 @@ msgstr "Unità secondaria mostrata per prima (ad es. °F / °C)"
 
 #: contents/ui/config/configNotifications.qml:320
 msgid "Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active."
-msgstr ""
+msgstr "Invia un singolo avviso a bassa priorità non appena viene pubblicata un'allerta futura (ad es. \"Allerta caldo a partire da domani alle 11:00\"). La normale notifica di allerta qui sopra verrà comunque inviata separatamente una volta che entrerà effettivamente in vigore."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:106
 #: contents/ui/config/tabs/ConfigPanelTab.qml:912
@@ -3592,7 +3656,7 @@ msgstr "Previsioni indice UV:"
 
 #: contents/ui/main.qml:1830
 msgid "UV index will be %1 (%2)"
-msgstr ""
+msgstr "L'indice UV sarà %1 (%2)"
 
 #: contents/ui/config/configAppearance.qml:1405
 #: contents/ui/config/configAppearance.qml:1528
@@ -3650,7 +3714,7 @@ msgstr "Solo prossima salita e calata della luna"
 
 #: contents/ui/main.qml:1346
 msgid "Upcoming: %1"
-msgstr ""
+msgstr "Prossimo: %1"
 
 #: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
