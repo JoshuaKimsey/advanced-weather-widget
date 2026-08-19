@@ -368,8 +368,8 @@ msgstr "Видимость полярного сияния"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:257
 #: contents/ui/config/tabs/ConfigPanelTab.qml:364
-#: contents/ui/config/tabs/ConfigPanelTab.qml:446
-#: contents/ui/config/tabs/ConfigPanelTab.qml:835
+#: contents/ui/config/tabs/ConfigPanelTab.qml:453
+#: contents/ui/config/tabs/ConfigPanelTab.qml:853
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:100
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:143
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:453
@@ -1637,7 +1637,12 @@ msgstr "Kp-индекс"
 msgid "Kp index/G forecast:"
 msgstr "Прогноз Kp-индекса/G"
 
-#: contents/ui/main.qml:2104
+#: contents/ui/config/tabs/ConfigPanelTab.qml:368
+#: contents/ui/config/tabs/ConfigPanelTab.qml:457
+msgid "Large"
+msgstr "Крупный"
+
+#: contents/ui/main.qml:2098
 msgid "Last Quarter"
 msgstr "Последняя четверть"
 
@@ -1895,9 +1900,9 @@ msgid "Mainly clear (night)"
 msgstr "Преимущественно ясно (ночью)"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:265
-#: contents/ui/config/tabs/ConfigPanelTab.qml:368
-#: contents/ui/config/tabs/ConfigPanelTab.qml:450
-#: contents/ui/config/tabs/ConfigPanelTab.qml:1054
+#: contents/ui/config/tabs/ConfigPanelTab.qml:372
+#: contents/ui/config/tabs/ConfigPanelTab.qml:461
+#: contents/ui/config/tabs/ConfigPanelTab.qml:1072
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:104
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:147
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:454
@@ -4105,7 +4110,7 @@ msgstr "миль/ч"
 msgid "overcast skies"
 msgstr "пасмурное небо"
 
-#: contents/ui/config/tabs/ConfigPanelTab.qml:880
+#: contents/ui/config/tabs/ConfigPanelTab.qml:898
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:127
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:170
 msgid "px"

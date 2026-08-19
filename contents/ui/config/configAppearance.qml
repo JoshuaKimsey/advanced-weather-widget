@@ -1066,7 +1066,7 @@ KCM.AbstractKCM {
     property string cfg_panelSimpleIconStyle: "symbolic"
     property string cfg_panelSimpleClickAreaMode: "auto"
     property int cfg_panelSimpleClickAreaSize: 96
-    property bool cfg_panelSimpleTempShadowEnabled: true
+    property bool cfg_panelSimpleTempShadowEnabled: false
     property double cfg_panelSimpleTempShadowIntensity: 0.8
     property string cfg_panelSimpleTempShadowColor: ""   // empty = theme background
     property string cfg_simpleTempColor: ""              // empty = theme text color
@@ -1226,28 +1226,37 @@ KCM.AbstractKCM {
     property int cfg_simpleIconAutoSz: 0   // written by CompactView; read-only here
     property int cfg_simpleFontAutoSz: 0   // written by CompactView; read-only here
     // Panel geometry written back by CompactView so the config page can
-    // recompute auto sizes for the CURRENTLY SELECTED layout type even
+    // recompute auto/large sizes for the CURRENTLY SELECTED layout type even
     // before the user clicks Apply (config dialog buffers cfg_* values).
-    property int cfg_simplePanelDim: 48        // _fullPanelW (vertical) or _fullPanelH (horizontal)
+    property int cfg_simplePanelDim: 48        // geometry allocated by Plasma
+    property int cfg_simplePanelLargeDim: 0    // reconstructed full panel thickness
     property bool cfg_simplePanelIsVertical: false
 
-    // Compute auto icon size for a given layout type using the live panel dim.
+    // Compute auto/large icon size for a given layout type and mode using
+    // the matching live panel dim.
     // Mirrors CompactView simpleIconSz formula exactly.
-    function _autoIconSz(lt) {
-        var dim = root.cfg_simplePanelDim > 0 ? root.cfg_simplePanelDim : 48;
+    function _autoIconSz(lt, mode) {
+        var dim = mode === "large" && root.cfg_simplePanelLargeDim > 0
+            ? root.cfg_simplePanelLargeDim
+            : (root.cfg_simplePanelDim > 0 ? root.cfg_simplePanelDim : 48);
         if (root.cfg_simplePanelIsVertical)
             return lt === 0 ? Math.max(16, Math.round(dim / 2)) : Math.max(16, dim);
         else
             return lt === 1 ? Math.max(16, Math.round(dim / 2)) : Math.max(16, dim);
     }
-    // Compute auto font size for a given layout type using the live panel dim.
+    // Compute auto/large font size for a given layout type and mode using
+    // the matching live panel dim.
     // Mirrors CompactView simpleFontSz formula exactly.
-    function _autoFontSz(lt) {
-        var dim = root.cfg_simplePanelDim > 0 ? root.cfg_simplePanelDim : 48;
+    function _autoFontSz(lt, mode) {
+        var dim = mode === "large" && root.cfg_simplePanelLargeDim > 0
+            ? root.cfg_simplePanelLargeDim
+            : (root.cfg_simplePanelDim > 0 ? root.cfg_simplePanelDim : 48);
         if (root.cfg_simplePanelIsVertical)
             return Math.max(8, Math.round(dim / 3));
         else
-            return lt === 1 ? Math.max(8, Math.round(dim / 3)) : Math.max(8, Math.round(dim * 11 / 24));
+            return lt === 1 || lt === 2
+                ? Math.max(8, Math.round(dim / 3))
+                : Math.max(8, Math.round(dim * 11 / 24));
     }
 
     // ── Custom icon map helpers ──────────────────────────────────────────

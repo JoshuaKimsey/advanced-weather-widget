@@ -365,11 +365,16 @@ Kirigami.FormLayout {
                     value: "auto"
                 },
                 {
+                    text: i18n("Large"),
+                    value: "large"
+                },
+                {
                     text: i18n("Manual"),
                     value: "manual"
                 }
             ]
-            currentIndex: panelTab.configRoot.cfg_simpleIconSizeMode === "auto" ? 0 : 1
+            currentIndex: panelTab.configRoot.cfg_simpleIconSizeMode === "large"
+                ? 1 : (panelTab.configRoot.cfg_simpleIconSizeMode === "manual" ? 2 : 0)
             onCurrentIndexChanged: {
                 var newMode = model[currentIndex].value;
                 if (panelTab.configRoot.cfg_simpleIconSizeMode !== newMode) {
@@ -410,8 +415,10 @@ Kirigami.FormLayout {
                 return s.value <= 48;
             }) : allSizes
             currentIndex: {
-                if (panelTab.configRoot.cfg_simpleIconSizeMode === "auto") {
-                    var target = panelTab.configRoot.cfg_simplePanelDim > 0 ? panelTab.configRoot._autoIconSz(panelTab._simpleLayoutType) : (panelTab.configRoot.cfg_simpleIconAutoSz > 0 ? panelTab.configRoot.cfg_simpleIconAutoSz : 24);
+                if (panelTab.configRoot.cfg_simpleIconSizeMode !== "manual") {
+                    var target = panelTab.configRoot.cfg_simplePanelDim > 0
+                        ? panelTab.configRoot._autoIconSz(panelTab._simpleLayoutType, panelTab.configRoot.cfg_simpleIconSizeMode)
+                        : (panelTab.configRoot.cfg_simpleIconAutoSz > 0 ? panelTab.configRoot.cfg_simpleIconAutoSz : 24);
                     var best = 0;
                     for (var i = 0; i < model.length; i++) {
                         if (Math.abs(model[i].value - target) < Math.abs(model[best].value - target))
@@ -447,11 +454,16 @@ Kirigami.FormLayout {
                     value: "auto"
                 },
                 {
+                    text: i18n("Large"),
+                    value: "large"
+                },
+                {
                     text: i18n("Manual"),
                     value: "manual"
                 }
             ]
-            currentIndex: panelTab.configRoot.cfg_simpleFontSizeMode === "auto" ? 0 : 1
+            currentIndex: panelTab.configRoot.cfg_simpleFontSizeMode === "large"
+                ? 1 : (panelTab.configRoot.cfg_simpleFontSizeMode === "manual" ? 2 : 0)
             onCurrentIndexChanged: {
                 var newMode = model[currentIndex].value;
                 if (panelTab.configRoot.cfg_simpleFontSizeMode !== newMode) {
@@ -465,7 +477,13 @@ Kirigami.FormLayout {
             enabled: panelTab.configRoot.cfg_simpleFontSizeMode === "manual"
             from: 8
             to: 72
-            value: panelTab.configRoot.cfg_simpleFontSizeMode === "auto" ? (panelTab.configRoot.cfg_simplePanelDim > 0 ? panelTab.configRoot._autoFontSz(panelTab._simpleLayoutType) : (panelTab.configRoot.cfg_simpleFontAutoSz > 0 ? panelTab.configRoot.cfg_simpleFontAutoSz : panelTab.configRoot.cfg_simpleFontSizeManual)) : panelTab.configRoot.cfg_simpleFontSizeManual
+            value: panelTab.configRoot.cfg_simpleFontSizeMode !== "manual"
+                ? (panelTab.configRoot.cfg_simplePanelDim > 0
+                    ? panelTab.configRoot._autoFontSz(panelTab._simpleLayoutType, panelTab.configRoot.cfg_simpleFontSizeMode)
+                    : (panelTab.configRoot.cfg_simpleFontAutoSz > 0
+                        ? panelTab.configRoot.cfg_simpleFontAutoSz
+                        : panelTab.configRoot.cfg_simpleFontSizeManual))
+                : panelTab.configRoot.cfg_simpleFontSizeManual
             onValueModified: {
                 if (panelTab.configRoot.cfg_simpleFontSizeMode === "manual")
                     panelTab.configRoot.cfg_simpleFontSizeManual = value;
