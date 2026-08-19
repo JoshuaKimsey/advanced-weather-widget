@@ -390,6 +390,19 @@ PlasmoidItem {
         actions: root._alertNotificationRepeatEnabled() ? [dismissAlertAction, postponeAlertAction] : []
     }
 
+    // One-time, non-critical heads-up for an alert that hasn't started yet.
+    // Separate instance from weatherAlertNotification (see comment above) so
+    // it can't clobber, or be clobbered by, an in-flight active-alert
+    // notification due in the same evaluator tick. Always auto-closing with
+    // no actions — there is nothing to dismiss/postpone before it's active.
+    Notification {
+        id: upcomingAlertNotification
+        componentName: "plasma_workspace"
+        eventId: "notification"
+        iconName: _bundledAlertIcon("storm-warning")
+        flags: Notification.CloseOnTimeout | Notification.SkipGrouping | Notification.DefaultEvent
+    }
+
     NotificationAction {
         id: dismissAlertAction
         label: i18n("Dismiss")
@@ -1305,6 +1318,41 @@ PlasmoidItem {
         weatherAlertNotification.sendEvent();
     }
 
+    /** Body text for the upcoming-alert heads-up: same shape as
+     *  _alertNotificationBody but "Starts:" instead of "Effective:", since
+     *  the alert hasn't begun yet — and no Instruction line (advice like
+     *  "avoid travel" doesn't apply until the alert is actually active). */
+    function _upcomingAlertNotificationBody(a) {
+        var lines = [];
+        var severity = (a.severity || a.color || "").trim();
+        var emoji = _alertSeverityEmoji(a.color, a.severity);
+        if (severity.length > 0) {
+            var marker = emoji.length > 0 ? (emoji + " ") : "";
+            lines.push(i18n("<b>Severity:</b> %1%2", marker, _escapeHtml(_alertSeverityLabel(severity))));
+        }
+        lines.push(i18n("<b>Headline:</b> %1", _escapeHtml(a.displayName || a.headline || i18n("Weather alert"))));
+        var starts = _formatAlertTimestamp(a.onset);
+        if (starts.length > 0)
+            lines.push(i18n("<b>Starts:</b> %1", starts));
+        var provider = (a.senderName || a.source || "").trim();
+        if (provider.length > 0)
+            lines.push(i18n("<b>Provider:</b> %1", _escapeHtml(provider)));
+        return lines.join("\n");
+    }
+
+    /** Sends the single, non-critical "this alert hasn't started yet" heads-up. */
+    function _sendUpcomingAlertNotification(alert) {
+        var location = (_locName() || "").trim();
+        upcomingAlertNotification.title = i18n("Upcoming: %1", _alertNotificationTitle(alert, location));
+        upcomingAlertNotification.text = _upcomingAlertNotificationBody(alert);
+        upcomingAlertNotification.iconName = _alertNotificationIconName(alert);
+        // Deliberately never Critical, regardless of the severity/critical
+        // setting — this is an informational heads-up, not an active hazard.
+        var p = alertColorPriority(alert.color);
+        upcomingAlertNotification.urgency = (p >= 2) ? Notification.NormalUrgency : Notification.LowUrgency;
+        upcomingAlertNotification.sendEvent();
+    }
+
     /** Picks the dedicated Notification instance for a dedup key's category,
      *  so simultaneously-due notifications don't clobber each other (see the
      *  comment above the Notification declarations). */
@@ -1412,23 +1460,25 @@ PlasmoidItem {
 
         var nowMs = now.getTime();
         var repeatEnabled = _alertNotificationRepeatEnabled();
+        var upcomingEnabled = Plasmoid.configuration.alertNotificationsUpcomingEnabled !== false;
         var didChange = false;
 
         for (var i = 0; i < alerts.length; i++) {
             var a = alerts[i];
-            if (!_isAlertActiveNow(a, now))
-                continue;
             if (!_alertColorAllowed(a.color, a.severity))
                 continue;
             if (!_alertTypeEnabled(a.awarenessType))
                 continue;
 
+            // Entry is created here (not inside the "active" branch below) so
+            // upcomingNotified survives the whole not-yet-active period, right
+            // up until the alert actually starts.
             var fp = _alertFingerprint(a);
             var entry = _alertNotificationState[fp];
-            var isNewAlert = !entry;
-            if (isNewAlert) {
-                entry = { dismissed: false, nextDueMs: 0, expiresMs: 0, shownOnce: false, awarenessType: 0 };
+            if (!entry) {
+                entry = { dismissed: false, nextDueMs: 0, expiresMs: 0, shownOnce: false, awarenessType: 0, upcomingNotified: false };
                 _alertNotificationState[fp] = entry;
+                didChange = true;
             }
             // Keep the expiry fresh so pruning drops it once it truly expires.
             var expMs = a.expires ? new Date(a.expires).getTime() : 0;
@@ -1443,6 +1493,17 @@ PlasmoidItem {
                 didChange = true;
             }
 
+            if (!_isAlertActiveNow(a, now)) {
+                // Not started yet — a single, non-critical heads-up, once.
+                if (upcomingEnabled && !entry.upcomingNotified && a.onset && new Date(a.onset) > now) {
+                    _sendUpcomingAlertNotification(a);
+                    entry.upcomingNotified = true;
+                    didChange = true;
+                }
+                continue;
+            }
+
+            var isNewAlert = !entry.shownOnce;
             if (isNewAlert) {
                 _sendAlertNotification(a);
                 entry.shownOnce = true;

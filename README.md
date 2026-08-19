@@ -156,8 +156,10 @@ For providers that require an API key, you can enter it in the widget's settings
 Thank you to everyone who has contributed code to this project ❤️
 
 - **[Mizu Ikki](https://github.com/mizuikki)** - QWeather provider fixes and perfomance improvements (refresh handling, forecast display, precipitation fallback)
-- **[rcspam](https://github.com/rcspam)** - [PR-151](https://github.com/pnedyalkov91/advanced-weather-widget/pull/151), [PR-146](https://github.com/pnedyalkov91/advanced-weather-widget/pull/146), [PR-157](https://github.com/pnedyalkov91/advanced-weather-widget/pull/157)
+- **[rcspam](https://github.com/rcspam)** - [PR-151](https://github.com/pnedyalkov91/advanced-weather-widget/pull/151), [PR-146](https://github.com/pnedyalkov91/advanced-weather-widget/pull/146), [PR-157](https://github.com/pnedyalkov91/advanced-weather-widget/pull/157), [PR-179](https://github.com/pnedyalkov91/advanced-weather-widget/pull/179), [PR-180](https://github.com/pnedyalkov91/advanced-weather-widget/pull/180)
 - **[ydimitrof](https://github.com/ydimitrof)** - [PR-168](https://github.com/pnedyalkov91/advanced-weather-widget/pull/168)
+- **[Katze-942](https://github.com/Katze-942)** - [PR-185](https://github.com/pnedyalkov91/advanced-weather-widget/pull/185)
+- **[KassLavender](https://github.com/KassLavender)** - [PR-174](https://github.com/pnedyalkov91/advanced-weather-widget/pull/174), 
 ## 🌐 Translation
 
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.
@@ -207,7 +209,7 @@ Thank you to everyone who contributed translations to this project ❤️
 - **German** - [HolySoap](https://github.com/HolySoap) and [TomfromBerlin](https://github.com/TomfromBerlin)
 - **Brazilian Portuguese** - [PauloAlbqrq](https://github.com/PauloAlbqrq)
 - **Dutch** - Heimen Stoffels (<vistausss@fastmail.com>)
-- **Russian** - [Dmaliog](https://github.com/dmaliog) and [PhvntxmX](https://github.com/PhvntxmX)
+- **Russian** - [Dmaliog](https://github.com/dmaliog), [PhvntxmX](https://github.com/PhvntxmX), and  **[Katze-942](https://github.com/Katze-942)**
 - **French** - [LAZER-TY](https://github.com/LAZER-TY) and [rcspam](https://github.com/rcspam)
 - **Turkish** - [herzane52](https://github.com/herzane52)
 - **Spanish** - [NecaX](https://github.com/NecaX) and [BroxiCoros](https://github.com/BroxiCoros)

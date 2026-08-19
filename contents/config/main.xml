@@ -324,6 +324,9 @@
     <entry name="alertNotificationsRedEnabled"    type="Bool"><default>true</default></entry>
     <entry name="alertNotificationsPurpleEnabled" type="Bool"><default>true</default></entry>
     <entry name="alertNotificationsCriticalEnabled" type="Bool"><default>true</default></entry>
+    <!-- Sends a single, non-critical heads-up as soon as a not-yet-active alert
+         appears, in addition to the normal notification once it actually starts. -->
+    <entry name="alertNotificationsUpcomingEnabled" type="Bool"><default>true</default></entry>
     <!-- When false, each alert is shown only once (no repeat, no Dismiss/Postpone actions). -->
     <entry name="alertNotificationsRepeatEnabled" type="Bool"><default>true</default></entry>
     <!-- Internal: JSON map of awareness-type number (1-11) → { enabled: bool, minutes: int }.

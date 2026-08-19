@@ -71,7 +71,7 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Brazilian Portuguese** - [PauloAlbqrq](https://github.com/PauloAlbqrq)
 - **Bulgarian** - Petar Nedyalkov (Author)
 - **Dutch** - Heimen Stoffels (<vistausss@fastmail.com>)
-- **Russian** - [Dmaliog](https://github.com/dmaliog) and [PhvntxmX](https://github.com/PhvntxmX)
+- **Russian** - [Dmaliog](https://github.com/dmaliog), [PhvntxmX](https://github.com/PhvntxmX), and  **[Katze-942](https://github.com/Katze-942)**
 - **French** - [LAZER-TY](https://github.com/LAZER-TY) and [rcspam](https://github.com/rcspam)
 - **Turkish** - [herzane52](https://github.com/herzane52)
 - **Spanish** - [NecaX](https://github.com/NecaX) and [BroxiCoros](https://github.com/BroxiCoros)
