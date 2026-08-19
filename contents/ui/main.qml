@@ -1476,11 +1476,11 @@ PlasmoidItem {
         return s.charAt(0).toLowerCase() + s.slice(1);
     }
 
-    /** "<Day> will be <condition> with a low of <min> and a high of <max>." */
+    /** "<Day> there will be <condition> with a low of <min> and a high of <max>." */
     function _highLowSummary(dayLabel, condition, d) {
         var hi = tempValue(d.maxC);
         var lo = tempValue(d.minC);
-        return i18n("%1 will be %2 with a low of %3 and a high of %4.",
+        return i18n("%1 there will be %2 with a low of %3 and a high of %4.",
             dayLabel, _lowercaseFirst(condition), lo, hi);
     }
 
@@ -1766,7 +1766,7 @@ PlasmoidItem {
         var trend = _trendText(uvMax, Plasmoid.configuration.notificationUvLastValue,
             Plasmoid.configuration.notificationUvLastDate, todayStr);
         var valueText = (Math.round(uvMax * 10) / 10).toString();
-        var msg = i18n("UV will be %1 (%2)", _uvLevelText(uvMax), valueText);
+        var msg = i18n("UV index will be %1 (%2)", _uvLevelText(uvMax), valueText);
         if (trend.length > 0) msg = msg + ", " + trend;
         msg = msg + ".";
         var title = i18n("UV index");
@@ -1811,7 +1811,7 @@ PlasmoidItem {
             return;
         var trend = _trendText(kpVal, Plasmoid.configuration.notificationSpaceWeatherLastKp,
             Plasmoid.configuration.notificationSpaceWeatherLastDate, todayStr);
-        var msg = i18n("Geomagnetic activity will be %1 (Kp %2)", _kpLevelText(gVal), kpVal.toFixed(1));
+        var msg = i18n("Geomagnetic activity is expected to be %1 (Kp %2)", _kpLevelText(gVal), kpVal.toFixed(1));
         if (trend.length > 0) msg = msg + ", " + trend;
         msg = msg + ".";
         var title = i18n("Geomagnetic activity");
