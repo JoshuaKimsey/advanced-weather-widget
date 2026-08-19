@@ -68,17 +68,31 @@ function _formatSummary(data) {
     return parts.join(" · ");
 }
 
-function _auroraVisibilityPercent(kp, latitude) {
+// Kept in sync with auroraVisibilityPercent() in js/spaceWeather.js — this
+// file is not a .pragma library (it needs XMLHttpRequest), and a plain
+// script importing a .pragma library is fine, but that hasn't been wired up
+// here yet, so the logic is duplicated for now. See spaceWeather.js for the
+// full rationale (darkness gate + the Kp→boundary-latitude table).
+function _auroraVisibilityPercent(kp, latitude, isDark) {
     if (isNaN(kp) || isNaN(latitude)) return 0;
+    if (!isDark) return 0; // not dark → not visible, regardless of Kp
+
     var absLat = Math.abs(latitude);
-    var aurovalLat = 65 - (kp / 2);  // Higher Kp shifts aurora south
-    if (kp >= 9) aurovalLat = 30;    // Extreme storms reach equator
-    var distance = Math.abs(absLat - aurovalLat);
-    var visibility = Math.max(0, 100 - (distance * 2.5));
-    if (kp >= 7 && absLat >= 40) visibility = Math.max(visibility, 50);
-    if (kp >= 8 && absLat >= 35) visibility = Math.max(visibility, 60);
-    if (kp >= 9 && absLat >= 30) visibility = Math.max(visibility, 70);
-    return Math.round(visibility);
+    var boundary = [66.5, 64.5, 62.4, 60.4, 58.3, 56.3, 54.2, 52.2, 50.1, 48.1];
+    var kpClamped = Math.max(0, Math.min(9, kp));
+    var lo = Math.floor(kpClamped);
+    var hi = Math.min(9, lo + 1);
+    var frac = kpClamped - lo;
+    var boundaryLat = boundary[lo] + (boundary[hi] - boundary[lo]) * frac;
+
+    var distance = absLat - boundaryLat;
+    var visibility;
+    if (distance >= 0) {
+        visibility = 70 + Math.min(25, distance * 5);
+    } else {
+        visibility = 70 * Math.exp(distance / 4);
+    }
+    return Math.round(Math.max(0, Math.min(95, visibility)));
 }
 
 /**
@@ -111,7 +125,8 @@ function fetchSpaceWeather(service) {
         var gScale        = _kpToGScale(kp);
         var xrayClass     = _getXrayClass(flux);
         var xrayClassFull = _getXrayClassFull(flux);
-        var auroraProb    = _auroraVisibilityPercent(kp, service.latitude);
+        var isDark        = (r && typeof r.isNightTime === "function") ? r.isNightTime() : false;
+        var auroraProb    = _auroraVisibilityPercent(kp, service.latitude, isDark);
 
         var data = {
             kp:           kp,
@@ -125,6 +140,16 @@ function fetchSpaceWeather(service) {
         };
         data.summary = _formatSummary(data);
         r.spaceWeather = data;
+
+        // Only mark the 10-min throttle window as "fresh" once at least one
+        // endpoint actually came back with real data. If every request
+        // failed (e.g. no network yet at Plasma startup), leave the
+        // timestamp untouched so the next automatic refresh (periodic
+        // timer, resume-from-suspend, config change, etc.) tries again
+        // right away instead of silently sitting on empty/NaN data for up
+        // to 10 minutes. See _lastSpaceWeatherFetch in WeatherService.qml.
+        var gotData = !isNaN(kp) || !isNaN(solarWind) || !isNaN(bz) || !isNaN(flux);
+        if (gotData) service._lastSpaceWeatherFetch = Date.now();
     }
 
     // ── 1) Kp index — 1-minute real-time nowcast. The finalized 3-hourly
@@ -250,6 +275,41 @@ function fetchSpaceWeather(service) {
         },
         function() {}
     );
+}
+
+/**
+ * Recomputes just the aurora-visibility percentage in weatherRoot.spaceWeather
+ * for the current latitude/darkness, without touching the network.
+ *
+ * Kp/solar wind/Bz/X-ray are genuinely location-independent, so refreshNow()
+ * correctly skips re-fetching them on a location change while the 10-min
+ * throttle is still active. But auroraPercent — bundled into that same
+ * object — depends on the observer's latitude and on isNightTime()
+ * (sunrise/sunset), both of which change with location. Without this, a
+ * location switch left the aurora number stuck showing the previous city's
+ * value until the throttle window happened to expire or a manual refresh
+ * forced a full re-fetch.
+ *
+ * No-ops if we don't have a cached Kp yet (nothing to recompute from).
+ */
+function recomputeAuroraForLocation(service) {
+    var r = service.weatherRoot;
+    if (!r || !r.spaceWeather) return;
+    var kp = r.spaceWeather.kp;
+    if (isNaN(kp)) return;
+
+    var isDark = (typeof r.isNightTime === "function") ? r.isNightTime() : false;
+    var auroraProb = _auroraVisibilityPercent(kp, service.latitude, isDark);
+    if (auroraProb === r.spaceWeather.auroraPercent) return; // unchanged — skip the reassignment
+
+    // QML's `property var` only notifies on a new object reference, so
+    // patch a copy rather than mutating r.spaceWeather in place (same
+    // pattern used by _mergeAqiData / _fetchSunTimesOpenMeteo above).
+    var patched = {};
+    for (var k in r.spaceWeather) patched[k] = r.spaceWeather[k];
+    patched.auroraPercent = auroraProb;
+    patched.summary = _formatSummary(patched);
+    r.spaceWeather = patched;
 }
 
 // ── Internal HTTP helper ──────────────────────────────────────────────────────

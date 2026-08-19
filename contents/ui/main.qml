@@ -40,6 +40,7 @@ import org.kde.kirigami as Kirigami
 import "js/weather.js" as W
 import "js/moonphase.js" as Moon
 import "js/suncalc.js" as SC
+import "js/sunpath.js" as SunPath
 import "js/iconResolver.js" as IconResolver
 import "js/configUtils.js" as ConfigUtils
 
@@ -107,6 +108,12 @@ PlasmoidItem {
     property var weatherData: null
     function _applyWeatherData() { weatherData = weatherDataStaged; }
     onWeatherDataStagedChanged: Qt.callLater(_applyWeatherData)
+    // Sunrise/sunset (and therefore isNightTime()) only settle once weatherData
+    // lands for the new location — which can be after the location-switch
+    // refresh already ran its (network-free) aurora recompute. Re-run it here
+    // too so a distant-timezone location change still ends up with the right
+    // day/night state instead of briefly inheriting the previous city's.
+    onWeatherDataChanged: weatherService.recomputeAuroraForLocation()
 
     readonly property real   temperatureC:          weatherData ? weatherData.temperatureC          : NaN
     readonly property real   apparentC:             weatherData ? weatherData.apparentC             : NaN
@@ -381,6 +388,19 @@ PlasmoidItem {
             : (Notification.CloseOnTimeout | Notification.SkipGrouping | Notification.DefaultEvent)
 
         actions: root._alertNotificationRepeatEnabled() ? [dismissAlertAction, postponeAlertAction] : []
+    }
+
+    // One-time, non-critical heads-up for an alert that hasn't started yet.
+    // Separate instance from weatherAlertNotification (see comment above) so
+    // it can't clobber, or be clobbered by, an in-flight active-alert
+    // notification due in the same evaluator tick. Always auto-closing with
+    // no actions — there is nothing to dismiss/postpone before it's active.
+    Notification {
+        id: upcomingAlertNotification
+        componentName: "plasma_workspace"
+        eventId: "notification"
+        iconName: _bundledAlertIcon("storm-warning")
+        flags: Notification.CloseOnTimeout | Notification.SkipGrouping | Notification.DefaultEvent
     }
 
     NotificationAction {
@@ -1298,6 +1318,41 @@ PlasmoidItem {
         weatherAlertNotification.sendEvent();
     }
 
+    /** Body text for the upcoming-alert heads-up: same shape as
+     *  _alertNotificationBody but "Starts:" instead of "Effective:", since
+     *  the alert hasn't begun yet — and no Instruction line (advice like
+     *  "avoid travel" doesn't apply until the alert is actually active). */
+    function _upcomingAlertNotificationBody(a) {
+        var lines = [];
+        var severity = (a.severity || a.color || "").trim();
+        var emoji = _alertSeverityEmoji(a.color, a.severity);
+        if (severity.length > 0) {
+            var marker = emoji.length > 0 ? (emoji + " ") : "";
+            lines.push(i18n("<b>Severity:</b> %1%2", marker, _escapeHtml(_alertSeverityLabel(severity))));
+        }
+        lines.push(i18n("<b>Headline:</b> %1", _escapeHtml(a.displayName || a.headline || i18n("Weather alert"))));
+        var starts = _formatAlertTimestamp(a.onset);
+        if (starts.length > 0)
+            lines.push(i18n("<b>Starts:</b> %1", starts));
+        var provider = (a.senderName || a.source || "").trim();
+        if (provider.length > 0)
+            lines.push(i18n("<b>Provider:</b> %1", _escapeHtml(provider)));
+        return lines.join("\n");
+    }
+
+    /** Sends the single, non-critical "this alert hasn't started yet" heads-up. */
+    function _sendUpcomingAlertNotification(alert) {
+        var location = (_locName() || "").trim();
+        upcomingAlertNotification.title = i18n("Upcoming: %1", _alertNotificationTitle(alert, location));
+        upcomingAlertNotification.text = _upcomingAlertNotificationBody(alert);
+        upcomingAlertNotification.iconName = _alertNotificationIconName(alert);
+        // Deliberately never Critical, regardless of the severity/critical
+        // setting — this is an informational heads-up, not an active hazard.
+        var p = alertColorPriority(alert.color);
+        upcomingAlertNotification.urgency = (p >= 2) ? Notification.NormalUrgency : Notification.LowUrgency;
+        upcomingAlertNotification.sendEvent();
+    }
+
     /** Picks the dedicated Notification instance for a dedup key's category,
      *  so simultaneously-due notifications don't clobber each other (see the
      *  comment above the Notification declarations). */
@@ -1405,23 +1460,25 @@ PlasmoidItem {
 
         var nowMs = now.getTime();
         var repeatEnabled = _alertNotificationRepeatEnabled();
+        var upcomingEnabled = Plasmoid.configuration.alertNotificationsUpcomingEnabled !== false;
         var didChange = false;
 
         for (var i = 0; i < alerts.length; i++) {
             var a = alerts[i];
-            if (!_isAlertActiveNow(a, now))
-                continue;
             if (!_alertColorAllowed(a.color, a.severity))
                 continue;
             if (!_alertTypeEnabled(a.awarenessType))
                 continue;
 
+            // Entry is created here (not inside the "active" branch below) so
+            // upcomingNotified survives the whole not-yet-active period, right
+            // up until the alert actually starts.
             var fp = _alertFingerprint(a);
             var entry = _alertNotificationState[fp];
-            var isNewAlert = !entry;
-            if (isNewAlert) {
-                entry = { dismissed: false, nextDueMs: 0, expiresMs: 0, shownOnce: false, awarenessType: 0 };
+            if (!entry) {
+                entry = { dismissed: false, nextDueMs: 0, expiresMs: 0, shownOnce: false, awarenessType: 0, upcomingNotified: false };
                 _alertNotificationState[fp] = entry;
+                didChange = true;
             }
             // Keep the expiry fresh so pruning drops it once it truly expires.
             var expMs = a.expires ? new Date(a.expires).getTime() : 0;
@@ -1436,6 +1493,17 @@ PlasmoidItem {
                 didChange = true;
             }
 
+            if (!_isAlertActiveNow(a, now)) {
+                // Not started yet — a single, non-critical heads-up, once.
+                if (upcomingEnabled && !entry.upcomingNotified && a.onset && new Date(a.onset) > now) {
+                    _sendUpcomingAlertNotification(a);
+                    entry.upcomingNotified = true;
+                    didChange = true;
+                }
+                continue;
+            }
+
+            var isNewAlert = !entry.shownOnce;
             if (isNewAlert) {
                 _sendAlertNotification(a);
                 entry.shownOnce = true;
@@ -1469,11 +1537,11 @@ PlasmoidItem {
         return s.charAt(0).toLowerCase() + s.slice(1);
     }
 
-    /** "<Day> will be <condition> with a low of <min> and a high of <max>." */
+    /** "<Day> there will be <condition> with a low of <min> and a high of <max>." */
     function _highLowSummary(dayLabel, condition, d) {
         var hi = tempValue(d.maxC);
         var lo = tempValue(d.minC);
-        return i18n("%1 will be %2 with a low of %3 and a high of %4.",
+        return i18n("%1 there will be %2 with a low of %3 and a high of %4.",
             dayLabel, _lowercaseFirst(condition), lo, hi);
     }
 
@@ -1759,7 +1827,7 @@ PlasmoidItem {
         var trend = _trendText(uvMax, Plasmoid.configuration.notificationUvLastValue,
             Plasmoid.configuration.notificationUvLastDate, todayStr);
         var valueText = (Math.round(uvMax * 10) / 10).toString();
-        var msg = i18n("UV will be %1 (%2)", _uvLevelText(uvMax), valueText);
+        var msg = i18n("UV index will be %1 (%2)", _uvLevelText(uvMax), valueText);
         if (trend.length > 0) msg = msg + ", " + trend;
         msg = msg + ".";
         var title = i18n("UV index");
@@ -1804,7 +1872,7 @@ PlasmoidItem {
             return;
         var trend = _trendText(kpVal, Plasmoid.configuration.notificationSpaceWeatherLastKp,
             Plasmoid.configuration.notificationSpaceWeatherLastDate, todayStr);
-        var msg = i18n("Geomagnetic activity will be %1 (Kp %2)", _kpLevelText(gVal), kpVal.toFixed(1));
+        var msg = i18n("Geomagnetic activity is expected to be %1 (Kp %2)", _kpLevelText(gVal), kpVal.toFixed(1));
         if (trend.length > 0) msg = msg + ", " + trend;
         msg = msg + ".";
         var title = i18n("Geomagnetic activity");
@@ -2060,8 +2128,24 @@ PlasmoidItem {
         // forecast below it in agreement. Trusting the provider's day/night
         // flag ahead of these is what let BBC's `isNight` put a moon on a
         // sunny afternoon while the forecast right underneath showed suns.
-        var now = new Date();
-        var nowMins = now.getHours() * 60 + now.getMinutes();
+        //
+        // "now" has to be the TARGET LOCATION's own local clock, not the
+        // device's — sunriseTimeText/sunsetTimeText are already
+        // location-local "HH:mm" strings (WeatherService fetches them with
+        // an explicit timezone= param), so comparing them against the
+        // device's own system time silently breaks the moment the two
+        // zones diverge. Barely noticeable switching between nearby
+        // cities, but badly wrong for far-away ones (e.g. Sofia →
+        // Antarctica, ~10-13h apart) — it can flip day/night outright.
+        // And because this only runs when something explicitly triggers a
+        // recompute rather than continuously, the wrong result then sits
+        // there looking "stuck" until a manual refresh happens to be
+        // issued at a moment where the mismatch is less visible, giving
+        // the impression that only the refresh button "fixes" it.
+        // DetailsView already solves this the same way for its sun/moon
+        // widgets via SunPath.nowMinsAt(locationUtcOffsetMins); reuse that
+        // here instead of re-deriving the math.
+        var nowMins = SunPath.nowMinsAt(locationUtcOffsetMins);
         function parseMins(t) {
             if (!t || t === "--")
                 return -1;

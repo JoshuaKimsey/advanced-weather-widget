@@ -5,24 +5,24 @@
 
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |     918 |       |
-| bg       | 918/918 |  100% |
-| cs_CZ    | 835/918 |   90% |
-| de       | 899/918 |   97% |
-| es       | 918/918 |  100% |
-| fr       | 918/918 |  100% |
-| hu_HU    | 918/918 |  100% |
-| it_IT    | 899/918 |   97% |
-| ja_JP    | 918/918 |  100% |
-| nl       | 918/918 |  100% |
-| pl_PL    | 899/918 |   97% |
-| pt_BR    | 288/918 |   31% |
-| ru       | 899/918 |   97% |
-| tr_TR    | 899/918 |   97% |
-| uk       | 915/918 |   99% |
-| zh_CN    | 918/918 |  100% |
-| zh_TW    | 918/918 |  100% |
-
+| Template |     925 |       |
+| bg       | 914/925 |   98% |
+| cs_CZ    | 832/925 |   89% |
+| de       | 914/925 |   98% |
+| es       | 914/925 |   98% |
+| fr       | 914/925 |   98% |
+| hu_HU    | 914/925 |   98% |
+| it_IT    | 914/925 |   98% |
+| ja_JP    | 914/925 |   98% |
+| ko_KR    | 914/925 |   98% |
+| nl       | 914/925 |   98% |
+| pl_PL    | 914/925 |   98% |
+| pt_BR    | 288/925 |   31% |
+| ru       | 897/925 |   96% |
+| tr_TR    | 896/925 |   96% |
+| uk       | 912/925 |   98% |
+| zh_CN    | 914/925 |   98% |
+| zh_TW    | 914/925 |   98% |
 
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.
 
@@ -70,7 +70,7 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Brazilian Portuguese** - [PauloAlbqrq](https://github.com/PauloAlbqrq)
 - **Bulgarian** - Petar Nedyalkov (Author)
 - **Dutch** - Heimen Stoffels (<vistausss@fastmail.com>)
-- **Russian** - [Dmaliog](https://github.com/dmaliog) and [PhvntxmX](https://github.com/PhvntxmX)
+- **Russian** - [Dmaliog](https://github.com/dmaliog), [PhvntxmX](https://github.com/PhvntxmX), and  **[Katze-942](https://github.com/Katze-942)**
 - **French** - [LAZER-TY](https://github.com/LAZER-TY) and [rcspam](https://github.com/rcspam)
 - **Turkish** - [herzane52](https://github.com/herzane52)
 - **Spanish** - [NecaX](https://github.com/NecaX) and [BroxiCoros](https://github.com/BroxiCoros)
@@ -82,3 +82,4 @@ Thank you to everyone who contributed translations to this project ❤️
 - **Polish** - [l3monik](https://github.com/l3monik)
 - **Ukrainian** - [NaviMen (Oleksandr)](https://github.com/NaviMen)
 - **Japanese** - [presire](https://github.com/presire)
+- **Korean** - [vitneum](https://github.com/vitneum)

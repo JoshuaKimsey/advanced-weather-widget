@@ -30,6 +30,7 @@ KCM.SimpleKCM {
     property bool cfg_alertNotificationsRedEnabled: true
     property bool cfg_alertNotificationsPurpleEnabled: true
     property bool cfg_alertNotificationsCriticalEnabled: true
+    property bool cfg_alertNotificationsUpcomingEnabled: true
     property bool cfg_alertNotificationsRepeatEnabled: true
     property string cfg_alertNotificationsTypeSettings: "{}"
 
@@ -301,6 +302,22 @@ KCM.SimpleKCM {
                 showCloseButton: true
                 visible: root.cfg_alertNotificationsEnabled && root.cfg_alertNotificationsCriticalEnabled
                 text: i18n("Critical notifications are still shown even when Do Not Disturb is enabled, or while you're playing a game or watching a fullscreen video (if those options are enabled in System Settings → Notifications).")
+            }
+
+            Switch {
+                enabled: root.cfg_alertNotificationsEnabled
+                opacity: enabled ? 1.0 : 0.5
+                text: i18n("Notify about upcoming alerts before they start")
+                checked: root.cfg_alertNotificationsUpcomingEnabled
+                onToggled: root.cfg_alertNotificationsUpcomingEnabled = checked
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                type: Kirigami.MessageType.Information
+                showCloseButton: true
+                visible: root.cfg_alertNotificationsEnabled && root.cfg_alertNotificationsUpcomingEnabled
+                text: i18n("Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active.")
             }
 
             Switch {
