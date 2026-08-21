@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-19 12:24+0300\n"
-"PO-Revision-Date: 2026-08-04 08:14+0200\n"
+"PO-Revision-Date: 2026-08-19 16:53+0200\n"
 "Last-Translator: summoner <summoner@disroot.org>\n"
 "Language-Team: Hungarian <>\n"
 "Language: hu_HU\n"
@@ -51,7 +51,7 @@ msgstr "%1 valószínű: %2."
 
 #: contents/ui/main.qml:1544
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
-msgstr ""
+msgstr "%1, %2 várható, a hőmérséklet pedig %3 és %4 között alakulhat."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1103
 msgctxt "@info %1 size %2 family"
@@ -150,7 +150,7 @@ msgstr "<b>Súlyosság:</b> %1%2"
 
 #: contents/ui/main.qml:1336
 msgid "<b>Starts:</b> %1"
-msgstr ""
+msgstr "<b>Kezdete:</b> %1"
 
 #: contents/ui/config/configGeneral.qml:905
 msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
@@ -756,7 +756,7 @@ msgstr "A kritikus értesítések akkor is megjelennek, ha a „Ne zavarjanak m�
 #: contents/ui/config/configAppearance.qml:1570
 #: contents/ui/config/configAppearance.qml:1693
 msgid "Current date and/or time"
-msgstr "Jelenlegi dátum / idő"
+msgstr "Jelenlegi dátum és idő"
 
 #: contents/ui/config/configAppearance.qml:1384
 msgid "Current moon phase"
@@ -822,7 +822,7 @@ msgstr "Adatok frissítése"
 #: contents/ui/config/configAppearance.qml:1569
 #: contents/ui/config/configAppearance.qml:1692 contents/ui/DetailsView.qml:331
 msgid "Date / Time"
-msgstr "Dátum / Idő"
+msgstr "Dátum és idő"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:354
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:419
@@ -1337,7 +1337,7 @@ msgstr "Geomágneses aktivitás"
 
 #: contents/ui/main.qml:1875
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
-msgstr ""
+msgstr "Várható geomágneses aktivitás: %1 (Kp %2)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
@@ -1647,7 +1647,7 @@ msgstr "Kp index/G előrejelzés:"
 #: contents/ui/config/tabs/ConfigPanelTab.qml:368
 #: contents/ui/config/tabs/ConfigPanelTab.qml:457
 msgid "Large"
-msgstr ""
+msgstr "Nagy"
 
 #: contents/ui/main.qml:2188
 msgid "Last Quarter"
@@ -1681,7 +1681,7 @@ msgstr "Elrendezés típusa:"
 
 #: contents/ui/config/configGeneral.qml:879
 msgid "Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance."
-msgstr ""
+msgstr "Hagyja üresen a nyilvános kiszolgáló használatához. Állítsa be a saját címét, ha saját üzemeltetésű LibreWXR-példányt futtat."
 
 #: contents/ui/config/configGeneral.qml:835
 #: contents/ui/config/configGeneral.qml:1014
@@ -1690,7 +1690,7 @@ msgstr "LibreWXR"
 
 #: contents/ui/config/configGeneral.qml:872
 msgid "LibreWXR server:"
-msgstr ""
+msgstr "LibreWXR-kiszolgáló:"
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 #: contents/ui/components/RadarWebEngineView.qml:781
@@ -2168,11 +2168,11 @@ msgstr "Nincs geomágneses vihar aktivitás."
 #: contents/ui/ForecastView.qml:1247 contents/ui/ForecastView.qml:1251
 #: contents/ui/ForecastView.qml:1713 contents/ui/ForecastView.qml:1717
 msgid "No info"
-msgstr "Nincs adat"
+msgstr "Nincsenek adatok"
 
 #: contents/ui/ForecastView.qml:638
 msgid "No information"
-msgstr "Nincs adat"
+msgstr "Nincsenek adatok"
 
 #: contents/ui/FullView.qml:216
 msgid "No location set"
@@ -2239,7 +2239,7 @@ msgstr "Értesítések"
 
 #: contents/ui/config/configNotifications.qml:310
 msgid "Notify about upcoming alerts before they start"
-msgstr ""
+msgstr "Értesítés a közelgő riasztásokról azok kezdete előtt"
 
 #: contents/ui/config/configNotifications.qml:434
 msgid "Notify about upcoming rain/storms"
@@ -2849,7 +2849,7 @@ msgstr "A másodlagos mértékegység jelenik meg először (például: °F / °
 
 #: contents/ui/config/configNotifications.qml:320
 msgid "Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active."
-msgstr ""
+msgstr "Egyetlen, alacsony prioritású előzetes értesítés fog megjelenni, amint egy jövőbeli riasztást közzétesznek (például: „Hőségriadó kezdődik holnap 11:00-kor”). A fenti rendes riasztási értesítés továbbra is külön megjelenik, amint az ténylegesen aktívvá válik."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:106
 #: contents/ui/config/tabs/ConfigPanelTab.qml:912
@@ -3401,11 +3401,11 @@ msgstr "A térképválasztóhoz szükségesek a QtLocation és QtPositioning cso
 
 #: contents/ui/config/configGeneral.qml:103
 msgid "The workaround script wasn't found on disk. Try toggling the option off and on again."
-msgstr "A problémamegoldó parancsfájlt nem sikerült megtalálni a lemezen. Próbálja meg kikapcsolni, majd újra bekapcsolni a beállítást."
+msgstr "A problémamegoldó parancsfájlt nem sikerült megtalálni a lemezen. Próbálja meg kikapcsolni, majd újrabekapcsolni a beállítást."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:736
 msgid "Theme default"
-msgstr "Téma alapértelmezett"
+msgstr "Téma alapértelmezettje"
 
 #: contents/ui/config/configLocation.qml:182
 msgid "This location is already in your saved list."
@@ -3591,7 +3591,7 @@ msgstr "UV-indexelőrejelzés:"
 
 #: contents/ui/main.qml:1830
 msgid "UV index will be %1 (%2)"
-msgstr ""
+msgstr "Várható UV-index: %1 (%2)"
 
 #: contents/ui/config/configAppearance.qml:1405
 #: contents/ui/config/configAppearance.qml:1528
@@ -3649,7 +3649,7 @@ msgstr "Csak a következő kelte/nyugta"
 
 #: contents/ui/main.qml:1346
 msgid "Upcoming: %1"
-msgstr ""
+msgstr "Közelgő: %1"
 
 #: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
@@ -3776,11 +3776,11 @@ msgstr "Növekvő Hold"
 
 #: contents/ui/config/configLocation.qml:1154
 msgid "We detected your coordinates: <b>%1°, %2°</b>."
-msgstr "Észleltük az Ön koordinátáit: <b>%1°, %2°</b>."
+msgstr "A koordinátái észlelve lettek: <b>%1°, %2°</b>."
 
 #: contents/ui/config/configLocation.qml:1154
 msgid "We detected your location as: <b>%1</b>."
-msgstr "Észleltük az Ön tartózkodási helyét: <b>%1</b>."
+msgstr "A tartózkodási helye észlelve lett: <b>%1</b>."
 
 #: contents/ui/config/configGeneral.qml:988
 msgid "Weather Alerts"
