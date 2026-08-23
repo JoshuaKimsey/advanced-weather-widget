@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-19 12:24+0300\n"
-"PO-Revision-Date: 2026-08-16 10:38+0200\n"
+"PO-Revision-Date: 2026-08-23 13:44+0200\n"
 "Last-Translator: TomfromBerlin <tom-at-github@quantentunnel.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -52,7 +52,7 @@ msgstr "%1 möglich %2."
 
 #: contents/ui/main.qml:1544
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
-msgstr ""
+msgstr "%1: %2 mit Tiefstwerten von %3 und Höchstwerten von %4."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1103
 msgctxt "@info %1 size %2 family"
@@ -151,7 +151,7 @@ msgstr "<b>Schweregrad:</b> %1%2"
 
 #: contents/ui/main.qml:1336
 msgid "<b>Starts:</b> %1"
-msgstr ""
+msgstr "<b>Wirksam ab:</b> %1"
 
 #: contents/ui/config/configGeneral.qml:905
 msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
@@ -228,27 +228,27 @@ msgstr "Luftqualität Index"
 
 #: contents/ui/js/airQuality.js:50
 msgid "Air quality is acceptable."
-msgstr "Die Luftbelastung ist akzeptabel."
+msgstr "Die Luftqualität ist akzeptabel."
 
 #: contents/ui/js/airQuality.js:54
 msgid "Air quality is extremely poor."
-msgstr "Die Luftbelastung ist extrem hoch."
+msgstr "Die Luftqualität ist extrem schlecht."
 
 #: contents/ui/js/airQuality.js:51
 msgid "Air quality is fair."
-msgstr "Die Luftbelastung ist mäßig."
+msgstr "Die Luftqualität ist mäßig."
 
 #: contents/ui/js/airQuality.js:52
 msgid "Air quality is poor."
-msgstr "Die Luftbelastung ist hoch."
+msgstr "Die Luftqualität ist schlecht."
 
 #: contents/ui/js/airQuality.js:49
 msgid "Air quality is satisfactory."
-msgstr "Die Luftbelastung ist gering."
+msgstr "Die Luftqualität ist befriedigend."
 
 #: contents/ui/js/airQuality.js:53
 msgid "Air quality is very poor."
-msgstr "Die Luftbelastung ist sehr hoch."
+msgstr "Die Luftqualität ist sehr schlecht."
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:351
 msgid "Air quality options"
@@ -1338,7 +1338,7 @@ msgstr "Geomagnetische Aktivität"
 
 #: contents/ui/main.qml:1875
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
-msgstr ""
+msgstr "Die erwartete geomagnetische Aktivität wird %1 (Kp %2) sein."
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
@@ -1648,7 +1648,7 @@ msgstr "Kp Index/G Prognose:"
 #: contents/ui/config/tabs/ConfigPanelTab.qml:368
 #: contents/ui/config/tabs/ConfigPanelTab.qml:457
 msgid "Large"
-msgstr ""
+msgstr "Groß"
 
 #: contents/ui/main.qml:2188
 msgid "Last Quarter"
@@ -1682,7 +1682,7 @@ msgstr "Layouttyp:"
 
 #: contents/ui/config/configGeneral.qml:879
 msgid "Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance."
-msgstr ""
+msgstr "Lassen Sie dieses Feld leer, um den öffentlichen Server zu nutzen. Geben Sie Ihre eigene Adresse an, wenn Sie eine selbst gehostete LibreWXR-Instanz betreiben."
 
 #: contents/ui/config/configGeneral.qml:835
 #: contents/ui/config/configGeneral.qml:1014
@@ -1691,7 +1691,7 @@ msgstr "LibreWXR"
 
 #: contents/ui/config/configGeneral.qml:872
 msgid "LibreWXR server:"
-msgstr ""
+msgstr "LibreWXR Server:"
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 #: contents/ui/components/RadarWebEngineView.qml:781
@@ -2240,7 +2240,7 @@ msgstr "Benachrichtigungen"
 
 #: contents/ui/config/configNotifications.qml:310
 msgid "Notify about upcoming alerts before they start"
-msgstr ""
+msgstr "Über bevorstehende Warnungen benachrichtigen, bevor sie wirksam werden"
 
 #: contents/ui/config/configNotifications.qml:434
 msgid "Notify about upcoming rain/storms"
@@ -2850,7 +2850,7 @@ msgstr "Sekundäre Einheit zuerst anzeigen (z.B. °F / °C)"
 
 #: contents/ui/config/configNotifications.qml:320
 msgid "Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active."
-msgstr ""
+msgstr "Sendet eine einzelne, niedrig priorisierte Vorabinformation, sobald eine Warnung für einen zukünftigen Zeitpunkt veröffentlicht wird (z. B. „Hitzewarnung beginnt morgen um 11:00 Uhr“). Die oben genannte reguläre Warnmeldung erfolgt weiterhin separat, sobald die Warnung tatsächlich wirksam wird."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:106
 #: contents/ui/config/tabs/ConfigPanelTab.qml:912
@@ -3592,7 +3592,7 @@ msgstr "UV-Index Prognose:"
 
 #: contents/ui/main.qml:1830
 msgid "UV index will be %1 (%2)"
-msgstr ""
+msgstr "UV wird %1 (%2) sein."
 
 #: contents/ui/config/configAppearance.qml:1405
 #: contents/ui/config/configAppearance.qml:1528
@@ -3650,7 +3650,7 @@ msgstr "Nur bevorstehende Auf- und Untergänge"
 
 #: contents/ui/main.qml:1346
 msgid "Upcoming: %1"
-msgstr ""
+msgstr "Bevorstehend: (%1)"
 
 #: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
