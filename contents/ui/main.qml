@@ -1820,8 +1820,10 @@ PlasmoidItem {
         if (!dailyData || dailyData.length === 0)
             return;
         var d = dailyData[0];
-        var uvMax = (d.uvMax !== undefined && !isNaN(d.uvMax)) ? d.uvMax : uvIndex;
-        if (isNaN(uvMax))
+        // isNaN(null) is false in JS (null coerces to 0), so it must be checked
+        // explicitly here — otherwise a null uvMax reads as a real 0 UV index.
+        var uvMax = (d.uvMax !== undefined && d.uvMax !== null && !isNaN(d.uvMax)) ? d.uvMax : uvIndex;
+        if (uvMax === null || isNaN(uvMax))
             return;
         var todayStr = d.dateStr || Qt.formatDate(now, "yyyy-MM-dd");
         var trend = _trendText(uvMax, Plasmoid.configuration.notificationUvLastValue,

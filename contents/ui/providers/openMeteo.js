@@ -145,6 +145,11 @@ function _isDailyIncomplete(entry) {
     if (entry.maxC === null || entry.maxC === undefined || isNaN(entry.maxC)) return true;
     if (entry.minC === null || entry.minC === undefined || isNaN(entry.minC)) return true;
     if (entry.code === null || entry.code === undefined) return true;
+    // Some national high-res models (ICON-D2, AROME, UKMO, etc.) cover temp/code
+    // but don't report uv_index_max at all, leaving it null. Treat that as
+    // incomplete too so the global best-match backfill fills the real value
+    // instead of the null silently surviving the merge.
+    if (entry.uvMax === null || entry.uvMax === undefined || isNaN(entry.uvMax)) return true;
     return false;
 }
 
