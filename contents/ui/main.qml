@@ -1748,14 +1748,14 @@ PlasmoidItem {
         if (endEv && endEv.timeMs >= cutoffMs) endEv = null;
         if (startEv && (!endEv || startEv.timeMs <= endEv.timeMs)) {
             var label = _rainOrThunderLabel(startEv.code);
-            var title = i18n("%1 expected", label);
-            var msg = i18n("%1 possible %2.", label, _dayPartLabel(startEv.timeMs, nowMs));
+            var title = i18n("%1 is expected", label);
+            var msg = i18n("%1 is possible %2.", label, _dayPartLabel(startEv.timeMs, nowMs));
             var icon = W.weatherCodeToIcon(startEv.code, isNightTime());
             _sendNotificationOnce("rain-start:" + startEv.timeMs, title, msg, Notification.NormalUrgency, icon);
         } else if (endEv) {
             var label2 = _rainOrThunderLabel(endEv.prevCode);
-            var title2 = i18n("%1 ending", label2);
-            var msg2 = i18n("%1 expected to end %2.", label2, _dayPartLabel(endEv.timeMs, nowMs));
+            var title2 = i18n("%1 is ending", label2);
+            var msg2 = i18n("%1 is expected to end %2.", label2, _dayPartLabel(endEv.timeMs, nowMs));
             var icon2 = W.weatherCodeToIcon(endEv.prevCode, isNightTime());
             _sendNotificationOnce("rain-end:" + endEv.timeMs, title2, msg2, Notification.NormalUrgency, icon2);
         }
@@ -1778,13 +1778,13 @@ PlasmoidItem {
         if (startEv && startEv.timeMs >= cutoffMs) startEv = null;
         if (endEv && endEv.timeMs >= cutoffMs) endEv = null;
         if (startEv && (!endEv || startEv.timeMs <= endEv.timeMs)) {
-            var title = i18n("Snow expected");
-            var msg = i18n("Snow possible %1.", _dayPartLabel(startEv.timeMs, nowMs));
+            var title = i18n("Snow is expected");
+            var msg = i18n("Snow is possible %1.", _dayPartLabel(startEv.timeMs, nowMs));
             var icon = W.weatherCodeToIcon(startEv.code, isNightTime());
             _sendNotificationOnce("snow-start:" + startEv.timeMs, title, msg, Notification.NormalUrgency, icon);
         } else if (endEv) {
-            var title2 = i18n("Snow ending");
-            var msg2 = i18n("Snow expected to end %1.", _dayPartLabel(endEv.timeMs, nowMs));
+            var title2 = i18n("Snow is ending");
+            var msg2 = i18n("Snow is expected to end %1.", _dayPartLabel(endEv.timeMs, nowMs));
             var icon2 = W.weatherCodeToIcon(endEv.prevCode, isNightTime());
             _sendNotificationOnce("snow-end:" + endEv.timeMs, title2, msg2, Notification.NormalUrgency, icon2);
         }
