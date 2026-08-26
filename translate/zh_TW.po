@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-08-19 12:24+0300\n"
-"PO-Revision-Date: 2026-08-04 17:04+0800\n"
+"PO-Revision-Date: 2026-08-26 15:01+0800\n"
 "Last-Translator: Yo\n"
 "Language-Team: \n"
 "Language: zh_TW\n"
@@ -36,7 +36,7 @@ msgstr "%1 - 明天"
 
 #: contents/ui/main.qml:1757
 msgid "%1 ending"
-msgstr "%1 趨緩"
+msgstr "%1趨緩"
 
 #: contents/ui/main.qml:1751
 msgid "%1 expected"
@@ -44,15 +44,15 @@ msgstr "預計有%1"
 
 #: contents/ui/main.qml:1758
 msgid "%1 expected to end %2."
-msgstr "%1 預計於%2結束。"
+msgstr "%1預計於%2結束。"
 
 #: contents/ui/main.qml:1752
 msgid "%1 possible %2."
-msgstr "%2 可能有%1。"
+msgstr "%2可能有%1。"
 
 #: contents/ui/main.qml:1544
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
-msgstr ""
+msgstr "%1天氣將為%2，低溫：%3，高溫：%4。"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1103
 msgctxt "@info %1 size %2 family"
@@ -151,7 +151,7 @@ msgstr "<b>嚴重程度：</b>%1%2"
 
 #: contents/ui/main.qml:1336
 msgid "<b>Starts:</b> %1"
-msgstr ""
+msgstr "<b>開始時間：</b>%1"
 
 #: contents/ui/config/configGeneral.qml:905
 msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
@@ -1338,7 +1338,7 @@ msgstr "地磁活動"
 
 #: contents/ui/main.qml:1875
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
-msgstr ""
+msgstr "地磁活動預計為 %1（Kp %2）"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:173
 msgid "Glow intensity:"
@@ -1648,7 +1648,7 @@ msgstr "Kp 指數/G 等級預報："
 #: contents/ui/config/tabs/ConfigPanelTab.qml:368
 #: contents/ui/config/tabs/ConfigPanelTab.qml:457
 msgid "Large"
-msgstr ""
+msgstr "較大"
 
 #: contents/ui/main.qml:2188
 msgid "Last Quarter"
@@ -1682,7 +1682,7 @@ msgstr "版面類型："
 
 #: contents/ui/config/configGeneral.qml:879
 msgid "Leave this empty to use the public server. Set it to your own address if you run a self-hosted LibreWXR instance."
-msgstr ""
+msgstr "留空以使用公用伺服器。若您自行架設 LibreWXR 執行個體，請填入其位址。"
 
 #: contents/ui/config/configGeneral.qml:835
 #: contents/ui/config/configGeneral.qml:1014
@@ -1691,7 +1691,7 @@ msgstr "LibreWXR"
 
 #: contents/ui/config/configGeneral.qml:872
 msgid "LibreWXR server:"
-msgstr ""
+msgstr "LibreWXR 伺服器："
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 #: contents/ui/components/RadarWebEngineView.qml:781
@@ -2240,7 +2240,7 @@ msgstr "通知"
 
 #: contents/ui/config/configNotifications.qml:310
 msgid "Notify about upcoming alerts before they start"
-msgstr ""
+msgstr "警報即將生效前通知"
 
 #: contents/ui/config/configNotifications.qml:434
 msgid "Notify about upcoming rain/storms"
@@ -2850,7 +2850,7 @@ msgstr "次要單位顯示在前（例如 °F / °C）"
 
 #: contents/ui/config/configNotifications.qml:320
 msgid "Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active."
-msgstr ""
+msgstr "只要有尚未生效的警報發布，就會立即傳送一則低優先順序的預先通知（例如：「高溫警報將於明天 11:00 生效」）。上方的一般警報通知仍會在警報實際生效時另外觸發。"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:106
 #: contents/ui/config/tabs/ConfigPanelTab.qml:912
@@ -3109,7 +3109,7 @@ msgstr "雪粒"
 
 #: contents/ui/main.qml:1782
 msgid "Snow possible %1."
-msgstr "%1 可能降雪。"
+msgstr "%1可能降雪。"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:60
 #: contents/ui/main.qml:2021
@@ -3592,7 +3592,7 @@ msgstr "紫外線指數預報："
 
 #: contents/ui/main.qml:1830
 msgid "UV index will be %1 (%2)"
-msgstr ""
+msgstr "紫外線指數將達 %1（%2）"
 
 #: contents/ui/config/configAppearance.qml:1405
 #: contents/ui/config/configAppearance.qml:1528
@@ -3650,7 +3650,7 @@ msgstr "僅顯示即將的升降"
 
 #: contents/ui/main.qml:1346
 msgid "Upcoming: %1"
-msgstr ""
+msgstr "即將生效：%1"
 
 #: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
