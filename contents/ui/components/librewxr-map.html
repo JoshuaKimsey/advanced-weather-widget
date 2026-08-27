@@ -620,6 +620,22 @@
        * draws its raster fallback, and setBaseMap runs again once it loads. */
       var maplibreState = "idle"; // idle | loading | ready | failed
 
+      /* MapLibre needs a WebGL context. Where there is none - blacklisted GPU,
+       * a VM, software rendering turned off - creating the layer throws and the
+       * map is left with no background at all, so check before asking for one
+       * and stay on raster tiles instead. */
+      var _webglOk = null;
+      function hasWebGL() {
+        if (_webglOk !== null) return _webglOk;
+        try {
+          var c = document.createElement("canvas");
+          _webglOk = !!(c.getContext("webgl2") || c.getContext("webgl"));
+        } catch (e) {
+          _webglOk = false;
+        }
+        return _webglOk;
+      }
+
       function loadMapLibre(onReady) {
         if (maplibreState === "ready") return onReady();
         if (maplibreState === "failed") return;
@@ -652,7 +668,7 @@
 
       function setBaseMap(theme) {
         var e = resolveBg(BG_CURRENT, theme);
-        var wantsVector = !!(e.vector && e.styleUrl);
+        var wantsVector = !!(e.vector && e.styleUrl && hasWebGL());
 
         if (wantsVector && maplibreState !== "ready") {
           loadMapLibre(function () {
@@ -662,14 +678,22 @@
 
         if (currentBaseMap) map.removeLayer(currentBaseMap);
 
+        currentBaseMap = null;
         if (wantsVector && maplibreState === "ready") {
           // MapLibre draws the style on its own WebGL canvas; Leaflet keeps it
           // aligned, so the radar panes above are unaffected.
-          currentBaseMap = L.maplibreGL({
-            style: e.styleUrl,
-            attribution: e.attribution,
-          });
-        } else {
+          try {
+            currentBaseMap = L.maplibreGL({
+              style: e.styleUrl,
+              attribution: e.attribution,
+            });
+          } catch (err) {
+            // Context creation can still fail past the check; never leave the
+            // map bare - fall through to the raster layer below.
+            _webglOk = false;
+          }
+        }
+        if (!currentBaseMap) {
           // Backgrounds stop at different zoom levels; past its own maxZoom a
           // Leaflet layer renders nothing, so upscale the deepest tiles it has
           // instead of leaving the base map blank under the radar.

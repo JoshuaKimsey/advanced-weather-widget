@@ -534,6 +534,18 @@ function updateBaseDim() {\
    an 800 kB script and every raster background works without it. Until it\
    lands, the vector entry shows plain OSM tiles. */\
 var MAPLIBRE_STATE = "idle";\
+/* MapLibre needs a WebGL context. Where there is none - blacklisted GPU, a VM,\
+   software rendering off - creating the layer throws and the map is left with\
+   no background at all, so check first and stay on raster tiles instead. */\
+var WEBGL_OK = null;\
+function hasWebGL() {\
+    if (WEBGL_OK !== null) return WEBGL_OK;\
+    try {\
+        var c = document.createElement("canvas");\
+        WEBGL_OK = !!(c.getContext("webgl2") || c.getContext("webgl"));\
+    } catch (e) { WEBGL_OK = false; }\
+    return WEBGL_OK;\
+}\
 function loadMapLibre(onReady) {\
     if (MAPLIBRE_STATE === "ready") { onReady(); return; }\
     if (MAPLIBRE_STATE !== "idle") return;\
@@ -558,14 +570,17 @@ function loadMapLibre(onReady) {\
 function applyBackground(id) {\
     var e = bgEntry(id);\
     BG_CURRENT = e.id;\
-    var wantsVector = !!(e.vector && e.styleUrl);\
+    var wantsVector = !!(e.vector && e.styleUrl && hasWebGL());\
     if (wantsVector && MAPLIBRE_STATE !== "ready") {\
         loadMapLibre(function() { applyBackground(BG_CURRENT); });\
     }\
-    var next;\
+    var next = null;\
     if (wantsVector && MAPLIBRE_STATE === "ready") {\
-        next = L.maplibreGL({ style: e.styleUrl, attribution: e.attribution }).addTo(map);\
-    } else {\
+        try {\
+            next = L.maplibreGL({ style: e.styleUrl, attribution: e.attribution }).addTo(map);\
+        } catch (err) { WEBGL_OK = false; }\
+    }\
+    if (!next) {\
         next = L.tileLayer(e.url || BASE_TILE_URL, {\
             attribution: e.attribution,\
             maxNativeZoom: e.maxZoom,\
