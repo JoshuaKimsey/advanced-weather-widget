@@ -62,8 +62,8 @@ Item {
     }
 
     // ── Base map background ──────────────────────────────────────────────
-    // "auto" keeps the theme-driven pair this map has always used (OSM in
-    // light, Carto Dark Matter in dark); any other id pins one background
+    // "auto" keeps the theme-driven pair this map uses (OSM in light,
+    // OpenFreeMap Dark in dark); any other id pins one background
     // regardless of the theme. The page re-resolves "auto" itself on theme
     // switches, so themeHint only seeds the initial load.
     readonly property string mapBackground: Plasmoid.configuration.mapBackground || "auto"
@@ -80,7 +80,7 @@ Item {
     // setTheme's "only auto follows the theme" guard in librewxr-map.html).
     // The Dark map switch is locked read-only while one is selected, since
     // toggling it would have no visible effect on the base map.
-    readonly property var pinnedBackgroundIds: ["osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "carto-positron", "carto-darkmatter"]
+    readonly property var pinnedBackgroundIds: ["osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-dark"]
     readonly property bool darkMapLocked: radarRoot.pinnedBackgroundIds.indexOf(radarRoot.mapBackground) !== -1
 
     // A manual "Dark map" toggle only sticks until the Plasma theme itself

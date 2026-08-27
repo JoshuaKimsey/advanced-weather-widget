@@ -578,9 +578,12 @@
       var FALLBACK_BG = {
         dark: {
           id: "auto",
-          url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+          styleUrl: "https://tiles.openfreemap.org/styles/dark",
+          vector: true,
+          // Raster stand-in used until MapLibre has loaded, and if it never does.
+          url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           attribution:
-            '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a> | <a href="https://librewxr.net/">LibreWXR</a>',
+            '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors | Tiles by <a href="https://openfreemap.org/">OpenFreeMap</a> | <a href="https://librewxr.net/">LibreWXR</a>',
         },
         light: {
           id: "auto",
@@ -602,7 +605,7 @@
       function resolveBg(id, theme) {
         if (id === "auto") {
           var themed = bgEntry(
-            theme === "dark" ? "carto-darkmatter" : "osm-standard",
+            theme === "dark" ? "openfreemap-dark" : "osm-standard",
           );
           return themed || FALLBACK_BG[theme] || FALLBACK_BG.dark;
         }
@@ -611,19 +614,75 @@
 
       var currentBaseMap = null;
 
+      /* Vector backgrounds need MapLibre, which is only pulled in when one is
+       * actually selected: it is an 800 kB script, and every raster background
+       * works without it. A vector entry picked before the script has arrived
+       * draws its raster fallback, and setBaseMap runs again once it loads. */
+      var maplibreState = "idle"; // idle | loading | ready | failed
+
+      function loadMapLibre(onReady) {
+        if (maplibreState === "ready") return onReady();
+        if (maplibreState === "failed") return;
+        if (maplibreState === "loading") return;
+        maplibreState = "loading";
+        var css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css";
+        document.head.appendChild(css);
+        var gl = document.createElement("script");
+        gl.src = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js";
+        gl.onload = function () {
+          var bridge = document.createElement("script");
+          bridge.src =
+            "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js";
+          bridge.onload = function () {
+            maplibreState = "ready";
+            onReady();
+          };
+          bridge.onerror = function () {
+            maplibreState = "failed";
+          };
+          document.head.appendChild(bridge);
+        };
+        gl.onerror = function () {
+          maplibreState = "failed";
+        };
+        document.head.appendChild(gl);
+      }
+
       function setBaseMap(theme) {
         var e = resolveBg(BG_CURRENT, theme);
+        var wantsVector = !!(e.vector && e.styleUrl);
+
+        if (wantsVector && maplibreState !== "ready") {
+          loadMapLibre(function () {
+            setBaseMap(activeTheme);
+          });
+        }
+
         if (currentBaseMap) map.removeLayer(currentBaseMap);
-        // Backgrounds stop at different zoom levels; past its own maxZoom a
-        // Leaflet layer renders nothing, so upscale the deepest tiles it has
-        // instead of leaving the base map blank under the radar.
-        currentBaseMap = L.tileLayer(e.url, {
-          attribution: e.attribution,
-          maxNativeZoom: e.maxZoom || 19,
-          maxZoom: 19,
-        });
+
+        if (wantsVector && maplibreState === "ready") {
+          // MapLibre draws the style on its own WebGL canvas; Leaflet keeps it
+          // aligned, so the radar panes above are unaffected.
+          currentBaseMap = L.maplibreGL({
+            style: e.styleUrl,
+            attribution: e.attribution,
+          });
+        } else {
+          // Backgrounds stop at different zoom levels; past its own maxZoom a
+          // Leaflet layer renders nothing, so upscale the deepest tiles it has
+          // instead of leaving the base map blank under the radar.
+          currentBaseMap = L.tileLayer(e.url || FALLBACK_BG[theme].url, {
+            attribution: e.attribution,
+            maxNativeZoom: e.maxZoom || 19,
+            maxZoom: 19,
+          });
+        }
         currentBaseMap.addTo(map);
-        currentBaseMap.bringToBack();
+        // L.maplibreGL extends L.Layer, which has no bringToBack; it sits in
+        // tilePane anyway, below the satellite and radar panes.
+        if (currentBaseMap.bringToBack) currentBaseMap.bringToBack();
       }
 
       setBaseMap(activeTheme);

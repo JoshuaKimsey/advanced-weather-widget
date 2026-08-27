@@ -44,8 +44,8 @@ QtObject {
         "osm-humanitarian": i18n("Humanitarian (HOT)"),
         "cyclosm": i18n("CyclOSM (cycling)"),
         "opentopomap": i18n("OpenTopoMap (topographic)"),
-        "carto-positron": i18n("Carto Positron (light)"),
-        "carto-darkmatter": i18n("Carto Dark Matter (dark)")
+        "openfreemap-positron": i18n("OpenFreeMap Positron (light)"),
+        "openfreemap-dark": i18n("OpenFreeMap Dark")
     })
 
     /** Choices plus their resolved tile data, ready to inject into a page. */
@@ -58,7 +58,9 @@ QtObject {
             out.push({
                 id: id,
                 label: choices.labels[id] || id,
-                url: p.tileUrlTemplate,
+                url: p.tileUrlTemplate || "",
+                styleUrl: p.styleUrl || "",
+                vector: MapProvidersJS.isVectorBackground(p),
                 attribution: p.attribution + choices.attributionSuffix,
                 maxZoom: p.maxZoom
             });
