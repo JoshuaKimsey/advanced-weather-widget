@@ -80,7 +80,7 @@ Item {
     // setTheme's "only auto follows the theme" guard in librewxr-map.html).
     // The Dark map switch is locked read-only while one is selected, since
     // toggling it would have no visible effect on the base map.
-    readonly property var pinnedBackgroundIds: ["osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-dark"]
+    readonly property var pinnedBackgroundIds: ["osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-liberty", "openfreemap-fiord", "openfreemap-dark"]
     readonly property bool darkMapLocked: radarRoot.pinnedBackgroundIds.indexOf(radarRoot.mapBackground) !== -1
 
     // A manual "Dark map" toggle only sticks until the Plasma theme itself

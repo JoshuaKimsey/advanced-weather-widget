@@ -45,6 +45,8 @@ QtObject {
         "cyclosm": i18n("CyclOSM (cycling)"),
         "opentopomap": i18n("OpenTopoMap (topographic)"),
         "openfreemap-positron": i18n("OpenFreeMap Positron (light)"),
+        "openfreemap-liberty": i18n("OpenFreeMap Liberty (light)"),
+        "openfreemap-fiord": i18n("OpenFreeMap Fiord (dark)"),
         "openfreemap-dark": i18n("OpenFreeMap Dark")
     })
 

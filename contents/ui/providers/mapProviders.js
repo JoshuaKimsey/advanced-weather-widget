@@ -70,6 +70,18 @@ var MAP_BACKGROUNDS = {
         maxZoom: 20,
         attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
     },
+    "openfreemap-liberty": {
+        styleUrl: "https://tiles.openfreemap.org/styles/liberty",
+        vector: true,
+        maxZoom: 20,
+        attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
+    },
+    "openfreemap-fiord": {
+        styleUrl: "https://tiles.openfreemap.org/styles/fiord",
+        vector: true,
+        maxZoom: 20,
+        attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
+    },
     "openfreemap-dark": {
         styleUrl: "https://tiles.openfreemap.org/styles/dark",
         vector: true,
@@ -90,7 +102,7 @@ var DEFAULT_MAP_BACKGROUND = "osm-standard";
 var AUTO_MAP_BACKGROUND = "auto";
 
 /** Ids offered by the "Map background" picker, in display order. */
-var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-dark"];
+var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-liberty", "openfreemap-fiord", "openfreemap-dark"];
 
 /**
  * Resolve a background id to its definition.
