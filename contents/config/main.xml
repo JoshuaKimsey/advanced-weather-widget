@@ -307,6 +307,10 @@
     <entry name="refreshIntervalMinutes" type="Int"><default>15</default><min>5</min><max>180</max></entry>
     <entry name="autoRefresh"            type="Bool"><default>true</default></entry>
     <entry name="showUpdateText"         type="Bool"><default>true</default></entry>
+    <entry name="aqiStandard" type="String"><default>auto</default></entry>
+    <entry name="aqiShowUs" type="Bool"><default>false</default></entry>
+    <entry name="aqiShowEu" type="Bool"><default>false</default></entry>
+    <entry name="aqiShowCa" type="Bool"><default>false</default></entry>
 
     <!-- ── Weather alerts ────────────────────────────────────────────── -->
     <!-- Alert source: "native" = MeteoAlarm (Europe) + NOAA NWS (US) with

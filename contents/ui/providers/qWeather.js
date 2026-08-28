@@ -255,52 +255,19 @@ function _fetchDailyAttempt(service, W, key, loc, gen, base, spans, spanIdx) {
         r.updateText = service._formatUpdateText("qWeather");
 
         service._fetchAlertsIfNeeded();
-        _fetchAirQuality(service, W, key, loc, gen, base);
-    };
-    req.send();
-}
-
-function _qwAqiLabel(category) {
-    // Category 1–6 from QWeather
-    if (category === 1) return "Good";
-    if (category === 2) return "Moderate";
-    if (category === 3) return "Unhealthy (Sensitive)";
-    if (category === 4) return "Unhealthy";
-    if (category === 5) return "Very Unhealthy";
-    if (category === 6) return "Hazardous";
-    return "";
-}
-
-/**
- * QWeather contributes only its own index here. The pollutant concentrations
- * charted by the details card come from the shared Open-Meteo air-quality
- * fetch running in parallel, so the exit paths below leave
- * weatherRoot.aqiData untouched instead of nulling it — clearing it would
- * race that fetch and blank the pollutant rows.
- */
-function _fetchAirQuality(service, W, key, loc, gen, base) {
-    var url = base + "/airquality/v1/current?location=" + encodeURIComponent(loc);
-
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.setRequestHeader("X-QW-Api-Key", key);
-    req.onreadystatechange = function () {
-        if (req.readyState !== XMLHttpRequest.DONE) return;
-        if (service._refreshGen !== gen) return;
-        if (req.status !== 200)
-            return;
-        var d;
-        try { d = JSON.parse(req.responseText); } catch (e) {
-            return;
-        }
-        if (d.code === "200" && d.indexes && d.indexes.length > 0) {
-            var idx = d.indexes[0];
-            var aqi = parseFloat(idx.aqiDisplay);
-            if (!isNaN(aqi)) {
-                service._mergeAqiData({ index: aqi, label: _qwAqiLabel(parseInt(idx.category, 10)) });
-                service._nativeAqiSetThisGen = true;
-            }
-        }
+        // Air quality: QWeather's /airquality/v1/current returns whichever
+        // of its 70+ supported index standards it defaults to when no
+        // `type=` filter is requested (its own proprietary QAQI most
+        // likely, not necessarily US EPA/CAQI/AQHI) — see the removed
+        // _qwAqiLabel()/_fetchAirQuality() that used to read indexes[0]
+        // without pinning that down. Rather than risk mislabeling an
+        // unidentified scale as one of the three standards this widget
+        // supports, this is left to the shared Open-Meteo air-quality
+        // fetch, which WeatherService.refreshNow() already runs
+        // unconditionally for this provider (Providers.qml has no
+        // "qWeather" case in its fetchAirQuality() switch) — that's the
+        // sole source of pollutants and all three index values here, same
+        // as for most other providers.
     };
     req.send();
 }

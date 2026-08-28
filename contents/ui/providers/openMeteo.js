@@ -230,87 +230,17 @@ function _mergeDailyArrays(primary, backup, requestedDays) {
     return merged;
 }
 
-// European Air Quality Index
-// AQI Determined from highest pollutant, interpolated over EU breakpoints (which is a step function)
-// https://airindex.eea.europa.eu/AQI/index.html#
-// Open-Meteo returns a out-of-one-hundred value using a similar formula to the official US AQI
-function _aqiLabel(aqi) {
-    if (aqi <= 20) return "Good";
-    if (aqi <= 40) return "Fair";
-    if (aqi <= 60) return "Moderate";
-    if (aqi <= 80) return "Poor";
-    if (aqi <= 100) return "Very Poor";
-    return "Extremely Poor";
-}
+// Air-quality fetching for the default (Open-Meteo) provider path lives in
+// WeatherService.qml's _fetchAirQualityOpenMeteo() — the shared fetch every
+// provider falls back to — not here. A duplicate, unused _fetchAirQuality()
+// used to live in this file (never dispatched from Providers.qml, which has
+// no "openMeteo" case in its fetchAirQuality() switch) and had gone stale:
+// its result object assigned `index`/`label` twice in the same literal, so
+// the european_aqi values it computed were always silently discarded in
+// favor of us_aqi. Removed rather than fixed, since WeatherService.qml's
+// version is the actual live path and now handles both figures (plus
+// Canadian AQHI) correctly — see airQuality.js for the current index math.
 
-// US Air Quality Index
-// AQI determined from highest pollutant linearly interpolated to the nearest integer as per:
-// https://document.airnow.gov/technical-assistance-document-for-the-reporting-of-daily-air-quailty.pdf
-// US EPA necessitates the interpolation of the pollutant concentration across defined breakpoints,
-// resulting in an AQI value between 0 and 500
-function _aqiLabel_US(aqi_us) {
-    if (aqi_us <= 50) return "Good";
-    if (aqi_us <= 100) return "Moderate";
-    if (aqi_us <= 150) return "Unhealthy for Sensitive Groups";
-    if (aqi_us <= 200) return "Unhealthy";
-    if (aqi_us <= 300) return "Very Unhealthy";
-    return "Hazardous";
-}
-
-function _fetchAirQuality(service) {
-    var gen = service._refreshGen;
-    var r = service.weatherRoot;
-    var tz = service.timezone;
-    var url = "https://air-quality-api.open-meteo.com/v1/air-quality"
-        + "?latitude=" + service.latitude
-        + "&longitude=" + service.longitude
-        + "&current=european_aqi,us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
-        + ",alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen"
-        + "&timezone=" + encodeURIComponent(tz.length > 0 ? tz : "auto");
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.onreadystatechange = function () {
-        if (req.readyState !== XMLHttpRequest.DONE)
-            return;
-        if (service._refreshGen !== gen) return;
-        if (req.status !== 200) {
-            r.aqiDataStaged = null;
-            r.pollenDataStaged = [];
-            return;
-        }
-        var d = JSON.parse(req.responseText);
-        var c = d.current || {};
-        var aqi = c.european_aqi;
-        var aqi_us = c.us_aqi;
-        r.aqiDataStaged = {
-            index: (aqi !== undefined) ? aqi : NaN,
-            label: (aqi !== undefined) ? _aqiLabel(aqi) : "",
-            index: (aqi_us !== undefined) ? aqi_us : NaN,
-            label: (aqi_us !== undefined) ? _aqiLabel_US(aqi_us) : "",
-            pm10:  (c.pm10            !== undefined) ? c.pm10            : NaN,
-            pm2_5: (c.pm2_5           !== undefined) ? c.pm2_5           : NaN,
-            no2:   (c.nitrogen_dioxide !== undefined) ? c.nitrogen_dioxide : NaN,
-            so2:   (c.sulphur_dioxide  !== undefined) ? c.sulphur_dioxide  : NaN,
-            o3:    (c.ozone            !== undefined) ? c.ozone            : NaN,
-            co:    (c.carbon_monoxide  !== undefined) ? c.carbon_monoxide / 1000.0 : NaN
-        };
-        var pollenKeys = [
-            { key: "alder",   field: "alder_pollen"   },
-            { key: "birch",   field: "birch_pollen"   },
-            { key: "grass",   field: "grass_pollen"   },
-            { key: "mugwort", field: "mugwort_pollen" },
-            { key: "olive",   field: "olive_pollen"   },
-            { key: "ragweed", field: "ragweed_pollen" }
-        ];
-        var pd = [];
-        pollenKeys.forEach(function (p) {
-            var v = c[p.field];
-            pd.push({ key: p.key, value: (v !== undefined && v !== null) ? v : NaN });
-        });
-        r.pollenDataStaged = pd;
-    };
-    req.send();
-}
 
 function fetchHourly(service, dateStr) {
     var gen = service._refreshGen;

@@ -317,4 +317,75 @@ Kirigami.FormLayout {
         font: Kirigami.Theme.smallFont
         Layout.maximumWidth: 340
     }
+
+    Kirigami.Separator {
+        Kirigami.FormData.label: i18n("Air Quality")
+        Kirigami.FormData.isSection: true
+    }
+    Switch {
+        id: aqiShowUsSwitch
+        Kirigami.FormData.label: i18n("Show standards:")
+        text: i18n("US AQI (0–500)")
+        checked: miscTab.configRoot.cfg_aqiShowUs
+        onToggled: miscTab.configRoot.cfg_aqiShowUs = checked
+    }
+    Switch {
+        id: aqiShowEuSwitch
+        Kirigami.FormData.label: ""
+        text: i18n("European CAQI (0–100+)")
+        checked: miscTab.configRoot.cfg_aqiShowEu
+        onToggled: miscTab.configRoot.cfg_aqiShowEu = checked
+    }
+    Switch {
+        id: aqiShowCaSwitch
+        Kirigami.FormData.label: ""
+        text: i18n("Canadian AQHI (1–10+)")
+        checked: miscTab.configRoot.cfg_aqiShowCa
+        onToggled: miscTab.configRoot.cfg_aqiShowCa = checked
+    }
+    Label {
+        Kirigami.FormData.label: ""
+        text: i18n("Turn on any combination to show them side by side instead of a single standard below.")
+        wrapMode: Text.WordWrap
+        opacity: 0.65
+        font: Kirigami.Theme.smallFont
+        Layout.maximumWidth: 340
+    }
+    ComboBox {
+        id: aqiStandardCombo
+        Kirigami.FormData.label: i18n("Index standard:")
+        Layout.preferredWidth: 270
+        enabled: !(miscTab.configRoot.cfg_aqiShowUs || miscTab.configRoot.cfg_aqiShowEu || miscTab.configRoot.cfg_aqiShowCa)
+        model: [
+            {
+                text: i18n("Automatic (based on location)"),
+                value: "auto"
+            },
+            {
+                text: i18n("US AQI (0–500)"),
+                value: "us"
+            },
+            {
+                text: i18n("European CAQI (0–100+)"),
+                value: "eu"
+            },
+            {
+                text: i18n("Canadian AQHI (1–10+)"),
+                value: "ca"
+            }
+        ]
+        Component.onCompleted: miscTab.setCombo(aqiStandardCombo, miscTab.configRoot.cfg_aqiStandard)
+        textRole: "text"
+        onActivated: miscTab.configRoot.cfg_aqiStandard = model[currentIndex].value
+    }
+    Label {
+        Kirigami.FormData.label: ""
+        text: (miscTab.configRoot.cfg_aqiShowUs || miscTab.configRoot.cfg_aqiShowEu || miscTab.configRoot.cfg_aqiShowCa)
+              ? i18n("Turn off all three switches above to pick a single standard here instead.")
+              : i18n("Automatic uses US AQI worldwide, switching to European CAQI or Canadian AQHI based on your location's country.")
+        wrapMode: Text.WordWrap
+        opacity: 0.65
+        font: Kirigami.Theme.smallFont
+        Layout.maximumWidth: 340
+    }
 }

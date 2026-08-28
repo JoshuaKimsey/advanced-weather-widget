@@ -144,54 +144,20 @@ function fetchCurrent(service, W, chain, idx) {
             // No native alerts — fall back to MeteoAlarm / NWS
             service._fetchAlertsIfNeeded();
 
-            _fetchAirQuality(service, W);
+            // Air quality: OpenWeather's own air_pollution endpoint only
+            // exposes its proprietary 1–5 index (see the removed
+            // _owAqiLabel()/_fetchAirQuality() that used to live here) —
+            // that scale doesn't correspond to any of the three standards
+            // the widget supports (US AQI, European CAQI, Canadian AQHI),
+            // so there's nothing to natively contribute here. Providers.qml
+            // has no "openWeather" case in its fetchAirQuality() switch, so
+            // WeatherService.refreshNow() already falls through to the
+            // shared Open-Meteo air-quality fetch unconditionally for this
+            // provider — that's the sole source of pollutants and all three
+            // index values for OpenWeather users, same as for most other
+            // providers.
         };
         fcReq.send();
-    };
-    req.send();
-}
-
-function _owAqiLabel(aqi) {
-    if (aqi === 1) return "Good";
-    if (aqi === 2) return "Fair";
-    if (aqi === 3) return "Moderate";
-    if (aqi === 4) return "Poor";
-    if (aqi === 5) return "Very Poor";
-    return "";
-}
-
-/**
- * OpenWeather supplies only its own 1–5 index here, not the pollutant
- * concentrations the details card charts. Those arrive from the shared
- * Open-Meteo air-quality fetch that WeatherService.refreshNow() runs in
- * parallel, so every exit path below leaves weatherRoot.aqiData alone
- * rather than nulling it — clearing it here would race that fetch and
- * blank the pollutant rows depending on which response landed last.
- */
-function _fetchAirQuality(service, W) {
-    var gen = service._refreshGen;
-    var key = service._owKey();
-    if (!key)
-        return;
-    var url = "https://api.openweathermap.org/data/2.5/air_pollution?lat="
-        + service.latitude + "&lon=" + service.longitude
-        + "&appid=" + encodeURIComponent(key);
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.onreadystatechange = function () {
-        if (req.readyState !== XMLHttpRequest.DONE)
-            return;
-        if (service._refreshGen !== gen) return;
-        if (req.status !== 200)
-            return;
-        var d = JSON.parse(req.responseText);
-        if (d.list && d.list.length > 0 && d.list[0].main) {
-            var aqi = d.list[0].main.aqi;
-            service._mergeAqiData({ index: aqi, label: _owAqiLabel(aqi) });
-            service._nativeAqiSetThisGen = true;
-        }
-        // Pollen is not available in the OpenWeather free tier; the shared
-        // Open-Meteo fetch supplies it.
     };
     req.send();
 }

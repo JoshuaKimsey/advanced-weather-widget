@@ -35,16 +35,6 @@ function _calcDewPoint(T, rh) {
     return Math.round((c * gamma) / (b - gamma) * 10) / 10;
 }
 
-function _waAqiLabel(epa) {
-    if (epa === 1) return "Good";
-    if (epa === 2) return "Moderate";
-    if (epa === 3) return "Unhealthy for Sensitive";
-    if (epa === 4) return "Unhealthy";
-    if (epa === 5) return "Very Unhealthy";
-    if (epa === 6) return "Hazardous";
-    return "";
-}
-
 function _apiTimeTo24h(s) {
     if (!s || s === "--")
         return "--";
@@ -80,7 +70,7 @@ function fetchCurrent(service, W, chain, idx) {
         + encodeURIComponent(key)
         + "&q=" + encodeURIComponent(
             service.latitude + "," + service.longitude)
-        + "&days=" + days + "&aqi=yes&alerts=yes";
+        + "&days=" + days + "&alerts=yes";
 
     var req = new XMLHttpRequest();
     req.open("GET", url);
@@ -97,17 +87,18 @@ function fetchCurrent(service, W, chain, idx) {
             service._tryProvider(chain, idx + 1);
             return;
         }
-        // Only the index is contributed here — the pollutant concentrations
-        // and pollen come from the shared Open-Meteo air-quality fetch that
-        // runs in parallel. Merging (rather than assigning aqiData) keeps
-        // whichever of the two responses lands second from dropping the
-        // other's fields.
-        var aq = d.current.air_quality;
-        var epa = aq ? aq["us-epa-index"] : undefined;
-        if (epa !== undefined) {
-            service._mergeAqiData({ index: epa, label: _waAqiLabel(epa) });
-            service._nativeAqiSetThisGen = true;
-        }
+        // Air quality: WeatherAPI's current.air_quality["us-epa-index"] is a
+        // 1–6 category (Good/Moderate/.../Hazardous — see the removed
+        // _waAqiLabel() that used to map it), not the 0–500 numeric US AQI
+        // that usAqi/bandForUsAqi() expect elsewhere, so it can't be merged
+        // in directly without misreading a category number as if it were an
+        // AQI value. The &aqi=yes request param has been dropped along with
+        // it. Providers.qml has no "weatherApi" case in its
+        // fetchAirQuality() switch, so WeatherService.refreshNow() already
+        // falls through to the shared Open-Meteo air-quality fetch
+        // unconditionally for this provider — that's the sole source of
+        // pollutants and all three index values here, same as for most
+        // other providers.
         var astro = (d.forecast && d.forecast.forecastday && d.forecast.forecastday.length > 0)
             ? d.forecast.forecastday[0].astro : null;
         var nd = [];

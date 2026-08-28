@@ -38,6 +38,7 @@ import org.kde.notification
 import org.kde.kirigami as Kirigami
 
 import "js/weather.js" as W
+import "js/airQuality.js" as AQI
 import "js/moonphase.js" as Moon
 import "js/suncalc.js" as SC
 import "js/sunpath.js" as SunPath
@@ -141,8 +142,53 @@ PlasmoidItem {
 
     // Inline accessors — callers subscribe to aqiData directly rather than
     // 8 separate reactive properties each adding their own subscriber chain.
-    function airQualityIndex() { return aqiData ? aqiData.index  : NaN; }
-    function airQualityLabel()  { return aqiData ? aqiData.label  : ""; }
+    //
+    // Which standard is displayed (US AQI / European CAQI / Canadian AQHI)
+    // is resolved fresh on every call from the location's country code, or
+    // the user's manual override in the Misc tab — see airQuality.js's
+    // resolveStandard(). aqiData itself always carries all three raw
+    // figures (europeanAqi/usAqi/aqhi); only which one gets *read* changes.
+    function airQualityStandard() {
+        return AQI.resolveStandard(Plasmoid.configuration.countryCode, Plasmoid.configuration.aqiStandard || "auto");
+    }
+    function airQualityDisplay() {
+        if (!aqiData) return { value: NaN, band: null, standardLabel: "" };
+        return AQI.standardDisplay(airQualityStandard(), aqiData.europeanAqi, aqiData.usAqi, aqiData.aqhi);
+    }
+    function airQualityIndex() { return airQualityDisplay().value; }
+    function airQualityBand()  { return airQualityDisplay().band; }
+    function airQualityLabel() {
+        var b = airQualityBand();
+        return b ? i18n(b.label) : "";
+    }
+    // Multi-standard display: the Misc tab's three "show standards"
+    // switches can select any combination of US AQI/European CAQI/Canadian
+    // AQHI to show side by side, taking over from the single
+    // resolved/overridden standard the accessors above use. With none of
+    // the three on (the default), this collapses back to exactly that one
+    // standard, so airQualityDisplays() is a superset of airQualityDisplay()
+    // rather than a separate concept.
+    function airQualityMultiMode() {
+        return (Plasmoid.configuration.aqiShowUs === true)
+            || (Plasmoid.configuration.aqiShowEu === true)
+            || (Plasmoid.configuration.aqiShowCa === true);
+    }
+    function airQualityActiveStandards() {
+        if (!airQualityMultiMode())
+            return [airQualityStandard()];
+        var list = [];
+        if (Plasmoid.configuration.aqiShowUs === true) list.push("us");
+        if (Plasmoid.configuration.aqiShowEu === true) list.push("eu");
+        if (Plasmoid.configuration.aqiShowCa === true) list.push("ca");
+        return list;
+    }
+    function airQualityDisplays() {
+        if (!aqiData) return [];
+        var d = aqiData;
+        return airQualityActiveStandards().map(function (std) {
+            return AQI.standardDisplay(std, d.europeanAqi, d.usAqi, d.aqhi);
+        });
+    }
     function aqiPm10()  { return aqiData ? aqiData.pm10  : NaN; }
     function aqiPm2_5() { return aqiData ? aqiData.pm2_5 : NaN; }
     function aqiCo()    { return aqiData ? aqiData.co    : NaN; }
@@ -856,26 +902,14 @@ PlasmoidItem {
     }
 
     function airQualityText() {
-        var aqi = airQualityIndex();
-        if (isNaN(aqi)) return "--";
-        // EU AQI band
-        var label = "";
-        var square = "";
-        if (aqi < 25)       { label = i18n("Good");           square = "\u{1F7E2}"; }  // 🟢
-        else if (aqi < 50)  { label = i18n("Fair");           square = "\u{1F7E1}"; }  // 🟡
-        else if (aqi < 75)  { label = i18n("Moderate");       square = "\u{1F7E0}"; }  // 🟠
-        else if (aqi < 100) { label = i18n("Poor");           square = "\u{1F534}"; }  // 🔴
-        else if (aqi < 150) { label = i18n("Very Poor");      square = "\u{1F7E3}"; }  // 🟣
-        else                { label = i18n("Extremely Poor"); square = "\u{1F7E4}"; }  // 🟤
-        // Compute AQHI from EU AQI
-        var aqhi;
-        if (aqi <= 0)        aqhi = 1;
-        else if (aqi <= 25)  aqhi = 1 + (aqi / 25) * 2;
-        else if (aqi <= 50)  aqhi = 4 + ((aqi - 25) / 25) * 2;
-        else if (aqi <= 75)  aqhi = 7;
-        else if (aqi <= 100) aqhi = 8 + ((aqi - 75) / 25);
-        else                 aqhi = 10;
-        return square + " " + label + " · " + i18n("AQI") + ": " + Math.round(aqi) + " | " + i18n("AQHI") + ": " + Math.round(aqhi);
+        var displays = airQualityDisplays();
+        var parts = [];
+        for (var i = 0; i < displays.length; i++) {
+            var d = displays[i];
+            if (!d.band || isNaN(d.value)) continue;
+            parts.push(d.band.emoji + " " + i18n(d.band.label) + " \u00B7 " + i18n(d.standardLabel) + ": " + Math.round(d.value));
+        }
+        return parts.length > 0 ? parts.join("   |   ") : "--";
     }
 
     /**

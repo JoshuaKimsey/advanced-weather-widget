@@ -455,10 +455,8 @@ Item {
     }
 
     // AQI computed once at root level — not per-delegate — to avoid
-    // re-running AQI.infoForIndex() and building pollutants array N times.
-    readonly property real aqiRootValue: weatherRoot ? (weatherRoot.aqiData, weatherRoot.airQualityIndex()) : NaN
-    readonly property var aqiRootBand: !isNaN(aqiRootValue) ? AQI.infoForIndex(aqiRootValue) : null
-    readonly property real aqiRootAqhi: !isNaN(aqiRootValue) ? AQI.aqhiFromAqi(aqiRootValue) : NaN
+    // re-running AQI lookups and building pollutants array N times.
+    readonly property var aqiRootDisplays: weatherRoot ? (weatherRoot.aqiData, weatherRoot.airQualityDisplays()) : []
     readonly property var aqiRootPollutants: {
         if (!weatherRoot)
             return [];
@@ -1066,9 +1064,8 @@ Item {
                                         clip: true
 
                                         // Computed once at root level to avoid per-delegate re-evaluation
-                                        readonly property real aqiValue: root.aqiRootValue
-                                        readonly property var aqiBand: root.aqiRootBand
-                                        readonly property real aqhiValue: root.aqiRootAqhi
+                                        readonly property var aqiDisplays: root.aqiRootDisplays
+                                        readonly property var _visibleDisplays: aqiCard.aqiDisplays.filter(function (d) { return !isNaN(d.value); })
                                         readonly property var pollutants: root.aqiRootPollutants
 
                                         // ── Collapsed header row ──────────────────────────────
@@ -1099,22 +1096,43 @@ Item {
                                                 Layout.fillWidth: true
                                             }
 
-                                            // Colored band square
-                                            Rectangle {
-                                                visible: aqiCard.aqiBand !== null
-                                                width: 10
-                                                height: 10
-                                                radius: 2
-                                                color: aqiCard.aqiBand ? root.bandTextColor(aqiCard.aqiBand) : "transparent"
+                                            // One colored badge per active standard (1–3, from the
+                                            // Misc tab's "show standards" switches; exactly 1 when
+                                            // none of them are on).
+                                            Row {
                                                 Layout.alignment: Qt.AlignVCenter
-                                            }
-                                            Label {
-                                                text: isNaN(aqiCard.aqiValue) ? "--" : i18n("AQI") + ": " + Math.round(aqiCard.aqiValue) + " | " + i18n("AQHI") + ": " + Math.round(aqiCard.aqhiValue)
-                                                color: aqiCard.aqiBand ? root.bandTextColor(aqiCard.aqiBand) : root.valueColor
-                                                font: weatherRoot ? weatherRoot.wf(11, true) : Qt.font({
-                                                    bold: true
-                                                })
-                                                Layout.alignment: Qt.AlignVCenter
+                                                spacing: 10
+
+                                                Label {
+                                                    visible: aqiCard._visibleDisplays.length === 0
+                                                    text: "--"
+                                                    color: root.valueColor
+                                                    font: weatherRoot ? weatherRoot.wf(11, true) : Qt.font({
+                                                        bold: true
+                                                    })
+                                                }
+
+                                                Repeater {
+                                                    model: aqiCard._visibleDisplays
+                                                    delegate: Row {
+                                                        spacing: 4
+                                                        Rectangle {
+                                                            width: 10
+                                                            height: 10
+                                                            radius: 2
+                                                            anchors.verticalCenter: parent.verticalCenter
+                                                            color: modelData.band ? root.bandTextColor(modelData.band) : "transparent"
+                                                        }
+                                                        Label {
+                                                            text: i18n(modelData.standardLabel) + ": " + Math.round(modelData.value)
+                                                            color: modelData.band ? root.bandTextColor(modelData.band) : root.valueColor
+                                                            font: weatherRoot ? weatherRoot.wf(11, true) : Qt.font({
+                                                                bold: true
+                                                            })
+                                                            anchors.verticalCenter: parent.verticalCenter
+                                                        }
+                                                    }
+                                                }
                                             }
 
                                             // Expand chevron
@@ -1209,7 +1227,7 @@ Item {
                                                             visible: root._aqiItemVisible(modelData.key)
 
                                                             readonly property var band: !isNaN(modelData.si) ? AQI.bandForSubIndex(modelData.si) : null
-                                                            readonly property real pct: !isNaN(modelData.si) ? AQI.scalePercent(modelData.si, 150) : 0
+                                                            readonly property real pct: !isNaN(modelData.si) ? AQI.scalePercent(modelData.si, 100) : 0
 
                                                             ColumnLayout {
                                                                 anchors.fill: parent

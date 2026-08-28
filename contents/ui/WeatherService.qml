@@ -27,6 +27,7 @@ import QtQuick
 import org.kde.plasma.plasmoid
 
 import "js/weather.js" as W
+import "js/airQuality.js" as AQI
 // NOTE: the 12 provider .js modules are intentionally NOT imported here.
 // They live in Providers.qml, which is created lazily on the first fetch
 // (see _providers()) so ~3.7k lines of provider JS stay off the shell-startup
@@ -75,6 +76,9 @@ QtObject {
     readonly property int forecastDays:    Plasmoid.configuration.forecastDays
     readonly property real altitude:       Plasmoid.configuration.altitude
     readonly property string countryCode:  (Plasmoid.configuration.countryCode || "").toUpperCase()
+    // Air-quality standard: "auto" resolves US AQI/European CAQI/Canadian
+    // AQHI from countryCode; otherwise an explicit "us"/"eu"/"ca" override.
+    readonly property string aqiStandardOverride: Plasmoid.configuration.aqiStandard || "auto"
     // Open-Meteo model selection ("auto" = official national high-res model by
     // country; "default" = global best_match; otherwise a literal models= id).
     readonly property string openMeteoModel: Plasmoid.configuration.openMeteoModel || "auto"
@@ -228,8 +232,13 @@ QtObject {
         var ap = (provider === "adaptive") ? "openMeteo" : provider;
         var _pAQ = _providers();
         if (!_pAQ || !_pAQ.fetchAirQuality(ap, service)) {
-            _fetchAqiIfNeeded();
+            _fetchAqi();
         }
+        // When ap === "pirateWeather", the branch above dispatched PW's own
+        // native fetch instead — PW's own completion handler calls _fetchAqi()
+        // itself once it settles (see pirateWeather.js), so pollen and the
+        // non-CAQI standards still resolve even though PW only ever supplies
+        // the European figure natively.
         // Fetch NOAA space weather independently (location-independent)
         // Skip if data was fetched recently (< 10 min) since it doesn't change
         // with location — unless this is a forced (manual) refresh.
@@ -778,17 +787,17 @@ QtObject {
     }
 
     /**
-     * Called after a provider's native AQI fetch settles (success or failure).
-     * If the provider didn't write usable native AQI data this generation,
-     * falls back to the Open-Meteo air-quality API.
+     * Fetches the shared Open-Meteo air-quality/pollen data. Named _fetchAqi()
+     * rather than "...IfNeeded" deliberately: it now always runs, regardless
+     * of whether a provider (Pirate Weather) supplied a native AQI reading —
+     * pollen has no provider equivalent, and US AQI / Canadian AQHI (and the
+     * extra hourly pollutant history AQHI needs) only ever come from here.
+     * _nativeAqiSetThisGen still matters *inside* _fetchAirQualityOpenMeteo():
+     * it only gates that one function's europeanAqi contribution, so a
+     * provider's native CAQI reading isn't overwritten by this call.
      */
-    function _fetchAqiIfNeeded() {
-        if (!_nativeAqiSetThisGen) {
-            console.log("[WeatherService] No native AQI → fetching via Open-Meteo");
-            _fetchAirQualityOpenMeteo();
-        } else {
-            console.log("[WeatherService] Provider set native AQI → skipping Open-Meteo");
-        }
+    function _fetchAqi() {
+        _fetchAirQualityOpenMeteo();
     }
 
     function _formatUpdateText(p) {
@@ -949,23 +958,28 @@ QtObject {
      * Merges a partial air-quality patch into weatherRoot.aqiDataStaged.
      *
      * Two independent sources write air-quality data on every refresh: the
-     * selected provider (index + label, on its own scale) and the shared
-     * Open-Meteo fetch below (the six pollutant concentrations). They race,
-     * so a plain assignment lets whichever response lands second discard the
+     * selected provider (Pirate Weather, natively CAQI-only) and the shared
+     * Open-Meteo fetch below (all six pollutant concentrations, us_aqi, and
+     * — only when the resolved standard is Canadian — aqhi). They race, so a
+     * plain assignment lets whichever response lands second discard the
      * other's fields — which is what used to leave PM2.5 and the rest of the
      * pollutant rows showing "--" under OpenWeather / WeatherAPI / QWeather.
      *
-     * Ownership is therefore split: providers merge {index, label} and set
-     * _nativeAqiSetThisGen; the shared fetch merges the pollutants and only
-     * fills in the index when no provider claimed it. Neither clobbers the
-     * other regardless of arrival order.
+     * Ownership is therefore split per field: a provider may claim
+     * europeanAqi and set _nativeAqiSetThisGen; the shared fetch always
+     * contributes the pollutants, usAqi, and (when relevant) aqhi, and only
+     * fills in europeanAqi itself when no provider already claimed it.
+     * Neither clobbers the other regardless of arrival order. Which of
+     * europeanAqi/usAqi/aqhi is actually shown is decided at render time by
+     * airQuality.js's resolveStandard() + standardDisplay() — see
+     * weatherRoot.airQualityText() in main.qml.
      *
      * At the start of each refresh generation the accumulator is seeded from
      * the data already on screen rather than from an empty object, so the
      * card doesn't flash "--" between the first and second response of the
      * new generation (same reasoning as weatherAlerts in refreshNow()). A
-     * successful shared fetch rewrites all six pollutant keys, so a stale
-     * reading only survives a fetch that failed outright.
+     * successful shared fetch rewrites all its own keys, so a stale reading
+     * only survives a fetch that failed outright.
      */
     function _mergeAqiData(patch) {
         if (!patch)
@@ -993,20 +1007,57 @@ QtObject {
     }
 
     /**
-     * Fetches AQI, pollutant concentrations, and pollen from the Open-Meteo
-     * air-quality API and writes them into weatherRoot.
-     * Called by providers that don't supply this data natively.
+     * Fetches pollutant concentrations, pollen, and the raw index values for
+     * all three air-quality standards from the Open-Meteo air-quality API,
+     * and writes them into weatherRoot. Always runs on every refresh (see
+     * _fetchAqi() above) since pollen has no provider equivalent, and US AQI
+     * / Canadian AQHI have no provider equivalent either.
+     *
+     * european_aqi and us_aqi are both requested in the same "current" call
+     * regardless of which standard is actually resolved for this location —
+     * that costs nothing extra (same request, a couple more numbers in the
+     * response) and means switching the Misc-tab override between "auto" /
+     * "US AQI" / "European CAQI" is instant, with no refetch needed.
+     *
+     * AQHI is different: it's defined over 3-hour moving averages, which the
+     * "current" snapshot can't give us. Only when Canadian AQHI is actually
+     * needed — the resolved standard is Canadian, or the Misc-tab "show
+     * standards" switches have the AQHI one on — does this add an
+     * &hourly=...&past_hours=2 request for the three pollutants the ECCC
+     * formula needs, scoped deliberately small and only fetched when it'll
+     * actually be used.
+     *
+     * forecast_hours is set to 1, not 0, to actually include the current
+     * hour: Open-Meteo's own time-range builder (forecastTimeRange2 in
+     * ForecastapiQuery.swift) computes the window as a half-open range
+     * [currentHour - past_hours, currentHour + forecast_hours) — the end is
+     * exclusive, so forecast_hours=0 collapses that to end === currentHour
+     * and excludes it, returning only the 2 *preceding* hours. forecast_hours=1
+     * pushes the exclusive end one hour past "now", which is what actually
+     * makes the current hour the last of the 3 included points.
      */
     function _fetchAirQualityOpenMeteo() {
         var gen = _refreshGen;
         var r = weatherRoot;
         var tz = (Plasmoid.configuration.timezone || "").trim();
+        var standard = AQI.resolveStandard(Plasmoid.configuration.countryCode, Plasmoid.configuration.aqiStandard || "auto");
+        // The three "show standards" switches (Misc tab) can request AQHI
+        // even when it isn't the single resolved standard above — whenever
+        // any of the three is on, they take over from the single-standard
+        // selector, so the resolved standard on its own is not enough to
+        // decide whether the AQHI hourly block is needed.
+        var multiMode = (Plasmoid.configuration.aqiShowUs === true)
+            || (Plasmoid.configuration.aqiShowEu === true)
+            || (Plasmoid.configuration.aqiShowCa === true);
+        var needsAqhi = multiMode ? (Plasmoid.configuration.aqiShowCa === true) : (standard === "ca");
         var url = "https://air-quality-api.open-meteo.com/v1/air-quality"
             + "?latitude=" + Plasmoid.configuration.latitude
             + "&longitude=" + Plasmoid.configuration.longitude
-            + "&current=european_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
+            + "&current=european_aqi,us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
             + ",alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen"
             + "&timezone=" + encodeURIComponent(tz.length > 0 ? tz : "auto");
+        if (needsAqhi)
+            url += "&hourly=pm2_5,nitrogen_dioxide,ozone&past_hours=2&forecast_hours=1";
         var req = new XMLHttpRequest();
         req.open("GET", url);
         req.onreadystatechange = function () {
@@ -1016,31 +1067,62 @@ QtObject {
             try {
                 var d = JSON.parse(req.responseText);
                 var c = d.current || {};
-                var aqi = c.european_aqi;
-                var label = "";
-                if (aqi !== undefined) {
-                    if      (aqi <= 20)  label = "Good";
-                    else if (aqi <= 40)  label = "Fair";
-                    else if (aqi <= 60)  label = "Moderate";
-                    else if (aqi <= 80)  label = "Poor";
-                    else if (aqi <= 100) label = "Very Poor";
-                    else                 label = "Hazardous";
-                }
-                // Pollutants always come from here — they are the only source
-                // the UI's per-pollutant sub-index bars have. The index is
-                // contributed only when the provider did not supply its own.
+
+                // Pollutants and us_aqi always come from here — they are the
+                // only source the UI has for them. europeanAqi is
+                // contributed only when no provider already claimed it
+                // natively this generation (see pirateWeather.js).
                 var patch = {
-                    pm10:  (c.pm10            !== undefined) ? c.pm10            : NaN,
-                    pm2_5: (c.pm2_5           !== undefined) ? c.pm2_5           : NaN,
+                    pm10:  (c.pm10             !== undefined) ? c.pm10             : NaN,
+                    pm2_5: (c.pm2_5            !== undefined) ? c.pm2_5            : NaN,
                     no2:   (c.nitrogen_dioxide !== undefined) ? c.nitrogen_dioxide : NaN,
                     so2:   (c.sulphur_dioxide  !== undefined) ? c.sulphur_dioxide  : NaN,
                     o3:    (c.ozone            !== undefined) ? c.ozone            : NaN,
-                    co:    (c.carbon_monoxide  !== undefined) ? c.carbon_monoxide / 1000.0 : NaN
+                    co:    (c.carbon_monoxide  !== undefined) ? c.carbon_monoxide / 1000.0 : NaN,
+                    usAqi: (c.us_aqi           !== undefined) ? c.us_aqi           : NaN
                 };
-                if (!_nativeAqiSetThisGen) {
-                    patch.index = (aqi !== undefined) ? aqi : NaN;
-                    patch.label = label;
+                if (!_nativeAqiSetThisGen)
+                    patch.europeanAqi = (c.european_aqi !== undefined) ? c.european_aqi : NaN;
+
+                // aqhi is only ever populated on a generation that actually
+                // requested the hourly block above (needsAqhi) — explicitly
+                // NaN otherwise, so a stale reading from a previous
+                // Canadian location (or from AQHI being switched off) can't
+                // linger unused in the accumulator and be mistaken for
+                // fresh data.
+                //
+                // The average is taken over whatever trailing hours are
+                // actually present (up to 3) rather than requiring exactly
+                // 3, so a request-boundary edge case degrades to a shorter
+                // average instead of an empty result — the forecast_hours=1
+                // fix above should always yield exactly 3, but this doesn't
+                // depend on that holding precisely.
+                if (needsAqhi) {
+                    var aqhi = NaN;
+                    var h = d.hourly;
+                    if (h && h.pm2_5 && h.nitrogen_dioxide && h.ozone && h.pm2_5.length >= 1) {
+                        var n = h.pm2_5.length;
+                        var take = Math.min(3, n);
+                        var avgLast = function (arr) {
+                            var sum = 0, count = 0;
+                            for (var k = n - take; k < n; k++) {
+                                var v = arr[k];
+                                if (v === null || v === undefined || isNaN(v)) continue;
+                                sum += v;
+                                count++;
+                            }
+                            return count > 0 ? sum / count : NaN;
+                        };
+                        var pm25_3h   = avgLast(h.pm2_5);
+                        var no2Ppb_3h = AQI.ugm3ToPpb(avgLast(h.nitrogen_dioxide), "no2");
+                        var o3Ppb_3h  = AQI.ugm3ToPpb(avgLast(h.ozone), "o3");
+                        aqhi = AQI.aqhiFromPollutants(no2Ppb_3h, o3Ppb_3h, pm25_3h);
+                    }
+                    patch.aqhi = aqhi;
+                } else {
+                    patch.aqhi = NaN;
                 }
+
                 _mergeAqiData(patch);
                 var pollenKeys = [
                     { key: "alder",   field: "alder_pollen"   },

@@ -1201,6 +1201,18 @@ KCM.AbstractKCM {
     property string cfg_precipitationUnit: "mm"
     property bool cfg_showTempUnit: false
 
+    // ── Air quality standard override ──────────────────────────────────────
+    // "auto" resolves US AQI / European CAQI / Canadian AQHI from the
+    // location's country code; otherwise an explicit "us" | "eu" | "ca".
+    property string cfg_aqiStandard: "auto"
+    // Show more than one standard side by side instead of the single
+    // resolved/overridden one above — any combination of the three. When
+    // any of these is true, cfg_aqiStandard's UI control is read-only
+    // (ConfigMiscTab.qml), since these switches take over what's shown.
+    property bool cfg_aqiShowUs: false
+    property bool cfg_aqiShowEu: false
+    property bool cfg_aqiShowCa: false
+
     // ── Font config aliases ───────────────────────────────────────────────
     property bool cfg_useSystemFont: true
     property string cfg_fontFamily: "Noto Sans"
