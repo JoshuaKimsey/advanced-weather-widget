@@ -291,11 +291,25 @@ function svgUrl(stem, iconSize, iconsBaseDir, svgTheme) {
 // Internal helpers
 // ══════════════════════════════════════════════════════════════════════════════
 
+// True when `code` isn't a usable WMO weather code — missing (null/undefined),
+// still loading (NaN), or the widget's own "genuinely unavailable" sentinel
+// (-1, used by openMeteo.js's current-conditions fetch once a code survives
+// both the primary and best-match backfill still unset). WMO codes are never
+// negative, so `code < 0` alone is a safe catch-all once null/NaN are also
+// covered — plain `code < 0` is false for both of those (JS coerces null to
+// 0 for `<`, and any comparison with NaN is false), which is exactly how a
+// missing code used to slip through as "partly cloudy" (SVG theme) or even
+// "thunderstorm" (NaN, SVG theme) instead of an honest "no data" icon.
+function _isUnknownCode(code) {
+    return code === null || code === undefined ||
+        (typeof code === "number" && isNaN(code)) || code < 0;
+}
+
 function _conditionKdeIcon(code, night) {
     var n = night ? true : false;
     var d = n ? "night" : "day";
 
-    if (code < 0)   return "weather-none-available";
+    if (_isUnknownCode(code)) return "weather-none-available";
     if (code === 0)  return n ? "weather-clear-night" : "weather-clear";
     if (code === 1)  return n ? "weather-few-clouds-night" : "weather-few-clouds";
     if (code === 2)  return "weather-clouds-" + d;
@@ -323,6 +337,12 @@ function _conditionKdeIcon(code, night) {
 }
 
 function _conditionSvgStem(code, night) {
+    // Deliberately returns "" rather than guessing a cloud/rain stem — an
+    // empty stem makes resolveCondition()'s existing SVG-primary/KDE-fallback
+    // chain fall through to _conditionKdeIcon()'s "weather-none-available"
+    // instead of rendering a wrong (and for NaN, alarmingly wrong —
+    // thunderstorm) icon for data that simply isn't there.
+    if (_isUnknownCode(code)) return "";
     if (code === 0)  return night ? "night-clear" : "day-sunny";
     if (code <= 2)   return night ? "night-alt-partly-cloudy" : "day-cloudy";
     if (code === 3)  return "cloudy";
