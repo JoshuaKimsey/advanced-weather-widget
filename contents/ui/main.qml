@@ -1745,7 +1745,7 @@ PlasmoidItem {
 
     /** "in the next hours" / "this morning" / "this afternoon" / "tonight" for a target time. */
     function _dayPartLabel(targetMs, nowMs) {
-        if ((targetMs - nowMs) <= 3 * 3600000) return i18n("in the next hours");
+        if ((targetMs - nowMs) <= 3 * 3600000) return i18n("in the next few hours");
         var h = new Date(targetMs).getHours();
         if (h >= 6 && h < 12) return i18n("this morning");
         if (h >= 12 && h < 18) return i18n("this afternoon");
