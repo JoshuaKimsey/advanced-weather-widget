@@ -1757,11 +1757,21 @@ PlasmoidItem {
      *  _dayPartLabel's same-day wording stays truthful. The hourly window spans
      *  today + tomorrow (the tomorrow-outlook notification needs it), so without
      *  this cutoff a dry today would trigger "Rain expected this afternoon" for
-     *  an event more than a day away. */
+     *  an event more than a day away.
+     *
+     *  Anchoring the +30h purely to today's midnight breaks right after midnight
+     *  itself: at 00:05, "today 00:00 + 30h" is still ~30h in the future, so an
+     *  event a full day out (e.g. 01:00 the next calendar day) slips under the
+     *  cutoff and gets announced as "tonight". When "now" is already in the
+     *  00:00-06:00 stretch, the boundary is today's own 06:00 instead, so the
+     *  window reflects what's actually left of the current early morning rather
+     *  than granting a fresh 30h on top of it. */
     function _conditionNotificationCutoffMs(nowMs) {
         var d = new Date(nowMs);
+        var hourNow = d.getHours();
         d.setHours(0, 0, 0, 0);
-        return d.getTime() + 30 * 3600000; // today 00:00 + 30h = tomorrow 06:00
+        var windowHours = (hourNow < 6) ? 6 : 30;
+        return d.getTime() + windowHours * 3600000;
     }
 
     function _processRainNotifications(now) {
