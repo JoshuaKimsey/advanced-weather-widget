@@ -1785,13 +1785,13 @@ PlasmoidItem {
             var title = i18n("%1 is expected", label);
             var msg = i18n("%1 is possible %2.", label, _dayPartLabel(startEv.timeMs, nowMs));
             var icon = W.weatherCodeToIcon(startEv.code, isNightTime());
-            _sendNotificationOnce("rain-start:" + startEv.timeMs, title, msg, Notification.NormalUrgency, icon);
+            _sendNotificationOnce("rain-start:" + startEv.dateStr, title, msg, Notification.NormalUrgency, icon);
         } else if (endEv) {
             var label2 = _rainOrThunderLabel(endEv.prevCode);
             var title2 = i18n("%1 is ending", label2);
             var msg2 = i18n("%1 is expected to end %2.", label2, _dayPartLabel(endEv.timeMs, nowMs));
             var icon2 = W.weatherCodeToIcon(endEv.prevCode, isNightTime());
-            _sendNotificationOnce("rain-end:" + endEv.timeMs, title2, msg2, Notification.NormalUrgency, icon2);
+            _sendNotificationOnce("rain-end:" + endEv.dateStr, title2, msg2, Notification.NormalUrgency, icon2);
         }
     }
 
@@ -1815,12 +1815,12 @@ PlasmoidItem {
             var title = i18n("Snow is expected");
             var msg = i18n("Snow is possible %1.", _dayPartLabel(startEv.timeMs, nowMs));
             var icon = W.weatherCodeToIcon(startEv.code, isNightTime());
-            _sendNotificationOnce("snow-start:" + startEv.timeMs, title, msg, Notification.NormalUrgency, icon);
+            _sendNotificationOnce("snow-start:" + startEv.dateStr, title, msg, Notification.NormalUrgency, icon);
         } else if (endEv) {
             var title2 = i18n("Snow is ending");
             var msg2 = i18n("Snow is expected to end %1.", _dayPartLabel(endEv.timeMs, nowMs));
             var icon2 = W.weatherCodeToIcon(endEv.prevCode, isNightTime());
-            _sendNotificationOnce("snow-end:" + endEv.timeMs, title2, msg2, Notification.NormalUrgency, icon2);
+            _sendNotificationOnce("snow-end:" + endEv.dateStr, title2, msg2, Notification.NormalUrgency, icon2);
         }
     }
 
@@ -1975,10 +1975,14 @@ PlasmoidItem {
                         if (isNaN(tms)) continue;
                         var code = (h.code !== undefined) ? h.code : NaN;
                         var precip = (h.precipMm !== undefined && h.precipMm !== null) ? h.precipMm : NaN;
-                        // Snow also reports precipitation (water equivalent); don't let the
-                        // precip fallback flag a snowy hour as rain.
-                        var wet = _isRainOrStormCode(code)
-                                  || (!_isSnowCode(code) && !isNaN(precip) && precip >= 0.2);
+                        // Snow also reports precipitation (water equivalent), so it's excluded
+                        // from the amount check below. The 0.2mm threshold applies whenever we
+                        // have a precip figure (so a low-accumulation drizzle code doesn't count
+                        // as wet); code-only classification is now just the fallback for when
+                        // precip data is missing.
+                        var wet = !isNaN(precip)
+                                  ? (!_isSnowCode(code) && precip >= 0.2)
+                                  : _isRainOrStormCode(code);
                         var snow = _isSnowCode(code);
                         merged.push({ timeMs: tms, wet: wet, snow: snow, code: code, dateStr: dateStr });
                     }
