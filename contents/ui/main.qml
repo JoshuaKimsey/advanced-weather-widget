@@ -801,7 +801,7 @@ PlasmoidItem {
         return Plasmoid.configuration.temperatureUnit || "C";
     }
     function tempValue(celsius, context) {
-        if (W.isNotSupported(celsius)) return i18n("Not supported");
+        if (W.isNotSupported(celsius)) return i18n("N/A");
         var unit = _tempUnit();
         var primary = W.formatTemp(celsius, unit, Plasmoid.configuration.roundValues, Plasmoid.configuration.showTempUnit);
         if (!Plasmoid.configuration.dualTempEnabled) return primary;
@@ -834,7 +834,7 @@ PlasmoidItem {
         return Plasmoid.configuration.pressureUnit || "hPa";
     }
     function pressureValue(hpa) {
-        if (W.isNotSupported(hpa)) return i18n("Not supported");
+        if (W.isNotSupported(hpa)) return i18n("N/A");
         if (isNaN(hpa) || hpa === null || hpa === undefined) return "--";
         var unit = _pressureUnit();
         return W.formatPressureValue(hpa, unit) + " " + i18n(W.pressureUnitLabel(unit));
@@ -847,7 +847,7 @@ PlasmoidItem {
     }
 
     function precipValue(mmh) {
-        if (W.isNotSupported(mmh)) return i18n("Not supported");
+        if (W.isNotSupported(mmh)) return i18n("N/A");
         if (isNaN(mmh)) return "--";
         if (_isImperial())
             return (mmh / 25.4).toFixed(2) + " " + i18n("in/h");
@@ -855,7 +855,7 @@ PlasmoidItem {
     }
 
     function precipSumText(mm) {
-        if (W.isNotSupported(mm)) return i18n("Not supported");
+        if (W.isNotSupported(mm)) return i18n("N/A");
         if (isNaN(mm)) return "--";
         if (_isImperial())
             return (mm / 25.4).toFixed(2) + " " + i18n("in");
@@ -863,7 +863,7 @@ PlasmoidItem {
     }
 
     function visibilityValue(km) {
-        if (W.isNotSupported(km)) return i18n("Not supported");
+        if (W.isNotSupported(km)) return i18n("N/A");
         if (isNaN(km)) return "--";
         if (_isImperial())
             return (km * 0.621371).toFixed(1) + " " + i18n("mi");
@@ -891,7 +891,7 @@ PlasmoidItem {
     }
 
     function uvIndexText(uv) {
-        if (W.isNotSupported(uv)) return i18n("Not supported");
+        if (W.isNotSupported(uv)) return i18n("N/A");
         if (isNaN(uv)) return "--";
         var v = Math.round(uv * 10) / 10;
         if (v <= 2) return v + " (" + i18n("Low") + ")";

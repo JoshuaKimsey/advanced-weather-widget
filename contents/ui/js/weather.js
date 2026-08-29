@@ -36,7 +36,7 @@ function I18N_NOOP(s) { return s; }
 // (transient) — formatters render that as "--". Some providers, however, never
 // expose a given field at all (e.g. BBC has no precipitation amount and no
 // per-hour UV index). Those providers set the field to NOT_SUPPORTED so the
-// formatters can render a distinct, honest "Not supported" instead of "--".
+// formatters can render a distinct, honest "N/A" instead of "--".
 var NOT_SUPPORTED = -9999;
 function isNotSupported(v) { return v === NOT_SUPPORTED; }
 

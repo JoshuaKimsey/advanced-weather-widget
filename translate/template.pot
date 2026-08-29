@@ -2102,6 +2102,12 @@ msgstr ""
 msgid "Multiple lines (tall panel)"
 msgstr ""
 
+#: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
+#: contents/ui/main.qml:758 contents/ui/main.qml:791 contents/ui/main.qml:804
+#: contents/ui/main.qml:812 contents/ui/main.qml:820 contents/ui/main.qml:848
+msgid "N/A"
+msgstr ""
+
 #: contents/ui/config/configAppearance.qml:1426
 #: contents/ui/config/configAppearance.qml:1549
 #: contents/ui/config/configAppearance.qml:1672
@@ -2204,12 +2210,6 @@ msgstr ""
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:363
 msgid "Not available: the selected base map already has a fixed light or dark style."
-msgstr ""
-
-#: contents/ui/ForecastView.qml:1291 contents/ui/ForecastView.qml:1738
-#: contents/ui/main.qml:758 contents/ui/main.qml:791 contents/ui/main.qml:804
-#: contents/ui/main.qml:812 contents/ui/main.qml:820 contents/ui/main.qml:848
-msgid "Not supported"
 msgstr ""
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:623
