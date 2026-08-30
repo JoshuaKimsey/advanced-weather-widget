@@ -461,8 +461,11 @@ ColumnLayout {
                     from: 200
                     to: 2000
                     stepSize: 10
+                    // Auto placeholder mirrors the actual auto-mode value computed
+                    // in main.qml's fullRepresentation block — keep these in sync.
                     value: widgetTab.configRoot.cfg_widgetMinWidthMode === "manual"
-                        ? widgetTab.configRoot.cfg_widgetMinWidth : 540
+                        ? widgetTab.configRoot.cfg_widgetMinWidth
+                        : (widgetTab.configRoot.cfg_widgetLayoutMode === "simple" ? 765 : 800)
                     onValueModified: widgetTab.configRoot.cfg_widgetMinWidth = value
                 }
                 Label {
@@ -490,8 +493,11 @@ ColumnLayout {
                     from: 200
                     to: 2000
                     stepSize: 10
+                    // Auto placeholder mirrors the actual auto-mode value computed
+                    // in main.qml's fullRepresentation block — keep these in sync.
                     value: widgetTab.configRoot.cfg_widgetMinHeightMode === "manual"
-                        ? widgetTab.configRoot.cfg_widgetMinHeight : 550
+                        ? widgetTab.configRoot.cfg_widgetMinHeight
+                        : (widgetTab.configRoot.cfg_widgetLayoutMode === "simple" ? 550 : 750)
                     onValueModified: widgetTab.configRoot.cfg_widgetMinHeight = value
                 }
                 Label {

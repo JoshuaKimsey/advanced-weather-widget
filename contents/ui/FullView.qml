@@ -40,11 +40,18 @@ Rectangle {
     // Layout.preferred* is what Plasma reads to size the panel popup window.
     // width/height are used when the widget sits on the desktop.
     // Compact size when no location is set to avoid overlapping other widgets.
+    //
+    // NOTE: Layout.minimumWidth/Height are intentionally NOT set here. This
+    // component is only ever instantiated once, as main.qml's
+    // `fullRepresentation`, and main.qml sets Layout.minimumWidth/Height on
+    // that instance from the outside — an outer instantiation-site binding
+    // always overrides a type's own internal binding for the same attached
+    // property, so any value set here would be dead code. main.qml is the
+    // single source of truth for minimum popup size; see it for the actual
+    // auto/manual/simple/advanced/tray logic.
     readonly property bool _hasLocation: weatherRoot && weatherRoot.hasSelectedTown
     readonly property bool _isRadarTab: _hasLocation && activeTab === 2 && showRadarTab
     readonly property bool isSimpleMode: (Plasmoid.configuration.widgetLayoutMode || "advanced") === "simple"
-    Layout.minimumWidth:    _hasLocation ? (isSimpleMode ? 900 : 540) : 280
-    Layout.minimumHeight:   _hasLocation ? (isSimpleMode ? 550 : 380) : 220
     Layout.preferredWidth:  _hasLocation ? (isSimpleMode ? 800 : 540) : 280
     Layout.preferredHeight: _hasLocation ? (isSimpleMode ? 550 : (_isRadarTab ? 680 : 550)) : 220
     width:  _hasLocation ? (isSimpleMode ? 800 : 540) : 280

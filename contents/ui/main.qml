@@ -329,6 +329,11 @@ PlasmoidItem {
         // In the system tray use preferred sizes only (no large minimums)
         // so Plasma can actually show the popup in the constrained tray area.
         // In the panel, enforce minimums as configured.
+        //
+        // This is the SINGLE SOURCE OF TRUTH for Layout.minimumWidth/Height.
+        // FullView.qml deliberately does not set these itself — keep it that
+        // way, or its internal binding will silently shadow whichever of the
+        // two happens to apply last.
 
         Layout.minimumWidth: {
             if (root.inTray) return 0;
