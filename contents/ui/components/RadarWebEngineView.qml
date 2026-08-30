@@ -143,7 +143,10 @@ Item {
         var owmKeyJs   = JSON.stringify(owmKey || "");
         var layerJs    = JSON.stringify(layer  || "rainviewer");
         var baseMap    = MapProvidersJS.resolveMapBackground(mapBackground);
-        var baseUrlJs  = JSON.stringify(baseMap.tileUrlTemplate);
+        // A vector background has no raster template; the page starts on plain
+        // OSM tiles and swaps itself over once MapLibre has loaded.
+        var baseUrlJs  = JSON.stringify(baseMap.tileUrlTemplate
+                                        || MapProvidersJS.MAP_BACKGROUNDS[MapProvidersJS.DEFAULT_MAP_BACKGROUND].tileUrlTemplate);
         var baseAttrJs = JSON.stringify(baseMap.attribution);
         var bgListJs   = radarRoot.backgroundChoices.toJson();
         var bgCurrJs   = JSON.stringify(mapBackground || "auto");
@@ -282,6 +285,13 @@ var baseLayer = L.tileLayer(BASE_TILE_URL, {\
 }).addTo(map);\
 \
 L.marker([LAT, LON]).addTo(map);\
+\
+/* baseLayer above is always raster. If the saved background is a vector style,\
+   fetch MapLibre and swap it in; applyBackground is hoisted, BG_LIST is set. */\
+(function() {\
+    var e0 = bgEntry(BG_CURRENT);\
+    if (e0 && e0.vector && e0.styleUrl) loadMapLibre(function() { applyBackground(BG_CURRENT); });\
+})();\
 \
 var apiData = {};\
 var mapFrames = [];\
@@ -520,15 +530,64 @@ function updateBaseDim() {\
     else c.classList.remove("base-dimmed");\
 }\
 \
+/* MapLibre is only fetched when a vector background is actually picked: it is\
+   an 800 kB script and every raster background works without it. Until it\
+   lands, the vector entry shows plain OSM tiles. */\
+var MAPLIBRE_STATE = "idle";\
+/* MapLibre needs a WebGL context. Where there is none - blacklisted GPU, a VM,\
+   software rendering off - creating the layer throws and the map is left with\
+   no background at all, so check first and stay on raster tiles instead. */\
+var WEBGL_OK = null;\
+function hasWebGL() {\
+    if (WEBGL_OK !== null) return WEBGL_OK;\
+    try {\
+        var c = document.createElement("canvas");\
+        WEBGL_OK = !!(c.getContext("webgl2") || c.getContext("webgl"));\
+    } catch (e) { WEBGL_OK = false; }\
+    return WEBGL_OK;\
+}\
+function loadMapLibre(onReady) {\
+    if (MAPLIBRE_STATE === "ready") { onReady(); return; }\
+    if (MAPLIBRE_STATE !== "idle") return;\
+    MAPLIBRE_STATE = "loading";\
+    var css = document.createElement("link");\
+    css.rel = "stylesheet";\
+    css.href = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css";\
+    document.head.appendChild(css);\
+    var gl = document.createElement("script");\
+    gl.src = "https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js";\
+    gl.onerror = function() { MAPLIBRE_STATE = "failed"; };\
+    gl.onload = function() {\
+        var br = document.createElement("script");\
+        br.src = "https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js";\
+        br.onerror = function() { MAPLIBRE_STATE = "failed"; };\
+        br.onload = function() { MAPLIBRE_STATE = "ready"; onReady(); };\
+        document.head.appendChild(br);\
+    };\
+    document.head.appendChild(gl);\
+}\
+\
 function applyBackground(id) {\
     var e = bgEntry(id);\
     BG_CURRENT = e.id;\
-    var next = L.tileLayer(e.url, {\
-        attribution: e.attribution,\
-        maxNativeZoom: e.maxZoom,\
-        maxZoom: MAP_MAX_ZOOM,\
-        zIndex: 1\
-    }).addTo(map);\
+    var wantsVector = !!(e.vector && e.styleUrl && hasWebGL());\
+    if (wantsVector && MAPLIBRE_STATE !== "ready") {\
+        loadMapLibre(function() { applyBackground(BG_CURRENT); });\
+    }\
+    var next = null;\
+    if (wantsVector && MAPLIBRE_STATE === "ready") {\
+        try {\
+            next = L.maplibreGL({ style: e.styleUrl, attribution: e.attribution }).addTo(map);\
+        } catch (err) { WEBGL_OK = false; }\
+    }\
+    if (!next) {\
+        next = L.tileLayer(e.url || BASE_TILE_URL, {\
+            attribution: e.attribution,\
+            maxNativeZoom: e.maxZoom,\
+            maxZoom: MAP_MAX_ZOOM,\
+            zIndex: 1\
+        }).addTo(map);\
+    }\
     if (baseLayer) map.removeLayer(baseLayer);\
     baseLayer = next;\
     updateBaseDim();\

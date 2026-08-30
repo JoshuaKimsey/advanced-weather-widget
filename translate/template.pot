@@ -546,14 +546,6 @@ msgstr ""
 msgid "Cards height:"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:48
-msgid "Carto Dark Matter (dark)"
-msgstr ""
-
-#: contents/ui/components/MapBackgroundChoices.qml:47
-msgid "Carto Positron (light)"
-msgstr ""
-
 #: contents/ui/config/tabs/ConfigMiscTab.qml:227
 msgid "Celsius (°C)"
 msgstr ""
@@ -2285,6 +2277,22 @@ msgstr ""
 
 #: contents/ui/config/configGeneral.qml:377
 msgid "Open-Meteo (recommended, free)"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:50
+msgid "OpenFreeMap Dark"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:49
+msgid "OpenFreeMap Fiord (dark)"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:48
+msgid "OpenFreeMap Liberty (light)"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:47
+msgid "OpenFreeMap Positron (light)"
 msgstr ""
 
 #: contents/ui/components/MapBackgroundChoices.qml:43

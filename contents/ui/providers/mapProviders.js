@@ -26,6 +26,11 @@
  *   - QtLocation (ConfigMapSubPage.qml) uses singleHost, since its "osm"
  *     plugin takes one fixed host and appends {z}/{x}/{y}.png itself.
  *
+ * Backgrounds come in two shapes. Raster ones carry tileUrlTemplate and go into
+ * an L.tileLayer. Vector ones carry styleUrl with vector: true and go into an
+ * L.maplibreGL layer instead — MapLibre renders them on a WebGL canvas that
+ * Leaflet keeps in sync, so the radar overlays above them are untouched.
+ *
  * All providers are free and require no API key. Attribution strings are HTML
  * because both consumers render rich text.
  *
@@ -59,17 +64,29 @@ var MAP_BACKGROUNDS = {
         maxZoom: 17,
         attribution: _OSM_LINK + ", SRTM | © <a href='https://opentopomap.org/'>OpenTopoMap</a> (CC-BY-SA)"
     },
-    "carto-positron": {
-        tileUrlTemplate: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-        singleHost: "https://a.basemaps.cartocdn.com/light_all/",
+    "openfreemap-positron": {
+        styleUrl: "https://tiles.openfreemap.org/styles/positron",
+        vector: true,
         maxZoom: 20,
-        attribution: _OSM_LINK + " © <a href='https://carto.com/attributions'>CARTO</a>"
+        attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
     },
-    "carto-darkmatter": {
-        tileUrlTemplate: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
-        singleHost: "https://a.basemaps.cartocdn.com/dark_all/",
+    "openfreemap-liberty": {
+        styleUrl: "https://tiles.openfreemap.org/styles/liberty",
+        vector: true,
         maxZoom: 20,
-        attribution: _OSM_LINK + " © <a href='https://carto.com/attributions'>CARTO</a>"
+        attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
+    },
+    "openfreemap-fiord": {
+        styleUrl: "https://tiles.openfreemap.org/styles/fiord",
+        vector: true,
+        maxZoom: 20,
+        attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
+    },
+    "openfreemap-dark": {
+        styleUrl: "https://tiles.openfreemap.org/styles/dark",
+        vector: true,
+        maxZoom: 20,
+        attribution: _OSM_LINK + " | Tiles by <a href='https://openfreemap.org/'>OpenFreeMap</a>"
     }
 };
 
@@ -85,7 +102,7 @@ var DEFAULT_MAP_BACKGROUND = "osm-standard";
 var AUTO_MAP_BACKGROUND = "auto";
 
 /** Ids offered by the "Map background" picker, in display order. */
-var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "carto-positron", "carto-darkmatter"];
+var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-liberty", "openfreemap-fiord", "openfreemap-dark"];
 
 /**
  * Resolve a background id to its definition.
@@ -97,6 +114,11 @@ var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-humanitarian", "cyclosm
  */
 function resolveMapBackground(id, themeHint) {
     if (id === AUTO_MAP_BACKGROUND)
-        return MAP_BACKGROUNDS[themeHint === "dark" ? "carto-darkmatter" : DEFAULT_MAP_BACKGROUND];
+        return MAP_BACKGROUNDS[themeHint === "dark" ? "openfreemap-dark" : DEFAULT_MAP_BACKGROUND];
     return MAP_BACKGROUNDS[id] || MAP_BACKGROUNDS[DEFAULT_MAP_BACKGROUND];
+}
+
+/** True for backgrounds that need MapLibre GL rather than a raster tile layer. */
+function isVectorBackground(p) {
+    return !!(p && p.vector && p.styleUrl);
 }
