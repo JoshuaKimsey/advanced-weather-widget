@@ -16,9 +16,9 @@
  */
 
 /**
- * pirateWeather.js — Pirate Weather current + hourly fetcher
+ * pirateWeather.js - Pirate Weather current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  *
@@ -171,13 +171,13 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  day0 && day0.sunsetTime  ? Qt.formatTime(new Date(day0.sunsetTime  * 1000), "HH:mm") : "--",
             dailyData:       nd
         };
-        // No native air quality or pollen — both are supplied by the shared
+        // No native air quality or pollen - both are supplied by the shared
         // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
         // them here would race that fetch and discard its result.
         r.loading = false;
         r.updateText = service._formatUpdateText("pirateWeather");
 
-        // Pirate Weather provides its own alerts — parse them
+        // Pirate Weather provides its own alerts - parse them
         if (d.alerts && d.alerts.length > 0) {
             if (_parseAlerts(r, d.alerts))
                 service._nativeAlertsSetThisGen = true;
@@ -311,30 +311,14 @@ function _ppbToUgm3(ppb, molarMass) {
 var _MOLAR_MASS = { o3: 48.00, no2: 46.01, so2: 64.07, co: 28.01 };
 
 /**
- * Maps a EU-CAQI-scale index (0-25/50/75/100/150+, same bands main.qml's
- * own airQualityText() uses) to one of the band keys AQI.infoForIndex()
- * elsewhere in the app is expected to recognise. Left untranslated —
- * this file can't call i18n() — QML does the actual label lookup.
- */
-function _aqiBandKey(index) {
-    if (isNaN(index)) return "";
-    if (index < 25) return "good";
-    if (index < 50) return "fair";
-    if (index < 75) return "moderate";
-    if (index < 100) return "poor";
-    return "verypoor";
-}
-
-/**
- * fetchAirQuality — native Pirate Weather air quality.
+ * fetchAirQuality - native Pirate Weather air quality.
  *
  * IMPORTANT UNITS CAVEAT:
  * The main fetchCurrent() request uses units=ca, but PW ties the AQI
  * *scale* to the units param: ca -> ECCC AQHI (1-10ish), us/default ->
- * US EPA AQI (0-500), si/uk -> EU CAQI (0-100+). This app's own index
- * scale (see main.qml's airQualityText(): <25/<50/<75/<100/<150) matches
- * EU CAQI, not AQHI — so reusing fetchCurrent's ca-units response would
- * hand main.qml a badly-mismatched number.
+ * US EPA AQI (0-500), si/uk -> EU CAQI (0-100+). This function only ever
+ * contributes the CAQI figure (see below), so reusing fetchCurrent's
+ * ca-units response would hand the widget a badly-mismatched number.
  *
  * Rather than reimplement PW's CAQI breakpoint math locally (risking a
  * different number than PW's own service would report), this issues one
@@ -347,16 +331,26 @@ function _aqiBandKey(index) {
  * is what airQuality.js's per-pollutant bands expect for o3/no2/so2. CO is
  * the exception: its band table is in mg/m³, so it takes a further /1000.
  *
- * NOTE: this function is not currently dispatched from Providers.qml — Pirate
- * Weather's air quality is served by the shared Open-Meteo fetch like every
- * other provider's. It is kept here, conforming to the _mergeAqiData()
- * contract, for whenever the native path is wired up.
+ * This function only ever contributes europeanAqi (via _mergeAqiData and
+ * _nativeAqiSetThisGen) - PW has no US AQI or AQHI calculation of its own.
+ * That means its result is only actually *displayed* when the resolved
+ * standard for the user's location is CAQI; everywhere else it's still
+ * merged in (harmless - that field just isn't read at render time). US AQI,
+ * Canadian AQHI, and pollen always come from the shared Open-Meteo fetch, so
+ * every code path below - including the early-return failure cases - calls
+ * service._fetchAqi() before returning, the same way fetchCurrent() always
+ * calls _fetchAlertsIfNeeded(). That fetch is unconditional now (it no
+ * longer skips itself when _nativeAqiSetThisGen is set), so pollen and the
+ * non-CAQI standards resolve correctly even when this native request
+ * succeeds.
  */
 function fetchAirQuality(service, W) {
     var gen = service._refreshGen;
     var key = service._pwKey();
-    if (!key)
+    if (!key) {
+        service._fetchAqi();
         return;
+    }
 
     var url = "https://api.pirateweather.net/forecast/"
         + encodeURIComponent(key) + "/"
@@ -370,23 +364,27 @@ function fetchAirQuality(service, W) {
         if (req.readyState !== XMLHttpRequest.DONE)
             return;
         if (service._refreshGen !== gen) return;
-        if (req.status !== 200)
+        if (req.status !== 200) {
+            service._fetchAqi();
             return;
+        }
         try {
             var d = JSON.parse(req.responseText);
         } catch (e) {
+            service._fetchAqi();
             return;
         }
 
         var c = d.currently;
         // -999 is PW's sentinel for "not available at this location/time"
-        if (!c || c.airQualityIndex === undefined || c.airQualityIndex === -999)
+        if (!c || c.airQualityIndex === undefined || c.airQualityIndex === -999) {
+            service._fetchAqi();
             return;
+        }
 
         var co = _ppbToUgm3(c.coConcentration, _MOLAR_MASS.co);
         service._mergeAqiData({
-            index: c.airQualityIndex,
-            label: _aqiBandKey(c.airQualityIndex),
+            europeanAqi: c.airQualityIndex,
             pm10:  (c.pm10 !== undefined) ? c.pm10 : NaN,
             pm2_5: (c.pm25 !== undefined) ? c.pm25 : NaN,
             o3:    _ppbToUgm3(c.ozoneConcentration, _MOLAR_MASS.o3),
@@ -395,6 +393,7 @@ function fetchAirQuality(service, W) {
             co:    isNaN(co) ? NaN : co / 1000.0   // airQuality.js bands CO in mg/m³
         });
         service._nativeAqiSetThisGen = true;
+        service._fetchAqi();
     };
     req.send();
 }

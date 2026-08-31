@@ -57,7 +57,7 @@ KCM.SimpleKCM {
         return (!s || s.enabled === undefined) ? true : s.enabled === true;
     }
     // Default repeat interval for types that haven't set their own. Matches
-    // main.qml's _defaultAlertRepeatMinutes — there is no global interval.
+    // main.qml's _defaultAlertRepeatMinutes - there is no global interval.
     readonly property int defaultAlertRepeatMinutes: 30
     function alertTypeMinutes(t) {
         var s = alertTypeSettings[t];
@@ -216,7 +216,7 @@ KCM.SimpleKCM {
     // this in a second, nested ScrollView (as a previous version did)
     // breaks wheel/touchpad scrolling: the outer page's flickable sees
     // the nested ScrollView's height (which fills the viewport) and never
-    // detects an overflow, so it doesn't relay scroll events down — and
+    // detects an overflow, so it doesn't relay scroll events down - and
     // the page appears to not scroll at all. Just use a plain ColumnLayout.
     ColumnLayout {
         spacing: 14
@@ -274,7 +274,7 @@ KCM.SimpleKCM {
                     onToggled: root.cfg_alertNotificationsPurpleEnabled = checked
                 }
 
-                // Info button — explains what each severity color means.
+                // Info button - explains what each severity color means.
                 Kirigami.Icon {
                     source: "help-about"
                     implicitWidth: Kirigami.Units.iconSizes.small
@@ -284,7 +284,7 @@ KCM.SimpleKCM {
                     HoverHandler { id: severityInfoHover }
 
                     ToolTip.visible: severityInfoHover.hovered
-                    ToolTip.text: i18n("Weather-alert severity levels, from lowest to highest:\n\n🟡 Yellow — Minor: be aware of the conditions.\n🟠 Orange — Moderate: be prepared.\n🔴 Red — Severe: take action.\n🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n\nTurn a level off to stop receiving notifications for alerts of that severity.")
+                    ToolTip.text: i18n("Weather-alert severity levels, from lowest to highest:\n\n🟡 Yellow - Minor: be aware of the conditions.\n🟠 Orange - Moderate: be prepared.\n🔴 Red - Severe: take action.\n🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n\nTurn a level off to stop receiving notifications for alerts of that severity.")
                 }
             }
 

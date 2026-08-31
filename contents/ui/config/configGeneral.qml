@@ -74,7 +74,7 @@ KCM.SimpleKCM {
     // Writes/removes a plasma-workspace session env script. This can only be
     // consumed by plasmashell at next login (env scripts run before the
     // session starts), so toggling this has no live effect on the current
-    // session — the InlineMessage below makes that explicit to the user.
+    // session - the InlineMessage below makes that explicit to the user.
     readonly property string _radarGpuScriptPath: "~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
     // TODO: point this at the real tracker issue for the hybrid-GPU crash before shipping.
     readonly property string _radarGpuIssueUrl: "https://github.com/OWNER/REPO/issues/ISSUE_NUMBER"
@@ -87,7 +87,7 @@ KCM.SimpleKCM {
     property var _radarGpuLiveActive: undefined
 
     function _evaluateGpuStatus() {
-        // Both checks are async and land independently — wait for both before
+        // Both checks are async and land independently - wait for both before
         // deciding on a combined status.
         if (root._radarGpuScriptPresent === undefined || root._radarGpuLiveActive === undefined)
             return;
@@ -117,7 +117,7 @@ KCM.SimpleKCM {
                 root._evaluateGpuStatus();
             } else if (sourceName.indexOf("if [ \"$QTWEBENGINE_CHROMIUM_FLAGS\"") === 0) {
                 root._radarGpuLiveActive = out.indexOf("LIVE:ACTIVE") !== -1;
-                console.log("[Advanced Weather Widget Config] QTWEBENGINE_CHROMIUM_FLAGS in this session:", root._radarGpuLiveActive ? "\"--disable-gpu-compositing\" — workaround is active" : "not set to the workaround value — not active in this session yet");
+                console.log("[Advanced Weather Widget Config] QTWEBENGINE_CHROMIUM_FLAGS in this session:", root._radarGpuLiveActive ? "\"--disable-gpu-compositing\" - workaround is active" : "not set to the workaround value - not active in this session yet");
                 root._evaluateGpuStatus();
             } else if (data["exit code"] !== 0) {
                 console.warn("[Advanced Weather Widget Config] radar GPU workaround command failed:", sourceName, "stderr=", data["stderr"]);
@@ -129,7 +129,7 @@ KCM.SimpleKCM {
         function apply(enabled) {
             var cmd = enabled ? "mkdir -p ~/.config/plasma-workspace/env && printf '%s\\n' 'export QTWEBENGINE_CHROMIUM_FLAGS=\"--disable-gpu-compositing\"' > " + root._radarGpuScriptPath : "rm -f " + root._radarGpuScriptPath;
             connectSource(cmd);
-            // Any earlier status check is stale now — clear it until re-checked.
+            // Any earlier status check is stale now - clear it until re-checked.
             root.radarGpuTestState = 0;
             root.radarGpuTestMessage = "";
             root._radarGpuScriptPresent = undefined;
@@ -902,7 +902,7 @@ KCM.SimpleKCM {
                 showCloseButton: true
                 visible: root.cfg_radarEnabled && (root.cfg_owApiKey || "").trim() !== ""
                 type: Kirigami.MessageType.Warning
-                text: i18n("<b>Why OWM layers may not match RainViewer radar</b><br/><br/>" + "OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. " + "They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>" + "RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. " + "This discrepancy is expected and known.")
+                text: i18n("<b>Why OWM layers may not match RainViewer radar</b><br/><br/>" + "OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. " + "They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>" + "RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. " + "This discrepancy is expected and known.")
             }
 
             Item {

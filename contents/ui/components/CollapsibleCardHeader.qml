@@ -16,7 +16,7 @@
  */
 
 /**
- * CollapsibleCardHeader.qml — Reusable collapsed/expanded card header row
+ * CollapsibleCardHeader.qml - Reusable collapsed/expanded card header row
  *
  * Used by DetailsView for expandable cards (AQI, Pollen, Space Weather,
  * Alerts, Suntimes, Moonphase). Eliminates the repeated pattern of:
@@ -45,7 +45,7 @@ RowLayout {
     id: header
 
     // ── Public properties ─────────────────────────────────────────────────
-    /** Icon info object from IconResolver.resolve() — null to hide icon */
+    /** Icon info object from IconResolver.resolve() - null to hide icon */
     property var iconInfo: null
 
     /** Icon size in pixels */

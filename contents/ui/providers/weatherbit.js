@@ -16,9 +16,9 @@
  */
 
 /**
- * weatherbit.js — Weatherbit current + hourly fetcher
+ * weatherbit.js - Weatherbit current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Weatherbit provides current conditions, daily and hourly forecasts.
  * Docs: https://www.weatherbit.io/api
  */
@@ -118,7 +118,7 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  c.sunset  || "--",
             dailyData:       []
         };
-        // No native air quality or pollen — both are supplied by the shared
+        // No native air quality or pollen - both are supplied by the shared
         // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
         // them here would race that fetch and discard its result.
         _fetchDailyForecast(service, W, gen);
@@ -180,7 +180,7 @@ function _fetchDailyForecast(service, W, gen) {
         r.loading = false;
         r.updateText = service._formatUpdateText("weatherbit");
 
-        // No native alerts — fall back to MeteoAlarm / NWS
+        // No native alerts - fall back to MeteoAlarm / NWS
         service._fetchAlertsIfNeeded();
 
         // Air quality fetched in parallel from WeatherService.refreshNow()

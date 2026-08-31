@@ -16,16 +16,16 @@
  */
 
 /**
- * sunpath.js — Sun/Moon arc geometry, progress and daylight helpers
+ * sunpath.js - Sun/Moon arc geometry, progress and daylight helpers
  *
  * Canvas coordinate convention (y-axis points DOWN):
  *
- *   DAY arc  — sun travels CLOCKWISE from left horizon to right:
+ *   DAY arc  - sun travels CLOCKWISE from left horizon to right:
  *     angle π  (left)  →  3π/2 (top, noon)  →  2π (right)
  *     sunX = cx + r·cos(π(1+p))
  *     sunY = hY + r·sin(π(1+p))   sin(3π/2)=-1 ⟹ above hY ✓
  *
- *   NIGHT arc — moon travels from right horizon over top to left:
+ *   NIGHT arc - moon travels from right horizon over top to left:
  *     moonX = cx + r·cos(m·π)        m=0: right ✓  m=0.5: centre ✓  m=1: left ✓
  *     moonY = hY - r·sin(m·π)        sin(π/2)=1 ⟹ above hY ✓
  *     Equivalent canvas angle = 2π - m·π  (clockwise arc from 2π down to π)
@@ -58,7 +58,7 @@ function parseMins(t) {
  * Get current minutes-since-midnight at the weather location.
  *
  * Uses UTC + the location's UTC offset (in minutes) from the API response.
- * This is the ONLY approach that works reliably in Qt's V4 JS engine —
+ * This is the ONLY approach that works reliably in Qt's V4 JS engine -
  * toLocaleTimeString/Intl.DateTimeFormat with a timeZone option are NOT
  * supported by Qt's V4 and always fall back to machine local time.
  *
@@ -225,23 +225,23 @@ function _drawStars(ctx, cw, ch, hY, count, isDark) {
 /**
  * drawSunArc(ctx, cw, ch, prog, isDark, glowPulse, riseText, setText)
  *
- *   ctx       — canvas 2D context
- *   cw, ch    — canvas width / height
- *   prog      — raw sunProgress() value (< 0 or > 1 means night)
- *   isDark    — true for dark KDE theme
- *   glowPulse — animated 0→1→0 value for glow breathing (pass 0 if unused)
- *   riseText  — "HH:mm" sunrise string
- *   setText   — "HH:mm" sunset string
+ *   ctx       - canvas 2D context
+ *   cw, ch    - canvas width / height
+ *   prog      - raw sunProgress() value (< 0 or > 1 means night)
+ *   isDark    - true for dark KDE theme
+ *   glowPulse - animated 0→1→0 value for glow breathing (pass 0 if unused)
+ *   riseText  - "HH:mm" sunrise string
+ *   setText   - "HH:mm" sunset string
  */
 /**
- * isNight — explicit flag from the API's is_day field (via weatherRoot.isNightTime()).
+ * isNight - explicit flag from the API's is_day field (via weatherRoot.isNightTime()).
  *           Overrides the prog-based calculation so day/night is always correct
  *           regardless of machine timezone vs location timezone.
  */
 function drawSunArc(ctx, cw, ch, prog, isDark, glowPulse, riseText, setText, tz, isNight) {
     ctx.clearRect(0, 0, cw, ch);
 
-    // Guard: canvas not yet laid out — nothing useful to draw
+    // Guard: canvas not yet laid out - nothing useful to draw
     if (cw <= 0 || ch <= 0) return;
 
     var padH  = 28;
@@ -252,7 +252,7 @@ function drawSunArc(ctx, cw, ch, prog, isDark, glowPulse, riseText, setText, tz,
     // Guard: canvas too narrow/short for a valid arc radius
     if (r <= 0) return;
 
-    // isNight comes from the API's is_day flag — authoritative for this location.
+    // isNight comes from the API's is_day flag - authoritative for this location.
     // prog is clamped independently: at night it drives moon arc position.
     var isDay    = (isNight !== undefined && isNight !== null) ? !isNight : (prog >= 0 && prog <= 1);
     var clampDay = Math.max(0, Math.min(1, prog));
@@ -320,7 +320,7 @@ function drawSunArc(ctx, cw, ch, prog, isDark, glowPulse, riseText, setText, tz,
             ctx.restore();
         }
     } else {
-        // Night — moon travels from canvas angle 2π (right) down to π (left)
+        // Night - moon travels from canvas angle 2π (right) down to π (left)
         // Traveled: from 2π - mProg*π to 2π  (clockwise)
         if (mProg > 0) {
             ctx.beginPath();

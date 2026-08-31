@@ -16,7 +16,7 @@
  */
 
 /**
- * moonphase.js — Moon phase calculation utilities
+ * moonphase.js - Moon phase calculation utilities
  *
  * .pragma library: pure JS math only, no Qt APIs, no i18n.
  * Import via: import "js/moonphase.js" as Moon
@@ -80,7 +80,7 @@ function moonPhaseSvgStem(age) {
 }
 
 /**
- * Returns the English phase name key — the caller is responsible for i18n().
+ * Returns the English phase name key - the caller is responsible for i18n().
  * e.g.: i18n(Moon.moonPhaseNameKey())
  */
 function moonPhaseNameKey(age) {

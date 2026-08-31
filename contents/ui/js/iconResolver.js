@@ -16,17 +16,17 @@
  */
 
 /**
- * iconResolver.js — Unified icon resolution for the weather widget
+ * iconResolver.js - Unified icon resolution for the weather widget
  *
  * Single source of truth for mapping weather item IDs to icons.
  * All views (Panel, Tooltip, Widget/Details, Forecast) import this module
  * instead of duplicating lookup tables.
  *
  * Resolution priority:
- *   1. KDE system icon (always tried first — works with any Plasma icon theme)
+ *   1. KDE system icon (always tried first - works with any Plasma icon theme)
  *   2. Bundled SVG fallback (from contents/icons/<theme>/<size>/wi-<name>.svg)
  *
- * .pragma library — no Qt globals, pure JS.
+ * .pragma library - no Qt globals, pure JS.
  */
 .pragma library
 
@@ -136,11 +136,11 @@ var _wiGlyphs = {
  *
  * Returns: { type: "kde"|"svg", source: string, kdeFallback: string, isMask: bool }
  *
- * @param {string} itemId     — Logical icon ID (e.g. "humidity", "wind", "sunrise")
- * @param {int}    iconSize   — Desired icon size in px (16, 22, 24, or 32)
- * @param {string} iconsBaseDir — Resolved URL to the icons/ folder
+ * @param {string} itemId     - Logical icon ID (e.g. "humidity", "wind", "sunrise")
+ * @param {int}    iconSize   - Desired icon size in px (16, 22, 24, or 32)
+ * @param {string} iconsBaseDir - Resolved URL to the icons/ folder
  *                                 (e.g. Qt.resolvedUrl("../icons/") from the calling QML)
- * @param {string} svgTheme   — "kde" for KDE-first strategy, or SVG theme subfolder:
+ * @param {string} svgTheme   - "kde" for KDE-first strategy, or SVG theme subfolder:
  *                               "symbolic", "flat-color", "3d-oxygen", etc.
  *                               When "kde": KDE system icon primary, symbolic SVG fallback.
  *                               Otherwise: bundled SVG primary, KDE emergency fallback.
@@ -178,11 +178,11 @@ function resolve(itemId, iconSize, iconsBaseDir, svgTheme) {
  * Resolves a weather condition icon.
  * Priority: KDE system icon → bundled SVG.
  *
- * @param {int}    weatherCode — WMO weather code
- * @param {bool}   isNight     — true if nighttime
- * @param {int}    iconSize    — desired icon size
- * @param {string} iconsBaseDir — resolved URL to icons/ folder
- * @param {string} svgTheme    — SVG theme subfolder
+ * @param {int}    weatherCode - WMO weather code
+ * @param {bool}   isNight     - true if nighttime
+ * @param {int}    iconSize    - desired icon size
+ * @param {string} iconsBaseDir - resolved URL to icons/ folder
+ * @param {string} svgTheme    - SVG theme subfolder
  */
 function resolveCondition(weatherCode, isNight, iconSize, iconsBaseDir, svgTheme) {
     var isKde = (svgTheme === "kde" || svgTheme === "kde-symbolic");
@@ -216,7 +216,7 @@ function resolveCondition(weatherCode, isNight, iconSize, iconsBaseDir, svgTheme
 /**
  * Resolves a moon phase icon.
  *
- * @param {string} moonPhaseSvgStem — e.g. "moon-alt-full" from moonphase.js
+ * @param {string} moonPhaseSvgStem - e.g. "moon-alt-full" from moonphase.js
  * @param {int}    iconSize
  * @param {string} iconsBaseDir
  * @param {string} svgTheme
@@ -291,11 +291,25 @@ function svgUrl(stem, iconSize, iconsBaseDir, svgTheme) {
 // Internal helpers
 // ══════════════════════════════════════════════════════════════════════════════
 
+// True when `code` isn't a usable WMO weather code - missing (null/undefined),
+// still loading (NaN), or the widget's own "genuinely unavailable" sentinel
+// (-1, used by openMeteo.js's current-conditions fetch once a code survives
+// both the primary and best-match backfill still unset). WMO codes are never
+// negative, so `code < 0` alone is a safe catch-all once null/NaN are also
+// covered - plain `code < 0` is false for both of those (JS coerces null to
+// 0 for `<`, and any comparison with NaN is false), which is exactly how a
+// missing code used to slip through as "partly cloudy" (SVG theme) or even
+// "thunderstorm" (NaN, SVG theme) instead of an honest "no data" icon.
+function _isUnknownCode(code) {
+    return code === null || code === undefined ||
+        (typeof code === "number" && isNaN(code)) || code < 0;
+}
+
 function _conditionKdeIcon(code, night) {
     var n = night ? true : false;
     var d = n ? "night" : "day";
 
-    if (code < 0)   return "weather-none-available";
+    if (_isUnknownCode(code)) return "weather-none-available";
     if (code === 0)  return n ? "weather-clear-night" : "weather-clear";
     if (code === 1)  return n ? "weather-few-clouds-night" : "weather-few-clouds";
     if (code === 2)  return "weather-clouds-" + d;
@@ -323,6 +337,12 @@ function _conditionKdeIcon(code, night) {
 }
 
 function _conditionSvgStem(code, night) {
+    // Deliberately returns "" rather than guessing a cloud/rain stem - an
+    // empty stem makes resolveCondition()'s existing SVG-primary/KDE-fallback
+    // chain fall through to _conditionKdeIcon()'s "weather-none-available"
+    // instead of rendering a wrong (and for NaN, alarmingly wrong -
+    // thunderstorm) icon for data that simply isn't there.
+    if (_isUnknownCode(code)) return "";
     if (code === 0)  return night ? "night-clear" : "day-sunny";
     if (code <= 2)   return night ? "night-alt-partly-cloudy" : "day-cloudy";
     if (code === 3)  return "cloudy";

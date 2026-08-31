@@ -42,6 +42,13 @@ KCM.AbstractKCM {
     readonly property string wiFontFamily: wiFont.status === FontLoader.Ready ? wiFont.font.family : ""
     readonly property bool isSystemTrayConfig: _detectSystemTrayConfig()
 
+    // Planar (0) is Plasma's form factor for a desktop-placed/floating widget,
+    // as opposed to Horizontal/Vertical (2/3) for a panel. Same convention
+    // FullView.qml already uses (_keepHiddenTabs, pin-button visible).
+    // Used below to make the Panel tab's content read-only on desktop, since
+    // it's all compact-representation display config the desktop never uses.
+    readonly property bool isDesktopConfig: Plasmoid.formFactor === 0
+
     // Expose the condition icon dialog so external tabs (ConfigWidgetTab) can open it
     property alias conditionIconDialog: conditionIconDialog
 
@@ -180,7 +187,7 @@ KCM.AbstractKCM {
         }
     }
 
-    // ── Per-condition icon picker — single shared KIconThemes dialog ──────────
+    // ── Per-condition icon picker - single shared KIconThemes dialog ──────────
     // Feeds into conditionIconDialog._tempMap; only committed on OK.
     property string _editingConditionKey: ""
 
@@ -192,16 +199,16 @@ KCM.AbstractKCM {
         }
     }
 
-    // ── Condition icon dialog — redesigned ─────────────────────────────────────
+    // ── Condition icon dialog - redesigned ─────────────────────────────────────
     // KDE vs Custom switch + per-condition rows + OK / Cancel (temp-state pattern).
     Dialog {
         id: conditionIconDialog
         property string context: "panel"   // "panel" | "tooltip"
         property bool useCustom: false
         property var _tempMap: ({})
-        property string _tempMapStr: ""    // reactive trigger — updated alongside _tempMap
+        property string _tempMapStr: ""    // reactive trigger - updated alongside _tempMap
 
-        // Weather-condition slots — one per distinct KDE icon from _conditionKdeIcon
+        // Weather-condition slots - one per distinct KDE icon from _conditionKdeIcon
         readonly property var conditionSlots: [
             // ── Clear ──
             {
@@ -581,7 +588,7 @@ KCM.AbstractKCM {
         }
     }
 
-    // The configure dialog itself — shared between Panel, Tooltip and Details tabs.
+    // The configure dialog itself - shared between Panel, Tooltip and Details tabs.
     // Set context = "panel", "tooltip" or "details" before opening.
     Dialog {
         id: iconConfigDialog
@@ -616,7 +623,7 @@ KCM.AbstractKCM {
             return root.cfg_panelCustomIcons;
         }
 
-        title: i18n("Configure icon — %1", itemLabel)
+        title: i18n("Configure icon - %1", itemLabel)
         modal: true
         parent: Overlay.overlay
         anchors.centerIn: parent
@@ -1119,7 +1126,7 @@ KCM.AbstractKCM {
     property string cfg_conditionIconTheme: "kde"      // controls main hero condition icon in widget popup
     property string cfg_widgetConditionCustomIcons: ""   // custom per-condition icons for the widget popup
     property bool cfg_iconGlowEnabled: false           // static glow behind weather icons
-    property double cfg_iconGlowIntensity: 0.85        // glow strength 0.1–1.0
+    property double cfg_iconGlowIntensity: 0.85        // glow strength 0.1-1.0
     property string cfg_widgetLayoutMode: "advanced"  // "advanced" | "simple"
     property string cfg_widgetSimpleDetailsOrder: "humidity;pressure;preciprate;precipsum"
     property string cfg_widgetSimpleDetailsItemIcons: "humidity=1;pressure=1;preciprate=1;precipsum=1"
@@ -1200,6 +1207,18 @@ KCM.AbstractKCM {
     property string cfg_windSpeedUnit: "kmh"
     property string cfg_precipitationUnit: "mm"
     property bool cfg_showTempUnit: false
+
+    // ── Air quality standard override ──────────────────────────────────────
+    // "auto" resolves US AQI / European CAQI / Canadian AQHI from the
+    // location's country code; otherwise an explicit "us" | "eu" | "ca".
+    property string cfg_aqiStandard: "auto"
+    // Show more than one standard side by side instead of the single
+    // resolved/overridden one above - any combination of the three. When
+    // any of these is true, cfg_aqiStandard's UI control is read-only
+    // (ConfigMiscTab.qml), since these switches take over what's shown.
+    property bool cfg_aqiShowUs: false
+    property bool cfg_aqiShowEu: false
+    property bool cfg_aqiShowCa: false
 
     // ── Font config aliases ───────────────────────────────────────────────
     property bool cfg_useSystemFont: true
@@ -1450,7 +1469,7 @@ KCM.AbstractKCM {
         }
     ]
 
-    // Widget details item definitions — with wi-font icons matching Panel items
+    // Widget details item definitions - with wi-font icons matching Panel items
     readonly property var allDetailsDefs: [
         {
             itemId: "feelslike",
@@ -1573,7 +1592,7 @@ KCM.AbstractKCM {
         }
     ]
 
-    // Tooltip item definitions — with wi-font icons matching Panel items
+    // Tooltip item definitions - with wi-font icons matching Panel items
     readonly property var allTooltipDefs: [
         {
             itemId: "temperature",
@@ -1730,7 +1749,7 @@ KCM.AbstractKCM {
         }).join(";");
     }
     /**
-     * _initItemModel — shared helper for panel / details / tooltip item lists.
+     * _initItemModel - shared helper for panel / details / tooltip item lists.
      * model     : ListModel to populate
      * defs      : allPanelItemDefs / allDetailsDefs / allTooltipDefs
      * orderStr  : semicolon-separated enabled order string
@@ -1813,7 +1832,7 @@ KCM.AbstractKCM {
     }
 
     // ─────────────────────────────────────────────────────────────────────
-    // Simple mode items helpers  (chip-only subset — no wind/moonphase/condition)
+    // Simple mode items helpers  (chip-only subset - no wind/moonphase/condition)
     // ─────────────────────────────────────────────────────────────────────
     readonly property var allSimpleDefs: allDetailsDefs.filter(function(d) {
         return ["wind", "moonphase", "condition", "suntimes"].indexOf(d.itemId) < 0;
@@ -1976,10 +1995,10 @@ KCM.AbstractKCM {
     // Each ComboBox initialises itself via its own Component.onCompleted.
     // The root's onCompleted fires before the deferred mainPage Component is
     // instantiated by StackView, so any ID references (panelModeCombo etc.)
-    // are undefined at that point — self-init inside each ComboBox is the fix.
+    // are undefined at that point - self-init inside each ComboBox is the fix.
 
     // ══════════════════════════════════════════════════════════════════════
-    // TAB BAR — 4 tabs: Panel, Widget, Tooltip, Units
+    // TAB BAR - 4 tabs: Panel, Widget, Tooltip, Units
     // ══════════════════════════════════════════════════════════════════════
     header: PlasmaComponents.TabBar {
         id: tabBar
@@ -2010,7 +2029,7 @@ KCM.AbstractKCM {
     }
 
     // ════════════════════════════════════════════════════════════════════════
-    // MAIN PAGE — StackLayout switches tabs
+    // MAIN PAGE - StackLayout switches tabs
     // ════════════════════════════════════════════════════════════════════════
     Component {
         id: mainPage
@@ -2020,14 +2039,37 @@ KCM.AbstractKCM {
                 currentIndex: tabBar.currentIndex
                 Layout.fillWidth: true
 
-                // TAB 0 — PANEL
-                ConfigPanelTab {
-                    configRoot: root
-                    onPushSubPage: stack.push(panelSubPage)
+                // TAB 0 - PANEL
+                ColumnLayout {
+                    // The InlineMessage is a SIBLING of ConfigPanelTab, not a
+                    // descendant - enabled: false cascades to all descendants
+                    // of an item, and there's no way for a child to opt back
+                    // out of that cascade, so the notice has to live outside
+                    // the disabled subtree to stay fully legible itself.
+                    spacing: Kirigami.Units.smallSpacing
+                    Kirigami.InlineMessage {
+                        Layout.fillWidth: true
+                        visible: root.isDesktopConfig
+                        type: Kirigami.MessageType.Information
+                        text: i18n("These settings only apply when the widget is placed in a panel or the system tray - they have no effect on the desktop.")
+                        showCloseButton: false
+                    }
+                    ConfigPanelTab {
+                        Layout.fillWidth: true
+                        configRoot: root
+                        onPushSubPage: stack.push(panelSubPage)
+                        // Read-only on desktop placement: everything here is
+                        // compact-representation display config, which the
+                        // desktop never uses (main.qml's preferredRepresentation
+                        // only switches to compactRepresentation for
+                        // Horizontal/Vertical form factors). enabled: false
+                        // cascades to every control inside the FormLayout.
+                        enabled: !root.isDesktopConfig
+                    }
                 }
 
                 // ════════════════════════════════════════════════════════
-                // TAB 1 — WIDGET
+                // TAB 1 - WIDGET
                 // ════════════════════════════════════════════════════════
                 ConfigWidgetTab {
                     configRoot: root
@@ -2036,14 +2078,30 @@ KCM.AbstractKCM {
                 }
 
                 // ════════════════════════════════════════════════════════
-                // TAB 2 — TOOLTIP
+                // TAB 2 - TOOLTIP
                 // ════════════════════════════════════════════════════════
-                ConfigTooltipTab {
-                    configRoot: root
-                    onPushSubPage: stack.push(tooltipSubPage)
+                ColumnLayout {
+                    // Same reasoning as the Panel tab above: CompactView.qml
+                    // (PlasmaCore.ToolTipArea, hosting TooltipContent) is only
+                    // ever used as compactRepresentation, never shown on the
+                    // desktop, so tooltip settings are equally irrelevant there.
+                    spacing: Kirigami.Units.smallSpacing
+                    Kirigami.InlineMessage {
+                        Layout.fillWidth: true
+                        visible: root.isDesktopConfig
+                        type: Kirigami.MessageType.Information
+                        text: i18n("These settings only apply when the widget is placed in a panel or the system tray - they have no effect on the desktop.")
+                        showCloseButton: false
+                    }
+                    ConfigTooltipTab {
+                        Layout.fillWidth: true
+                        configRoot: root
+                        onPushSubPage: stack.push(tooltipSubPage)
+                        enabled: !root.isDesktopConfig
+                    }
                 }
 
-                // TAB 3 — MISC (renamed from Units; includes Round Values)
+                // TAB 3 - MISC (renamed from Units; includes Round Values)
                 // ════════════════════════════════════════════════════════
                 ConfigMiscTab {
                     configRoot: root
@@ -2055,7 +2113,7 @@ KCM.AbstractKCM {
     // ════════════════════════════════════════════════════════════════════════
     // SUB-PAGE: Panel Items
     // ════════════════════════════════════════════════════════════════════════
-    // Panel items sub-page — extracted to ConfigPanelSubPage.qml
+    // Panel items sub-page - extracted to ConfigPanelSubPage.qml
     Component {
         id: panelSubPage
         ConfigPanelSubPage {
@@ -2064,9 +2122,9 @@ KCM.AbstractKCM {
     }
 
     // ════════════════════════════════════════════════════════════════════════
-    // SUB-PAGE: Widget Details Items — full parity with Panel Items sub-page
+    // SUB-PAGE: Widget Details Items - full parity with Panel Items sub-page
     // ════════════════════════════════════════════════════════════════════════
-    // Details items sub-page — extracted to ConfigDetailsSubPage.qml
+    // Details items sub-page - extracted to ConfigDetailsSubPage.qml
     Component {
         id: detailsSubPage
         ConfigDetailsSubPage {
@@ -2088,9 +2146,9 @@ KCM.AbstractKCM {
     }
 
     // ════════════════════════════════════════════════════════════════════════
-    // SUB-PAGE: Tooltip Items — full parity with Panel Items sub-page
+    // SUB-PAGE: Tooltip Items - full parity with Panel Items sub-page
     // ════════════════════════════════════════════════════════════════════════
-    // Tooltip items sub-page — extracted to ConfigTooltipSubPage.qml
+    // Tooltip items sub-page - extracted to ConfigTooltipSubPage.qml
     Component {
         id: tooltipSubPage
         ConfigTooltipSubPage {

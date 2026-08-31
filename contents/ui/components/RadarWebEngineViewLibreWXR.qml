@@ -137,7 +137,7 @@ Item {
     // When the plasmoid popup is closed and reopened, the Chromium surface
     // behind WebEngineView is not always recomposited, leaving a blank map
     // until the user resizes the widget. Nudging the view's size by 1 px
-    // (and back) forces Chromium to produce a fresh frame — the same thing
+    // (and back) forces Chromium to produce a fresh frame - the same thing
     // a manual resize does.
     property int _repaintNudge: 0
 
@@ -226,7 +226,7 @@ Item {
     function _loadPage(reason) {
         var url = _pageUrl();
         console.log("[Advanced Weather Widget Radar/LibreWXR] loading page (" + reason + "); lat=", radarRoot.lat, "lon=", radarRoot.lon, "layer=", radarRoot.activeLayer, "theme=", radarRoot.mapTheme);
-        // Assigning an unchanged url is not guaranteed to navigate — force a
+        // Assigning an unchanged url is not guaranteed to navigate - force a
         // real reload in that case (e.g. the header Refresh button).
         if (webView.url.toString() === url)
             webView.reload();
@@ -236,7 +236,7 @@ Item {
 
     // Coalesce page loads: at creation lat and lon arrive one after the
     // other (0 → lat → lat+lon), which used to trigger three page loads in a
-    // row — each one a fresh window for compositing glitches.
+    // row - each one a fresh window for compositing glitches.
     Timer {
         id: pageLoadTimer
         interval: 150

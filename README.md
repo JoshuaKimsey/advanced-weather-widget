@@ -166,10 +166,12 @@ For providers that require an API key, you can enter it in the widget's settings
 Thank you to everyone who has contributed code to this project ❤️
 
 - **[Mizu Ikki](https://github.com/mizuikki)** - QWeather provider fixes and perfomance improvements (refresh handling, forecast display, precipitation fallback)
-- **[rcspam](https://github.com/rcspam)** - [PR-151](https://github.com/pnedyalkov91/advanced-weather-widget/pull/151), [PR-146](https://github.com/pnedyalkov91/advanced-weather-widget/pull/146), [PR-157](https://github.com/pnedyalkov91/advanced-weather-widget/pull/157), [PR-179](https://github.com/pnedyalkov91/advanced-weather-widget/pull/179), [PR-180](https://github.com/pnedyalkov91/advanced-weather-widget/pull/180)
+- **[rcspam](https://github.com/rcspam)** - [PR-151](https://github.com/pnedyalkov91/advanced-weather-widget/pull/151), [PR-146](https://github.com/pnedyalkov91/advanced-weather-widget/pull/146), [PR-157](https://github.com/pnedyalkov91/advanced-weather-widget/pull/157), [PR-179](https://github.com/pnedyalkov91/advanced-weather-widget/pull/179), [PR-180](https://github.com/pnedyalkov91/advanced-weather-widget/pull/180), [PR-198](https://github.com/pnedyalkov91/advanced-weather-widget/pull/198), 
 - **[ydimitrof](https://github.com/ydimitrof)** - [PR-168](https://github.com/pnedyalkov91/advanced-weather-widget/pull/168)
 - **[Katze-942](https://github.com/Katze-942)** - [PR-185](https://github.com/pnedyalkov91/advanced-weather-widget/pull/185)
 - **[KassLavender](https://github.com/KassLavender)** - [PR-174](https://github.com/pnedyalkov91/advanced-weather-widget/pull/174), 
+- **[JoshuaKimsey](https://github.com/JoshuaKimsey)** - [PR-192](https://github.com/pnedyalkov91/advanced-weather-widget/pull/192)
+
 ## 🌐 Translation
 
 Translations are welcome! If you would like to help translate the widget into your language, please follow the instructions below.
@@ -261,7 +263,7 @@ If you encounter any issues or have suggestions, please open a [GitHub Issue](ht
 - The **Radar** tab uses **Leaflet.js** for interactive map rendering:  
   https://leafletjs.com/
 
-  Copyright © 2010–2024 Vladimir Agafonkin.  
+  Copyright © 2010-2024 Vladimir Agafonkin.  
   Licensed under the **BSD 2-Clause License**.
 
 - Map tiles are provided by **OpenStreetMap**:  

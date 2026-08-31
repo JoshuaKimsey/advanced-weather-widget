@@ -16,9 +16,9 @@
  */
 
 /**
- * stormGlass.js — StormGlass current + hourly fetcher
+ * stormGlass.js - StormGlass current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * StormGlass provides hourly marine and weather data. No native weather code
  * is returned, so we derive a WMO code from cloud cover, precipitation, and
  * temperature.
@@ -196,13 +196,13 @@ function fetchCurrent(service, W, chain, idx) {
         }
         _cur.dailyData = nd;
         r.weatherDataStaged = _cur;
-        // No native air quality or pollen — both are supplied by the shared
+        // No native air quality or pollen - both are supplied by the shared
         // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
         // them here would race that fetch and discard its result.
         r.loading = false;
         r.updateText = service._formatUpdateText("stormGlass");
 
-        // No native alerts — fall back to MeteoAlarm / NWS
+        // No native alerts - fall back to MeteoAlarm / NWS
         service._fetchAlertsIfNeeded();
 
         // Fetch sun times from Open-Meteo

@@ -16,13 +16,13 @@
  */
 
 /**
- * pollen.js — Universal Pollen Index (UPI) helpers
+ * pollen.js - Universal Pollen Index (UPI) helpers
  *
- * Scale 0–12:
- *   0–2.4   Low       Minimal to no risk
- *   2.5–4.8 Moderate  Mild symptoms in highly sensitive individuals
- *   4.9–7.2 High      Most allergy sufferers will experience discomfort
- *   7.3–12  Very High Serious risk; avoid outdoor activities
+ * Scale 0-12:
+ *   0-2.4   Low       Minimal to no risk
+ *   2.5-4.8 Moderate  Mild symptoms in highly sensitive individuals
+ *   4.9-7.2 High      Most allergy sufferers will experience discomfort
+ *   7.3-12  Very High Serious risk; avoid outdoor activities
  *
  * Supported pollen types (Open-Meteo air-quality API):
  *   alder, birch, grass, mugwort, olive, ragweed
@@ -48,7 +48,7 @@ var BANDS = [
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 /**
- * Returns the band object for a UPI value (0–12).
+ * Returns the band object for a UPI value (0-12).
  */
 function bandForValue(v) {
     if (isNaN(v) || v === null || v === undefined) return BANDS[0];
@@ -73,7 +73,7 @@ function labelForValue(v) {
 }
 
 /**
- * Returns a fill percentage (0–100) for a 0–12 scale bar.
+ * Returns a fill percentage (0-100) for a 0-12 scale bar.
  */
 function scalePercent(v) {
     return Math.min(100, Math.max(0, (v / 12) * 100));

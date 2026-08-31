@@ -16,7 +16,7 @@
  */
 
 /**
- * DetailsView.qml — Dynamic "Details" tab content for the popup
+ * DetailsView.qml - Dynamic "Details" tab content for the popup
  */
 import QtQuick
 import QtQuick.Layouts
@@ -43,7 +43,7 @@ import "components"
 Item {
     id: root
 
-    // Cached theme colors — a single PlasmaTheme attachment on the view root
+    // Cached theme colors - a single PlasmaTheme attachment on the view root
     // instead of one per item: every Kirigami.Theme attachment re-syncs
     // (connect+disconnect on the window object) on each window expose, which
     // froze popup opening while hundreds of delegate items were alive.
@@ -73,15 +73,15 @@ Item {
     // iconSize but capped so they fit inside the 44 px bottom row.
     readonly property int glyphIconSize: Math.max(12, Math.round(iconSize * 0.55))
 
-    // ── Theme helper — true when KDE is using a dark colour scheme ────────
+    // ── Theme helper - true when KDE is using a dark colour scheme ────────
     readonly property bool isDark: root.themeTextColor.r > 0.5
 
-    // ── Colour palette — adapts to dark / light theme ─────────────────────
+    // ── Colour palette - adapts to dark / light theme ─────────────────────
     readonly property color cardBg: Qt.rgba(root.themeTextColor.r, root.themeTextColor.g, root.themeTextColor.b, 0.07)
     readonly property color cardBorder: Qt.rgba(root.themeTextColor.r, root.themeTextColor.g, root.themeTextColor.b, 0.13)
     readonly property color valueColor: root.themeTextColor
 
-    // Accent colours — shift toward darker hues on light themes for contrast
+    // Accent colours - shift toward darker hues on light themes for contrast
     readonly property color accentBlue: isDark ? "#5ea8ff" : "#1a6fcc"
     readonly property color accentWarm: isDark ? "#ffb347" : "#b86000"
     readonly property color accentTeal: isDark ? "#4ecdc4" : "#007070"
@@ -255,7 +255,7 @@ Item {
 
     // ── Icon resolution via IconResolver ──────────────────────────────────
     /** Returns a saved custom icon name for the given item, or "".
-     *  Delegates to ConfigUtils.parseConfigMap() — single source of truth. */
+     *  Delegates to ConfigUtils.parseConfigMap() - single source of truth. */
     function getDetailsCustomIcon(itemId) {
         var m = ConfigUtils.parseConfigMap(Plasmoid.configuration.widgetDetailsCustomIcons || "");
         return (itemId in m) ? m[itemId] : "";
@@ -382,13 +382,13 @@ Item {
     // List of detail IDs in configured order
     readonly property var detailIds: (Plasmoid.configuration.widgetDetailsOrder || "feelslike;humidity;pressure;wind;suntimes;dewpoint;visibility;moonphase").split(";").map(s => s.trim()).filter(s => s.length > 0)
 
-    // Cached row layout — only rebuilds when detailIds or isList changes,
+    // Cached row layout - only rebuilds when detailIds or isList changes,
     // not on every weatherRoot property update.
     readonly property var _cachedRows: buildRows()
 
     // Per-detail cached values computed at root level.
     // Each card delegate uses _detailValue(id) which reads one of these root properties,
-    // so each card only subscribes to its own relevant property — not the full switch.
+    // so each card only subscribes to its own relevant property - not the full switch.
     readonly property string _dvFeelslike: weatherRoot ? weatherRoot.tempValue(weatherRoot.apparentC) : "--"
     readonly property string _dvHumidity: weatherRoot && !isNaN(weatherRoot.humidityPercent) ? Math.round(weatherRoot.humidityPercent) + "%" : "--"
     readonly property string _dvPressure: weatherRoot ? weatherRoot.pressureValue(weatherRoot.pressureHpa) : "--"
@@ -454,11 +454,9 @@ Item {
         }
     }
 
-    // AQI computed once at root level — not per-delegate — to avoid
-    // re-running AQI.infoForIndex() and building pollutants array N times.
-    readonly property real aqiRootValue: weatherRoot ? (weatherRoot.aqiData, weatherRoot.airQualityIndex()) : NaN
-    readonly property var aqiRootBand: !isNaN(aqiRootValue) ? AQI.infoForIndex(aqiRootValue) : null
-    readonly property real aqiRootAqhi: !isNaN(aqiRootValue) ? AQI.aqhiFromAqi(aqiRootValue) : NaN
+    // AQI computed once at root level - not per-delegate - to avoid
+    // re-running AQI lookups and building pollutants array N times.
+    readonly property var aqiRootDisplays: weatherRoot ? (weatherRoot.aqiData, weatherRoot.airQualityDisplays()) : []
     readonly property var aqiRootPollutants: {
         if (!weatherRoot)
             return [];
@@ -497,7 +495,7 @@ Item {
         ];
     }
 
-    // Pollen computed once at root level — not per-delegate — to avoid
+    // Pollen computed once at root level - not per-delegate - to avoid
     // re-running filter() N times (once per card) on every pollenData write.
     readonly property var pollenEntries: {
         var pd = weatherRoot ? weatherRoot.pollenData : null;
@@ -516,7 +514,7 @@ Item {
         return best;
     }
 
-    // Per-item icon visibility map — delegates to ConfigUtils.parseBoolMap()
+    // Per-item icon visibility map - delegates to ConfigUtils.parseBoolMap()
     readonly property var iconShowMap: ConfigUtils.parseBoolMap(Plasmoid.configuration.widgetDetailsItemIcons || "")
     function showIconFor(itemId) {
         return (itemId in iconShowMap) ? iconShowMap[itemId] : true;
@@ -651,7 +649,7 @@ Item {
                                 }
                             }
                             radius: root.isList ? 0 : 10
-                            // List mode: no card background — just a flat row
+                            // List mode: no card background - just a flat row
                             color: root.isList ? "transparent" : root.cardBg
                             border.color: root.isList ? "transparent" : root.cardBorder
                             border.width: root.isList ? 0 : 1
@@ -708,7 +706,7 @@ Item {
                                 }
                             }
 
-                            // Wind special (icon + speed + arrow) — LIST MODE only.
+                            // Wind special (icon + speed + arrow) - LIST MODE only.
                             // Cards mode uses the expandable compass card below.
                             RowLayout {
                                 anchors {
@@ -764,7 +762,7 @@ Item {
                             } // RowLayout (standard)
 
                             // ── Wind compass (cards mode, expandable) ─────────────
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -774,7 +772,7 @@ Item {
                                         anchors.fill: parent
                                         clip: true
 
-                                        // Collapsed header — styled like a standard row
+                                        // Collapsed header - styled like a standard row
                                         RowLayout {
                                             id: windHeader
                                             visible: !card._isArcExpanded
@@ -859,14 +857,14 @@ Item {
                                             }
                                         }
 
-                                        // Wind speed + compass — centred as a group within the card.
+                                        // Wind speed + compass - centred as a group within the card.
                                         Column {
                                             id: windCenterColumn
                                             visible: card._isArcExpanded
                                             anchors.centerIn: parent
                                             spacing: 6
 
-                                            // Wind speed — font follows the widget's Plasma-scaled
+                                            // Wind speed - font follows the widget's Plasma-scaled
                                             // font size (wf()); colour follows the theme like every
                                             // other value label (root.valueColor), so it stays
                                             // readable in light themes too.
@@ -878,7 +876,7 @@ Item {
                                                 font: root.weatherRoot ? root.weatherRoot.wf(15, true) : Qt.font({ bold: true })
                                             }
 
-                                            // Compass canvas — scales with the expanded card's size.
+                                            // Compass canvas - scales with the expanded card's size.
                                             Canvas {
                                                 id: windCanvas
                                                 anchors.horizontalCenter: parent.horizontalCenter
@@ -912,7 +910,7 @@ Item {
                             }
 
                             // ── Pressure gauge (cards mode, expandable) ───────────
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -1055,7 +1053,7 @@ Item {
                             }
 
                             // ── Air Quality display ──────────────────────────────────
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -1066,9 +1064,8 @@ Item {
                                         clip: true
 
                                         // Computed once at root level to avoid per-delegate re-evaluation
-                                        readonly property real aqiValue: root.aqiRootValue
-                                        readonly property var aqiBand: root.aqiRootBand
-                                        readonly property real aqhiValue: root.aqiRootAqhi
+                                        readonly property var aqiDisplays: root.aqiRootDisplays
+                                        readonly property var _visibleDisplays: aqiCard.aqiDisplays.filter(function (d) { return !isNaN(d.value); })
                                         readonly property var pollutants: root.aqiRootPollutants
 
                                         // ── Collapsed header row ──────────────────────────────
@@ -1099,22 +1096,43 @@ Item {
                                                 Layout.fillWidth: true
                                             }
 
-                                            // Colored band square
-                                            Rectangle {
-                                                visible: aqiCard.aqiBand !== null
-                                                width: 10
-                                                height: 10
-                                                radius: 2
-                                                color: aqiCard.aqiBand ? root.bandTextColor(aqiCard.aqiBand) : "transparent"
+                                            // One colored badge per active standard (1-3, from the
+                                            // Misc tab's "show standards" switches; exactly 1 when
+                                            // none of them are on).
+                                            Row {
                                                 Layout.alignment: Qt.AlignVCenter
-                                            }
-                                            Label {
-                                                text: isNaN(aqiCard.aqiValue) ? "--" : i18n("AQI") + ": " + Math.round(aqiCard.aqiValue) + " | " + i18n("AQHI") + ": " + Math.round(aqiCard.aqhiValue)
-                                                color: aqiCard.aqiBand ? root.bandTextColor(aqiCard.aqiBand) : root.valueColor
-                                                font: weatherRoot ? weatherRoot.wf(11, true) : Qt.font({
-                                                    bold: true
-                                                })
-                                                Layout.alignment: Qt.AlignVCenter
+                                                spacing: 10
+
+                                                Label {
+                                                    visible: aqiCard._visibleDisplays.length === 0
+                                                    text: "--"
+                                                    color: root.valueColor
+                                                    font: weatherRoot ? weatherRoot.wf(11, true) : Qt.font({
+                                                        bold: true
+                                                    })
+                                                }
+
+                                                Repeater {
+                                                    model: aqiCard._visibleDisplays
+                                                    delegate: Row {
+                                                        spacing: 4
+                                                        Rectangle {
+                                                            width: 10
+                                                            height: 10
+                                                            radius: 2
+                                                            anchors.verticalCenter: parent.verticalCenter
+                                                            color: modelData.band ? root.bandTextColor(modelData.band) : "transparent"
+                                                        }
+                                                        Label {
+                                                            text: i18n(modelData.standardLabel) + ": " + Math.round(modelData.value)
+                                                            color: modelData.band ? root.bandTextColor(modelData.band) : root.valueColor
+                                                            font: weatherRoot ? weatherRoot.wf(11, true) : Qt.font({
+                                                                bold: true
+                                                            })
+                                                            anchors.verticalCenter: parent.verticalCenter
+                                                        }
+                                                    }
+                                                }
                                             }
 
                                             // Expand chevron
@@ -1209,7 +1227,7 @@ Item {
                                                             visible: root._aqiItemVisible(modelData.key)
 
                                                             readonly property var band: !isNaN(modelData.si) ? AQI.bandForSubIndex(modelData.si) : null
-                                                            readonly property real pct: !isNaN(modelData.si) ? AQI.scalePercent(modelData.si, 150) : 0
+                                                            readonly property real pct: !isNaN(modelData.si) ? AQI.scalePercent(modelData.si, 100) : 0
 
                                                             ColumnLayout {
                                                                 anchors.fill: parent
@@ -1293,7 +1311,7 @@ Item {
                                                                     Layout.fillWidth: true
                                                                     implicitHeight: 22
 
-                                                                    // Track background — smooth gradient across all bands
+                                                                    // Track background - smooth gradient across all bands
                                                                     Rectangle {
                                                                         anchors.left: parent.left
                                                                         anchors.right: parent.right
@@ -1411,7 +1429,7 @@ Item {
                             }
 
                             // ── Pollen display ──────────────────────────────────────
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -1687,7 +1705,7 @@ Item {
                             }
 
                             // ── Space Weather display ────────────────────────────────
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -1759,7 +1777,7 @@ Item {
                                             }
                                         }
 
-                                        // ── Expanded view — lazy-loaded to avoid binding errors
+                                        // ── Expanded view - lazy-loaded to avoid binding errors
                                         // before Kirigami is fully initialised.
                                         Loader {
                                             active: card._isArcExpanded
@@ -2111,7 +2129,7 @@ Item {
                             }
 
                             // ── Alerts display ──────────────────────────────────────
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -2262,7 +2280,7 @@ Item {
                                                 return "<a href='https://librewxr.net/'>LibreWXR</a>";
                                             if (src === "FOSS Public Alert Server")
                                                 return "<a href='https://alerts.kde.org/'>FOSS Public Alert Server</a>";
-                                            // Unknown source — show as plain text
+                                            // Unknown source - show as plain text
                                             if (src.length > 0)
                                                 return src;
                                             return "<a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a>";
@@ -2836,9 +2854,9 @@ Item {
                             }
 
                             // ═══════════════════════════════════════════════════════════════
-                            // Date / Time — live clock + calendar card
+                            // Date / Time - live clock + calendar card
                             // ═══════════════════════════════════════════════════════════════
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -2930,7 +2948,7 @@ Item {
                                             }
                                             spacing: 2
 
-                                            // Collapse chevron — top-right only
+                                            // Collapse chevron - top-right only
                                             Item {
                                                 Layout.fillWidth: true
                                                 height: 14
@@ -2964,7 +2982,7 @@ Item {
                                                 onWatchExpandedChanged: if (!root._dtExpanded)
                                                     _offset = 0
 
-                                                // "Today" — always real today (for highlight)
+                                                // "Today" - always real today (for highlight)
                                                 readonly property int _todayDay: {
                                                     var _ = datetimeCard._tick;
                                                     return new Date().getDate();
@@ -2978,7 +2996,7 @@ Item {
                                                     return new Date().getFullYear();
                                                 }
 
-                                                // "Viewed" month — today + offset
+                                                // "Viewed" month - today + offset
                                                 readonly property date _viewDate: new Date(_todayYear, _todayMonth + _offset, 1)
                                                 readonly property int _viewMonth: _viewDate.getMonth()
                                                 readonly property int _viewYear: _viewDate.getFullYear()
@@ -3076,7 +3094,7 @@ Item {
                                                         }
                                                     }
 
-                                                    // Calendar day cells — 6 rows × 7 cols = 42 slots
+                                                    // Calendar day cells - 6 rows × 7 cols = 42 slots
                                                     Grid {
                                                         id: calGrid
                                                         Layout.fillWidth: true
@@ -3164,27 +3182,27 @@ Item {
                             }
 
                             // ═══════════════════════════════════════════════════════════════
-                            // Suntimes — animated sun/moon arc card
+                            // Suntimes - animated sun/moon arc card
                             //
                             // DAY:   sun travels left→noon→right   (warm gold palette)
                             // NIGHT: moon travels right→midnight→left  (cool blue palette)
                             //        stars appear; bottom row flips: sunset left, sunrise right
                             //
                             // ═════════════════════════════════════════════════════════════════
-                            // Suntimes — animated sun/moon arc card
+                            // Suntimes - animated sun/moon arc card
                             //
                             // DAY:   sun travels left→noon→right   (warm gold palette)
                             // NIGHT: moon travels right→midnight→left (cool pink/violet palette)
                             //        stars appear in sky; bottom row flips labels
                             //
-                            // _isNight is driven by an explicit _updateProg() function — NOT
-                            // a QML binding — because QML bindings only re-evaluate when their
+                            // _isNight is driven by an explicit _updateProg() function - NOT
+                            // a QML binding - because QML bindings only re-evaluate when their
                             // declared QML dependencies change.  new Date() inside a JS call is
                             // NOT a QML dependency, so a binding would freeze at the value it
                             // had when sunrise/sunset strings last changed, making night mode
                             // never trigger after the widget first loads with daytime data.
                             // ═════════════════════════════════════════════════════════════════
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -3209,7 +3227,7 @@ Item {
                                             height: card._isArcExpanded ? 0 : root.regularCardHeight
                                             spacing: 8
 
-                                            // Leading icon — sunrise or sunset depending on day/night
+                                            // Leading icon - sunrise or sunset depending on day/night
                                             // Kirigami.Icon {
                                             //     source: {
                                             //         var stem = suntimesCard._isNight ? "sunset" : "sunrise";
@@ -3235,7 +3253,7 @@ Item {
                                                         return root.resolveIcon("suntimes-sunset");
                                                     if (m === "upcoming")
                                                         return root.resolveIcon(root.upcomingSunEvent() === "sunrise" ? "suntimes-sunrise" : "suntimes-sunset");
-                                                    // "both" — prefer custom sunrise icon if set
+                                                    // "both" - prefer custom sunrise icon if set
                                                     var custom = root.getDetailsCustomIcon("suntimes-sunrise");
                                                     if (custom.length > 0 && root.iconTheme === "kde")
                                                         return {
@@ -3250,7 +3268,7 @@ Item {
                                                 iconColor: root.iconColorFor(root.accentFor("suntimes"))
                                                 Layout.alignment: Qt.AlignVCenter
                                             }
-                                            // Dim label — matches standard row style
+                                            // Dim label - matches standard row style
                                             Label {
                                                 text: {
                                                     var m = root.sunTimesMode;
@@ -3271,7 +3289,7 @@ Item {
                                             Item {
                                                 Layout.fillWidth: true
                                             }
-                                            // Bold value — sunrise / sunset times
+                                            // Bold value - sunrise / sunset times
                                             Label {
                                                 text: {
                                                     if (!root.weatherRoot)
@@ -3347,8 +3365,8 @@ Item {
                                         // is_day field (0=night, 1=day).  This is correct for ANY
                                         // location regardless of the machine's local timezone.
                                         // All previous attempts computed this from sunrise/sunset vs
-                                        // new Date().getHours() — which is always machine-local time,
-                                        // not location-local time — and therefore always failed for
+                                        // new Date().getHours() - which is always machine-local time,
+                                        // not location-local time - and therefore always failed for
                                         // users checking a location in a different timezone.
                                         readonly property bool _isNight: root.weatherRoot ? root.weatherRoot.isNightTime() : false
 
@@ -3363,10 +3381,10 @@ Item {
                                         // The two centre Labels reference it so QML treats it as a
                                         // dependency and re-evaluates their text: bindings automatically.
                                         // Without this, SunPath helpers call new Date() internally which
-                                        // is NOT a QML property — bindings would freeze on first eval.
+                                        // is NOT a QML property - bindings would freeze on first eval.
                                         property int _now: 0
                                         function _refreshNow() {
-                                            _now = (new Date()).getTime(); // ms timestamp — just needs to change
+                                            _now = (new Date()).getTime(); // ms timestamp - just needs to change
                                         }
 
                                         function _updateProg() {
@@ -3391,7 +3409,7 @@ Item {
 
                                         Connections {
                                             target: root.weatherRoot
-                                            // weatherData changes once per provider response — covers
+                                            // weatherData changes once per provider response - covers
                                             // sunrise, sunset, and all other weather field updates.
                                             function onWeatherDataChanged() {
                                                 suntimesCard._updateProg();
@@ -3420,7 +3438,7 @@ Item {
                                             onPaint: {
                                                 var ctx2d = getContext("2d");
                                                 // _prog drives arc dot position (visual).
-                                                // _isNight drives sun vs moon — from API is_day flag.
+                                                // _isNight drives sun vs moon - from API is_day flag.
                                                 SunPath.drawSunArc(ctx2d, width, height, suntimesCard._prog, root.isDark, suntimesCard.glowPulse, root.weatherRoot ? root.weatherRoot.sunriseTimeText : "--", root.weatherRoot ? root.weatherRoot.sunsetTimeText : "--", suntimesCard._utcOffset, suntimesCard._isNight);
                                             }
                                         } // Canvas
@@ -3460,7 +3478,7 @@ Item {
                                                     width: parent.width
                                                     horizontalAlignment: Text.AlignHCenter
                                                     text: {
-                                                        void (suntimesCard._now); // reactive — re-evals every minute
+                                                        void (suntimesCard._now); // reactive - re-evals every minute
                                                         if (!root.weatherRoot)
                                                             return "--";
                                                         if (suntimesCard._isNight) {
@@ -3480,7 +3498,7 @@ Item {
                                                     width: parent.width
                                                     horizontalAlignment: Text.AlignHCenter
                                                     text: {
-                                                        void (suntimesCard._now); // reactive — re-evals every minute
+                                                        void (suntimesCard._now); // reactive - re-evals every minute
                                                         if (!root.weatherRoot)
                                                             return "--";
                                                         if (suntimesCard._isNight) {
@@ -3488,11 +3506,11 @@ Item {
                                                             var mp = SunPath.moonProgress(root.weatherRoot.sunriseTimeText, root.weatherRoot.sunsetTimeText, suntimesCard._utcOffset);
                                                             var phase = SunPath.nightPhaseLabel(mp, until);
                                                             if (phase === "approaching")
-                                                                return i18n("Dawn approaching — ") + SunPath.formatDuration(until);
+                                                                return i18n("Dawn approaching - ") + SunPath.formatDuration(until);
                                                             if (phase === "evening")
-                                                                return i18n("Evening — ") + SunPath.formatDuration(until) + i18n(" until dawn");
+                                                                return i18n("Evening - ") + SunPath.formatDuration(until) + i18n(" until dawn");
                                                             if (phase === "midnight")
-                                                                return i18n("Around midnight — ") + SunPath.formatDuration(until) + i18n(" until dawn");
+                                                                return i18n("Around midnight - ") + SunPath.formatDuration(until) + i18n(" until dawn");
                                                             return SunPath.formatDuration(until) + " " + i18n("until dawn");
                                                         }
                                                         var rem = SunPath.remainingMins(root.weatherRoot.sunriseTimeText, root.weatherRoot.sunsetTimeText, suntimesCard._utcOffset);
@@ -3542,7 +3560,7 @@ Item {
                             }
 
                             // ── LIST MODE: compact sunrise/sunset row ─────────────
-                            // Direct child of card Rectangle — never hidden by arc Item
+                            // Direct child of card Rectangle - never hidden by arc Item
                             RowLayout {
                                 anchors {
                                     fill: parent
@@ -3563,7 +3581,7 @@ Item {
                                             return root.resolveIcon("suntimes-sunset");
                                         if (m === "upcoming")
                                             return root.resolveIcon(root.upcomingSunEvent() === "sunrise" ? "suntimes-sunrise" : "suntimes-sunset");
-                                        // "both" — prefer custom sunrise icon if set
+                                        // "both" - prefer custom sunrise icon if set
                                         var custom = root.getDetailsCustomIcon("suntimes-sunrise");
                                         if (custom.length > 0 && root.iconTheme === "kde")
                                             return {
@@ -3597,7 +3615,7 @@ Item {
                                 Item {
                                     Layout.fillWidth: true
                                 }
-                                // Sunrise / Sunset — mode-aware right side
+                                // Sunrise / Sunset - mode-aware right side
                                 RowLayout {
                                     spacing: 6
                                     Layout.alignment: Qt.AlignVCenter
@@ -3646,7 +3664,7 @@ Item {
                             }
 
                             // ═══════════════════════════════════════════════════════════════
-                            // Moon Phase — animated arc card
+                            // Moon Phase - animated arc card
                             //
                             // The moon travels clockwise from left (moonrise) → top (transit)
                             // → right (moonset), exactly mirroring the sun arc architecture.
@@ -3654,7 +3672,7 @@ Item {
                             // Stars are always shown in the background.
                             // Bottom row: [↑ moonrise] [phase name · illumination%] [↓ moonset]
                             // ═══════════════════════════════════════════════════════════════
-                            // Built only for its own card type — a dormant twin of every heavy
+                            // Built only for its own card type - a dormant twin of every heavy
                             // section in every card multiplied item count ~9x and froze the details tab.
                             Loader {
                                 anchors.fill: parent
@@ -3804,7 +3822,7 @@ Item {
                                         readonly property int _utcOffset: root.weatherRoot ? root.weatherRoot.locationUtcOffsetMins : 0
 
                                         // ── Computed moonrise / moonset ───────────────────────
-                                        // Calculated astronomically from lat/lon — no API needed.
+                                        // Calculated astronomically from lat/lon - no API needed.
                                         // Recomputed once on load and whenever weather data updates.
                                         property string _moonriseText: "--"
                                         property string _moonsetText: "--"
@@ -3952,13 +3970,13 @@ Item {
                             }
 
                             // ── LIST MODE: compact moon phase row ─────────────────
-                            // Direct child of card Rectangle — never hidden by arc Item
+                            // Direct child of card Rectangle - never hidden by arc Item
                             Item {
                                 id: listMoonRow
                                 anchors.fill: parent
                                 visible: card.modelData === "moonphase" && root.isList
 
-                                // Compute moon times directly here — moonCard.visible is
+                                // Compute moon times directly here - moonCard.visible is
                                 // false in list mode so its Timer never fires.
                                 readonly property int _utcOffset: root.weatherRoot ? root.weatherRoot.locationUtcOffsetMins : 0
                                 property string _riseText: "--"
@@ -4021,7 +4039,7 @@ Item {
                                         Layout.alignment: Qt.AlignVCenter
                                     }
 
-                                    // Label — mode-aware
+                                    // Label - mode-aware
                                     Label {
                                         text: {
                                             var m = root.moonMode;

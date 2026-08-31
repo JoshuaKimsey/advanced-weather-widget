@@ -8,7 +8,7 @@
  */
 
 /**
- * RadarWebEngineView.qml — Interactive weather radar map using WebEngineView + Leaflet
+ * RadarWebEngineView.qml - Interactive weather radar map using WebEngineView + Leaflet
  *
  * GPU-accelerated tile compositing identical to rainviewer.com.
  * Leaflet runs inside an embedded Chromium (QtWebEngine) instance.
@@ -31,8 +31,8 @@ Item {
     readonly property double lon:    weatherRoot ? (Plasmoid.configuration.longitude || 0) : 0
     readonly property string owmKey: Plasmoid.configuration.owApiKey || ""
     // Plasmoid.configuration.radarLayer should only ever be "rainviewer" or one
-    // of the layers[] ids below. It has been observed holding "librewxr" —
-    // a value that belongs in the separate radarProvider key instead — which
+    // of the layers[] ids below. It has been observed holding "librewxr" -
+    // a value that belongs in the separate radarProvider key instead - which
     // silently took the "OWM overlay, no key" branch everywhere downstream
     // (no RainViewer API call, createLayer() returns null, nothing renders).
     // Guard against any value we don't recognize rather than trusting it.
@@ -53,7 +53,7 @@ Item {
     // *inside* the WebEngineView page. Pages created via loadHtml() can end
     // up with an opaque/unique security origin in QtWebEngine even when a
     // baseUrl is given, which makes that in-page XHR fail as a silent CORS
-    // error (no onerror before this fix) — the base map (image tiles, which
+    // error (no onerror before this fix) - the base map (image tiles, which
     // aren't subject to CORS) still renders fine, so nothing *looked* broken
     // except the missing radar overlay. We now also fetch this JSON from the
     // QML/JS engine, which isn't a browser security context and isn't
@@ -740,7 +740,7 @@ loadApi();\
             }
 
             // Surface console.log/warn/error from inside the page (RainViewer
-            // XHR failures, Leaflet errors, etc.) in Plasma's own log output —
+            // XHR failures, Leaflet errors, etc.) in Plasma's own log output -
             // otherwise failures inside the sandboxed page are invisible.
             onJavaScriptConsoleMessage: function(level, message, lineNumber, sourceID) {
                 console.log("[Advanced Weather Widget Radar/WebEngine][page console]", message, "(line", lineNumber + ")");

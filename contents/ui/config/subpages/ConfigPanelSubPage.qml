@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigPanelSubPage — extracted from configAppearance.qml
+ * ConfigPanelSubPage - extracted from configAppearance.qml
  * Requires: required property var configRoot
  */
 import QtQuick
@@ -30,7 +30,7 @@ ColumnLayout {
     id: panelSubPageRoot
     required property var configRoot
     spacing: 0
-    // Snapshot state captured when sub-page opens — used to restore on Discard
+    // Snapshot state captured when sub-page opens - used to restore on Discard
     property string _savedOrder: configRoot.cfg_panelItemOrder
     property string _savedIcons: configRoot.cfg_panelItemIcons
 
@@ -154,7 +154,7 @@ ColumnLayout {
                                 }
                                 onDropped: configRoot.applyPanelItems()
                             }
-                            // Icon — mirrors the active panel icon theme so
+                            // Icon - mirrors the active panel icon theme so
                             // the preview matches what appears on the panel.
                             Item {
                                 visible: model.itemId !== "suntimes" && model.itemId !== "moonphase"
@@ -421,7 +421,7 @@ ColumnLayout {
                                 }
                                 onClicked: panelDelegateRoot.settingsExpanded = !panelDelegateRoot.settingsExpanded
                             }
-                            // Configure icon button (custom theme, suntimes/moonphase) — opens icon-config dialog
+                            // Configure icon button (custom theme, suntimes/moonphase) - opens icon-config dialog
                             ToolButton {
                                 visible: configRoot.cfg_panelIconTheme === "custom" && (model.itemId === "suntimes" || model.itemId === "moonphase")
                                 enabled: model.itemEnabled
@@ -441,7 +441,7 @@ ColumnLayout {
                                     iconConfigDialog.open();
                                 }
                             }
-                            // Configure icon button (custom theme, other items) — opens condition or item dialog
+                            // Configure icon button (custom theme, other items) - opens condition or item dialog
                             ToolButton {
                                 visible: configRoot.cfg_panelIconTheme === "custom" && model.itemId !== "suntimes" && model.itemId !== "moonphase"
                                 enabled: model.itemEnabled

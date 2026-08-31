@@ -16,9 +16,9 @@
  */
 
 /**
- * tomorrowIo.js — Tomorrow.io current + hourly fetcher
+ * tomorrowIo.js - Tomorrow.io current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Uses the Tomorrow.io Weather API v4 (Realtime + Forecast endpoints).
  * Docs: https://docs.tomorrow.io/reference/welcome
  */
@@ -93,7 +93,7 @@ function fetchCurrent(service, W, chain, idx) {
         }
 
         var c = d.data.values;
-        // Stage current fields — will be written atomically with dailyData in _fetchForecast
+        // Stage current fields - will be written atomically with dailyData in _fetchForecast
         service._tio_cur = {
             temperatureC:    c.temperature,
             apparentC:       c.temperatureApparent,
@@ -113,7 +113,7 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  "--",
             dailyData:       []
         };
-        // No native air quality or pollen — both are supplied by the shared
+        // No native air quality or pollen - both are supplied by the shared
         // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
         // them here would race that fetch and discard its result.
         // Step 2: Fetch daily forecast for dailyData + sun times, then write r.weatherData
@@ -198,7 +198,7 @@ function _fetchForecast(service, W, gen) {
         r.loading = false;
         r.updateText = service._formatUpdateText("tomorrowIo");
 
-        // No native alerts — fall back to MeteoAlarm / NWS
+        // No native alerts - fall back to MeteoAlarm / NWS
         service._fetchAlertsIfNeeded();
 
         // Air quality fetched in parallel from WeatherService.refreshNow()

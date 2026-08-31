@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigMapSubPage — Pick a location on an interactive OSM map.
+ * ConfigMapSubPage - Pick a location on an interactive OSM map.
  * Requires: required property var configRoot
  */
 import QtQuick
@@ -76,7 +76,7 @@ ColumnLayout {
 
         if (!isDup) {
             configRoot.duplicateWarning = "";
-            // Store pending — saved on KCM Apply via save() in configLocation.qml
+            // Store pending - saved on KCM Apply via save() in configLocation.qml
             var entryName = selectedName.length > 0
                 ? selectedName : (selectedLat.toFixed(4) + "°, " + selectedLon.toFixed(4) + "°");
             configRoot._pendingEntry = {
@@ -110,7 +110,7 @@ ColumnLayout {
         markerItem.coordinate = QtPositioning.coordinate(lat, lon);
         markerItem.visible = true;
 
-        // 1) Reverse geocode via Nominatim — use preferred language so that
+        // 1) Reverse geocode via Nominatim - use preferred language so that
         //    region and country names come back in the user's locale
         var revLang = _preferredLanguage.length > 0 ? _preferredLanguage + ",en;q=0.8" : "en";
         var revReq = new XMLHttpRequest();
@@ -596,14 +596,14 @@ ColumnLayout {
                     opacity: 0.7
                 }
                 Label {
-                    text: isNaN(mapSubPageRoot.selectedLat) ? "—" : mapSubPageRoot.selectedLat.toFixed(5) + "°"
+                    text: isNaN(mapSubPageRoot.selectedLat) ? "-" : mapSubPageRoot.selectedLat.toFixed(5) + "°"
                 }
                 Label {
                     text: i18n("Lon:")
                     opacity: 0.7
                 }
                 Label {
-                    text: isNaN(mapSubPageRoot.selectedLon) ? "—" : mapSubPageRoot.selectedLon.toFixed(5) + "°"
+                    text: isNaN(mapSubPageRoot.selectedLon) ? "-" : mapSubPageRoot.selectedLon.toFixed(5) + "°"
                 }
 
                 Label {
@@ -611,14 +611,14 @@ ColumnLayout {
                     opacity: 0.7
                 }
                 Label {
-                    text: mapSubPageRoot.selectedAltitude !== 0 ? mapSubPageRoot.selectedAltitude + " m" : "—"
+                    text: mapSubPageRoot.selectedAltitude !== 0 ? mapSubPageRoot.selectedAltitude + " m" : "-"
                 }
                 Label {
                     text: i18n("Timezone:")
                     opacity: 0.7
                 }
                 Label {
-                    text: mapSubPageRoot.selectedTimezone.length > 0 ? mapSubPageRoot.selectedTimezone : "—"
+                    text: mapSubPageRoot.selectedTimezone.length > 0 ? mapSubPageRoot.selectedTimezone : "-"
                 }
             }
         }

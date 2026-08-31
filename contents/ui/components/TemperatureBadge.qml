@@ -16,7 +16,7 @@
  */
 
 /**
- * TemperatureBadge.qml — Reusable temperature overlay badge
+ * TemperatureBadge.qml - Reusable temperature overlay badge
  *
  * Used by CompactView (compressed mode) and TrayCompactView to show
  * a temperature label overlaid on the weather icon. Eliminates the
@@ -54,7 +54,7 @@ Rectangle {
     /** Custom background color (empty string = use theme background) */
     property string badgeColor: ""
 
-    /** Background opacity (0.0–1.0) */
+    /** Background opacity (0.0-1.0) */
     property real badgeOpacity: 0.85
 
     /** Font pixel size for the temperature text */

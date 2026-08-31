@@ -16,13 +16,41 @@
  */
 
 /**
- * openMeteo.js — Open-Meteo current + hourly fetcher
+ * openMeteo.js - Open-Meteo current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  */
 
 .import "../js/weather.js" as W
+
+// Open-Meteo represents "this model doesn't report this field" as a bare
+// null, NOT a missing key - undefined-only checks (`x !== undefined`) let
+// null straight through. That's harmless for a `var`-held value, but once
+// it lands on a QML `real`/`int` property (e.g. weatherRoot.uvIndex),
+// null gets silently coerced to 0 - while undefined correctly becomes NaN.
+// A "real" 0 UV index then displays as "0 (Low)" instead of "--". Always
+// route field values through these helpers rather than checking
+// `!== undefined` alone.
+function _num(v) {
+    return (v === null || v === undefined || (typeof v === "number" && isNaN(v))) ? NaN : v;
+}
+function _numOr(v, fallback) {
+    var n = _num(v);
+    return isNaN(n) ? fallback : n;
+}
+// Picks entry[key] when it's a usable value; otherwise falls back to
+// backupEntry[key] and marks flag.used so callers know backup was needed.
+// Used by the current/daily/hourly mergers so a day/hour/reading is never
+// wholesale replaced by the best-match blend just because ONE field (most
+// often UV) was null - every field the primary model DID report is kept.
+function _pickField(entry, backupEntry, key, flag) {
+    var v = entry ? entry[key] : undefined;
+    if (v !== null && v !== undefined && !(typeof v === "number" && isNaN(v)))
+        return v;
+    flag.used = true;
+    return backupEntry ? backupEntry[key] : v;
+}
 
 function fetchCurrent(service, chain, idx) {
     var gen = service._refreshGen;
@@ -61,52 +89,88 @@ function fetchCurrent(service, chain, idx) {
         var nd = _parseDailyArray(d, requestedDays);
 
         // National high-res models (ICON-D2 for Germany, AROME for France,
-        // UKMO for the UK, etc.) each cover a different number of days —
-        // Open-Meteo doesn't error for the days beyond that, it just returns
-        // null for them. Detect that here rather than trusting a hardcoded
-        // per-country day count, since coverage windows change over time.
-        var needsBackfill = nd.length < requestedDays || nd.some(_isDailyIncomplete);
+        // UKMO for the UK, etc.) each cover a different number of days, and
+        // several of them omit some "current" fields entirely (UV index
+        // most commonly, but precipitation/visibility too) - Open-Meteo
+        // represents both cases as null rather than erroring. Detect both
+        // here rather than trusting a hardcoded per-country day/field list,
+        // since coverage changes over time.
+        var currentNeedsBackfill = _isCurrentIncomplete(c);
+        var dailyNeedsBackfill = nd.length < requestedDays || nd.some(_isDailyIncomplete);
 
-        function finalizeWithDaily(dailyArr) {
+        function finalize(finalCurrent, finalDaily) {
             if (service._refreshGen !== gen) return;
             r.weatherDataStaged = {
-                temperatureC:        c.temperature_2m,
-                apparentC:           c.apparent_temperature,
-                humidityPercent:     c.relative_humidity_2m,
-                windKmh:             c.wind_speed_10m,
-                windDirection:       isNaN(c.wind_direction_10m) ? NaN : c.wind_direction_10m,
-                pressureHpa:         c.pressure_msl,   // sea-level pressure (matches Foreca et al.)
-                dewPointC:           c.dew_point_2m,
-                visibilityKm:        c.visibility / 1000.0,
-                weatherCode:         c.weather_code,
-                isDay:               (c.is_day !== undefined) ? c.is_day : -1,
-                precipMmh:           (c.precipitation !== undefined) ? c.precipitation : NaN,
-                uvIndex:             (c.uv_index !== undefined) ? c.uv_index : NaN,
-                snowDepthCm:         (c.snow_depth !== undefined && c.snow_depth !== null) ? c.snow_depth * 100 : NaN,
+                temperatureC:        _num(finalCurrent.temperature_2m),
+                apparentC:           _num(finalCurrent.apparent_temperature),
+                humidityPercent:     _num(finalCurrent.relative_humidity_2m),
+                windKmh:             _num(finalCurrent.wind_speed_10m),
+                windDirection:       _num(finalCurrent.wind_direction_10m),
+                pressureHpa:         _num(finalCurrent.pressure_msl),   // sea-level pressure (matches Foreca et al.)
+                dewPointC:           _num(finalCurrent.dew_point_2m),
+                visibilityKm:        isNaN(_num(finalCurrent.visibility)) ? NaN : finalCurrent.visibility / 1000.0,
+                weatherCode:         _numOr(finalCurrent.weather_code, -1),
+                isDay:               _numOr(finalCurrent.is_day, -1),
+                precipMmh:           _num(finalCurrent.precipitation),
+                uvIndex:             _num(finalCurrent.uv_index),
+                snowDepthCm:         isNaN(_num(finalCurrent.snow_depth)) ? NaN : finalCurrent.snow_depth * 100,
                 locationUtcOffsetMins: (d.utc_offset_seconds !== undefined) ? Math.round(d.utc_offset_seconds / 60) : 0,
                 sunriseTimeText:     (d.daily && d.daily.sunrise && d.daily.sunrise.length > 0) ? Qt.formatTime(new Date(d.daily.sunrise[0]), "HH:mm") : "--",
                 sunsetTimeText:      (d.daily && d.daily.sunset  && d.daily.sunset.length  > 0) ? Qt.formatTime(new Date(d.daily.sunset[0]),  "HH:mm") : "--",
-                dailyData:           dailyArr
+                dailyData:           finalDaily
             };
             r.loading = false;
             r.updateText = service._formatUpdateText("openMeteo");
 
-            // No native alerts — fall back to MeteoAlarm / NWS
+            // No native alerts - fall back to MeteoAlarm / NWS
             service._fetchAlertsIfNeeded();
         }
 
-        if (!needsBackfill) {
-            finalizeWithDaily(nd);
+        if (!currentNeedsBackfill && !dailyNeedsBackfill) {
+            finalize(c, nd);
             return;
         }
 
         // Fetch the same range from Open-Meteo's global best-match blend and
-        // use it only to fill the days the high-res model didn't cover.
-        _fetchDailyBackup(service, gen, requestedDays, function (backupNd) {
-            finalizeWithDaily(_mergeDailyArrays(nd, backupNd, requestedDays));
+        // use it to fill in just the current-fields/days the high-res model
+        // didn't cover. _mergeCurrent/_mergeDailyArrays are no-ops for any
+        // field the primary model DID report, so it's safe to call this even
+        // when only one of the two actually needs backfilling.
+        _fetchBackup(service, gen, requestedDays, function (backupCurrent, backupNd) {
+            finalize(_mergeCurrent(c, backupCurrent), _mergeDailyArrays(nd, backupNd, requestedDays));
         });
     };
     req.send();
+}
+
+// A "current" reading is incomplete when the primary (often national
+// high-res) model doesn't report a field for it. temperature/weather_code
+// are must-have; uv_index/precipitation/visibility are the fields most
+// commonly missing from high-res models' current block - this is the exact
+// condition behind the "UV index shows 0" reports: a bare null used to sail
+// through untouched and get coerced to 0 by QML's real-property binding.
+function _isCurrentIncomplete(c) {
+    if (!c) return true;
+    if (isNaN(_num(c.temperature_2m))) return true;
+    if (isNaN(_num(c.weather_code))) return true;
+    if (isNaN(_num(c.uv_index))) return true;
+    if (isNaN(_num(c.precipitation))) return true;
+    if (isNaN(_num(c.visibility))) return true;
+    return false;
+}
+
+// Fills in only the current fields the primary model left null, keeping
+// every field it DID report (never a wholesale swap to the coarser blend).
+function _mergeCurrent(primary, backup) {
+    var fields = ["temperature_2m", "apparent_temperature", "relative_humidity_2m",
+        "weather_code", "wind_speed_10m", "wind_direction_10m", "pressure_msl",
+        "dew_point_2m", "visibility", "is_day", "precipitation", "uv_index", "snow_depth"];
+    var flag = { used: false };
+    var merged = {};
+    for (var i = 0; i < fields.length; ++i)
+        merged[fields[i]] = _pickField(primary, backup, fields[i], flag);
+    if (flag.used) merged.isBackupModel = true;
+    return merged;
 }
 
 // Parses the "daily" block of an Open-Meteo /v1/forecast response into the
@@ -138,27 +202,41 @@ function _parseDailyArray(d, requestedDays) {
 }
 
 // A day is "incomplete" when the national high-res model has no forecast
-// for it — Open-Meteo represents that as null rather than omitting the day
-// or erroring, so length alone isn't a reliable signal.
+// for it, OR when it covers the day but leaves one field null - Open-Meteo
+// represents both cases as null rather than omitting the day or erroring,
+// so length alone isn't a reliable signal. UV is the field most commonly
+// missing (ICON-D2, AROME, UKMO, etc. cover temp/code but not
+// uv_index_max), but precip probability, wind, pressure and visibility can
+// be missing too; all are checked so the per-field merge below can fill in
+// just the missing value(s) without touching fields the model DID report.
 function _isDailyIncomplete(entry) {
     if (!entry) return true;
-    if (entry.maxC === null || entry.maxC === undefined || isNaN(entry.maxC)) return true;
-    if (entry.minC === null || entry.minC === undefined || isNaN(entry.minC)) return true;
-    if (entry.code === null || entry.code === undefined) return true;
+    if (isNaN(_num(entry.maxC))) return true;
+    if (isNaN(_num(entry.minC))) return true;
+    if (isNaN(_num(entry.code))) return true;
+    if (isNaN(_num(entry.uvMax))) return true;
+    if (isNaN(_num(entry.precipMm))) return true;
+    if (isNaN(_num(entry.precipProb))) return true;
+    if (isNaN(_num(entry.windKmh))) return true;
+    if (isNaN(_num(entry.pressureHpa))) return true;
+    if (isNaN(_num(entry.visibilityKm))) return true;
     return false;
 }
 
-// Fetches the same date range from Open-Meteo's global best-match blend to
-// use as backfill. Deliberately omits &models= so Open-Meteo picks its own
-// default, which has full worldwide 16-day coverage. Only "daily" is
-// requested — "current" (today) always comes from the primary fetch.
-function _fetchDailyBackup(service, gen, requestedDays, callback) {
+// Fetches the same current + daily range from Open-Meteo's global best-match
+// blend, used to fill in whichever current fields and/or days the primary
+// (often national high-res) model didn't cover. Deliberately omits &models=
+// so Open-Meteo picks its own default, which has full worldwide coverage.
+function _fetchBackup(service, gen, requestedDays, callback) {
     var tz = service.timezone;
     var url = "https://api.open-meteo.com/v1/forecast"
         + "?latitude=" + service.latitude
         + "&longitude=" + service.longitude
         + "&timezone=" + encodeURIComponent(tz.length > 0 ? tz : "auto")
         + "&forecast_days=" + requestedDays
+        + "&current=temperature_2m,apparent_temperature,relative_humidity_2m,"
+        + "weather_code,wind_speed_10m,wind_direction_10m,pressure_msl,"
+        + "dew_point_2m,visibility,is_day,precipitation,uv_index,snow_depth"
         + "&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,"
         + "precipitation_sum,snowfall_sum,precipitation_probability_max,wind_speed_10m_max,wind_direction_10m_dominant,"
         + "uv_index_max,pressure_msl_mean,visibility_mean";
@@ -169,29 +247,33 @@ function _fetchDailyBackup(service, gen, requestedDays, callback) {
         if (req.readyState !== XMLHttpRequest.DONE)
             return;
         if (service._refreshGen !== gen || req.status !== 200) {
-            callback([]);
+            callback(null, []);
             return;
         }
         try {
             var d = JSON.parse(req.responseText);
-            callback(_parseDailyArray(d, requestedDays));
+            callback(d.current || null, _parseDailyArray(d, requestedDays));
         } catch (e) {
-            callback([]);
+            callback(null, []);
         }
     };
     req.send();
 }
 
-// Merges the model-specific daily array with the best-match backup, keeping
-// the high-res values wherever they exist and filling only the days the
-// primary model doesn't cover. Matched by dateStr so timezone/date-boundary
-// differences between the two requests can't misalign the days; falls back
-// to positional matching for a day the primary fetch didn't return at all.
+// Merges the model-specific daily array with the best-match backup on a
+// PER-FIELD basis, matched by dateStr so timezone/date-boundary differences
+// between the two requests can't misalign the days (positional fallback for
+// a day the primary fetch didn't return at all). A day flagged incomplete
+// only has the specific field(s) that were actually null replaced - e.g. a
+// day missing just uvMax keeps its high-res maxC/minC/windKmh/etc. rather
+// than being swapped wholesale for the coarser blend's numbers.
 function _mergeDailyArrays(primary, backup, requestedDays) {
     var backupByDate = {};
     for (var i = 0; i < backup.length; ++i)
         backupByDate[backup[i].dateStr] = backup[i];
 
+    var fields = ["day", "dateStr", "maxC", "minC", "code", "precipMm", "snowCm",
+        "precipProb", "windKmh", "windDir", "uvMax", "pressureHpa", "visibilityKm"];
     var merged = [];
     var len = Math.max(primary.length, requestedDays);
     for (var j = 0; j < len; ++j) {
@@ -201,111 +283,32 @@ function _mergeDailyArrays(primary, backup, requestedDays) {
             continue;
         }
         var backupEntry = (entry && backupByDate[entry.dateStr]) ? backupByDate[entry.dateStr] : backup[j];
-        if (backupEntry) {
-            merged.push({
-                day: backupEntry.day,
-                dateStr: backupEntry.dateStr,
-                maxC: backupEntry.maxC,
-                minC: backupEntry.minC,
-                code: backupEntry.code,
-                precipMm: backupEntry.precipMm,
-                snowCm: backupEntry.snowCm,
-                precipProb: backupEntry.precipProb,
-                windKmh: backupEntry.windKmh,
-                windDir: backupEntry.windDir,
-                uvMax: backupEntry.uvMax,
-                pressureHpa: backupEntry.pressureHpa,
-                visibilityKm: backupEntry.visibilityKm,
-                isBackupModel: true // best-match fallback, not the high-res model
-            });
-        } else if (entry) {
-            merged.push(entry); // nothing better available — keep as-is (still NaN/null)
-        }
+        if (!entry && !backupEntry) continue; // nothing for this slot from either source
+
+        var flag = { used: false };
+        var mergedEntry = {};
+        for (var k = 0; k < fields.length; ++k)
+            mergedEntry[fields[k]] = _pickField(entry, backupEntry, fields[k], flag);
+        // Only flagged when a field actually came from the blend - a day
+        // can trip _isDailyIncomplete and still have every field filled by
+        // the primary model except the one that triggered the check.
+        if (flag.used) mergedEntry.isBackupModel = true;
+        merged.push(mergedEntry);
     }
     return merged;
 }
 
-// European Air Quality Index
-// AQI Determined from highest pollutant, interpolated over EU breakpoints (which is a step function)
-// https://airindex.eea.europa.eu/AQI/index.html#
-// Open-Meteo returns a out-of-one-hundred value using a similar formula to the official US AQI
-function _aqiLabel(aqi) {
-    if (aqi <= 20) return "Good";
-    if (aqi <= 40) return "Fair";
-    if (aqi <= 60) return "Moderate";
-    if (aqi <= 80) return "Poor";
-    if (aqi <= 100) return "Very Poor";
-    return "Extremely Poor";
-}
+// Air-quality fetching for the default (Open-Meteo) provider path lives in
+// WeatherService.qml's _fetchAirQualityOpenMeteo() - the shared fetch every
+// provider falls back to - not here. A duplicate, unused _fetchAirQuality()
+// used to live in this file (never dispatched from Providers.qml, which has
+// no "openMeteo" case in its fetchAirQuality() switch) and had gone stale:
+// its result object assigned `index`/`label` twice in the same literal, so
+// the european_aqi values it computed were always silently discarded in
+// favor of us_aqi. Removed rather than fixed, since WeatherService.qml's
+// version is the actual live path and now handles both figures (plus
+// Canadian AQHI) correctly - see airQuality.js for the current index math.
 
-// US Air Quality Index
-// AQI determined from highest pollutant linearly interpolated to the nearest integer as per:
-// https://document.airnow.gov/technical-assistance-document-for-the-reporting-of-daily-air-quailty.pdf
-// US EPA necessitates the interpolation of the pollutant concentration across defined breakpoints,
-// resulting in an AQI value between 0 and 500
-function _aqiLabel_US(aqi_us) {
-    if (aqi_us <= 50) return "Good";
-    if (aqi_us <= 100) return "Moderate";
-    if (aqi_us <= 150) return "Unhealthy for Sensitive Groups";
-    if (aqi_us <= 200) return "Unhealthy";
-    if (aqi_us <= 300) return "Very Unhealthy";
-    return "Hazardous";
-}
-
-function _fetchAirQuality(service) {
-    var gen = service._refreshGen;
-    var r = service.weatherRoot;
-    var tz = service.timezone;
-    var url = "https://air-quality-api.open-meteo.com/v1/air-quality"
-        + "?latitude=" + service.latitude
-        + "&longitude=" + service.longitude
-        + "&current=european_aqi,us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone"
-        + ",alder_pollen,birch_pollen,grass_pollen,mugwort_pollen,olive_pollen,ragweed_pollen"
-        + "&timezone=" + encodeURIComponent(tz.length > 0 ? tz : "auto");
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.onreadystatechange = function () {
-        if (req.readyState !== XMLHttpRequest.DONE)
-            return;
-        if (service._refreshGen !== gen) return;
-        if (req.status !== 200) {
-            r.aqiDataStaged = null;
-            r.pollenDataStaged = [];
-            return;
-        }
-        var d = JSON.parse(req.responseText);
-        var c = d.current || {};
-        var aqi = c.european_aqi;
-        var aqi_us = c.us_aqi;
-        r.aqiDataStaged = {
-            index: (aqi !== undefined) ? aqi : NaN,
-            label: (aqi !== undefined) ? _aqiLabel(aqi) : "",
-            index: (aqi_us !== undefined) ? aqi_us : NaN,
-            label: (aqi_us !== undefined) ? _aqiLabel_US(aqi_us) : "",
-            pm10:  (c.pm10            !== undefined) ? c.pm10            : NaN,
-            pm2_5: (c.pm2_5           !== undefined) ? c.pm2_5           : NaN,
-            no2:   (c.nitrogen_dioxide !== undefined) ? c.nitrogen_dioxide : NaN,
-            so2:   (c.sulphur_dioxide  !== undefined) ? c.sulphur_dioxide  : NaN,
-            o3:    (c.ozone            !== undefined) ? c.ozone            : NaN,
-            co:    (c.carbon_monoxide  !== undefined) ? c.carbon_monoxide / 1000.0 : NaN
-        };
-        var pollenKeys = [
-            { key: "alder",   field: "alder_pollen"   },
-            { key: "birch",   field: "birch_pollen"   },
-            { key: "grass",   field: "grass_pollen"   },
-            { key: "mugwort", field: "mugwort_pollen" },
-            { key: "olive",   field: "olive_pollen"   },
-            { key: "ragweed", field: "ragweed_pollen" }
-        ];
-        var pd = [];
-        pollenKeys.forEach(function (p) {
-            var v = c[p.field];
-            pd.push({ key: p.key, value: (v !== undefined && v !== null) ? v : NaN });
-        });
-        r.pollenDataStaged = pd;
-    };
-    req.send();
-}
 
 function fetchHourly(service, dateStr) {
     var gen = service._refreshGen;
@@ -374,11 +377,19 @@ function _parseHourlyArray(d) {
 }
 
 // An hour is "incomplete" when the national high-res model has no data for
-// it — Open-Meteo represents that as null rather than omitting the hour.
+// it, OR reports some fields but leaves others null. Mirrors
+// _isDailyIncomplete: UV is checked here too now - previously it wasn't,
+// so an hourly-only null UV silently passed through as "0 (Low)" even
+// after the equivalent daily bug was fixed.
 function _isHourlyIncomplete(entry) {
     if (!entry) return true;
-    if (entry.tempC === null || entry.tempC === undefined || isNaN(entry.tempC)) return true;
-    if (entry.code === null || entry.code === undefined) return true;
+    if (isNaN(_num(entry.tempC))) return true;
+    if (isNaN(_num(entry.code))) return true;
+    if (isNaN(_num(entry.uvIndex))) return true;
+    if (isNaN(_num(entry.windKmh))) return true;
+    if (isNaN(_num(entry.humidity))) return true;
+    if (isNaN(_num(entry.pressureHpa))) return true;
+    if (isNaN(_num(entry.visibilityKm))) return true;
     return false;
 }
 
@@ -412,15 +423,18 @@ function _fetchHourlyBackup(service, gen, dateStr, callback) {
     req.send();
 }
 
-// Merges the model-specific hourly array with the best-match backup, keeping
-// the high-res values wherever they exist and filling only the hours the
-// primary model didn't cover. Matched by timeIso, with positional fallback
-// for hours the primary fetch didn't return at all.
+// Merges the model-specific hourly array with the best-match backup on a
+// PER-FIELD basis, matched by timeIso (positional fallback for hours the
+// primary fetch didn't return at all) - same rationale as _mergeDailyArrays:
+// an hour missing just uvIndex keeps its high-res tempC/windKmh/etc.
+// instead of being swapped wholesale for the coarser blend's numbers.
 function _mergeHourlyArrays(primary, backup) {
     var backupByTime = {};
     for (var i = 0; i < backup.length; ++i)
         backupByTime[backup[i].timeIso] = backup[i];
 
+    var fields = ["timeIso", "hour", "tempC", "code", "windKmh", "windDeg", "humidity",
+        "precipProb", "precipMm", "pressureHpa", "visibilityKm", "uvIndex"];
     var len = Math.max(primary.length, backup.length);
     var merged = [];
     for (var j = 0; j < len; ++j) {
@@ -430,25 +444,14 @@ function _mergeHourlyArrays(primary, backup) {
             continue;
         }
         var backupEntry = (entry && backupByTime[entry.timeIso]) ? backupByTime[entry.timeIso] : backup[j];
-        if (backupEntry) {
-            merged.push({
-                timeIso: backupEntry.timeIso,
-                hour: backupEntry.hour,
-                tempC: backupEntry.tempC,
-                code: backupEntry.code,
-                windKmh: backupEntry.windKmh,
-                windDeg: backupEntry.windDeg,
-                humidity: backupEntry.humidity,
-                precipProb: backupEntry.precipProb,
-                precipMm: backupEntry.precipMm,
-                pressureHpa: backupEntry.pressureHpa,
-                visibilityKm: backupEntry.visibilityKm,
-                uvIndex: backupEntry.uvIndex,
-                isBackupModel: true // best-match fallback, not the high-res model
-            });
-        } else if (entry) {
-            merged.push(entry); // nothing better available — keep as-is (still NaN/null)
-        }
+        if (!entry && !backupEntry) continue;
+
+        var flag = { used: false };
+        var mergedEntry = {};
+        for (var k = 0; k < fields.length; ++k)
+            mergedEntry[fields[k]] = _pickField(entry, backupEntry, fields[k], flag);
+        if (flag.used) mergedEntry.isBackupModel = true;
+        merged.push(mergedEntry);
     }
     return merged;
 }

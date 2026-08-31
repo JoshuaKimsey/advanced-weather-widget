@@ -16,7 +16,7 @@
  */
 
 /**
- * fossAlerts.js — FOSS Public Alert Server weather-alerts fetcher
+ * fossAlerts.js - FOSS Public Alert Server weather-alerts fetcher
  *
  * Fetches worldwide severe-weather warnings from KDE's FOSS Public Alert
  * Server (https://alerts.kde.org, self-hostable):
@@ -29,7 +29,7 @@
  *
  * The server does point-in-bbox filtering only, so we still run a
  * client-side point-in-polygon / point-in-circle test on each CAP <area>
- * to keep only alerts that actually contain the user's coordinates —
+ * to keep only alerts that actually contain the user's coordinates -
  * falling back to "keep it" when an alert carries no geometry.
  *
  * The CAP payload is the same MeteoAlarm-style dialect that alerts.js
@@ -40,7 +40,7 @@
  *     awarenessType, onset, effective, expires, instruction, web,
  *     source, action, senderName }
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  */
 
 // Small bounding box (± ~0.05° ≈ 5.5 km) around the point so the area query
@@ -49,7 +49,7 @@
 var _BBOX_PAD_DEG = 0.05;
 
 /**
- * Main entry point — called from WeatherService._fetchAlertsIfNeeded()
+ * Main entry point - called from WeatherService._fetchAlertsIfNeeded()
  * when the alerts provider is set to "foss".
  */
 function fetchAlerts(service) {
@@ -190,7 +190,7 @@ function _parseCapDocument(doc, userLat, userLon) {
     if (!root) return [];
 
     var status = _capText(root, "status");
-    // Only "Actual" alerts — skip Test / Exercise / System / Draft.
+    // Only "Actual" alerts - skip Test / Exercise / System / Draft.
     if (status && status !== "Actual") return [];
 
     var infos = _capChildren(root, "info");
@@ -270,7 +270,7 @@ function _parseCapDocument(doc, userLat, userLon) {
         else if (sevText === "minor") color = "yellow";
     }
     if (awarenessTypeNum === 0) {
-        // Classify from the event name first (most authoritative — e.g. a
+        // Classify from the event name first (most authoritative - e.g. a
         // "Red Flag Warning" whose body also mentions "thunderstorms" is a
         // fire alert), then fall back to headline, then the full description.
         awarenessTypeNum = _awarenessFromText(_capText(localInfo, "event").toLowerCase())
@@ -301,7 +301,7 @@ function _parseCapDocument(doc, userLat, userLon) {
         return [];  // geometry present but point is outside → not our alert
 
     if (matchedAreas.length === 0) {
-        // No geometry (or no coords) — fall back to listing every areaDesc.
+        // No geometry (or no coords) - fall back to listing every areaDesc.
         allAreaNodes.forEach(function (a) {
             var ad = _capText(a, "areaDesc");
             if (ad && matchedAreas.indexOf(ad) < 0) matchedAreas.push(ad);
@@ -319,7 +319,7 @@ function _parseCapDocument(doc, userLat, userLon) {
     // Notification gating treats an alert as "active" only within
     // [onset, expires]. For NWS-style CAP, <onset> is often the future peak
     // of the hazard while <effective> is when the warning was issued and is
-    // already in force — so use the earlier of the two as the effective
+    // already in force - so use the earlier of the two as the effective
     // onset. That way an already-issued Red Flag / Heat warning notifies
     // immediately instead of staying silent until its peak hour.
     var effOnset = _earlierIso(capOnset, capEffective) || capEffective || capOnset || "";
@@ -514,7 +514,7 @@ function _localName(node) {
 
 /**
  * Pick a local-language <info> node for display, preferring a non-English
- * language, then English, then the first block — mirrors alerts.js.
+ * language, then English, then the first block - mirrors alerts.js.
  */
 function _pickLocalInfoNode(infos) {
     var local = null, english = null;

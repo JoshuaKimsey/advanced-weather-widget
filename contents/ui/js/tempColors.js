@@ -17,7 +17,7 @@
  */
 
 /**
- * tempColors.js — Shared temperature-to-color scale
+ * tempColors.js - Shared temperature-to-color scale
  *
  * Single source of truth for the cold-to-hot gradient. Used by the forecast
  * temperature curve, which paints it into a Canvas, and by the panel
@@ -26,7 +26,7 @@
  * Two sets of stops: bright ones stay readable on a dark background, deeper
  * ones on a light background.
  *
- * Non-pragma JS — plain globals, imported with "as TempColorsJS".
+ * Non-pragma JS - plain globals, imported with "as TempColorsJS".
  */
 
 var STOPS_DARK = [

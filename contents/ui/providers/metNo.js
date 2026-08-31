@@ -16,9 +16,9 @@
  */
 
 /**
- * metNo.js — met.no current + hourly fetcher
+ * metNo.js - met.no current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  */
@@ -97,7 +97,7 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  "--",
             dailyData:       []   // filled below
         };
-        // met.no does not provide sunrise/sunset — fetch from Open-Meteo as fallback.
+        // met.no does not provide sunrise/sunset - fetch from Open-Meteo as fallback.
         service._fetchSunTimesOpenMeteo();
 
         // Build daily forecast from timeseries
@@ -153,7 +153,7 @@ function fetchCurrent(service, W, chain, idx) {
         r.loading = false;
         r.updateText = service._formatUpdateText("metno");
 
-        // No native alerts — fall back to MeteoAlarm / NWS
+        // No native alerts - fall back to MeteoAlarm / NWS
         service._fetchAlertsIfNeeded();
     };
     req.send();

@@ -16,7 +16,7 @@
  */
 
 /**
- * FullView.qml — Main widget popup
+ * FullView.qml - Main widget popup
  */
 import QtQuick
 import QtQuick.Layouts
@@ -40,11 +40,18 @@ Rectangle {
     // Layout.preferred* is what Plasma reads to size the panel popup window.
     // width/height are used when the widget sits on the desktop.
     // Compact size when no location is set to avoid overlapping other widgets.
+    //
+    // NOTE: Layout.minimumWidth/Height are intentionally NOT set here. This
+    // component is only ever instantiated once, as main.qml's
+    // `fullRepresentation`, and main.qml sets Layout.minimumWidth/Height on
+    // that instance from the outside - an outer instantiation-site binding
+    // always overrides a type's own internal binding for the same attached
+    // property, so any value set here would be dead code. main.qml is the
+    // single source of truth for minimum popup size; see it for the actual
+    // auto/manual/simple/advanced/tray logic.
     readonly property bool _hasLocation: weatherRoot && weatherRoot.hasSelectedTown
     readonly property bool _isRadarTab: _hasLocation && activeTab === 2 && showRadarTab
     readonly property bool isSimpleMode: (Plasmoid.configuration.widgetLayoutMode || "advanced") === "simple"
-    Layout.minimumWidth:    _hasLocation ? (isSimpleMode ? 900 : 540) : 280
-    Layout.minimumHeight:   _hasLocation ? (isSimpleMode ? 550 : 380) : 220
     Layout.preferredWidth:  _hasLocation ? (isSimpleMode ? 800 : 540) : 280
     Layout.preferredHeight: _hasLocation ? (isSimpleMode ? 550 : (_isRadarTab ? 680 : 550)) : 220
     width:  _hasLocation ? (isSimpleMode ? 800 : 540) : 280
@@ -54,7 +61,7 @@ Rectangle {
     // Maximum height: 90% of screen height, but no more than 40 grid units
     readonly property int maxHeight: Math.min(Screen.desktopAvailableHeight * 0.9, Kirigami.Units.gridUnit * 40)
 
-    // Condition icon theme for the hero icon — "kde" uses system icons, others use SVGs
+    // Condition icon theme for the hero icon - "kde" uses system icons, others use SVGs
     readonly property string conditionIconTheme: {
         var t = Plasmoid.configuration.conditionIconTheme || "kde";
         return (t === "wi-font") ? "symbolic" : t;
@@ -62,7 +69,7 @@ Rectangle {
     readonly property url iconsBaseDir: Qt.resolvedUrl("../icons/")
 
     /** Resolve a condition icon, handling the "custom" theme with per-condition overrides.
-     *  Delegates to ConfigUtils.resolveCustomConditionIcon() — single source of truth. */
+     *  Delegates to ConfigUtils.resolveCustomConditionIcon() - single source of truth. */
     function resolveConditionIcon(code, isNight, iconSize) {
         return ConfigUtils.resolveCustomConditionIcon(
             code, isNight, iconSize, fullView.iconsBaseDir,
@@ -71,14 +78,14 @@ Rectangle {
             W.weatherCodeToIcon, IconResolver.resolveCondition);
     }
 
-    // Always transparent — Plasma draws the background via backgroundHints
+    // Always transparent - Plasma draws the background via backgroundHints
     // (DefaultBackground | ConfigurableBackground set in main.qml).
     // On the desktop the standard Plasma frame is used; in the panel the
     // popup dialog shell provides its own background.  The user can toggle
     // the background on/off with the button that appears in desktop edit mode.
     color: "transparent"
 
-    // Header summary cached once per weatherData change — avoids N separate Label
+    // Header summary cached once per weatherData change - avoids N separate Label
     // bindings each subscribing to individual weatherRoot accessor properties.
     readonly property string _fvTemp:       weatherRoot ? weatherRoot.tempValue(weatherRoot.temperatureC) : "--"
     readonly property string _fvCondition:  weatherRoot ? weatherRoot.weatherCodeToText(weatherRoot.weatherCode, weatherRoot.isNightTime()) : ""
@@ -332,7 +339,7 @@ Rectangle {
                     id: locationMenu
                     y: locationSwitcherBtn.height
 
-                    // Saved locations only — header, separators, and "Save current location"
+                    // Saved locations only - header, separators, and "Save current location"
                     // were removed for a cleaner switcher (manage entries via the config page).
                     Repeater {
                         model: {
@@ -436,15 +443,15 @@ Rectangle {
         }
 
         // ── Advanced mode hero: three-column layout ───────────────────
-        //   LEFT  — current temperature stack
-        //   CENTRE— condition icon 120 px centred  (#6)
-        //   RIGHT — today's High / Low             (#7)
+        //   LEFT  - current temperature stack
+        //   CENTRE- condition icon 120 px centred  (#6)
+        //   RIGHT - today's High / Low             (#7)
         Item {
             Layout.fillWidth: true
             Layout.preferredHeight: 120
             visible: !fullView.isSimpleMode
 
-            // LEFT — temp + condition + feels-like
+            // LEFT - temp + condition + feels-like
             ColumnLayout {
                 anchors {
                     left: parent.left
@@ -479,14 +486,14 @@ Rectangle {
                 }
             }
 
-            // CENTRE — condition icon enlarged to 120 px (#6)
+            // CENTRE - condition icon enlarged to 120 px (#6)
             WeatherIcon {
                 anchors.centerIn: parent
                 iconInfo: fullView._fvCondIcon
                 iconSize: 120
             }
 
-            // RIGHT — today's High / Low (#7)
+            // RIGHT - today's High / Low (#7)
             ColumnLayout {
                 anchors {
                     right: parent.right
@@ -542,7 +549,7 @@ Rectangle {
             visible: !fullView.isSimpleMode
         }
 
-        // ── Tab bar — shown when more than one tab is enabled ──────────
+        // ── Tab bar - shown when more than one tab is enabled ──────────
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 34
@@ -610,7 +617,7 @@ Rectangle {
 
         // ── Tab content ───────────────────────────────────────────────
         // Each tab is wrapped in an async Loader that activates only when its
-        // tab is first shown (and stays loaded afterwards — the `|| item`
+        // tab is first shown (and stays loaded afterwards - the `|| item`
         // latch keeps it alive once built). This makes the popup open instantly
         // showing only the default tab, and switching to a not-yet-built tab is
         // instant with a spinner while its view streams in on background ticks
@@ -629,7 +636,7 @@ Rectangle {
             onCurrentIndexChanged: {
                 // ForecastView.onVisibleChanged already triggers activateForecast()
                 // when it is first built/shown, so we intentionally do NOT call it
-                // here too — doing so caused the first switch to Forecast to reset
+                // here too - doing so caused the first switch to Forecast to reset
                 // state and fetch the hourly data twice.
                 if (currentIndex === 2 && radarLoader.item)
                     radarLoader.item.reload();
@@ -678,7 +685,7 @@ Rectangle {
                         implicitHeight: forecastView.implicitHeight
                         // No contentWidth binding: availableWidth depends on the
                         // scrollbar, which depends on implicitWidth, which depends
-                        // on contentWidth — a binding loop. ForecastView.width is
+                        // on contentWidth - a binding loop. ForecastView.width is
                         // bound to availableWidth below, which is all we need.
 
                         ForecastView {

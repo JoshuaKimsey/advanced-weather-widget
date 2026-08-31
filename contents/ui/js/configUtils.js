@@ -16,13 +16,13 @@
  */
 
 /**
- * configUtils.js — Shared configuration parsing utilities
+ * configUtils.js - Shared configuration parsing utilities
  *
  * Eliminates the repeated pattern of parsing "key=value;key=value" config
  * strings into JS objects, used across main.qml, FullView, ForecastView,
  * TooltipContent, DetailsView, and CompactView.
  *
- * .pragma library — no Qt globals, pure JS.
+ * .pragma library - no Qt globals, pure JS.
  */
 .pragma library
 
@@ -30,8 +30,8 @@
  * Parses a semicolon-separated "key=value;key=value" config string into
  * a plain JS object { key: value, ... }.
  *
- * @param {string} raw — The raw config string (e.g. "foo=bar;baz=1")
- * @returns {Object} — Parsed key-value map
+ * @param {string} raw - The raw config string (e.g. "foo=bar;baz=1")
+ * @returns {Object} - Parsed key-value map
  *
  * Usage:
  *   var map = ConfigUtils.parseConfigMap(Plasmoid.configuration.panelCustomIcons || "");
@@ -54,8 +54,8 @@ function parseConfigMap(raw) {
  * Parses a semicolon-separated config string into a boolean map.
  * Values of "1" become true, everything else becomes false.
  *
- * @param {string} raw — The raw config string (e.g. "temperature=1;wind=0")
- * @returns {Object} — Parsed key-boolean map
+ * @param {string} raw - The raw config string (e.g. "temperature=1;wind=0")
+ * @returns {Object} - Parsed key-boolean map
  *
  * Usage:
  *   var iconMap = ConfigUtils.parseBoolMap(Plasmoid.configuration.panelItemIcons || "");
@@ -81,9 +81,9 @@ function parseBoolMap(raw) {
  *
  * Previously duplicated in main.qml, FullView.qml, and ForecastView.qml.
  *
- * @param {int}  code  — WMO weather code
- * @param {bool} night — true if nighttime
- * @returns {string} — Condition key like "condition-clear-night"
+ * @param {int}  code  - WMO weather code
+ * @param {bool} night - true if nighttime
+ * @returns {string} - Condition key like "condition-clear-night"
  */
 function resolveConditionKey(code, night) {
     if (code === 0) return night ? "condition-clear-night" : "condition-clear";
@@ -115,15 +115,15 @@ function resolveConditionKey(code, night) {
  *
  * Previously duplicated identically in FullView.qml and ForecastView.qml.
  *
- * @param {int}    code           — WMO weather code
- * @param {bool}   isNight        — true if nighttime
- * @param {int}    iconSize       — desired icon size in px
- * @param {string} iconsBaseDir   — resolved URL to icons/ folder
- * @param {string} iconTheme      — the active icon theme string
- * @param {string} customIconsRaw — raw config string for custom condition icons
- * @param {function} weatherCodeToIcon — W.weatherCodeToIcon function reference
- * @param {function} resolveConditionFn — IconResolver.resolveCondition function reference
- * @returns {Object} — { type, source, svgFallback, isMask }
+ * @param {int}    code           - WMO weather code
+ * @param {bool}   isNight        - true if nighttime
+ * @param {int}    iconSize       - desired icon size in px
+ * @param {string} iconsBaseDir   - resolved URL to icons/ folder
+ * @param {string} iconTheme      - the active icon theme string
+ * @param {string} customIconsRaw - raw config string for custom condition icons
+ * @param {function} weatherCodeToIcon - W.weatherCodeToIcon function reference
+ * @param {function} resolveConditionFn - IconResolver.resolveCondition function reference
+ * @returns {Object} - { type, source, svgFallback, isMask }
  */
 function resolveCustomConditionIcon(code, isNight, iconSize, iconsBaseDir, iconTheme, customIconsRaw, weatherCodeToIcon, resolveConditionFn) {
     if (iconTheme === "custom") {
@@ -134,7 +134,7 @@ function resolveCustomConditionIcon(code, isNight, iconSize, iconsBaseDir, iconT
             var saved = (condKey in m && m[condKey].length > 0) ? m[condKey] : fallback;
             return { type: "kde", source: saved, svgFallback: "", isMask: false };
         }
-        // condition-custom not set — fall back to KDE icons
+        // condition-custom not set - fall back to KDE icons
         return resolveConditionFn(code, isNight, iconSize, iconsBaseDir, "kde");
     }
     return resolveConditionFn(code, isNight, iconSize, iconsBaseDir, iconTheme);

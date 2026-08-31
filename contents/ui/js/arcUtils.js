@@ -16,9 +16,9 @@
  */
 
 /**
- * arcUtils.js — Utilities shared by sunpath.js and moonpath.js
+ * arcUtils.js - Utilities shared by sunpath.js and moonpath.js
  *
- * .pragma library — pure JS math, no Qt APIs.
+ * .pragma library - pure JS math, no Qt APIs.
  *
  * Import via:
  *   import "js/arcUtils.js" as ArcUtils
@@ -39,7 +39,7 @@ function parseMins(t) {
 
 /**
  * Returns current local time at the weather location in minutes since midnight.
- * Uses UTC + utcOffsetMins — the only reliable approach in Qt V4 (no Intl/timeZone).
+ * Uses UTC + utcOffsetMins - the only reliable approach in Qt V4 (no Intl/timeZone).
  */
 function nowMinsAt(utcOffsetMins) {
     var d = new Date();

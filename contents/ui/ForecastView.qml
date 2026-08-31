@@ -16,7 +16,7 @@
  */
 
 /**
- * ForecastView.qml — "Forecast" tab of the main widget popup
+ * ForecastView.qml - "Forecast" tab of the main widget popup
  */
 import QtQuick
 import QtQuick.Layouts
@@ -33,7 +33,7 @@ import "components"
 Item {
     id: forecastRoot
 
-    // Cached theme colors — a single PlasmaTheme attachment on the view root
+    // Cached theme colors - a single PlasmaTheme attachment on the view root
     // instead of one per item: every Kirigami.Theme attachment re-syncs
     // (connect+disconnect on the window object) on each window expose, which
     // froze popup opening while hundreds of delegate items were alive.
@@ -189,13 +189,13 @@ Item {
                 return;
             }
             if (forecastRoot.expandAll) {
-                // expandAll always re-fetches when new data arrives —
+                // expandAll always re-fetches when new data arrives -
                 // independent of autoOpen and _autoOpenDone.
                 forecastRoot._perDayHourlyData = {};
                 forecastRoot._loadingDays      = {};
                 forecastRoot._startExpandAll();
             } else if (forecastRoot.expandedIndex >= 0) {
-                // A day is already expanded (auto-opened or clicked) — re-fetch
+                // A day is already expanded (auto-opened or clicked) - re-fetch
                 // its hourly data so the panel doesn't keep showing the forecast
                 // from before the refresh. Keep the old data on screen while the
                 // fetch is in flight to avoid a collapse/flash.
@@ -224,7 +224,7 @@ Item {
     // Resolved at load time so the path is correct in all rendering contexts
     readonly property url iconsBaseDir: Qt.resolvedUrl("../icons/")
 
-    // Forecast icon theme — uses the same theme as the main condition icon.
+    // Forecast icon theme - uses the same theme as the main condition icon.
     readonly property string widgetIconTheme: {
         var t = Plasmoid.configuration.conditionIconTheme || "symbolic";
         return (t === "wi-font") ? "symbolic" : t;
@@ -341,7 +341,7 @@ Item {
     }
 
     /** Resolve a condition icon, handling the "custom" theme with per-condition overrides.
-     *  Delegates to ConfigUtils.resolveCustomConditionIcon() — single source of truth. */
+     *  Delegates to ConfigUtils.resolveCustomConditionIcon() - single source of truth. */
     function resolveConditionIcon(code, isNight, iconSize) {
         return ConfigUtils.resolveCustomConditionIcon(
             code, isNight, iconSize, forecastRoot.iconsBaseDir,
@@ -1562,7 +1562,7 @@ Item {
                                                 border.color: Qt.rgba(forecastRoot.themeTextColor.r, forecastRoot.themeTextColor.g, forecastRoot.themeTextColor.b, 0.12)
                                                 border.width: 1
 
-                                                // Only the branch this card needs is instantiated — a dormant
+                                                // Only the branch this card needs is instantiated - a dormant
                                                 // twin layout used to double every card's item and icon count.
                                                 Loader {
                                                     anchors.fill: parent

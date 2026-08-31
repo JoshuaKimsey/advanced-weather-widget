@@ -16,9 +16,9 @@
  */
 
 /**
- * moonpath.js — Moon arc geometry, progress, rise/set calculation and canvas drawing
+ * moonpath.js - Moon arc geometry, progress, rise/set calculation and canvas drawing
  *
- * MOONRISE / MOONSET — delegated to suncalc.js (getMoonTimes).
+ * MOONRISE / MOONSET - delegated to suncalc.js (getMoonTimes).
  * This file retains only canvas drawing helpers and arc-progress functions.
  *
  * The moon arc mirrors the sun arc from sunpath.js:
@@ -43,7 +43,7 @@ function _rev(x)  { return x - Math.floor(x / 360) * 360; } // mod 360
 // NOTE: parseMins(), nowMinsAt() and formatDuration() below are intentional
 // local copies of the same functions in sunpath.js.  .pragma library files
 // cannot import each other in Qt/QML, so deduplication at the JS level is
-// not possible — they must be self-contained.
+// not possible - they must be self-contained.
 function parseMins(t) {
     if (!t || t === "--") return -1;
     var p = t.split(":");
@@ -133,7 +133,7 @@ function _moonPos(jd) {
 
     var y   = Math.sin(lonr) * Math.cos(epsr) - Math.tan(latr) * Math.sin(epsr);
     var x   = Math.cos(lonr);
-    var ra  = _rev(_deg(Math.atan2(y, x)));   // right ascension in degrees (0–360)
+    var ra  = _rev(_deg(Math.atan2(y, x)));   // right ascension in degrees (0-360)
 
     return { ra: ra, dec: dec };
 }
@@ -286,7 +286,7 @@ function _drawStars(ctx, cw, ch, hY, count, isDark) {
 function drawMoonArc(ctx, cw, ch, prog, isDark, glowPulse, age) {
     ctx.clearRect(0, 0, cw, ch);
 
-    // Guard: canvas not yet laid out — nothing useful to draw
+    // Guard: canvas not yet laid out - nothing useful to draw
     if (cw <= 0 || ch <= 0) return;
 
     var padH = 28, cx = cw / 2, hY = ch - 14;

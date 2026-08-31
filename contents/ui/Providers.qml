@@ -16,7 +16,7 @@
  */
 
 /**
- * Providers.qml — lazily-loaded weather-provider dispatcher.
+ * Providers.qml - lazily-loaded weather-provider dispatcher.
  *
  * All provider .js modules are imported here instead of in WeatherService.qml
  * so they are NOT parsed/compiled during shell startup. WeatherService creates

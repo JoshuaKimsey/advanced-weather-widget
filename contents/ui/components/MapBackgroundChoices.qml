@@ -16,7 +16,7 @@
  */
 
 /**
- * MapBackgroundChoices.qml — Translated labels for the map background picker
+ * MapBackgroundChoices.qml - Translated labels for the map background picker
  *
  * The tile definitions live in providers/mapProviders.js; the labels live here
  * because that is what the gettext extraction and the two radar views share.

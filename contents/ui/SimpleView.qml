@@ -8,7 +8,7 @@
  */
 
 /**
- * SimpleView.qml — Simple layout mode for the widget popup.
+ * SimpleView.qml - Simple layout mode for the widget popup.
  *
  * Layout:
  *   ┌─────────────────────────────────────────────────────────────┐
@@ -66,7 +66,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: 130
 
-        // LEFT — temperature + feels like
+        // LEFT - temperature + feels like
         ColumnLayout {
             anchors { left: parent.left; verticalCenter: parent.verticalCenter }
             spacing: 2
@@ -88,7 +88,7 @@ ColumnLayout {
             }
         }
 
-        // CENTER — condition icon + condition text
+        // CENTER - condition icon + condition text
         ColumnLayout {
             anchors.centerIn: parent
             spacing: 4
@@ -109,7 +109,7 @@ ColumnLayout {
             }
         }
 
-        // RIGHT — wind speed + compass rose + sunrise/sunset
+        // RIGHT - wind speed + compass rose + sunrise/sunset
         ColumnLayout {
             anchors { right: parent.right; verticalCenter: parent.verticalCenter }
             spacing: 4
@@ -209,7 +209,7 @@ ColumnLayout {
         }
     }
 
-    // ── SECTION 2: Stats chips — driven by widgetSimpleDetailsOrder ──────────
+    // ── SECTION 2: Stats chips - driven by widgetSimpleDetailsOrder ──────────
 
     // Normalise icon theme (mirrors DetailsView)
     readonly property string _iconTheme: {
@@ -219,7 +219,7 @@ ColumnLayout {
     readonly property url _iconsBase: Qt.resolvedUrl("../icons/")
     readonly property bool _useWiFont: (Plasmoid.configuration.widgetIconTheme || "symbolic") === "wi-font" && wiFontReady
 
-    // wi-font glyphs — matches _wiGlyphs in iconResolver.js
+    // wi-font glyphs - matches _wiGlyphs in iconResolver.js
     readonly property var _wiChars: ({
         "feelslike":    "\uF053",
         "humidity":     "\uF07A",
@@ -291,7 +291,7 @@ ColumnLayout {
         }
     }
 
-    // Flow wraps chips to widget width — each chip is <icon> Label  Value on one line
+    // Flow wraps chips to widget width - each chip is <icon> Label  Value on one line
     Item {
         Layout.fillWidth: true
         implicitHeight: chipsFlow.implicitHeight
@@ -335,7 +335,7 @@ ColumnLayout {
                         anchors.rightMargin: 10
                         spacing: 5
 
-                        // Icon — wi-font glyph or WeatherIcon, directly in RowLayout like DetailsView
+                        // Icon - wi-font glyph or WeatherIcon, directly in RowLayout like DetailsView
                         Text {
                             visible: chipRect.showIcon && simpleView._useWiFont
                             Layout.alignment: Qt.AlignVCenter
@@ -438,7 +438,7 @@ ColumnLayout {
                             Layout.maximumWidth: parent.width - 4
                         }
 
-                        // Short date — shown for all days including Today
+                        // Short date - shown for all days including Today
                         Label {
                             Layout.alignment: Qt.AlignHCenter
                             visible: day && (day.dateStr || day.time)

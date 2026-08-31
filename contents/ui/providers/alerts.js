@@ -16,13 +16,13 @@
  */
 
 /**
- * alerts.js — Centralized weather alerts fetcher
+ * alerts.js - Centralized weather alerts fetcher
  *
  * Strategy:
  *   1. MeteoAlarm Atom feeds (38 European countries, no auth)
  *   2. Fallback → MET Norway MetAlerts (lat/lon based, Norway only)
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  */
 
 // ISO 3166-1 alpha-2 → MeteoAlarm feed slug
@@ -69,7 +69,7 @@ var _isoToSlug = {
 };
 
 /**
- * Main entry point — called from WeatherService.refreshNow().
+ * Main entry point - called from WeatherService.refreshNow().
  * Tries NWS for US, MeteoAlarm for Europe, falls back to met.no MetAlerts.
  */
 function fetchAlerts(service) {
@@ -103,7 +103,7 @@ function fetchAlerts(service) {
     } else if (isoCode.length > 0) {
         console.log("[Alerts] countryCode=" + isoCode + " → not supported by MeteoAlarm or NWS");
     } else {
-        // Country code not set — try reverse-geocoding to determine it
+        // Country code not set - try reverse-geocoding to determine it
         console.log("[Alerts] no countryCode → reverse-geocoding via Nominatim");
         _resolveCountryThenFetch(service);
     }
@@ -116,11 +116,11 @@ function fetchAlerts(service) {
 function _looksLikeUS(lat, lon) {
     lat = parseFloat(lat);  lon = parseFloat(lon);
     if (isNaN(lat) || isNaN(lon)) return false;
-    // CONUS: lat 24–50, lon –125 to –66
+    // CONUS: lat 24-50, lon -125 to -66
     if (lat >= 24 && lat <= 50 && lon >= -125 && lon <= -66) return true;
-    // Alaska: lat 51–72, lon –180 to –129
+    // Alaska: lat 51-72, lon -180 to -129
     if (lat >= 51 && lat <= 72 && lon >= -180 && lon <= -129) return true;
-    // Hawaii: lat 18–23, lon –161 to –154
+    // Hawaii: lat 18-23, lon -161 to -154
     if (lat >= 18 && lat <= 23 && lon >= -161 && lon <= -154) return true;
     return false;
 }
@@ -134,7 +134,7 @@ function _resolveCountryThenFetch(service) {
     var lon = service.longitude;
     if (!lat || !lon) return;
 
-    // Use zoom=10 so we also get county/state — avoids a second Nominatim
+    // Use zoom=10 so we also get county/state - avoids a second Nominatim
     // call (and possible rate-limit) inside _fetchMeteoAlarm.
     // Use accept-language=en for Latin-script admin names.
     var req = new XMLHttpRequest();
@@ -201,7 +201,7 @@ function _fetchMeteoAlarm(service, slug, callback, prefetchedTerms) {
     function _tryComplete() {
         if (state.feedData === undefined || state.localTerms === undefined)
             return;
-        // Stale generation — a newer refresh superseded us
+        // Stale generation - a newer refresh superseded us
         if (service._refreshGen !== gen) return;
         if (state.feedData === false) {
             callback(false);
@@ -318,7 +318,7 @@ function _parseMeteoAlarmAlerts(data, locationName, localTerms, lat, lon) {
     entries.forEach(function (entry) {
         if (!entry.alert || !entry.alert.info)
             return;
-        // Only "Actual" alerts — skip "Test", "Exercise", etc.
+        // Only "Actual" alerts - skip "Test", "Exercise", etc.
         if (entry.alert.status && entry.alert.status !== "Actual")
             return;
         var infos = entry.alert.info;
@@ -383,11 +383,11 @@ function _parseMeteoAlarmAlerts(data, locationName, localTerms, lat, lon) {
                 return;
         }
 
-        // Skip green/Minor (level 1) — these are "No Special Awareness Required"
+        // Skip green/Minor (level 1) - these are "No Special Awareness Required"
         if (levelNum <= 1 && color === "green")
             return;
 
-        // Area filtering — use merged areas from ALL info blocks
+        // Area filtering - use merged areas from ALL info blocks
         var matchedAreas = [];
         var canFilter = hasCoords || searchTerms.length > 0;
 
@@ -402,7 +402,7 @@ function _parseMeteoAlarmAlerts(data, locationName, localTerms, lat, lon) {
                     matchedAreas.push(ad);
                     return;
                 }
-                // 2) Fallback — fuzzy text match on areaDesc
+                // 2) Fallback - fuzzy text match on areaDesc
                 if (ad && searchTerms.length > 0) {
                     var desc = ad.toLowerCase();
                     for (var i = 0; i < searchTerms.length; i++) {
@@ -415,7 +415,7 @@ function _parseMeteoAlarmAlerts(data, locationName, localTerms, lat, lon) {
                 }
             });
             if (matchedAreas.length === 0)
-                return;  // no area match — skip this alert
+                return;  // no area match - skip this alert
         }
 
         // Use the local-language event name as display text
@@ -446,7 +446,7 @@ function _parseMeteoAlarmAlerts(data, locationName, localTerms, lat, lon) {
         });
     });
 
-    // Deduplicate by displayName + onset — same alert type at different time windows
+    // Deduplicate by displayName + onset - same alert type at different time windows
     // must be kept as separate entries (e.g. two "Moderate for Wind" on different days)
     var seen = {};
     var unique = [];
@@ -488,7 +488,7 @@ function _stripDiacritics(s) {
 }
 
 /**
- * Fuzzy text match — handles English ↔ local name variants.
+ * Fuzzy text match - handles English ↔ local name variants.
  * Returns true if:
  *   1. needle is a substring of haystack (or vice-versa), OR
  *   2. any word pair shares a common prefix ≥ 4 chars
@@ -502,7 +502,7 @@ function _textMatch(haystack, needle) {
     if (h.indexOf(n) >= 0 || n.indexOf(h) >= 0)
         return true;
     if (n.length < 4) return false;
-    // Word-by-word comparison — handles multi-word names like
+    // Word-by-word comparison - handles multi-word names like
     // "Central Macedonia" vs "Central Makedonia" and
     // transliteration differences like "Attiki" vs "Attica".
     var hWords = h.split(/[\s,&]+/);
@@ -538,7 +538,7 @@ function _areaContainsPoint(area, lat, lon) {
                 return true;
         }
     }
-    // Check circle(s)  — CAP format: "lat,lon radius_km"
+    // Check circle(s)  - CAP format: "lat,lon radius_km"
     if (area.circle) {
         var circles = Array.isArray(area.circle) ? area.circle : [area.circle];
         for (var j = 0; j < circles.length; j++) {
@@ -629,7 +629,7 @@ function _fetchMetNo(service) {
             return;
         if (service._refreshGen !== gen) return;
         if (req.status !== 200) {
-            // Both sources failed — leave alerts as-is (already [])
+            // Both sources failed - leave alerts as-is (already [])
             return;
         }
         try {
@@ -637,7 +637,7 @@ function _fetchMetNo(service) {
             var alerts = _parseMetNoAlerts(data);
             r.weatherAlerts = alerts;
         } catch (e) {
-            // Parse error — leave alerts empty
+            // Parse error - leave alerts empty
         }
     };
     req.send();
@@ -706,7 +706,7 @@ function _parseMetNoAlerts(data) {
     return alerts;
 }
 
-// ── NWS (National Weather Service) — US alerts ───────────────────────
+// ── NWS (National Weather Service) - US alerts ───────────────────────
 
 /**
  * Fetches weather alerts from the NWS API (api.weather.gov) for US locations.
@@ -727,7 +727,7 @@ function _fetchNws(service) {
     var latStr = lat.toFixed(4);
     var lonStr = lon.toFixed(4);
 
-    // NWS alerts API — active alerts for a geographic point
+    // NWS alerts API - active alerts for a geographic point
     var url = "https://api.weather.gov/alerts/active?point="
         + latStr + "," + lonStr
         + "&status=actual&message_type=alert,update";

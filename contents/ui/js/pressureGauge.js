@@ -16,9 +16,9 @@
  */
 
 /**
- * pressureGauge.js — Canvas drawing for the expandable Pressure card.
+ * pressureGauge.js - Canvas drawing for the expandable Pressure card.
  *
- * Draws a semicircular dial over the sea-level pressure range (970–1040 hPa)
+ * Draws a semicircular dial over the sea-level pressure range (970-1040 hPa)
  * with a coloured progress arc and a marker dot at the current reading.
  */
 .pragma library
@@ -47,7 +47,7 @@ function _hx(n) {
 }
 
 /**
- * Theme-aware colour for an hPa value across the LO..HI gauge range —
+ * Theme-aware colour for an hPa value across the LO..HI gauge range -
  * low pressure (storm-ish) → blue/violet, normal → teal/green, high
  * (fair-weather) → warm amber. Mirrors the same multi-stop interpolation
  * pattern used by the hourly-forecast temperature trend line. Returns a
@@ -90,7 +90,7 @@ function pressureColor(hpa, isDark) {
  * @param cw, ch     canvas size
  * @param hpa        pressure in hPa, may be NaN
  * @param isDark     dark theme flag
- * @param accentCss  accent colour (CSS string) — when given, overrides the
+ * @param accentCss  accent colour (CSS string) - when given, overrides the
  *                    min/max-based colour scale with a single fixed colour
  *                    for the traveled arc + marker. Pass null to use the
  *                    LO..HI colour scale (low→blue, normal→teal, high→amber).
@@ -114,7 +114,7 @@ function drawPressureGauge(ctx, cw, ch, hpa, isDark, accentCss) {
     ctx.strokeStyle = trackCol;
     ctx.stroke();
 
-    // Traveled arc up to the current value — swept through the LO..HI colour
+    // Traveled arc up to the current value - swept through the LO..HI colour
     // scale (or a single fixed accentCss, if given) segment-by-segment, the
     // same per-segment-gradient technique used by the hourly temperature
     // trend line elsewhere in this widget.

@@ -16,9 +16,9 @@
  */
 
 /**
- * visualCrossing.js — Visual Crossing current + hourly fetcher
+ * visualCrossing.js - Visual Crossing current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Visual Crossing Timeline API provides current conditions, daily and hourly forecasts.
  * Uses Dark Sky-compatible icon names.
  * Docs: https://www.visualcrossing.com/resources/documentation/weather-api/
@@ -153,7 +153,7 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  c.sunset  ? c.sunset.substring(0, 5)  : "--",
             dailyData:       nd
         };
-        // No native air quality or pollen — both are supplied by the shared
+        // No native air quality or pollen - both are supplied by the shared
         // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
         // them here would race that fetch and discard its result.
         r.loading = false;
