@@ -16,11 +16,11 @@
  */
 
 /**
- * windCompass.js — shared Canvas drawing for wind-compass roses, used by
+ * windCompass.js - shared Canvas drawing for wind-compass roses, used by
  * the expandable Wind card (DetailsView), the Simple layout, and the
  * Simple layout's per-day forecast mini-compasses.
  *
- * dirDeg (0 = N) is the meteorological convention — the direction the wind
+ * dirDeg (0 = N) is the meteorological convention - the direction the wind
  * is blowing FROM (matching weather.js windDirectionGlyph()/
  * windDirectionSvgStem() and the provider data). The arrow is drawn pointing
  * 180° from dirDeg (the flow/TO direction), verified against the bundled
@@ -40,7 +40,7 @@ function cardinal(deg) {
 }
 
 /**
- * Beaufort-like colour band for a wind speed in km/h — used to tint the
+ * Beaufort-like colour band for a wind speed in km/h - used to tint the
  * compass arrow/glow so "how windy is it" reads at a glance.
  *   < 12 km/h  calm/light breeze   → blue
  *   12-29 km/h moderate breeze     → teal/green
@@ -63,8 +63,8 @@ function speedColor(kmh) {
  * @param arrowCss   arrow colour (CSS string)
  * @param speedText  formatted wind speed (e.g. "12 km/h"), drawn outside the
  *                    ring at the arrow tip. Pass "" / null to omit.
- * @param isDark     dark-theme flag — tunes the glow opacity (optional, default false)
- * @param windKmh    wind speed in km/h — tints the arrow/glow by Beaufort-like
+ * @param isDark     dark-theme flag - tunes the glow opacity (optional, default false)
+ * @param windKmh    wind speed in km/h - tints the arrow/glow by Beaufort-like
  *                    band (calm→blue, breezy→teal, strong→amber, storm→red).
  *                    Pass NaN/undefined to keep the fixed default blue.
  * @param boldNearestCardinal  when true, bolds/brightens whichever N/E/S/W
@@ -89,7 +89,7 @@ function drawWindCompass(ctx, cw, ch, dirDeg, textCss, arrowCss, speedText, isDa
     // "sky tint" treatment so the wind card doesn't look bare by comparison.
     // The gradient's outer radius is capped at the canvas's own half-size
     // (not r * some factor > 1) so it fully fades to transparent BEFORE
-    // reaching the canvas edge — otherwise the canvas's square pixel bounds
+    // reaching the canvas edge - otherwise the canvas's square pixel bounds
     // hard-clip the still-visible gradient, producing a "squared" glow.
     var glowOuter = Math.min(cx, cy) - 1;
     var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowOuter);
@@ -109,7 +109,7 @@ function drawWindCompass(ctx, cw, ch, dirDeg, textCss, arrowCss, speedText, isDa
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    // Cardinal labels — by default N is always emphasised; when
+    // Cardinal labels - by default N is always emphasised; when
     // boldNearestCardinal is set, whichever cardinal is closest to dirDeg
     // is emphasised instead (Simple layout's per-day mini compasses).
     var cardinals = [["N", 0], ["E", 90], ["S", 180], ["W", 270]];
@@ -132,12 +132,12 @@ function drawWindCompass(ctx, cw, ch, dirDeg, textCss, arrowCss, speedText, isDa
         ctx.fillText(lbl, lx, ly);
     }
 
-    // Directional arrow — tip points in the direction the wind is blowing
+    // Directional arrow - tip points in the direction the wind is blowing
     // TO (dirDeg + 180°). dirDeg itself is the meteorological "from" bearing
     // (e.g. provider wind_direction_10m). This matches the collapsed-row
     // wi-font glyph (W.windDirectionGlyph) verified against the bundled
     // weathericons-regular-webfont.ttf: its "N" glyph (chosen when dirDeg=0,
-    // i.e. wind FROM the north) renders as a triangle pointing DOWN — i.e.
+    // i.e. wind FROM the north) renders as a triangle pointing DOWN - i.e.
     // toward the flow/TO direction, not up at the FROM bearing.
     if (dirDeg !== undefined && dirDeg !== null && !isNaN(dirDeg)) {
         var arrowAng = (dirDeg + 90) * Math.PI / 180;

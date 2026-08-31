@@ -154,8 +154,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>OWM katmanları neden RainViewer radarıyla eşleşmeyebilir</b><br/><br/>OWM yağış/bulut katmanları <b>statik model karolarıdır</b> - gerçek radar verileri değil, düzleştirilmiş bir NWP (Sayısal Hava Tahmini) çıktısını gösterirler. Hava istasyonları ve model çalıştırmaları arasındaki enterpolasyona dayanarak modelin yağmur yağdığını <i>düşündüğü</i> yerleri temsil ederler.<br/><br/>RainViewer, radar istasyonlarından <b>gerçek hava radarı verilerini</b> kullanır - her 2–10 dakikada bir güncellenen gerçek ölçülmüş yansıtıcılık. Bu farklılık beklenen ve bilinen bir durumdur."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>OWM katmanları neden RainViewer radarıyla eşleşmeyebilir</b><br/><br/>OWM yağış/bulut katmanları <b>statik model karolarıdır</b> - gerçek radar verileri değil, düzleştirilmiş bir NWP (Sayısal Hava Tahmini) çıktısını gösterirler. Hava istasyonları ve model çalıştırmaları arasındaki enterpolasyona dayanarak modelin yağmur yağdığını <i>düşündüğü</i> yerleri temsil ederler.<br/><br/>RainViewer, radar istasyonlarından <b>gerçek hava radarı verilerini</b> kullanır - her 2-10 dakikada bir güncellenen gerçek ölçülmüş yansıtıcılık. Bu farklılık beklenen ve bilinen bir durumdur."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -359,8 +359,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Emin misiniz? Bu kaydettiğiniz son konum. Eğer kaldırırsanız, araç takımı artık hava durumu bilgilerini göstermeyecek."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Gece yarısına doğru — "
+msgid "Around midnight - "
+msgstr "Gece yarısına doğru - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -700,8 +700,8 @@ msgid "Configure display mode options"
 msgstr "Görünüm modu seçeneklerini yapılandır"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Simgeyi yapılandır — %1"
+msgid "Configure icon - %1"
+msgstr "Simgeyi yapılandır - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -812,8 +812,8 @@ msgid "Dark map"
 msgstr "Koyu harita"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Tire  –"
+msgid "Dash  -"
+msgstr "Tire  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -850,8 +850,8 @@ msgid "Date:"
 msgstr "Tarih:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "Şafak yaklaşıyor — "
+msgid "Dawn approaching - "
+msgstr "Şafak yaklaşıyor - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1112,8 +1112,8 @@ msgid "Error (code %1)"
 msgstr "Hata (kod %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Akşam — "
+msgid "Evening - "
+msgstr "Akşam - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2689,8 +2689,8 @@ msgid "Recent"
 msgstr "Son arananlar"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Önerilen — örn. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Önerilen - örn. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3035,8 +3035,8 @@ msgid "Size:"
 msgstr "Boyut:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Atlandı — API anahtarı yapılandırılmadı"
+msgid "Skipped - API key not configured"
+msgstr "Atlandı - API anahtarı yapılandırılmadı"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3830,19 +3830,19 @@ msgstr "Hava durumu sağlayıcısı:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "Hava durumu uyarısı şiddet düzeyleri, en düşükten en yükseğe:\n"
 "\n"
-"🟡 Sarı — Hafif: koşulların farkında olun.\n"
-"🟠 Turuncu — Orta: hazırlıklı olun.\n"
-"🔴 Kırmızı — Şiddetli: harekete geçin.\n"
-"🟣 Mor — Aşırı: son derece tehlikeli, hemen harekete geçin.\n"
+"🟡 Sarı - Hafif: koşulların farkında olun.\n"
+"🟠 Turuncu - Orta: hazırlıklı olun.\n"
+"🔴 Kırmızı - Şiddetli: harekete geçin.\n"
+"🟣 Mor - Aşırı: son derece tehlikeli, hemen harekete geçin.\n"
 "\n"
 "Belirli bir şiddet düzeyi için bildirim almayı durdurmak için o düzeyi kapatın."
 

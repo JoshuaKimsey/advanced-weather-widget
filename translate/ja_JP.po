@@ -152,7 +152,7 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
 msgstr "<b>OWM のレイヤーが RainViewer レーダーと一致しない理由</b><br/><br/>OWM の降水・雲レイヤーは<b>静的なモデルタイル</b>であり、実際のレーダー観測ではなく、平滑化された NWP（数値予報）の出力を表示します。気象観測所とモデル実行の間の補間に基づいて、モデルが雨が降っていると<i>推定</i>している場所を表しています。<br/><br/>RainViewer はレーダー観測所からの<b>実際の気象レーダー合成画像</b>を使用し、2〜10 分ごとに更新される実際の観測反射強度を表示します。この差異は想定されており、既知の現象です。"
 
 #: contents/ui/config/configGeneral.qml:544
@@ -357,8 +357,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "本当によろしいですか? これは最後に保存した位置です。削除すると、ウィジェットは気象情報を表示しなくなります。"
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "真夜中頃 — "
+msgid "Around midnight - "
+msgstr "真夜中頃 - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -698,8 +698,8 @@ msgid "Configure display mode options"
 msgstr "表示モードオプションを設定"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "アイコンを設定 — %1"
+msgid "Configure icon - %1"
+msgstr "アイコンを設定 - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -810,8 +810,8 @@ msgid "Dark map"
 msgstr "ダークマップ"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "ダッシュ  –"
+msgid "Dash  -"
+msgstr "ダッシュ  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -848,8 +848,8 @@ msgid "Date:"
 msgstr "日付:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "夜明けが近づいています — "
+msgid "Dawn approaching - "
+msgstr "夜明けが近づいています - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1110,8 +1110,8 @@ msgid "Error (code %1)"
 msgstr "エラー（コード %1）"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "夕方 — "
+msgid "Evening - "
+msgstr "夕方 - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2687,8 +2687,8 @@ msgid "Recent"
 msgstr "最近"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "推奨 — 例: 560"
+msgid "Recommended - e.g. 560"
+msgstr "推奨 - 例: 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3033,8 +3033,8 @@ msgid "Size:"
 msgstr "サイズ:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "スキップ — API キーが未設定"
+msgid "Skipped - API key not configured"
+msgstr "スキップ - API キーが未設定"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3825,19 +3825,19 @@ msgstr "気象プロバイダ:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "天気アラートの重要度レベル（低→高）:\n"
 "\n"
-"🟡 黄 — 軽微: 状況に注意してください。\n"
-"🟠 オレンジ — 中程度: 準備をしてください。\n"
-"🔴 赤 — 重大: 行動を起こしてください。\n"
-"🟣 紫 — 極端: 極めて危険です。直ちに行動を起こしてください。\n"
+"🟡 黄 - 軽微: 状況に注意してください。\n"
+"🟠 オレンジ - 中程度: 準備をしてください。\n"
+"🔴 赤 - 重大: 行動を起こしてください。\n"
+"🟣 紫 - 極端: 極めて危険です。直ちに行動を起こしてください。\n"
 "\n"
 "レベルをオフにすると、その重要度のアラート通知を受信しなくなります。"
 

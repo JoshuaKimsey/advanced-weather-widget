@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigMiscTab.qml — Misc (display + units) tab content
+ * ConfigMiscTab.qml - Misc (display + units) tab content
  *
  * Extracted from configAppearance.qml for readability.
  */
@@ -324,22 +324,22 @@ Kirigami.FormLayout {
     }
     Switch {
         id: aqiShowUsSwitch
-        Kirigami.FormData.label: i18n("Show standards:")
-        text: i18n("US AQI (0–500)")
+        Kirigami.FormData.label: i18n("Show air quality standards:")
+        text: i18n("US AQI (0-500)")
         checked: miscTab.configRoot.cfg_aqiShowUs
         onToggled: miscTab.configRoot.cfg_aqiShowUs = checked
     }
     Switch {
         id: aqiShowEuSwitch
         Kirigami.FormData.label: ""
-        text: i18n("European CAQI (0–100+)")
+        text: i18n("European CAQI (0-100+)")
         checked: miscTab.configRoot.cfg_aqiShowEu
         onToggled: miscTab.configRoot.cfg_aqiShowEu = checked
     }
     Switch {
         id: aqiShowCaSwitch
         Kirigami.FormData.label: ""
-        text: i18n("Canadian AQHI (1–10+)")
+        text: i18n("Canadian AQHI (1-10+)")
         checked: miscTab.configRoot.cfg_aqiShowCa
         onToggled: miscTab.configRoot.cfg_aqiShowCa = checked
     }
@@ -353,7 +353,7 @@ Kirigami.FormLayout {
     }
     ComboBox {
         id: aqiStandardCombo
-        Kirigami.FormData.label: i18n("Index standard:")
+        Kirigami.FormData.label: i18n("Air Quality index standard:")
         Layout.preferredWidth: 270
         enabled: !(miscTab.configRoot.cfg_aqiShowUs || miscTab.configRoot.cfg_aqiShowEu || miscTab.configRoot.cfg_aqiShowCa)
         model: [
@@ -362,15 +362,15 @@ Kirigami.FormLayout {
                 value: "auto"
             },
             {
-                text: i18n("US AQI (0–500)"),
+                text: i18n("US AQI (0-500)"),
                 value: "us"
             },
             {
-                text: i18n("European CAQI (0–100+)"),
+                text: i18n("European CAQI (0-100+)"),
                 value: "eu"
             },
             {
-                text: i18n("Canadian AQHI (1–10+)"),
+                text: i18n("Canadian AQHI (1-10+)"),
                 value: "ca"
             }
         ]

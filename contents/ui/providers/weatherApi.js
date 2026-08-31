@@ -16,9 +16,9 @@
  */
 
 /**
- * weatherApi.js — WeatherAPI.com current + hourly fetcher
+ * weatherApi.js - WeatherAPI.com current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  */
@@ -40,7 +40,7 @@ function _apiTimeTo24h(s) {
         return "--";
     var parts = s.trim().split(/\s+/);
     if (parts.length < 2)
-        return s;  // already "HH:mm" — pass through
+        return s;  // already "HH:mm" - pass through
     var hm = parts[0].split(":");
     if (hm.length < 2)
         return s;
@@ -88,15 +88,15 @@ function fetchCurrent(service, W, chain, idx) {
             return;
         }
         // Air quality: WeatherAPI's current.air_quality["us-epa-index"] is a
-        // 1–6 category (Good/Moderate/.../Hazardous — see the removed
-        // _waAqiLabel() that used to map it), not the 0–500 numeric US AQI
+        // 1-6 category (Good/Moderate/.../Hazardous - see the removed
+        // _waAqiLabel() that used to map it), not the 0-500 numeric US AQI
         // that usAqi/bandForUsAqi() expect elsewhere, so it can't be merged
         // in directly without misreading a category number as if it were an
         // AQI value. The &aqi=yes request param has been dropped along with
         // it. Providers.qml has no "weatherApi" case in its
         // fetchAirQuality() switch, so WeatherService.refreshNow() already
         // falls through to the shared Open-Meteo air-quality fetch
-        // unconditionally for this provider — that's the sole source of
+        // unconditionally for this provider - that's the sole source of
         // pollutants and all three index values here, same as for most
         // other providers.
         var astro = (d.forecast && d.forecast.forecastday && d.forecast.forecastday.length > 0)

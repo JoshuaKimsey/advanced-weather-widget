@@ -16,19 +16,19 @@
  */
 
 /**
- * openMeteo.js — Open-Meteo current + hourly fetcher
+ * openMeteo.js - Open-Meteo current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  */
 
 .import "../js/weather.js" as W
 
 // Open-Meteo represents "this model doesn't report this field" as a bare
-// null, NOT a missing key — undefined-only checks (`x !== undefined`) let
+// null, NOT a missing key - undefined-only checks (`x !== undefined`) let
 // null straight through. That's harmless for a `var`-held value, but once
 // it lands on a QML `real`/`int` property (e.g. weatherRoot.uvIndex),
-// null gets silently coerced to 0 — while undefined correctly becomes NaN.
+// null gets silently coerced to 0 - while undefined correctly becomes NaN.
 // A "real" 0 UV index then displays as "0 (Low)" instead of "--". Always
 // route field values through these helpers rather than checking
 // `!== undefined` alone.
@@ -43,7 +43,7 @@ function _numOr(v, fallback) {
 // backupEntry[key] and marks flag.used so callers know backup was needed.
 // Used by the current/daily/hourly mergers so a day/hour/reading is never
 // wholesale replaced by the best-match blend just because ONE field (most
-// often UV) was null — every field the primary model DID report is kept.
+// often UV) was null - every field the primary model DID report is kept.
 function _pickField(entry, backupEntry, key, flag) {
     var v = entry ? entry[key] : undefined;
     if (v !== null && v !== undefined && !(typeof v === "number" && isNaN(v)))
@@ -91,7 +91,7 @@ function fetchCurrent(service, chain, idx) {
         // National high-res models (ICON-D2 for Germany, AROME for France,
         // UKMO for the UK, etc.) each cover a different number of days, and
         // several of them omit some "current" fields entirely (UV index
-        // most commonly, but precipitation/visibility too) — Open-Meteo
+        // most commonly, but precipitation/visibility too) - Open-Meteo
         // represents both cases as null rather than erroring. Detect both
         // here rather than trusting a hardcoded per-country day/field list,
         // since coverage changes over time.
@@ -122,7 +122,7 @@ function fetchCurrent(service, chain, idx) {
             r.loading = false;
             r.updateText = service._formatUpdateText("openMeteo");
 
-            // No native alerts — fall back to MeteoAlarm / NWS
+            // No native alerts - fall back to MeteoAlarm / NWS
             service._fetchAlertsIfNeeded();
         }
 
@@ -146,7 +146,7 @@ function fetchCurrent(service, chain, idx) {
 // A "current" reading is incomplete when the primary (often national
 // high-res) model doesn't report a field for it. temperature/weather_code
 // are must-have; uv_index/precipitation/visibility are the fields most
-// commonly missing from high-res models' current block — this is the exact
+// commonly missing from high-res models' current block - this is the exact
 // condition behind the "UV index shows 0" reports: a bare null used to sail
 // through untouched and get coerced to 0 by QML's real-property binding.
 function _isCurrentIncomplete(c) {
@@ -202,7 +202,7 @@ function _parseDailyArray(d, requestedDays) {
 }
 
 // A day is "incomplete" when the national high-res model has no forecast
-// for it, OR when it covers the day but leaves one field null — Open-Meteo
+// for it, OR when it covers the day but leaves one field null - Open-Meteo
 // represents both cases as null rather than omitting the day or erroring,
 // so length alone isn't a reliable signal. UV is the field most commonly
 // missing (ICON-D2, AROME, UKMO, etc. cover temp/code but not
@@ -264,7 +264,7 @@ function _fetchBackup(service, gen, requestedDays, callback) {
 // PER-FIELD basis, matched by dateStr so timezone/date-boundary differences
 // between the two requests can't misalign the days (positional fallback for
 // a day the primary fetch didn't return at all). A day flagged incomplete
-// only has the specific field(s) that were actually null replaced — e.g. a
+// only has the specific field(s) that were actually null replaced - e.g. a
 // day missing just uvMax keeps its high-res maxC/minC/windKmh/etc. rather
 // than being swapped wholesale for the coarser blend's numbers.
 function _mergeDailyArrays(primary, backup, requestedDays) {
@@ -289,7 +289,7 @@ function _mergeDailyArrays(primary, backup, requestedDays) {
         var mergedEntry = {};
         for (var k = 0; k < fields.length; ++k)
             mergedEntry[fields[k]] = _pickField(entry, backupEntry, fields[k], flag);
-        // Only flagged when a field actually came from the blend — a day
+        // Only flagged when a field actually came from the blend - a day
         // can trip _isDailyIncomplete and still have every field filled by
         // the primary model except the one that triggered the check.
         if (flag.used) mergedEntry.isBackupModel = true;
@@ -299,15 +299,15 @@ function _mergeDailyArrays(primary, backup, requestedDays) {
 }
 
 // Air-quality fetching for the default (Open-Meteo) provider path lives in
-// WeatherService.qml's _fetchAirQualityOpenMeteo() — the shared fetch every
-// provider falls back to — not here. A duplicate, unused _fetchAirQuality()
+// WeatherService.qml's _fetchAirQualityOpenMeteo() - the shared fetch every
+// provider falls back to - not here. A duplicate, unused _fetchAirQuality()
 // used to live in this file (never dispatched from Providers.qml, which has
 // no "openMeteo" case in its fetchAirQuality() switch) and had gone stale:
 // its result object assigned `index`/`label` twice in the same literal, so
 // the european_aqi values it computed were always silently discarded in
 // favor of us_aqi. Removed rather than fixed, since WeatherService.qml's
 // version is the actual live path and now handles both figures (plus
-// Canadian AQHI) correctly — see airQuality.js for the current index math.
+// Canadian AQHI) correctly - see airQuality.js for the current index math.
 
 
 function fetchHourly(service, dateStr) {
@@ -378,7 +378,7 @@ function _parseHourlyArray(d) {
 
 // An hour is "incomplete" when the national high-res model has no data for
 // it, OR reports some fields but leaves others null. Mirrors
-// _isDailyIncomplete: UV is checked here too now — previously it wasn't,
+// _isDailyIncomplete: UV is checked here too now - previously it wasn't,
 // so an hourly-only null UV silently passed through as "0 (Low)" even
 // after the equivalent daily bug was fixed.
 function _isHourlyIncomplete(entry) {
@@ -425,7 +425,7 @@ function _fetchHourlyBackup(service, gen, dateStr, callback) {
 
 // Merges the model-specific hourly array with the best-match backup on a
 // PER-FIELD basis, matched by timeIso (positional fallback for hours the
-// primary fetch didn't return at all) — same rationale as _mergeDailyArrays:
+// primary fetch didn't return at all) - same rationale as _mergeDailyArrays:
 // an hour missing just uvIndex keeps its high-res tempC/windKmh/etc.
 // instead of being swapped wholesale for the coarser blend's numbers.
 function _mergeHourlyArrays(primary, backup) {

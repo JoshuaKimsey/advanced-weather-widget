@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigTooltipSubPage — extracted from configAppearance.qml
+ * ConfigTooltipSubPage - extracted from configAppearance.qml
  * Requires: required property var configRoot
  */
 import QtQuick
@@ -153,7 +153,7 @@ ColumnLayout {
                                 }
                                 onDropped: configRoot.applyTooltipItems()
                             }
-                            // Icon — reflects active tooltip icon theme
+                            // Icon - reflects active tooltip icon theme
                             Item {
                                 visible: model.itemId !== "suntimes" && model.itemId !== "moonphase"
                                 implicitWidth: Kirigami.Units.iconSizes.smallMedium
@@ -416,7 +416,7 @@ ColumnLayout {
                                 }
                                 onClicked: ttDelegateRoot.settingsExpanded = !ttDelegateRoot.settingsExpanded
                             }
-                            // Configure icon button (custom theme, suntimes/moonphase) — opens icon-config dialog
+                            // Configure icon button (custom theme, suntimes/moonphase) - opens icon-config dialog
                             ToolButton {
                                 visible: configRoot.cfg_tooltipIconTheme === "custom" && (model.itemId === "suntimes" || model.itemId === "moonphase")
                                 enabled: model.itemEnabled
@@ -460,7 +460,7 @@ ColumnLayout {
                                     }
                                 }
                             }
-                            // Eye toggle — show/hide prefix icon
+                            // Eye toggle - show/hide prefix icon
                             ToolButton {
                                 implicitWidth: Kirigami.Units.iconSizes.medium
                                 implicitHeight: Kirigami.Units.iconSizes.medium

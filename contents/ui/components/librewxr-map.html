@@ -1203,7 +1203,7 @@
 
         // A layer that never fires `load` would pin `isLoading` forever, and
         // the guard at the top of this function then rejects every later
-        // frame, including the animation's own — the player stops until the
+        // frame, including the animation's own - the player stops until the
         // page is recreated. `createTile` reports both onload and onerror, so
         // a 404 or a refused connection is fine; what hangs is a request left
         // pending, which is what an unreachable or restarting server gives.
@@ -1224,7 +1224,7 @@
         var loadGuard = setTimeout(advance, FRAME_LOAD_TIMEOUT_MS);
 
         // .once so the handler doesn't re-fire on subsequent pan/zoom tile
-        // reloads — Leaflet fires `load` every time all visible tiles for a
+        // reloads - Leaflet fires `load` every time all visible tiles for a
         // layer finish requesting, and a cached layer still attached to the
         // map with opacity 0 keeps requesting tiles when the viewport changes.
         newLayer.once("load", function () {
@@ -1486,7 +1486,7 @@
           map.setView([LAT, LON], map.getZoom());
         });
 
-      // Clean up on pan/zoom — but not on the invisible 1px repaint nudge
+      // Clean up on pan/zoom - but not on the invisible 1px repaint nudge
       // (window.fixViewport below), which is a *real* Leaflet pan as far as
       // movestart/moveend are concerned even though it cancels itself out and
       // the view never actually changes. Without this guard, every resize or
@@ -1580,7 +1580,7 @@
       };
 
       // Track container size changes directly (widget resizes, popup layout
-      // settling after reopen) — more reliable than window resize events alone.
+      // settling after reopen) - more reliable than window resize events alone.
       if (typeof ResizeObserver !== "undefined") {
         var _roTimer = null;
         new ResizeObserver(function () {
@@ -1594,7 +1594,7 @@
         setTimeout(window.fixViewport, 1200);
       });
 
-      // Also run the fix once the base map tiles have actually arrived — the
+      // Also run the fix once the base map tiles have actually arrived - the
       // compositing artifact appears when tiles finish loading after the initial
       // paint.
       currentBaseMap.once("load", function () {

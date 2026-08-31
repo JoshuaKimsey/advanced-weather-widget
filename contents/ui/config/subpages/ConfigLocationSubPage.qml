@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigLocationSubPage — Location search, extracted from configLocation.qml
+ * ConfigLocationSubPage - Location search, extracted from configLocation.qml
  * Requires: required property var configRoot
  */
 import QtQuick
@@ -355,7 +355,7 @@ ColumnLayout {
                     }
                 }
 
-                // Details row — only shown if a location is configured
+                // Details row - only shown if a location is configured
                 Label {
                     Layout.fillWidth: true
                     visible: currentInfoCard.hasLocation
@@ -384,7 +384,7 @@ ColumnLayout {
                     text: {
                         var parts = [];
                         // When "adaptive" is selected, show which concrete
-                        // provider is actually used first in the chain —
+                        // provider is actually used first in the chain -
                         // Open-Meteo. We use it here for the current-weather
                         // preview too, so the label accurately reflects the
                         // data source.
@@ -489,7 +489,7 @@ ColumnLayout {
 
                             if (!isDup) {
                                 configRoot.duplicateWarning = "";
-                                // Store pending — saved on KCM Apply via save() in configLocation.qml
+                                // Store pending - saved on KCM Apply via save() in configLocation.qml
                                 var startAlt = modelData.elevation || 0;
                                 if (startAlt !== 0 && configRoot.cfg_altitudeUnit === "ft") {
                                     startAlt = Math.round(startAlt * 3.28084);
@@ -507,7 +507,7 @@ ColumnLayout {
                                 };
                                 searchSubPageRoot._pendingItemData = modelData;
                             } else {
-                                // Already saved — clear pending
+                                // Already saved - clear pending
                                 configRoot._pendingEntry = null;
                                 searchSubPageRoot._pendingItemData = null;
                                 configRoot.duplicateWarning = i18n("Location '%1' is already in your saved list. You can apply the selected location, but it will not be saved again.", entryName);

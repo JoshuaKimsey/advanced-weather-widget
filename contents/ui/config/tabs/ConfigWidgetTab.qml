@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigWidgetTab.qml — Widget tab with sub-tabs: General, Details, Forecast
+ * ConfigWidgetTab.qml - Widget tab with sub-tabs: General, Details, Forecast
  */
 import QtQuick
 import QtQuick.Controls
@@ -44,7 +44,7 @@ ColumnLayout {
         { text: i18n("3D Oxygen (Bundled)"),       value: "3d-oxygen"    }
     ]
 
-    /** Condition icon theme choices — adds KDE Symbolic and Custom options */
+    /** Condition icon theme choices - adds KDE Symbolic and Custom options */
     readonly property var conditionIconThemeModel: [
         { text: i18n("KDE Icon Theme"),        value: "kde"          },
         { text: i18n("KDE Symbolic"),          value: "kde-symbolic" },
@@ -462,7 +462,7 @@ ColumnLayout {
                     to: 2000
                     stepSize: 10
                     // Auto placeholder mirrors the actual auto-mode value computed
-                    // in main.qml's fullRepresentation block — keep these in sync.
+                    // in main.qml's fullRepresentation block - keep these in sync.
                     value: widgetTab.configRoot.cfg_widgetMinWidthMode === "manual"
                         ? widgetTab.configRoot.cfg_widgetMinWidth
                         : (widgetTab.configRoot.cfg_widgetLayoutMode === "simple" ? 765 : 800)
@@ -494,7 +494,7 @@ ColumnLayout {
                     to: 2000
                     stepSize: 10
                     // Auto placeholder mirrors the actual auto-mode value computed
-                    // in main.qml's fullRepresentation block — keep these in sync.
+                    // in main.qml's fullRepresentation block - keep these in sync.
                     value: widgetTab.configRoot.cfg_widgetMinHeightMode === "manual"
                         ? widgetTab.configRoot.cfg_widgetMinHeight
                         : (widgetTab.configRoot.cfg_widgetLayoutMode === "simple" ? 550 : 750)
@@ -558,7 +558,7 @@ ColumnLayout {
 
             Item { Layout.preferredHeight: Kirigami.Units.smallSpacing }
 
-            // ── Warning — KDE themes lack some item icons ──
+            // ── Warning - KDE themes lack some item icons ──
             Kirigami.InlineMessage {
                 Layout.fillWidth: true
                 Layout.columnSpan: 2
@@ -686,7 +686,7 @@ ColumnLayout {
             }
 
             // ═══════════════════════════════════════════════════════════════
-            // SECTION: Items — switches between advanced and simple mode
+            // SECTION: Items - switches between advanced and simple mode
             // ═══════════════════════════════════════════════════════════════
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true

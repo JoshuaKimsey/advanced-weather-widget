@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigPanelTab.qml — Panel tab content
+ * ConfigPanelTab.qml - Panel tab content
  *
  * Extracted from configAppearance.qml for readability.
  * Contains display mode, simple mode options, multiline options,
@@ -1032,7 +1032,7 @@ Kirigami.FormLayout {
         onAccepted: panelTab.configRoot.cfg_panelSimpleTempShadowColor = color.toString()
     }
 
-    // ── Panel font — Switch + native Platform.FontDialog (like KDE clock) ──
+    // ── Panel font - Switch + native Platform.FontDialog (like KDE clock) ──
     Platform.FontDialog {
         id: panelFontDialog
         title: i18n("Choose a Panel Font")

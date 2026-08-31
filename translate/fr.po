@@ -152,8 +152,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Pourquoi les couches OWM peuvent ne pas correspondre au radar RainViewer</b><br/><br/>Les couches de précipitations/nuages d'OWM sont des <b>tuiles de modèle statiques</b> - elles montrent une sortie lissée de prévision numérique (NWP), pas de véritables retours radar. Elles représentent les zones où le modèle <i>pense</i> qu'il pleut, en se basant sur l'interpolation entre stations météo et exécutions du modèle.<br/><br/>RainViewer utilise de <b>véritables composites radar météo</b> issus de stations radar — réflectivité réellement mesurée et mise à jour toutes les 2 à 10 minutes. Cette divergence est attendue et connue."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>Pourquoi les couches OWM peuvent ne pas correspondre au radar RainViewer</b><br/><br/>Les couches de précipitations/nuages d'OWM sont des <b>tuiles de modèle statiques</b> - elles montrent une sortie lissée de prévision numérique (NWP), pas de véritables retours radar. Elles représentent les zones où le modèle <i>pense</i> qu'il pleut, en se basant sur l'interpolation entre stations météo et exécutions du modèle.<br/><br/>RainViewer utilise de <b>véritables composites radar météo</b> issus de stations radar - réflectivité réellement mesurée et mise à jour toutes les 2 à 10 minutes. Cette divergence est attendue et connue."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -357,8 +357,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Êtes-vous sûr ? Il s'agit de votre dernière localisation enregistrée. Si vous la supprimez, le widget n'affichera plus d'informations météo."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Vers minuit — "
+msgid "Around midnight - "
+msgstr "Vers minuit - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -698,8 +698,8 @@ msgid "Configure display mode options"
 msgstr "Configurer les options du mode d'affichage"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Configurer l'icône — %1"
+msgid "Configure icon - %1"
+msgstr "Configurer l'icône - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -810,8 +810,8 @@ msgid "Dark map"
 msgstr "Carte sombre"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Tiret  –"
+msgid "Dash  -"
+msgstr "Tiret  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -848,8 +848,8 @@ msgid "Date:"
 msgstr "Date :"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "L'aube approche — "
+msgid "Dawn approaching - "
+msgstr "L'aube approche - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1110,8 +1110,8 @@ msgid "Error (code %1)"
 msgstr "Erreur (code %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Soirée — "
+msgid "Evening - "
+msgstr "Soirée - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2687,8 +2687,8 @@ msgid "Recent"
 msgstr "Récent"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Recommandé — ex. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Recommandé - ex. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3033,8 +3033,8 @@ msgid "Size:"
 msgstr "Taille :"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Ignoré — clé API non configurée"
+msgid "Skipped - API key not configured"
+msgstr "Ignoré - clé API non configurée"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3828,19 +3828,19 @@ msgstr "Fournisseur météo :"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "Niveaux de gravité des alertes météo, du plus faible au plus élevé :\n"
 "\n"
-"🟡 Jaune — Mineur : soyez attentif aux conditions.\n"
-"🟠 Orange — Modéré : soyez prêt.\n"
-"🔴 Rouge — Sévère : agissez.\n"
-"🟣 Violet — Extrême : extraordinairement dangereux, agissez immédiatement.\n"
+"🟡 Jaune - Mineur : soyez attentif aux conditions.\n"
+"🟠 Orange - Modéré : soyez prêt.\n"
+"🔴 Rouge - Sévère : agissez.\n"
+"🟣 Violet - Extrême : extraordinairement dangereux, agissez immédiatement.\n"
 "\n"
 "Désactivez un niveau pour ne plus recevoir de notifications pour les alertes de cette gravité."
 
@@ -4232,7 +4232,7 @@ msgstr "µg/m³"
 #~ msgstr ""
 #~ "Les fournisseurs sont essayés dans l'ordre jusqu'à ce que l'un d'eux réussisse :\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo est toujours tenté en premier — il est gratuit et ne nécessite aucune clé API."
+#~ "Open-Meteo est toujours tenté en premier - il est gratuit et ne nécessite aucune clé API."
 
 #~ msgid "Updated %1"
 #~ msgstr "Mis à jour %1"
@@ -4249,11 +4249,11 @@ msgstr "µg/m³"
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
 #~ "Les fournisseurs sont essayés dans l'ordre jusqu'au fonctionnement de l'un d'eux : \n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo est toujours tenté en premier — il est gratuit et ne nécessite aucune clé API."
+#~ "Open-Meteo est toujours tenté en premier - il est gratuit et ne nécessite aucune clé API."
 
 #~ msgid "Set manually"
 #~ msgstr "Configurer manuellement"

@@ -16,7 +16,7 @@
  */
 
 /**
- * main.qml — Advanced Weather Widget root
+ * main.qml - Advanced Weather Widget root
  *
  * Responsibilities:
  *  - Declare all weather data properties (the "model")
@@ -49,7 +49,7 @@ PlasmoidItem {
     id: root
 
     // In the system tray, do NOT set sizing / switch / preferredRepresentation
-    // hints — they confuse Plasma's tray popup manager and cause a rapid
+    // hints - they confuse Plasma's tray popup manager and cause a rapid
     // expanded toggling loop.  -1 lets Plasma use its own defaults.
     readonly property bool _isSimpleMode: (Plasmoid.configuration.widgetLayoutMode || "advanced") === "simple"
     implicitWidth: inTray ? -1 : (_isSimpleMode ? 800 : 540)
@@ -68,10 +68,10 @@ PlasmoidItem {
 
     hideOnWindowDeactivate: !Plasmoid.configuration.keepOpen
 
-    // System tray status — keeps the widget visible in the notification area.
+    // System tray status - keeps the widget visible in the notification area.
     Plasmoid.status: PlasmaCore.Types.ActiveStatus
 
-    // Detect system tray — evaluated immediately at property-init time
+    // Detect system tray - evaluated immediately at property-init time
     // so the compactRepresentation binding resolves BEFORE Plasma
     // instantiates the compact view.  Belt-and-suspenders: containmentType
     // first, pluginName second, formFactor alone third.
@@ -103,14 +103,14 @@ PlasmoidItem {
 
     // Single-object weather data. Providers write r.weatherDataStaged = {...} once.
     // Qt.callLater defers the actual weatherData assignment to the next event loop tick
-    // so the XHR callback returns immediately — the 17 accessor Changed signals fire
+    // so the XHR callback returns immediately - the 17 accessor Changed signals fire
     // when the UI thread is idle instead of blocking the network callback.
     property var weatherDataStaged: null
     property var weatherData: null
     function _applyWeatherData() { weatherData = weatherDataStaged; }
     onWeatherDataStagedChanged: Qt.callLater(_applyWeatherData)
     // Sunrise/sunset (and therefore isNightTime()) only settle once weatherData
-    // lands for the new location — which can be after the location-switch
+    // lands for the new location - which can be after the location-switch
     // refresh already ran its (network-free) aurora recompute. Re-run it here
     // too so a distant-timezone location change still ends up with the right
     // day/night state instead of briefly inheriting the previous city's.
@@ -140,12 +140,12 @@ PlasmoidItem {
     function _applyAqiData() { aqiData = aqiDataStaged; }
     onAqiDataStagedChanged: Qt.callLater(_applyAqiData)
 
-    // Inline accessors — callers subscribe to aqiData directly rather than
+    // Inline accessors - callers subscribe to aqiData directly rather than
     // 8 separate reactive properties each adding their own subscriber chain.
     //
     // Which standard is displayed (US AQI / European CAQI / Canadian AQHI)
     // is resolved fresh on every call from the location's country code, or
-    // the user's manual override in the Misc tab — see airQuality.js's
+    // the user's manual override in the Misc tab - see airQuality.js's
     // resolveStandard(). aqiData itself always carries all three raw
     // figures (europeanAqi/usAqi/aqhi); only which one gets *read* changes.
     function airQualityStandard() {
@@ -196,12 +196,12 @@ PlasmoidItem {
     function aqiSo2()   { return aqiData ? aqiData.so2   : NaN; }
     function aqiO3()    { return aqiData ? aqiData.o3    : NaN; }
     property var weatherAlerts: []         // [{headline, severity, description}]
-    // Per-alert notification state, keyed by alert fingerprint (identity —
+    // Per-alert notification state, keyed by alert fingerprint (identity -
     // not location), so dismiss/postpone survive switching locations:
     //   fingerprint -> { dismissed: bool, nextDueMs: number, expiresMs: number }
     // Persisted to Plasmoid.configuration.alertNotificationState.
     property var _alertNotificationState: ({})
-    // The fingerprint of the alert currently shown in weatherAlertNotification —
+    // The fingerprint of the alert currently shown in weatherAlertNotification -
     // lets the Dismiss/Postpone actions know which entry to update.
     property string _activeAlertNotificationFingerprint: ""
     property var _notificationSentKeys: ({})
@@ -213,7 +213,7 @@ PlasmoidItem {
     property int _notificationHourlyReqId: 0
     property real _notificationHourlyLastFetchMs: 0
     property var pollenDataStaged: []
-    property var pollenData: []             // [{key, value}] UPI 0–12 per pollen type — set via _applyPollenData
+    property var pollenData: []             // [{key, value}] UPI 0-12 per pollen type - set via _applyPollenData
     function _applyPollenData() { pollenData = pollenDataStaged; }
     onPollenDataStagedChanged: Qt.callLater(_applyPollenData)
     property var spaceWeather: null         // NOAA SWPC data object
@@ -225,11 +225,11 @@ PlasmoidItem {
     property int panelScrollIndex: 0
     property string updateText: ""
 
-    // Parsed activeLocation — staged so the _locName/_locLat/_locLon/hasSelectedTown
+    // Parsed activeLocation - staged so the _locName/_locLat/_locLon/hasSelectedTown
     // cascade fires in the next event loop tick (Qt.callLater) rather than synchronously
     // inside the Plasmoid.configuration write, preventing UI hangs on location switch.
     property var activeLocStaged: ({})
-    // Individual typed fields — QML detects per-field changes precisely,
+    // Individual typed fields - QML detects per-field changes precisely,
     // avoiding the full var-object dirty cascade.
     property string _activeLocName: ""
     property real   _activeLocLat:  0
@@ -248,7 +248,7 @@ PlasmoidItem {
         _activeLocTz   = o.timezone    || "";
         _activeLocCC   = o.countryCode || "";
         _activeLocAlt  = o.altitude    !== undefined ? o.altitude : 0;
-        // No refreshDebounce here — activeLocation (the source for
+        // No refreshDebounce here - activeLocation (the source for
         // WeatherService._activeLoc) hasn't been written yet at this point.
         // The actual refresh is triggered by:
         //  • Popup path:    _applyPendingLocFields() writes activeLocation
@@ -265,7 +265,7 @@ PlasmoidItem {
     function _locLat()  { return Plasmoid.configuration.latitude  !== 0 ? Plasmoid.configuration.latitude  : _activeLocLat; }
     function _locLon()  { return Plasmoid.configuration.longitude !== 0 ? Plasmoid.configuration.longitude : _activeLocLon; }
 
-    // Imperative rather than reactive — only notifies subscribers when the
+    // Imperative rather than reactive - only notifies subscribers when the
     // boolean value actually flips. A reactive binding re-notifies on every
     // _activeLocName change (even true→true), which triggers FullView Layout
     // resize cascades costing ~70ms on every location switch.
@@ -331,7 +331,7 @@ PlasmoidItem {
         // In the panel, enforce minimums as configured.
         //
         // This is the SINGLE SOURCE OF TRUTH for Layout.minimumWidth/Height.
-        // FullView.qml deliberately does not set these itself — keep it that
+        // FullView.qml deliberately does not set these itself - keep it that
         // way, or its internal binding will silently shadow whichever of the
         // two happens to apply last.
 
@@ -354,7 +354,7 @@ PlasmoidItem {
     }
 
     // ══════════════════════════════════════════════════════════════════════
-    // Contextual actions — shown in Plasma's system-tray popup header bar
+    // Contextual actions - shown in Plasma's system-tray popup header bar
     // (HighPriority → toolbar button next to pin & configure)
     // ══════════════════════════════════════════════════════════════════════
 
@@ -375,7 +375,7 @@ PlasmoidItem {
     ]
 
     // ══════════════════════════════════════════════════════════════════════
-    // Service — all API calls delegated to WeatherService
+    // Service - all API calls delegated to WeatherService
     // ══════════════════════════════════════════════════════════════════════
 
     WeatherService {
@@ -385,7 +385,7 @@ PlasmoidItem {
 
     // Each notification category gets its own Notification instance.
     // QML's Notification.sendEvent() updates the *same* underlying
-    // notification (by id) on repeat calls rather than creating a new one —
+    // notification (by id) on repeat calls rather than creating a new one -
     // sharing one instance across categories meant that when several were
     // due in the same evaluator tick, each sendEvent() silently replaced the
     // previous category's still-in-flight notification, so only the last
@@ -445,7 +445,7 @@ PlasmoidItem {
     // Separate instance from weatherAlertNotification (see comment above) so
     // it can't clobber, or be clobbered by, an in-flight active-alert
     // notification due in the same evaluator tick. Always auto-closing with
-    // no actions — there is nothing to dismiss/postpone before it's active.
+    // no actions - there is nothing to dismiss/postpone before it's active.
     Notification {
         id: upcomingAlertNotification
         componentName: "plasma_workspace"
@@ -470,7 +470,7 @@ PlasmoidItem {
     }
 
     // ══════════════════════════════════════════════════════════════════════
-    // Auto-detect location — 3-tier fallback
+    // Auto-detect location - 3-tier fallback
     //
     // Tier 1: GeoClue2 explicitly (PositionSource name: "geoclue2")
     // Tier 2: Any available Qt Positioning plugin (PositionSource, no name)
@@ -481,7 +481,7 @@ PlasmoidItem {
     //   1. Writes lat/lon/alt directly to Plasmoid.configuration so the
     //      weather fetch and the config dialog both see the fresh values.
     //   2. Triggers a weather refresh (via onLatitudeChanged / onLongitudeChanged).
-    //   3. Calls _autoReverseGeocode to update the city name — but ONLY when
+    //   3. Calls _autoReverseGeocode to update the city name - but ONLY when
     //      a name is already stored. First-time naming (empty locationName) is
     //      handled exclusively by configLocation.qml's confirm dialog so the
     //      user can review the detected place before it is saved.
@@ -564,7 +564,7 @@ PlasmoidItem {
         onTriggered: _startAutoDetect()
     }
 
-    // Tier 1 — GeoClue2 explicitly
+    // Tier 1 - GeoClue2 explicitly
     PositionSource {
         id: geoclue2Source
         name: "geoclue2"
@@ -581,14 +581,14 @@ PlasmoidItem {
         }
         onSourceErrorChanged: {
             if (sourceError !== PositionSource.NoError && _locationTier === 1) {
-                console.log("[Location] Tier 1 (GeoClue2) error:", sourceError, "— escalating");
+                console.log("[Location] Tier 1 (GeoClue2) error:", sourceError, "- escalating");
                 _geoclue2Timer.stop();
                 _escalateToGenericSource();
             }
         }
     }
 
-    // Tier 2 — any available Qt Positioning plugin
+    // Tier 2 - any available Qt Positioning plugin
     PositionSource {
         id: genericPositionSource
         active: false
@@ -604,14 +604,14 @@ PlasmoidItem {
         }
         onSourceErrorChanged: {
             if (sourceError !== PositionSource.NoError && _locationTier === 2) {
-                console.log("[Location] Tier 2 (generic) error:", sourceError, "— escalating to IP");
+                console.log("[Location] Tier 2 (generic) error:", sourceError, "- escalating to IP");
                 _genericSourceTimer.stop();
                 _escalateToIpGeo();
             }
         }
     }
 
-    // Tier 3 — IP-based geolocation
+    // Tier 3 - IP-based geolocation
     function _ipGeolocate() {
         console.log("[Location] Tier 3: trying geo.kamero.ai…");
         var req = new XMLHttpRequest();
@@ -665,7 +665,7 @@ PlasmoidItem {
                 } catch (e) { console.warn("[Location] reallyfreegeoip parse error:", e); }
             }
             _locationTier = 0;
-            console.warn("[Location] All 3 tiers failed — no position available");
+            console.warn("[Location] All 3 tiers failed - no position available");
         };
         req.send();
     }
@@ -721,7 +721,7 @@ PlasmoidItem {
     /** Pending location for deferred individual-field sync. */
     property var _pendingLoc: null
 
-    /** Sync individual config fields from the pending location — called deferred. */
+    /** Sync individual config fields from the pending location - called deferred. */
     function _applyPendingLocFields() {
         var loc = _pendingLoc;
         if (!loc) return;
@@ -746,9 +746,9 @@ PlasmoidItem {
         refreshDebounce.restart();
     }
 
-    /** Write all location fields as a single JSON config entry — one signal, one binding cascade. */
+    /** Write all location fields as a single JSON config entry - one signal, one binding cascade. */
     function applyLocation(loc) {
-        // Stage both the in-memory update and the KConfig persist — both deferred
+        // Stage both the in-memory update and the KConfig persist - both deferred
         // so the click handler returns in <1ms and the popup closes without a hang.
         activeLocStaged = {
             name:        loc.name        || "",
@@ -771,18 +771,18 @@ PlasmoidItem {
         weatherService.refreshNow(force === true);
     }
 
-    /** Fetch hourly data for a specific date — called by FullView */
+    /** Fetch hourly data for a specific date - called by FullView */
     function fetchHourlyForDate(dateStr) {
         weatherService.fetchHourlyForDate(dateStr);
     }
 
-    /** Fetch hourly data without touching shared hourlyData — used by expand-all forecast */
+    /** Fetch hourly data without touching shared hourlyData - used by expand-all forecast */
     function fetchHourlyForDateDirect(dateStr, callback) {
         weatherService.fetchHourlyForDateDirect(dateStr, callback);
     }
 
     // ══════════════════════════════════════════════════════════════════════
-    // Value formatters — delegate pure math to weather.js, inject config here
+    // Value formatters - delegate pure math to weather.js, inject config here
     // ══════════════════════════════════════════════════════════════════════
 
     // ── Date/time item formatter ─────────────────────────────────────────────
@@ -950,7 +950,7 @@ PlasmoidItem {
 
     /**
      * Returns the space weather display text for the panel / tooltip chip.
-     * Collapsed: "Kp 3.3" — or "Kp 5.0 · G1" when storm active.
+     * Collapsed: "Kp 3.3" - or "Kp 5.0 · G1" when storm active.
      */
     function spaceWeatherText() {
         var sw = spaceWeather;
@@ -965,7 +965,7 @@ PlasmoidItem {
         return cm.toFixed(1) + " " + i18n("cm");
     }
 
-    /** Returns a numeric priority for an alert color — higher = more severe. */
+    /** Returns a numeric priority for an alert color - higher = more severe. */
     function alertColorPriority(color) {
         var c = (color || "").toLowerCase();
         if (c === "red")    return 3;
@@ -1047,7 +1047,7 @@ PlasmoidItem {
     }
 
     /** Default repeat interval (minutes) for alert types that haven't set
-     *  their own — there is no global "Repeat reminder every" setting anymore;
+     *  their own - there is no global "Repeat reminder every" setting anymore;
      *  each alert type carries its own interval. */
     readonly property int _defaultAlertRepeatMinutes: 30
 
@@ -1087,7 +1087,7 @@ PlasmoidItem {
     }
 
     /** Marks a once-per-day key as already sent (without actually sending a
-     *  notification) — used when a category is toggled back on, so it stays
+     *  notification) - used when a category is toggled back on, so it stays
      *  silent for today/now instead of immediately firing, and only resumes
      *  notifying from its next natural occurrence (e.g. tomorrow). */
     function _markNotificationSentKey(key) {
@@ -1148,7 +1148,7 @@ PlasmoidItem {
                 return p >= 1;
             return p >= 2;
         }
-        // Extreme is its own "purple" tier — the parsers map it to color "red",
+        // Extreme is its own "purple" tier - the parsers map it to color "red",
         // so distinguish it by severity here. When the purple switch is absent
         // (older config), fall through to the red switch so extreme alerts are
         // never silently dropped.
@@ -1202,7 +1202,7 @@ PlasmoidItem {
     }
 
     /** Postpone duration: halfway between now and the alert's expiry, capped
-     *  by the alert type's own repeat interval as a maximum — so a multi-day
+     *  by the alert type's own repeat interval as a maximum - so a multi-day
      *  alert doesn't go silent for absurdly long, but a soon-to-expire alert
      *  gets a shorter, more relevant snooze instead of always waiting the
      *  full repeat interval. */
@@ -1230,11 +1230,11 @@ PlasmoidItem {
             + d.toLocaleTimeString(Qt.locale(), Locale.ShortFormat);
     }
 
-    /** "<onset> – <expires>" / "until <expires>" / "from <onset>" / "". */
+    /** "<onset> - <expires>" / "until <expires>" / "from <onset>" / "". */
     function _alertEffectiveRangeText(a) {
         var onset = _formatAlertTimestamp(a.onset || a.effective);
         var expires = _formatAlertTimestamp(a.expires);
-        if (onset && expires) return onset + " – " + expires;
+        if (onset && expires) return onset + " - " + expires;
         if (onset) return i18n("from %1", onset);
         if (expires) return i18n("until %1", expires);
         return "";
@@ -1254,13 +1254,13 @@ PlasmoidItem {
         return (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    /** Maps an alert severity/color to a colored-circle emoji — KDE notification
+    /** Maps an alert severity/color to a colored-circle emoji - KDE notification
      *  bodies strip <font color>, but emoji glyphs keep their own color.
      *  Extreme gets its own purple marker so it's visually distinct from
      *  Severe (both of which the parsers map to color "red"). */
     function _alertSeverityEmoji(color, severity) {
         var s = (severity || "").toLowerCase();
-        if (s === "extreme") return "🟣"; // 🟣 purple — Extreme
+        if (s === "extreme") return "🟣"; // 🟣 purple - Extreme
         var c = (color || "").toLowerCase();
         if (c === "red")    return "🔴"; // 🔴
         if (c === "orange") return "🟠"; // 🟠
@@ -1359,7 +1359,7 @@ PlasmoidItem {
 
     /** Body text for the upcoming-alert heads-up: same shape as
      *  _alertNotificationBody but "Starts:" instead of "Effective:", since
-     *  the alert hasn't begun yet — and no Instruction line (advice like
+     *  the alert hasn't begun yet - and no Instruction line (advice like
      *  "avoid travel" doesn't apply until the alert is actually active). */
     function _upcomingAlertNotificationBody(a) {
         var lines = [];
@@ -1386,7 +1386,7 @@ PlasmoidItem {
         upcomingAlertNotification.text = _upcomingAlertNotificationBody(alert);
         upcomingAlertNotification.iconName = _alertNotificationIconName(alert);
         // Deliberately never Critical, regardless of the severity/critical
-        // setting — this is an informational heads-up, not an active hazard.
+        // setting - this is an informational heads-up, not an active hazard.
         var p = alertColorPriority(alert.color);
         upcomingAlertNotification.urgency = (p >= 2) ? Notification.NormalUrgency : Notification.LowUrgency;
         upcomingAlertNotification.sendEvent();
@@ -1475,7 +1475,7 @@ PlasmoidItem {
 
     /**
      * Weather-alert notifications fire whenever a new alert becomes active
-     * (no day/time schedule — alerts are checked on every weather refresh,
+     * (no day/time schedule - alerts are checked on every weather refresh,
      * which polls every refreshIntervalMinutes). While an alert remains
      * active, the notification repeats every per-type interval
      * (_alertTypeRepeatMinutes, default 30) until the user dismisses it (no
@@ -1483,7 +1483,7 @@ PlasmoidItem {
      * the postpone interval).
      *
      * State is tracked per alert *identity* (fingerprint: name+source+
-     * onset+expires), not per location — so dismissing/postponing an alert
+     * onset+expires), not per location - so dismissing/postponing an alert
      * sticks even if the user switches to a different location and back
      * (or to a different location under the same regional warning).
      */
@@ -1533,7 +1533,7 @@ PlasmoidItem {
             }
 
             if (!_isAlertActiveNow(a, now)) {
-                // Not started yet — a single, non-critical heads-up, once.
+                // Not started yet - a single, non-critical heads-up, once.
                 if (upcomingEnabled && !entry.upcomingNotified && a.onset && new Date(a.onset) > now) {
                     _sendUpcomingAlertNotification(a);
                     entry.upcomingNotified = true;
@@ -1870,7 +1870,7 @@ PlasmoidItem {
             return;
         var d = dailyData[0];
         // isNaN(null) is false in JS (null coerces to 0), so it must be checked
-        // explicitly here — otherwise a null uvMax reads as a real 0 UV index.
+        // explicitly here - otherwise a null uvMax reads as a real 0 UV index.
         var uvMax = (d.uvMax !== undefined && d.uvMax !== null && !isNaN(d.uvMax)) ? d.uvMax : uvIndex;
         if (uvMax === null || isNaN(uvMax))
             return;
@@ -2012,14 +2012,14 @@ PlasmoidItem {
     }
 
     // ══════════════════════════════════════════════════════════════════════
-    // Weather code / condition helpers  (need i18n — must stay in QML)
+    // Weather code / condition helpers  (need i18n - must stay in QML)
     // ══════════════════════════════════════════════════════════════════════
 
     /**
      * Returns the human-readable condition string for a WMO weather code (WW).
      * Uses the full Open-Meteo / WMO WW code table.
      * Pass night=true (or call isNightTime()) to get "Clear night" for code 0.
-     * Forecast rows pass no night argument — daytime descriptions are used.
+     * Forecast rows pass no night argument - daytime descriptions are used.
      */
     function weatherCodeToText(code, night) {
         var n = (night === true);
@@ -2090,7 +2090,7 @@ PlasmoidItem {
         return IconResolver._conditionSvgStem(code, night);
     }
 
-    // Icons base directory — resolved once so it works in all contexts
+    // Icons base directory - resolved once so it works in all contexts
     readonly property string _iconsBaseDir: Qt.resolvedUrl("../icons/") + ""
 
     function getSimpleModeIconSource() {
@@ -2117,7 +2117,7 @@ PlasmoidItem {
             return W.weatherCodeToIcon(code, night);
         }
         // Bundled SVG themes: the style itself names the folder under contents/icons/.
-        // Only the 32 px variants are requested — every size folder holds the same
+        // Only the 32 px variants are requested - every size folder holds the same
         // artwork (identical viewBox), they differ only by the SVG width attribute,
         // and Kirigami.Icon sizes the result itself.
         if (style === "symbolic-bundled" || style === "flat-color" || style === "3d-oxygen") {
@@ -2185,13 +2185,13 @@ PlasmoidItem {
         // sunny afternoon while the forecast right underneath showed suns.
         //
         // "now" has to be the TARGET LOCATION's own local clock, not the
-        // device's — sunriseTimeText/sunsetTimeText are already
+        // device's - sunriseTimeText/sunsetTimeText are already
         // location-local "HH:mm" strings (WeatherService fetches them with
         // an explicit timezone= param), so comparing them against the
         // device's own system time silently breaks the moment the two
         // zones diverge. Barely noticeable switching between nearby
         // cities, but badly wrong for far-away ones (e.g. Sofia →
-        // Antarctica, ~10-13h apart) — it can flip day/night outright.
+        // Antarctica, ~10-13h apart) - it can flip day/night outright.
         // And because this only runs when something explicitly triggers a
         // recompute rather than continuously, the wrong result then sits
         // there looking "stuck" until a manual refresh happens to be
@@ -2280,7 +2280,7 @@ PlasmoidItem {
     }
 
     // ══════════════════════════════════════════════════════════════════════
-    // Panel item helpers — used by CompactView to build panel chips
+    // Panel item helpers - used by CompactView to build panel chips
     // ══════════════════════════════════════════════════════════════════════
 
     function parseSunTimeMins(t) {
@@ -2399,7 +2399,7 @@ PlasmoidItem {
     }
 
     // ─────────────────────────────────────────────────────────────────────────
-    // panelItemIconInfo(tok) — returns { type, source } for the active icon theme
+    // panelItemIconInfo(tok) - returns { type, source } for the active icon theme
     //
     //   type: "wi"       → wi-font glyph char (Text element)
     //         "kirigami" → Kirigami icon name
@@ -2421,7 +2421,7 @@ PlasmoidItem {
             return { type: "wi", source: g, svgFallback: "", isMask: false };
         }
 
-        // ── Custom icon theme — user picks each icon individually ────────────
+        // ── Custom icon theme - user picks each icon individually ────────────
         if (theme === "custom") {
             var customMap = {};
             var raw = Plasmoid.configuration.panelCustomIcons || "";
@@ -2508,7 +2508,7 @@ PlasmoidItem {
             return { type: "kde", source: iconName, svgFallback: "", isMask: false };
         }
 
-        // ── KDE / SVG themes — unified via IconResolver ──────────────────────
+        // ── KDE / SVG themes - unified via IconResolver ──────────────────────
         // KDE theme: KDE icon primary, symbolic SVG fallback.
         // SVG themes: SVG primary, KDE fallback.
         // KDE theme: KDE primary, symbolic SVG fallback (handled by IconResolver).
@@ -2567,7 +2567,7 @@ PlasmoidItem {
     }
 
     /** Maps a WMO code + night flag to a condition custom icon key.
-     *  Delegates to ConfigUtils.resolveConditionKey() — single source of truth. */
+     *  Delegates to ConfigUtils.resolveConditionKey() - single source of truth. */
     function _resolveConditionKey(code, night) {
         return ConfigUtils.resolveConditionKey(code, night);
     }
@@ -2601,7 +2601,7 @@ PlasmoidItem {
             if (mm === "moonset") return formatTimeForDisplay(moonsetTimeText);
             if (mm === "upcoming-times")
                 return _moonUpcoming() === "rise" ? formatTimeForDisplay(moonriseTimeText) : formatTimeForDisplay(moonsetTimeText);
-            // "full", "upcoming", "times" — main chip shows phase label; CompactView handles multi-chip
+            // "full", "upcoming", "times" - main chip shows phase label; CompactView handles multi-chip
             return moonPhaseLabel();
         }
         if (tok === "suntimes") {
@@ -2645,7 +2645,7 @@ PlasmoidItem {
     }
 
     // ══════════════════════════════════════════════════════════════════════
-    // Font helper — sub-views call weatherRoot.wf(px, bold)
+    // Font helper - sub-views call weatherRoot.wf(px, bold)
     // ══════════════════════════════════════════════════════════════════════
 
     function wf(pixelSize, bold) {
@@ -2660,10 +2660,10 @@ PlasmoidItem {
         });
     }
 
-    // wpf() — panel-specific font (uses panelUseSystemFont / panelFontFamily / panelFontBold).
+    // wpf() - panel-specific font (uses panelUseSystemFont / panelFontFamily / panelFontBold).
     // The pixelSize parameter is always used as-is (multiline derives it from row height;
     // single-line passes panelFontPx which already incorporates panelFontSize).
-    // wpf() — panel font; in manual mode converts stored pointSize to pixelSize.
+    // wpf() - panel font; in manual mode converts stored pointSize to pixelSize.
     // Platform.FontDialog returns pointSize; Qt.font() needs pixelSize.
     // Standard 96 dpi conversion: 1pt = 4/3 px.
     function wpf(pixelSize, bold) {
@@ -2717,7 +2717,7 @@ PlasmoidItem {
         }
     }
 
-    // Config-change debounce — coalesces rapid-fire signals that occur when
+    // Config-change debounce - coalesces rapid-fire signals that occur when
     // KDE KCM applies all cfg_ values at once on Apply/OK.  latitude, longitude,
     // timezone and locationName are written to Plasmoid.configuration one by one;
     // each triggers onXxxChanged → without debouncing, refreshWeather() fires
@@ -2728,7 +2728,7 @@ PlasmoidItem {
     // _refreshNotificationRainWindowIfNeeded() directly from the individual
     // onLatitudeChanged/onLongitudeChanged handlers (as a previous version
     // did) reads service.latitude/longitude before both have been written,
-    // fetching hourly data for a mismatched old/new coordinate pair — so the
+    // fetching hourly data for a mismatched old/new coordinate pair - so the
     // rain/upcoming-hours notification silently has no data after a location
     // switch. Deferring it here guarantees coordinates have settled first.
     property bool _pendingRainWindowRefresh: false
@@ -2745,7 +2745,7 @@ PlasmoidItem {
         }
     }
 
-    // Persists location to KConfig after popup closes — avoids blocking KConfig
+    // Persists location to KConfig after popup closes - avoids blocking KConfig
     // D-Bus writes on the UI thread during the location-switch click animation.
     Timer {
         id: _locPersistTimer
@@ -2754,11 +2754,11 @@ PlasmoidItem {
         onTriggered: root._applyPendingLocFields()
     }
 
-    // Panel scroll ticker removed — "scroll/cycle" mode was removed.
+    // Panel scroll ticker removed - "scroll/cycle" mode was removed.
     // The multiline Timer in CompactView.qml handles scrolling independently.
 
     // ══════════════════════════════════════════════════════════════════════
-    // System resume detection — refresh weather after hibernate/suspend
+    // System resume detection - refresh weather after hibernate/suspend
     // ══════════════════════════════════════════════════════════════════════
 
     // Heartbeat timer: detects time jumps indicating system was asleep.
@@ -2797,7 +2797,7 @@ PlasmoidItem {
         // ConfigurableBackground: tells Plasma to show the "Show / Hide background"
         // toggle button when the widget is on the desktop in edit mode.
         // Must be set here (not as a static binding) so Plasma picks it up after
-        // the component is fully live — same pattern used by Wunderground and others.
+        // the component is fully live - same pattern used by Wunderground and others.
         Plasmoid.backgroundHints = PlasmaCore.Types.DefaultBackground | PlasmaCore.Types.ConfigurableBackground;
         // Populate location fields immediately from saved config (no deferral needed at startup)
         var s = Plasmoid.configuration.activeLocation || "{}";
@@ -2844,7 +2844,7 @@ PlasmoidItem {
         // Location/provider/timezone changes must NOT reset alert-notification
         // state: it's keyed by alert identity (fingerprint), not location, so
         // dismiss/postpone correctly survive switching locations. They also
-        // must NOT clear _notificationSentKeys — that would make
+        // must NOT clear _notificationSentKeys - that would make
         // today/tomorrow/rain/UV/space-weather notifications (deduped only by
         // date) re-fire immediately for the new location even though they
         // already fired today.
@@ -2879,7 +2879,7 @@ PlasmoidItem {
         // dismiss/postpone state for every alert (all severities), so toggling
         // just one severity switch would re-notify every other already-
         // dismissed active alert too. Alerts excluded by _alertColorAllowed()
-        // are simply skipped in _processAlertNotifications — no reset needed;
+        // are simply skipped in _processAlertNotifications - no reset needed;
         // their dismiss state (if any) is preserved for when they're re-enabled.
         function onAlertNotificationsEnabledChanged() {
             root._evaluateNotifications();
@@ -2910,7 +2910,7 @@ PlasmoidItem {
             root._evaluateNotifications();
         }
         // Toggling a category back ON must not immediately fire it just
-        // because Apply was hit — it should stay silent until its next
+        // because Apply was hit - it should stay silent until its next
         // natural occurrence. So pre-mark today's key as "already sent"
         // rather than clearing it (which would make _evaluateNotifications()
         // treat it as never-fired and send right away).

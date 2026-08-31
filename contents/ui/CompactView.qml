@@ -16,15 +16,15 @@
  */
 
 /**
- * CompactView.qml — Panel / compact representation
+ * CompactView.qml - Panel / compact representation
  *
  * Renders the panel bar: wi-font icon + value chips separated by a bullet.
  * Also hosts the custom tooltip popup (TooltipContent).
  *
  * Display modes (Plasmoid.configuration.panelInfoMode):
- *   "single"    — all items in one row
- *   "multiline" — large weather icon left + scrolling item rows right
- *   "simple"    — icon + temperature only
+ *   "single"    - all items in one row
+ *   "multiline" - large weather icon left + scrolling item rows right
+ *   "simple"    - icon + temperature only
  *
  * Simple mode layout types (Plasmoid.configuration.panelSimpleLayoutType):
  *   0 = side-by-side  (icon | temp)
@@ -67,7 +67,7 @@ PlasmaCore.ToolTipArea {
     id: compactRoot
     active: Plasmoid.configuration.tooltipEnabled !== false
 
-    // ── Public interface — bound from main.qml ────────────────────────────
+    // ── Public interface - bound from main.qml ────────────────────────────
     property var weatherRoot
 
     // ── Panel orientation ─────────────────────────────────────────────────
@@ -122,9 +122,9 @@ PlasmaCore.ToolTipArea {
 
     // ── Horizontal layout content filter ──────────────────────────────
     // Controls what is shown in simple mode horizontal layout (type 0):
-    //   "both"      — icon + temperature (default)
-    //   "icon_only" — weather icon only, temperature hidden
-    //   "temp_only" — temperature only, icon hidden
+    //   "both"      - icon + temperature (default)
+    //   "icon_only" - weather icon only, temperature hidden
+    //   "temp_only" - temperature only, icon hidden
     // Has no effect on vertical / compressed layouts.
     readonly property string simpleHorizContent: Plasmoid.configuration.panelSimpleHorizontalContent || "both"
 
@@ -167,18 +167,18 @@ PlasmaCore.ToolTipArea {
     // compactRoot.parent is the Plasma panel layout container whose height
     // is always the full declared thickness, initialises correctly, and
     // updates reactively when the panel is resized.
-    // NOTE: Plasmoid.containment.height is NOT used — it starts at 0 and
+    // NOTE: Plasmoid.containment.height is NOT used - it starts at 0 and
     // is not tracked by QML bindings, so it would keep _fullPanelH wrong.
     // Window.height (QtQuick.Window attached property) = height of the
     // enclosing QQuickWindow = Plasma panel strip height (e.g. 48 px).
     // This is the reliable, reactive source for the true panel height.
-    // parent.height = Loader height = post-margin widget height (~32 px) — wrong.
-    // Plasmoid.containment.height starts at 0 and isn't tracked by QML — wrong.
+    // parent.height = Loader height = post-margin widget height (~32 px) - wrong.
+    // Plasmoid.containment.height starts at 0 and isn't tracked by QML - wrong.
     // True panel height for horizontal panels.
     // KDE panels always apply Kirigami.Units.largeSpacing (8 px) as top and
     // bottom padding, so the widget receives (panelHeight - 16 px).
     // Adding that padding back gives the declared panel thickness.
-    // Window.height is used as an upper-bound sanity cap — it can be larger
+    // Window.height is used as an upper-bound sanity cap - it can be larger
     // than the panel on some Plasma setups (shell window vs panel window).
     readonly property int _fullPanelH: !vertical
         ? (Window.height > 0
@@ -232,13 +232,13 @@ PlasmaCore.ToolTipArea {
     // Vertical panels use the same scale for consistency.
     // Values below 0.5 may look too small.
     readonly property real simpleSymbolicScale: compactRoot.vertical ? 1.00 : 1.00
-    // Derived cell size for symbolic icons only — colorful always uses simpleIconSz.
+    // Derived cell size for symbolic icons only - colorful always uses simpleIconSz.
     readonly property int simpleSymbolicIconSz: Math.max(12, Math.round(compactRoot.simpleIconSz * compactRoot.simpleSymbolicScale))
 
     // ── Simple-mode computed sizes ─────────────────────────────────────────
     // simpleIconSz: auto   = formulas below use allocated panel geometry
     //               large  = the same formulas use full panel thickness
-    //               manual = user value (no cap — let KDE clip if needed).
+    //               manual = user value (no cap - let KDE clip if needed).
     // _simpleIconPanelW/H selects allocated geometry for auto and full panel
     // thickness for large.
     // simpleIconSz:
@@ -278,14 +278,14 @@ PlasmaCore.ToolTipArea {
     readonly property int simpleFontSz: compactRoot.simpleFontUsesPanelSize ? (!compactRoot.vertical ? (compactRoot.simpleLayoutType === 1 || compactRoot.simpleLayoutType === 2 ? Math.max(8, Math.round(compactRoot._simpleFontPanelH / 3)) : Math.max(8, Math.round(compactRoot._simpleFontPanelH * 11 / 24))) : Math.max(8, Math.round(compactRoot._simpleFontPanelW / 3))) : compactRoot.simpleFontPx
 
     // ── Write auto/large-computed sizes + panel geometry back to config ──
-    // simpleIconAutoSz / simpleFontAutoSz — live values for the applied
+    // simpleIconAutoSz / simpleFontAutoSz - live values for the applied
     //   auto/large mode and layout type; used as fallback when panel dim
     //   is not yet stored.
-    // simplePanelDim — geometry allocated to the compact representation.
-    // simplePanelLargeDim — reconstructed full panel thickness.
+    // simplePanelDim - geometry allocated to the compact representation.
+    // simplePanelLargeDim - reconstructed full panel thickness.
     //   The config page uses both to recompute sizes for whatever
     //   layout type is currently buffered in the dialog (before Apply).
-    // simplePanelIsVertical — orientation flag, read by config page.
+    // simplePanelIsVertical - orientation flag, read by config page.
     readonly property int _simplePanelDim: compactRoot.vertical
         ? compactRoot._allocatedPanelW : compactRoot._allocatedPanelH
     readonly property int _simplePanelLargeDim: compactRoot.vertical
@@ -333,7 +333,7 @@ PlasmaCore.ToolTipArea {
     // ── Root implicit sizes ───────────────────────────────────────────────
     // Simple mode horizontal: width is driven by simpleGrid.implicitWidth so the
     // click area hugs icon + gap + temperature text with no dead space.
-    // Compressed (type 2) uses a standalone Item — fall back to icon square + margins.
+    // Compressed (type 2) uses a standalone Item - fall back to icon square + margins.
     // When no location is set, use the no-location prompt width.
     implicitWidth: !_hasLocation ? noLocationRow.implicitWidth + 2 * leftRightMargin
         : isMultiLine ? mlIconSize + 6 + 110 + 2 * leftRightMargin : isSimpleMode ? (vertical ? Kirigami.Units.gridUnit * 2 : (simpleLayoutType === 2 ?
@@ -357,7 +357,7 @@ PlasmaCore.ToolTipArea {
     // available panel height.  preferredHeight scales with panel thickness
     // (= widget width) so the click area grows as the panel gets wider.
     // vertical single-line: fillHeight when "Fill panel" is on (expands to full panel height)
-    // vertical: fillHeight when "Fill panel" is on — works for all display modes
+    // vertical: fillHeight when "Fill panel" is on - works for all display modes
     // Fill-panel just toggles Layout.fillWidth/fillHeight so the widget CAN
     // grow into slack space; Layout.preferredWidth/Height still report the
     // real content size as a floor (see notes below) so the widget never
@@ -374,7 +374,7 @@ PlasmaCore.ToolTipArea {
         // on, so when another flexible item (e.g. a user-added Panel
         // Spacer) is also competing for space, Plasma can end up granting
         // this widget almost nothing (collapsing toward Layout.minimumWidth)
-        // and handing the spacer everything instead — the widget's content
+        // and handing the spacer everything instead - the widget's content
         // effectively disappears. Using implicitWidth as the baseline keeps
         // the full weather info as a floor; Layout.fillWidth (still driven
         // by panelFillWidth below) is what lets it additionally grow into
@@ -387,7 +387,7 @@ PlasmaCore.ToolTipArea {
             if (compactRoot.simpleClickAreaMode === "manual")
                 return compactRoot.simpleClickAreaSize;
         }
-        // NOTE: vertFill intentionally does NOT return -1 here anymore — see
+        // NOTE: vertFill intentionally does NOT return -1 here anymore - see
         // the matching note on Layout.preferredWidth above. Falling through
         // to the content-based height below gives Plasma a real baseline;
         // Layout.fillHeight (still driven by vertFill) handles growing into
@@ -500,7 +500,7 @@ PlasmaCore.ToolTipArea {
     // SINGLE / SCROLL MODE
     // ══════════════════════════════════════════════════════════════════════
     // ══════════════════════════════════════════════════════════════════════
-    // SINGLE LINE MODE — orientation aware
+    // SINGLE LINE MODE - orientation aware
     //   Horizontal panel: all items in one row (original behaviour)
     //   Vertical panel:   each item on its own row, stacked top-to-bottom
     // ══════════════════════════════════════════════════════════════════════
@@ -640,7 +640,7 @@ PlasmaCore.ToolTipArea {
     // MULTILINE MODE
     // ══════════════════════════════════════════════════════════════════════
     // ══════════════════════════════════════════════════════════════════════
-    // MULTILINE MODE — orientation aware
+    // MULTILINE MODE - orientation aware
     //   Horizontal panel: icon on the left, text rows on the right (RowLayout)
     //   Vertical panel:   icon on top,      text rows below       (ColumnLayout)
     // ══════════════════════════════════════════════════════════════════════
@@ -852,7 +852,7 @@ PlasmaCore.ToolTipArea {
     } // multiLineRoot
 
     // ══════════════════════════════════════════════════════════════════════
-    // SIMPLE MODE — icon + temperature
+    // SIMPLE MODE - icon + temperature
     //
     // Architecture (directly mirrors weather-widget-plus/CompactItem.qml):
     //
@@ -860,7 +860,7 @@ PlasmaCore.ToolTipArea {
     //   horizontal panel → cells fill HEIGHT, fontSizeMode = Text.VerticalFit
     //
     // The GridLayout is sized to exactly its content and centered inside
-    // the widget — so no dead space appears between or around cells.
+    // the widget - so no dead space appears between or around cells.
     //
     // uniformCellHeights is ONLY enabled for vertical + stacked (type 1),
     // matching the reference behaviour exactly.
@@ -884,7 +884,7 @@ PlasmaCore.ToolTipArea {
         height: (!compactRoot.vertical && compactRoot.isSimpleMode) ? compactRoot._simpleContentPanelH : parent.height
         visible: compactRoot.isSimpleMode
 
-        // fontSizeMode driven purely by panel orientation — not layout type
+        // fontSizeMode driven purely by panel orientation - not layout type
         readonly property int autoFontSizeMode: compactRoot.vertical ? Text.HorizontalFit : Text.VerticalFit
 
         // ── No location prompt ────────────────────────────────────────────
@@ -944,7 +944,7 @@ PlasmaCore.ToolTipArea {
             // In large mode this may be greater than the post-margin widget height.
             // All other cases use implicitHeight: the grid is exactly its content
             // size, and anchors.centerIn centres the block both horizontally and
-            // vertically in the panel — critical for symbolic icons which are
+            // vertically in the panel - critical for symbolic icons which are
             // smaller than the panel height and would appear top-aligned otherwise.
             height: (!compactRoot.vertical && compactRoot.simpleLayoutType === 0) ? compactRoot._simpleContentPanelH : implicitHeight
 
@@ -984,13 +984,13 @@ PlasmaCore.ToolTipArea {
                 // On horizontal panels, auto/large cap the icon at the selected
                 // panel height so the GridLayout row never expands beyond
                 // simpleGrid.height (prevents icon overflow and cell shifting).
-                // _cellSz is explicit in every mode, so fillWidth is never needed —
+                // _cellSz is explicit in every mode, so fillWidth is never needed -
                 // pinning it avoids Qt distributing columns unevenly
                 // when both cells have fillWidth:true (causes the "go right" bug with
                 // colorful icons on vertical panels in auto mode).
                 // vertical type 0 auto/large: cap to half the selected panel width
                 //   (24px at 48px) so icon and temp share the panel width equally.
-                // vertical type 0 manual: no cap — honour the user's chosen size.
+                // vertical type 0 manual: no cap - honour the user's chosen size.
                 // vertical type 1/2 auto/large: cap to the selected panel width.
                 // all other manual cases: no panel cap.
                 readonly property int _cellSz: !compactRoot.simpleIconUsesPanelSize
@@ -1002,7 +1002,7 @@ PlasmaCore.ToolTipArea {
                         : Math.min(_baseCellSz, compactRoot._simpleIconPanelH)
                 // Pin the cell to exactly _cellSz on both axes.
                 // The grid is sized to implicitWidth so anchors.centerIn centres
-                // the content block — no fillWidth needed on the icon cell.
+                // the content block - no fillWidth needed on the icon cell.
                 Layout.fillWidth: false
                 Layout.fillHeight: false
                 Layout.preferredWidth: _cellSz
@@ -1010,7 +1010,7 @@ PlasmaCore.ToolTipArea {
                 Layout.maximumWidth: _cellSz
                 // vertical type 0 auto/large: pin cell height to simpleFontSz so the row
                 //   is compact (no gap when font is small; icon renders larger than
-                //   the cell height but is clipped cleanly — same as panel behaviour).
+                //   the cell height but is clipped cleanly - same as panel behaviour).
                 // vertical type 0 manual: use _cellSz so a large icon isn't clipped.
                 // All other cases: square cell (height = _cellSz).
                 readonly property int _cellH: (compactRoot.vertical && compactRoot.simpleLayoutType === 0)
@@ -1026,7 +1026,7 @@ PlasmaCore.ToolTipArea {
 
                 // Symbolic icon: append "-symbolic" to the KDE icon name so the
                 // icon engine serves the monochrome symbolic variant rather than
-                // the colourful one. This is the standard Plasma convention —
+                // the colourful one. This is the standard Plasma convention -
                 // the KDE weather widget changelog states:
                 // "Ask for -symbolic versions everywhere we want monochrome icons."
                 Kirigami.Icon {
@@ -1064,7 +1064,7 @@ PlasmaCore.ToolTipArea {
                 Layout.fillWidth: compactRoot.vertical
                 // Pin height to simpleFontSz on all layouts.
                 // The icon cell is also pinned to simpleFontSz for vertical type 0,
-                // so row height = simpleFontSz — compact with no gaps.
+                // so row height = simpleFontSz - compact with no gaps.
                 // This applies to auto and large; manual uses _cellSz.
                 Layout.minimumWidth: compactRoot.vertical ? 0 : tempText.paintedWidth
                 Layout.maximumWidth: compactRoot.vertical ? Infinity : tempText.paintedWidth
@@ -1137,7 +1137,7 @@ PlasmaCore.ToolTipArea {
                 height: compressedWrapper.squareSide
                 anchors.centerIn: parent
 
-                // Symbolic icon — KDE theme icon with -symbolic suffix
+                // Symbolic icon - KDE theme icon with -symbolic suffix
                 Kirigami.Icon {
                     id: compressedIconGlyph
                     width: parent.width
@@ -1165,7 +1165,7 @@ PlasmaCore.ToolTipArea {
                     smooth: true
                 }
 
-                // Temperature badge — position, spacing and color are configurable
+                // Temperature badge - position, spacing and color are configurable
                 Rectangle {
                     id: compressedBadgeRect
                     readonly property string _pos: Plasmoid.configuration.compressedBadgePosition || "bottom-right"
@@ -1231,7 +1231,7 @@ PlasmaCore.ToolTipArea {
     }
 
     // ── Private helpers ───────────────────────────────────────────────────
-    // Icons base directory — resolved once for IconResolver calls
+    // Icons base directory - resolved once for IconResolver calls
     readonly property string _iconsBaseDir: Qt.resolvedUrl("../icons/") + ""
 
     function _buildItems() {

@@ -151,8 +151,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Почему слои OWM могут не совпадать с данными радара RainViewer</b><br/><br/>Слои осадков/облаков OWM — это <b> статические фрагменты модели</b> - они отображают сглаженный NWP (числовой прогноз погоды), а не фактические данные радара. Они отображают, где, <i>по мнению</i> модели, идет дождь, на основе интерполяции между метеостанциями и прогонами модели.<br/><br/>RainViewer использует <b> композитные радары реальной погоды</b> - фактическая измеренная отражательная способность обновляется каждые 2-10 минут. Это расхождение ожидаемо и известно."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>Почему слои OWM могут не совпадать с данными радара RainViewer</b><br/><br/>Слои осадков/облаков OWM - это <b> статические фрагменты модели</b> - они отображают сглаженный NWP (числовой прогноз погоды), а не фактические данные радара. Они отображают, где, <i>по мнению</i> модели, идет дождь, на основе интерполяции между метеостанциями и прогонами модели.<br/><br/>RainViewer использует <b> композитные радары реальной погоды</b> - фактическая измеренная отражательная способность обновляется каждые 2-10 минут. Это расхождение ожидаемо и известно."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -237,7 +237,7 @@ msgstr "Качество воздуха удовлетворительное."
 
 #: contents/ui/js/airQuality.js:52
 msgid "Air quality is poor."
-msgstr "Качество воздуха — плохое."
+msgstr "Качество воздуха - плохое."
 
 #: contents/ui/js/airQuality.js:49
 msgid "Air quality is satisfactory."
@@ -273,7 +273,7 @@ msgstr "Провайдер предупреждений: <a href='https://alerts
 
 #: contents/ui/config/configGeneral.qml:1047
 msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Провайдер предупреждений: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR — это бесплатный погодный API с открытым исходным кодом, который объединяет официальные оповещения CAP по всему миру (Информационный центр ВМО о суровых погодных условиях, NOAA NWS и другие) и сопоставляет их с вашим точным местоположением. Уведомления о предупреждениях работают так же, как и у местного провайдера."
+msgstr "Провайдер предупреждений: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR - это бесплатный погодный API с открытым исходным кодом, который объединяет официальные оповещения CAP по всему миру (Информационный центр ВМО о суровых погодных условиях, NOAA NWS и другие) и сопоставляет их с вашим точным местоположением. Уведомления о предупреждениях работают так же, как и у местного провайдера."
 
 #: contents/ui/config/configGeneral.qml:1038
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
@@ -356,8 +356,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Вы уверены? Это ваше последнее сохраненное местоположение. Если вы удалите его, виджет больше не будет отображать информацию о погоде."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Около полуночи — "
+msgid "Around midnight - "
+msgstr "Около полуночи - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -697,8 +697,8 @@ msgid "Configure display mode options"
 msgstr "Настроить параметры режима отображения"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Настроить значок — %1"
+msgid "Configure icon - %1"
+msgstr "Настроить значок - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -809,8 +809,8 @@ msgid "Dark map"
 msgstr "Тёмная карта"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Тире  –"
+msgid "Dash  -"
+msgstr "Тире  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -847,8 +847,8 @@ msgid "Date:"
 msgstr "Дата:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "Приближается рассвет — "
+msgid "Dawn approaching - "
+msgstr "Приближается рассвет - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1109,8 +1109,8 @@ msgid "Error (code %1)"
 msgstr "Ошибка (код %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Вечер — "
+msgid "Evening - "
+msgstr "Вечер - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2634,7 +2634,7 @@ msgstr "Провайдер радара:"
 
 #: contents/ui/config/configGeneral.qml:859
 msgid "Radar provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather radar API. It combines real radar composites from NOAA, Canadian, and European sources with a global model fallback, and provides the past 2 hours of radar data plus a short nowcast. It also offers a free satellite (infrared) layer.<br/><br/>Layer mode, radar color scheme, and motion arrows are selected directly in the Radar tab. The map follows your Plasma light/dark theme automatically."
-msgstr "Провайдер радара: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR — это бесплатный API погодного радара с открытым исходным кодом. Он объединяет реальные радиолокационные данные из NOAA, канадских и европейских источников с глобальной резервной моделью и предоставляет данные радара за последние 2 часа плюс короткую трансляцию. Также доступен бесплатный спутниковый (инфракрасный) слой.<br/><br/>Режим слоя, цветовая схема радара и стрелки движения выбираются непосредственно на вкладке Радар. Карта автоматически будет отображаться в соответствии с выбранной вами тематикой Plasma light/dark."
+msgstr "Провайдер радара: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR - это бесплатный API погодного радара с открытым исходным кодом. Он объединяет реальные радиолокационные данные из NOAA, канадских и европейских источников с глобальной резервной моделью и предоставляет данные радара за последние 2 часа плюс короткую трансляцию. Также доступен бесплатный спутниковый (инфракрасный) слой.<br/><br/>Режим слоя, цветовая схема радара и стрелки движения выбираются непосредственно на вкладке Радар. Карта автоматически будет отображаться в соответствии с выбранной вами тематикой Plasma light/dark."
 
 #: contents/ui/config/configGeneral.qml:850
 msgid "Radar provider: <a href='https://www.rainviewer.com/'>Rain Viewer</a><br/><br/>The widget uses the free RainViewer API, which provides the past 2 hours of weather radar data in 10-minute intervals. Radar forecast is not supported.<br/><br/>Rain Viewer does not guarantee the availability of radar data. They do not conclude contracts with owners of this data. The reason is that the owners can ask them to remove their data from Rain Viewer, change the format, or stop sharing the data. They are trying to keep radar data for as long as possible, but sometimes the owners just stop providing the images."
@@ -2685,8 +2685,8 @@ msgid "Recent"
 msgstr "Недавно"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Рекомендовано — напр. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Рекомендовано - напр. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3031,8 +3031,8 @@ msgid "Size:"
 msgstr "Размер:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Пропущено — ключ API не указан"
+msgid "Skipped - API key not configured"
+msgstr "Пропущено - ключ API не указан"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3829,19 +3829,19 @@ msgstr "Провайдер данных:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "Уровни серьезности погодных предупреждений - от самого низкого до самого высокого:\n"
 "\n"
-"🟡 Жёлтый — Минимальный: будьте в курсе.\n"
-"🟠 Оранжевый — Умеренный: будьте готовы.\n"
-"🔴 Красный — Серьёзный: примите меры.\n"
-"🟣 Фиолетовый — Опасный: чрезвычайно опасно, немедленно примите меры.\n"
+"🟡 Жёлтый - Минимальный: будьте в курсе.\n"
+"🟠 Оранжевый - Умеренный: будьте готовы.\n"
+"🔴 Красный - Серьёзный: примите меры.\n"
+"🟣 Фиолетовый - Опасный: чрезвычайно опасно, немедленно примите меры.\n"
 "\n"
 "Отключите уровень, чтобы прекратить получать уведомления о предупреждениях такой степени серьезности."
 
@@ -4221,7 +4221,7 @@ msgstr "мкг/м³"
 #~ msgstr "%1 будет %2, мин. температура: %3, максимальная: %4."
 
 #~ msgid "Geomagnetic activity will be %1 (Kp %2)"
-#~ msgstr "Геомагнитная активность — %1 (Kp %2)"
+#~ msgstr "Геомагнитная активность - %1 (Kp %2)"
 
 #~ msgid "UV will be %1 (%2)"
-#~ msgstr "УФ-индекс — %1 (%2)"
+#~ msgstr "УФ-индекс - %1 (%2)"

@@ -16,9 +16,9 @@
  */
 
 /**
- * bbcWeather.js — BBC Weather current + hourly fetcher
+ * bbcWeather.js - BBC Weather current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  *
@@ -166,7 +166,7 @@ function _fetchCurrentForId(service, W, chain, idx, gen, id) {
         for (var i = 0; i < maxD; i++) {
             var s = fcs[i].summary ? fcs[i].summary.report : null;
             if (!s) continue;
-            // BBC has no pressure/visibility on the day summary — derive them
+            // BBC has no pressure/visibility on the day summary - derive them
             // from the day's hourly reports.
             var der = _dailyDerived(fcs, s.localDate);
             nd.push({
@@ -196,7 +196,7 @@ function _fetchCurrentForId(service, W, chain, idx, gen, id) {
             pressureHpa:     (cur.pressure !== undefined) ? cur.pressure : NaN,
             windKmh:         (cur.windSpeedKph !== undefined) ? cur.windSpeedKph : NaN,
             windDirection:   W.compassToDegrees ? W.compassToDegrees(cur.windDirection) : NaN,
-            // BBC has no dew point — derive it from temperature + humidity.
+            // BBC has no dew point - derive it from temperature + humidity.
             dewPointC:       W.dewPoint(
                                 (cur.temperatureC !== undefined && cur.temperatureC !== null)
                                     ? cur.temperatureC : cur.maxTempC,
@@ -218,14 +218,14 @@ function _fetchCurrentForId(service, W, chain, idx, gen, id) {
         r.loading = false;
         r.updateText = service._formatUpdateText("bbc");
 
-        // BBC exposes no CAP alerts — fall back to MeteoAlarm / NWS.
+        // BBC exposes no CAP alerts - fall back to MeteoAlarm / NWS.
         service._fetchAlertsIfNeeded();
         // Air quality is fetched in parallel from WeatherService.refreshNow().
 
         // BBC's own sunrise/sunset strings ARE already location-local
         // "HH:mm", but the JSON gives us no numeric UTC-offset to pair with
         // them (only an IANA timezone name via the locator, which Qt's V4
-        // engine can't resolve to an offset on its own — see suncalc/sunpath
+        // engine can't resolve to an offset on its own - see suncalc/sunpath
         // notes). Every "current position" calc in DetailsView.qml (sun arc
         // progress, time-until-sunset, upcoming sunrise/sunset, moon arc)
         // combines locationUtcOffsetMins with sunriseTimeText/sunsetTimeText,

@@ -16,7 +16,7 @@
  */
 
 /**
- * WeatherService.qml — Weather API service layer
+ * WeatherService.qml - Weather API service layer
  *
  * Usage in main.qml:
  *   WeatherService { id: weatherService; weatherRoot: root }
@@ -37,7 +37,7 @@ QtObject {
     id: service
 
     // ── Public interface ──────────────────────────────────────────────────
-    /** Reference to the PlasmoidItem root — set from main.qml */
+    /** Reference to the PlasmoidItem root - set from main.qml */
     property var weatherRoot
 
     property string _updateProvider: ""
@@ -69,7 +69,7 @@ QtObject {
     // The popup's _applyPendingLocFields() also writes them directly.
     // NOTE: We intentionally do NOT read from activeLocation here because
     // the KCM framework has no cfg_activeLocation property and therefore
-    // never syncs it — the JSON would stay stale after KCM Apply.
+    // never syncs it - the JSON would stay stale after KCM Apply.
     readonly property real latitude:       Plasmoid.configuration.latitude
     readonly property real longitude:      Plasmoid.configuration.longitude
     readonly property string timezone:     (Plasmoid.configuration.timezone || "").trim()
@@ -85,7 +85,7 @@ QtObject {
     readonly property string locationName: Plasmoid.configuration.locationName || ""
     // Alerts source: "native" (provider alerts + MeteoAlarm/NWS fallback),
     // "librewxr" (LibreWXR worldwide CAP alerts API), or "foss" (KDE FOSS
-    // Public Alert Server — worldwide CAP alerts).
+    // Public Alert Server - worldwide CAP alerts).
     readonly property string alertsProvider: Plasmoid.configuration.alertsProvider || "native"
     // Base URL shared with the LibreWXR radar view (librewxrUrl config entry)
     readonly property string librewxrBaseUrl: {
@@ -136,11 +136,11 @@ QtObject {
     // ── Private: space weather cache timestamp ──────────────────────────
     property real _lastSpaceWeatherFetch: 0
 
-    // ── Request lifecycle — generation guard ────────────────────────────
+    // ── Request lifecycle - generation guard ────────────────────────────
     // _refreshGen increments on each refreshNow().  Callbacks captured at
     // send time compare their gen to the live value; a mismatch means a
     // newer refresh has started and the callback should silently bail out.
-    // We intentionally do NOT call abort() on old XHRs — Qt QML's
+    // We intentionally do NOT call abort() on old XHRs - Qt QML's
     // XMLHttpRequest.abort() can block the JS thread on some platforms.
     property int _refreshGen: 0
     // Provider-side staging buffers used across multi-request fetch flows.
@@ -155,7 +155,7 @@ QtObject {
     property string _bbcLocId: ""
     property string _bbcLocKey: ""
     // True once the current provider has written native alerts for this
-    // refresh generation — lets _fetchAlertsIfNeeded() decide whether to
+    // refresh generation - lets _fetchAlertsIfNeeded() decide whether to
     // fall back to AlertsJS without having to blank weatherRoot.weatherAlerts
     // up front (which would hide a still-valid alert for the fetch duration).
     property bool _nativeAlertsSetThisGen: false
@@ -170,14 +170,14 @@ QtObject {
     property var _aqiAccum: null
     property int _aqiAccumGen: -1
 
-    // Safety timer — if loading stays true for 20 s, force-reset state
+    // Safety timer - if loading stays true for 20 s, force-reset state
     // so the widget never gets stuck in "Loading…" forever.
     property Timer _safetyTimer: Timer {
         interval: 20000
         repeat: false
         onTriggered: {
             if (weatherRoot && weatherRoot.loading) {
-                console.warn("[WeatherService] Safety timeout — forcing loading=false");
+                console.warn("[WeatherService] Safety timeout - forcing loading=false");
                 weatherRoot.loading = false;
                 service._clearUpdateMetadata();
                 weatherRoot.updateText = i18n("Update timed out. Tap to retry.");
@@ -194,7 +194,7 @@ QtObject {
 
     // ── Public methods ────────────────────────────────────────────────────
 
-    /** Full weather refresh — current + daily forecast.
+    /** Full weather refresh - current + daily forecast.
      *  force=true bypasses the space weather fetch throttle (manual refresh). */
     function refreshNow(force) {
         _refreshGen++;
@@ -215,7 +215,7 @@ QtObject {
         }
         r.loading = true;
         _safetyTimer.restart();
-        // Don't blank r.weatherAlerts here — that would hide the still-valid
+        // Don't blank r.weatherAlerts here - that would hide the still-valid
         // alert from the UI for the whole duration of the fetch. The provider
         // (or the AlertsJS fallback) replaces it once new data is actually in.
         _nativeAlertsSetThisGen = false;
@@ -235,15 +235,15 @@ QtObject {
             _fetchAqi();
         }
         // When ap === "pirateWeather", the branch above dispatched PW's own
-        // native fetch instead — PW's own completion handler calls _fetchAqi()
+        // native fetch instead - PW's own completion handler calls _fetchAqi()
         // itself once it settles (see pirateWeather.js), so pollen and the
         // non-CAQI standards still resolve even though PW only ever supplies
         // the European figure natively.
         // Fetch NOAA space weather independently (location-independent)
         // Skip if data was fetched recently (< 10 min) since it doesn't change
-        // with location — unless this is a forced (manual) refresh.
+        // with location - unless this is a forced (manual) refresh.
         // NOTE: _lastSpaceWeatherFetch is stamped by the provider itself, only
-        // once it actually has data back (see spaceWeather_provider.js) — not
+        // once it actually has data back (see spaceWeather_provider.js) - not
         // eagerly here at request time. Stamping it here unconditionally used
         // to mean that if the fetch failed outright (e.g. no network yet at
         // Plasma startup), the throttle still treated it as "fresh" and
@@ -258,7 +258,7 @@ QtObject {
             // Kp/solar wind/Bz/X-ray really don't change with location, so
             // skipping the NOAA re-fetch above is correct. But the derived
             // aurora-visibility percentage bundled into the same object DOES
-            // depend on the observer's latitude and local darkness — both of
+            // depend on the observer's latitude and local darkness - both of
             // which may have just changed if this refresh was triggered by a
             // location switch. Recompute just that value from the still-fresh
             // cached Kp instead of leaving it stuck showing the old city's
@@ -290,7 +290,7 @@ QtObject {
     /**
      * Parallel variant used by ForecastView's expand-all mode.
      * Fires a real XHR for the given dateStr and calls callback(hourlyArray)
-     * when done — never touches weatherRoot.hourlyData, so multiple in-flight
+     * when done - never touches weatherRoot.hourlyData, so multiple in-flight
      * requests don't clobber each other.
      *
      * Falls back to fetchHourlyForDate (sequential) for providers that don't
@@ -760,7 +760,7 @@ QtObject {
      * With the LibreWXR alerts provider selected, alerts always come from
      * LibreWXR (overwriting any provider-native alerts on success).
      * Otherwise (native mode): if the provider already populated
-     * weatherAlerts (native alerts), this is a no-op — else it falls
+     * weatherAlerts (native alerts), this is a no-op - else it falls
      * back to MeteoAlarm / NWS.
      */
     function _fetchAlertsIfNeeded() {
@@ -789,7 +789,7 @@ QtObject {
     /**
      * Fetches the shared Open-Meteo air-quality/pollen data. Named _fetchAqi()
      * rather than "...IfNeeded" deliberately: it now always runs, regardless
-     * of whether a provider (Pirate Weather) supplied a native AQI reading —
+     * of whether a provider (Pirate Weather) supplied a native AQI reading -
      * pollen has no provider equivalent, and US AQI / Canadian AQHI (and the
      * extra hourly pollutant history AQHI needs) only ever come from here.
      * _nativeAqiSetThisGen still matters *inside* _fetchAirQualityOpenMeteo():
@@ -942,7 +942,7 @@ QtObject {
         var p = chain[idx];
         var _p = _providers();
         if (!_p) {
-            // Providers.qml failed to load — fail this refresh gracefully.
+            // Providers.qml failed to load - fail this refresh gracefully.
             weatherRoot.loading = false;
             _safetyTimer.stop();
             service._clearUpdateMetadata();
@@ -960,9 +960,9 @@ QtObject {
      * Two independent sources write air-quality data on every refresh: the
      * selected provider (Pirate Weather, natively CAQI-only) and the shared
      * Open-Meteo fetch below (all six pollutant concentrations, us_aqi, and
-     * — only when the resolved standard is Canadian — aqhi). They race, so a
+     * - only when the resolved standard is Canadian - aqhi). They race, so a
      * plain assignment lets whichever response lands second discard the
-     * other's fields — which is what used to leave PM2.5 and the rest of the
+     * other's fields - which is what used to leave PM2.5 and the rest of the
      * pollutant rows showing "--" under OpenWeather / WeatherAPI / QWeather.
      *
      * Ownership is therefore split per field: a provider may claim
@@ -971,7 +971,7 @@ QtObject {
      * fills in europeanAqi itself when no provider already claimed it.
      * Neither clobbers the other regardless of arrival order. Which of
      * europeanAqi/usAqi/aqhi is actually shown is decided at render time by
-     * airQuality.js's resolveStandard() + standardDisplay() — see
+     * airQuality.js's resolveStandard() + standardDisplay() - see
      * weatherRoot.airQualityText() in main.qml.
      *
      * At the start of each refresh generation the accumulator is seeded from
@@ -998,7 +998,7 @@ QtObject {
             merged[k] = patch[k];
         }
         _aqiAccum = merged;
-        // Hand the staging property a fresh object — QML compares by
+        // Hand the staging property a fresh object - QML compares by
         // reference, so mutating the accumulator in place would not notify.
         var out = {};
         for (k in merged)
@@ -1014,15 +1014,15 @@ QtObject {
      * / Canadian AQHI have no provider equivalent either.
      *
      * european_aqi and us_aqi are both requested in the same "current" call
-     * regardless of which standard is actually resolved for this location —
+     * regardless of which standard is actually resolved for this location -
      * that costs nothing extra (same request, a couple more numbers in the
      * response) and means switching the Misc-tab override between "auto" /
      * "US AQI" / "European CAQI" is instant, with no refetch needed.
      *
      * AQHI is different: it's defined over 3-hour moving averages, which the
      * "current" snapshot can't give us. Only when Canadian AQHI is actually
-     * needed — the resolved standard is Canadian, or the Misc-tab "show
-     * standards" switches have the AQHI one on — does this add an
+     * needed - the resolved standard is Canadian, or the Misc-tab "show
+     * standards" switches have the AQHI one on - does this add an
      * &hourly=...&past_hours=2 request for the three pollutants the ECCC
      * formula needs, scoped deliberately small and only fetched when it'll
      * actually be used.
@@ -1030,7 +1030,7 @@ QtObject {
      * forecast_hours is set to 1, not 0, to actually include the current
      * hour: Open-Meteo's own time-range builder (forecastTimeRange2 in
      * ForecastapiQuery.swift) computes the window as a half-open range
-     * [currentHour - past_hours, currentHour + forecast_hours) — the end is
+     * [currentHour - past_hours, currentHour + forecast_hours) - the end is
      * exclusive, so forecast_hours=0 collapses that to end === currentHour
      * and excludes it, returning only the 2 *preceding* hours. forecast_hours=1
      * pushes the exclusive end one hour past "now", which is what actually
@@ -1042,7 +1042,7 @@ QtObject {
         var tz = (Plasmoid.configuration.timezone || "").trim();
         var standard = AQI.resolveStandard(Plasmoid.configuration.countryCode, Plasmoid.configuration.aqiStandard || "auto");
         // The three "show standards" switches (Misc tab) can request AQHI
-        // even when it isn't the single resolved standard above — whenever
+        // even when it isn't the single resolved standard above - whenever
         // any of the three is on, they take over from the single-standard
         // selector, so the resolved standard on its own is not enough to
         // decide whether the AQHI hourly block is needed.
@@ -1068,7 +1068,7 @@ QtObject {
                 var d = JSON.parse(req.responseText);
                 var c = d.current || {};
 
-                // Pollutants and us_aqi always come from here — they are the
+                // Pollutants and us_aqi always come from here - they are the
                 // only source the UI has for them. europeanAqi is
                 // contributed only when no provider already claimed it
                 // natively this generation (see pirateWeather.js).
@@ -1085,7 +1085,7 @@ QtObject {
                     patch.europeanAqi = (c.european_aqi !== undefined) ? c.european_aqi : NaN;
 
                 // aqhi is only ever populated on a generation that actually
-                // requested the hourly block above (needsAqhi) — explicitly
+                // requested the hourly block above (needsAqhi) - explicitly
                 // NaN otherwise, so a stale reading from a previous
                 // Canadian location (or from AQHI being switched off) can't
                 // linger unused in the accumulator and be mistaken for
@@ -1094,7 +1094,7 @@ QtObject {
                 // The average is taken over whatever trailing hours are
                 // actually present (up to 3) rather than requiring exactly
                 // 3, so a request-boundary edge case degrades to a shorter
-                // average instead of an empty result — the forecast_hours=1
+                // average instead of an empty result - the forecast_hours=1
                 // fix above should always yield exactly 3, but this doesn't
                 // depend on that holding precisely.
                 if (needsAqhi) {
@@ -1163,7 +1163,7 @@ QtObject {
                 return;
             if (_refreshGen !== gen) return;
             if (req.status !== 200)
-                return;  // leave "--" in place — better than crashing
+                return;  // leave "--" in place - better than crashing
             try {
                 var d = JSON.parse(req.responseText);
                 if (r.weatherData && (

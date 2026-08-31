@@ -43,7 +43,7 @@ Item {
     onVisibleChanged: _maybeDeferLoad()
 
     // Created already-visible when the parent tab Loader builds us on first
-    // visit, so onVisibleChanged may never fire — kick the deferred load here
+    // visit, so onVisibleChanged may never fire - kick the deferred load here
     // too. Harmless if onVisibleChanged also fires (the timer just restarts).
     Component.onCompleted: _maybeDeferLoad()
 

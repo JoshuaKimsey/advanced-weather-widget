@@ -16,9 +16,9 @@
  */
 
 /**
- * pirateWeather.js — Pirate Weather current + hourly fetcher
+ * pirateWeather.js - Pirate Weather current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  *
@@ -171,13 +171,13 @@ function fetchCurrent(service, W, chain, idx) {
             sunsetTimeText:  day0 && day0.sunsetTime  ? Qt.formatTime(new Date(day0.sunsetTime  * 1000), "HH:mm") : "--",
             dailyData:       nd
         };
-        // No native air quality or pollen — both are supplied by the shared
+        // No native air quality or pollen - both are supplied by the shared
         // Open-Meteo fetch started in WeatherService.refreshNow(). Clearing
         // them here would race that fetch and discard its result.
         r.loading = false;
         r.updateText = service._formatUpdateText("pirateWeather");
 
-        // Pirate Weather provides its own alerts — parse them
+        // Pirate Weather provides its own alerts - parse them
         if (d.alerts && d.alerts.length > 0) {
             if (_parseAlerts(r, d.alerts))
                 service._nativeAlertsSetThisGen = true;
@@ -311,7 +311,7 @@ function _ppbToUgm3(ppb, molarMass) {
 var _MOLAR_MASS = { o3: 48.00, no2: 46.01, so2: 64.07, co: 28.01 };
 
 /**
- * fetchAirQuality — native Pirate Weather air quality.
+ * fetchAirQuality - native Pirate Weather air quality.
  *
  * IMPORTANT UNITS CAVEAT:
  * The main fetchCurrent() request uses units=ca, but PW ties the AQI
@@ -332,12 +332,12 @@ var _MOLAR_MASS = { o3: 48.00, no2: 46.01, so2: 64.07, co: 28.01 };
  * the exception: its band table is in mg/m³, so it takes a further /1000.
  *
  * This function only ever contributes europeanAqi (via _mergeAqiData and
- * _nativeAqiSetThisGen) — PW has no US AQI or AQHI calculation of its own.
+ * _nativeAqiSetThisGen) - PW has no US AQI or AQHI calculation of its own.
  * That means its result is only actually *displayed* when the resolved
  * standard for the user's location is CAQI; everywhere else it's still
- * merged in (harmless — that field just isn't read at render time). US AQI,
+ * merged in (harmless - that field just isn't read at render time). US AQI,
  * Canadian AQHI, and pollen always come from the shared Open-Meteo fetch, so
- * every code path below — including the early-return failure cases — calls
+ * every code path below - including the early-return failure cases - calls
  * service._fetchAqi() before returning, the same way fetchCurrent() always
  * calls _fetchAlertsIfNeeded(). That fetch is unconditional now (it no
  * longer skips itself when _nativeAqiSetThisGen is set), so pollen and the

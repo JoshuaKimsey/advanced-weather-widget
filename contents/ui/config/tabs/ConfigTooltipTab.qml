@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigTooltipTab.qml — Tooltip tab content
+ * ConfigTooltipTab.qml - Tooltip tab content
  *
  * Extracted from configAppearance.qml for readability.
  */

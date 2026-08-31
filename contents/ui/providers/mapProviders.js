@@ -16,7 +16,7 @@
  */
 
 /**
- * mapProviders.js — Shared base map (background tile) definitions
+ * mapProviders.js - Shared base map (background tile) definitions
  *
  * Single source of truth for the tile layers offered by the "Map background"
  * setting. Consumed by two different map engines:
@@ -28,13 +28,13 @@
  *
  * Backgrounds come in two shapes. Raster ones carry tileUrlTemplate and go into
  * an L.tileLayer. Vector ones carry styleUrl with vector: true and go into an
- * L.maplibreGL layer instead — MapLibre renders them on a WebGL canvas that
+ * L.maplibreGL layer instead - MapLibre renders them on a WebGL canvas that
  * Leaflet keeps in sync, so the radar overlays above them are untouched.
  *
  * All providers are free and require no API key. Attribution strings are HTML
  * because both consumers render rich text.
  *
- * Non-pragma JS — plain globals, imported with "as MapProvidersJS".
+ * Non-pragma JS - plain globals, imported with "as MapProvidersJS".
  */
 
 var _OSM_LINK = "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors";

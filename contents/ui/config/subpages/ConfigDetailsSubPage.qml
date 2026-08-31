@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigDetailsSubPage — extracted from configAppearance.qml
+ * ConfigDetailsSubPage - extracted from configAppearance.qml
  * Requires: required property var configRoot
  */
 import QtQuick
@@ -173,7 +173,7 @@ ColumnLayout {
                                 }
                                 onDropped: detailsSubPageRoot._applyItems()
                             }
-                            // ── Item icon — mirrors the active widget icon theme ──
+                            // ── Item icon - mirrors the active widget icon theme ──
                             Item {
                                 visible: !((model.itemId === "suntimes" || model.itemId === "moonphase") && configRoot.cfg_widgetIconTheme === "kde")
                                 implicitWidth: Kirigami.Units.iconSizes.smallMedium
@@ -356,7 +356,7 @@ ColumnLayout {
                                 }
                                 onClicked: detailsDelegateRoot.settingsExpanded = !detailsDelegateRoot.settingsExpanded
                             }
-                            // ── Configure icon button (KDE themes, suntimes/moonphase) — opens shared iconConfigDialog ──
+                            // ── Configure icon button (KDE themes, suntimes/moonphase) - opens shared iconConfigDialog ──
                             ToolButton {
                                 visible: configRoot.cfg_widgetIconTheme === "kde" && (model.itemId === "suntimes" || model.itemId === "moonphase")
                                 enabled: model.itemEnabled
@@ -396,7 +396,7 @@ ColumnLayout {
                                     iconConfigDialog.open();
                                 }
                             }
-                            // ── Eye toggle — show/hide prefix icon ────────────────
+                            // ── Eye toggle - show/hide prefix icon ────────────────
                             ToolButton {
                                 implicitWidth: Kirigami.Units.iconSizes.medium
                                 implicitHeight: Kirigami.Units.iconSizes.medium

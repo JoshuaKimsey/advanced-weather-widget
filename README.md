@@ -251,7 +251,7 @@ If you encounter any issues or have suggestions, please open a [GitHub Issue](ht
 - The **Radar** tab uses **Leaflet.js** for interactive map rendering:  
   https://leafletjs.com/
 
-  Copyright © 2010–2024 Vladimir Agafonkin.  
+  Copyright © 2010-2024 Vladimir Agafonkin.  
   Licensed under the **BSD 2-Clause License**.
 
 - Map tiles are provided by **OpenStreetMap**:  

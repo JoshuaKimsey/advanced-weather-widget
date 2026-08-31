@@ -16,24 +16,24 @@
  */
 
 /**
- * librewxrAlerts.js — LibreWXR weather alerts fetcher
+ * librewxrAlerts.js - LibreWXR weather alerts fetcher
  *
  * Fetches worldwide weather alerts from the LibreWXR API:
  *   GET {librewxrUrl}/v2/alerts?lat=..&lon=..
  * Returns a GeoJSON FeatureCollection of CAP alerts aggregated from
  * official feeds (WMO Severe Weather Information Centre, NOAA NWS, …).
  * Point containment is resolved server-side, so no client-side area
- * filtering is needed — every returned feature applies to the location.
+ * filtering is needed - every returned feature applies to the location.
  *
  * Feature properties: title, severity (CAP: Extreme/Severe/Moderate/
  * Minor/Unknown), time + expires (unix seconds), description,
  * regions (string array), uri.
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  */
 
 /**
- * Main entry point — called from WeatherService._fetchAlertsIfNeeded()
+ * Main entry point - called from WeatherService._fetchAlertsIfNeeded()
  * when the alerts provider is set to "librewxr".
  */
 function fetchAlerts(service) {
@@ -67,7 +67,7 @@ function fetchAlerts(service) {
             var data = JSON.parse(req.responseText);
             var alerts = _parseLibreWxrAlerts(data);
             console.log("[Alerts/LibreWXR] parsed", alerts.length, "active alerts");
-            // Assign even when empty — the server already filtered by point,
+            // Assign even when empty - the server already filtered by point,
             // so an empty result genuinely means "no active alerts here" and
             // must clear any previously shown alert.
             r.weatherAlerts = alerts;

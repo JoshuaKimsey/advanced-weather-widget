@@ -1,4 +1,4 @@
-# Advanced Weather Widget — Translatable strings
+# Advanced Weather Widget - Translatable strings
 # Copyright (C) 2026
 # This file is distributed under the same license as the Advanced Weather Widget package.
 # SPDX-FileCopyrightText: 2026 AUTHOR :
@@ -155,8 +155,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Защо слоевете на OWM може да не съвпадат с радара на RainViewer</b><br/><br/>Слоевете за валежи/облачност на OWM са <b>статични моделни плочки</b> - те показват изгладен NWP (Числено прогнозиране на времето) резултат, а не реални радарни данни. Те представят къде моделът <i>смята</i>, че вали въз основа на интерполация между метеорологични станции и изпълнения на модела.<br/><br/>RainViewer използва <b>реални метеорологични радарни композити</b> от радарни станции - действително измерена отражателна способност, обновявана на всеки 2–10 минути. Това несъответствие е очаквано и известно."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>Защо слоевете на OWM може да не съвпадат с радара на RainViewer</b><br/><br/>Слоевете за валежи/облачност на OWM са <b>статични моделни плочки</b> - те показват изгладен NWP (Числено прогнозиране на времето) резултат, а не реални радарни данни. Те представят къде моделът <i>смята</i>, че вали въз основа на интерполация между метеорологични станции и изпълнения на модела.<br/><br/>RainViewer използва <b>реални метеорологични радарни композити</b> от радарни станции - действително измерена отражателна способност, обновявана на всеки 2-10 минути. Това несъответствие е очаквано и известно."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -281,7 +281,7 @@ msgstr "Доставчик на предупреждения: <a href='https://l
 
 #: contents/ui/config/configGeneral.qml:1038
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr "Доставчик на предупреждения: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>За местоположения в Европа се използват официалните емисии на MeteoAlarm (38 държави), а за местоположения в САЩ — API за предупреждения на NOAA National Weather Service, с MetAlerts на met.no като резервен вариант. Ако вашият метеорологичен доставчик предоставя собствени предупреждения (напр. WeatherAPI.com, Pirate Weather), те се използват директно."
+msgstr "Доставчик на предупреждения: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>За местоположения в Европа се използват официалните емисии на MeteoAlarm (38 държави), а за местоположения в САЩ - API за предупреждения на NOAA National Weather Service, с MetAlerts на met.no като резервен вариант. Ако вашият метеорологичен доставчик предоставя собствени предупреждения (напр. WeatherAPI.com, Pirate Weather), те се използват директно."
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -360,8 +360,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Сигурни ли сте? Това е последното ви запазено местоположение. Ако го премахнете, приспособлението повече няма да показва метеорологична информация."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Около полунощ — "
+msgid "Around midnight - "
+msgstr "Около полунощ - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -701,8 +701,8 @@ msgid "Configure display mode options"
 msgstr "Конфигуриране на опциите за режим на показване"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Конфигуриране на икона — %1"
+msgid "Configure icon - %1"
+msgstr "Конфигуриране на икона - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -813,8 +813,8 @@ msgid "Dark map"
 msgstr "Тъмна карта"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Тире  –"
+msgid "Dash  -"
+msgstr "Тире  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -851,8 +851,8 @@ msgid "Date:"
 msgstr "Дата:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "Наближава зазоряване — "
+msgid "Dawn approaching - "
+msgstr "Наближава зазоряване - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1113,8 +1113,8 @@ msgid "Error (code %1)"
 msgstr "Грешка (код %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Вечер — "
+msgid "Evening - "
+msgstr "Вечер - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2576,7 +2576,7 @@ msgid ""
 msgstr ""
 "Доставчиците се изпробват последователно, докато един успее:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-"Open-Meteo винаги се изпробва първи – той е безплатен и не изисква API ключ."
+"Open-Meteo винаги се изпробва първи - той е безплатен и не изисква API ключ."
 
 #: contents/ui/config/configNotifications.qml:272
 msgid "Purple"
@@ -2690,8 +2690,8 @@ msgid "Recent"
 msgstr "Скорошни"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Препоръчително — напр. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Препоръчително - напр. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3036,8 +3036,8 @@ msgid "Size:"
 msgstr "Размер:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Пропуснато — API ключът не е конфигуриран"
+msgid "Skipped - API key not configured"
+msgstr "Пропуснато - API ключът не е конфигуриран"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3831,19 +3831,19 @@ msgstr "Доставчик на времето:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "Степени на опасност на метеорологичните предупреждения, от най-ниска до най-висока:\n"
 "\n"
-"🟡 Жълто — Леко: бъдете наясно с условията.\n"
-"🟠 Оранжево — Умерено: бъдете подготвени.\n"
-"🔴 Червено — Тежко: предприемете действия.\n"
-"🟣 Лилаво — Екстремно: изключително опасно, предприемете действия незабавно.\n"
+"🟡 Жълто - Леко: бъдете наясно с условията.\n"
+"🟠 Оранжево - Умерено: бъдете подготвени.\n"
+"🔴 Червено - Тежко: предприемете действия.\n"
+"🟣 Лилаво - Екстремно: изключително опасно, предприемете действия незабавно.\n"
 "\n"
 "Изключете дадено ниво, за да спрете известията за предупреждения от тази степен."
 
@@ -4235,7 +4235,7 @@ msgstr "µg/m³"
 #~ msgstr ""
 #~ "Доставчиците се изпробват последователно, докато един успее:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo винаги се изпробва първи – той е безплатен и не изисква API ключ."
+#~ "Open-Meteo винаги се изпробва първи - той е безплатен и не изисква API ключ."
 
 #~ msgid "Updated %1"
 #~ msgstr "Обновено %1"
@@ -4267,11 +4267,11 @@ msgstr "µg/m³"
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
-#~ "Open-Meteo винаги се изпробва с приоритет — той е безплатен и не изисква API ключ.Доставчиците се опитват последователно, докато един успее:\n"
+#~ "Open-Meteo винаги се изпробва с приоритет - той е безплатен и не изисква API ключ.Доставчиците се опитват последователно, докато един успее:\n"
 #~ "Open-Meteo → met.no → Pirate Weather → Visual Crossing → Tomorrow.io → StormGlass → Weatherbit → QWeather → OpenWeatherMap → WeatherAPI.com\n"
-#~ "Open-Meteo винаги се опитва първи — безплатен е и не изисква API ключ."
+#~ "Open-Meteo винаги се опитва първи - безплатен е и не изисква API ключ."
 
 #~ msgid "Show sunrise/sunset markers"
 #~ msgstr "Показване на маркери за изгрев/залез"
@@ -4300,11 +4300,11 @@ msgstr "µg/m³"
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
-#~ "Open-Meteo винаги се изпробва с приоритет — той е безплатен и не изисква API ключ.Доставчиците се изпробват в ред, докато един успее:\n"
+#~ "Open-Meteo винаги се изпробва с приоритет - той е безплатен и не изисква API ключ.Доставчиците се изпробват в ред, докато един успее:\n"
 #~ "Open-Meteo → met.no → OpenWeatherMap → WeatherAPI.com\n"
-#~ "Open-Meteo винаги се опитва първи – той е безплатен и не изисква API ключ."
+#~ "Open-Meteo винаги се опитва първи - той е безплатен и не изисква API ключ."
 
 #~ msgid "Set manually"
 #~ msgstr "Задаване ръчно"

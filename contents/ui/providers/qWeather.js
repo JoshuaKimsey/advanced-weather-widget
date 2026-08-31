@@ -16,9 +16,9 @@
  */
 
 /**
- * qWeather.js — QWeather (和风天气) current + daily + hourly fetcher
+ * qWeather.js - QWeather (和风天气) current + daily + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  *
@@ -258,14 +258,14 @@ function _fetchDailyAttempt(service, W, key, loc, gen, base, spans, spanIdx) {
         // Air quality: QWeather's /airquality/v1/current returns whichever
         // of its 70+ supported index standards it defaults to when no
         // `type=` filter is requested (its own proprietary QAQI most
-        // likely, not necessarily US EPA/CAQI/AQHI) — see the removed
+        // likely, not necessarily US EPA/CAQI/AQHI) - see the removed
         // _qwAqiLabel()/_fetchAirQuality() that used to read indexes[0]
         // without pinning that down. Rather than risk mislabeling an
         // unidentified scale as one of the three standards this widget
         // supports, this is left to the shared Open-Meteo air-quality
         // fetch, which WeatherService.refreshNow() already runs
         // unconditionally for this provider (Providers.qml has no
-        // "qWeather" case in its fetchAirQuality() switch) — that's the
+        // "qWeather" case in its fetchAirQuality() switch) - that's the
         // sole source of pollutants and all three index values here, same
         // as for most other providers.
     };

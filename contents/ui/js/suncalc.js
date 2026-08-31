@@ -1,5 +1,5 @@
 /**
- * suncalc.js — QML-compatible modification of SunCalc
+ * suncalc.js - QML-compatible modification of SunCalc
  *
  * Original project:
  * https://github.com/mourner/suncalc
@@ -31,7 +31,7 @@
  *
  *   getTimes(date, lat, lng)
  *     → { sunrise: Date, sunset: Date, solarNoon: Date, ... }
- *       (Date objects in UTC — format with Qt.formatTime as needed)
+ *       (Date objects in UTC - format with Qt.formatTime as needed)
  */
 .pragma library
 
@@ -118,9 +118,9 @@ function _moonCoords(d) {
 // ── Public: getMoonIllumination ────────────────────────────────────────────
 /**
  * Returns illumination data for the moon at the given date.
- *   fraction — illuminated fraction (0=new, 1=full)
- *   phase    — moon phase (0/1=new, 0.25=first quarter, 0.5=full, 0.75=last quarter)
- *   angle    — midpoint angle of illuminated limb (radians)
+ *   fraction - illuminated fraction (0=new, 1=full)
+ *   phase    - moon phase (0/1=new, 0.25=first quarter, 0.5=full, 0.75=last quarter)
+ *   angle    - midpoint angle of illuminated limb (radians)
  *
  * To get moon age in days: phase * 29.530588853
  */
@@ -128,7 +128,7 @@ function getMoonIllumination(date) {
     var d   = _toDays(date || new Date());
     var s   = _sunCoords(d);
     var m   = _moonCoords(d);
-    var sdist = 149598000;   // Earth–Sun distance in km
+    var sdist = 149598000;   // Earth-Sun distance in km
 
     var phi   = acos(sin(s.dec) * sin(m.dec) +
                      cos(s.dec) * cos(m.dec) * cos(s.ra - m.ra));
@@ -148,9 +148,9 @@ function getMoonIllumination(date) {
 /**
  * Calculates moon rise and set times for the given date and location.
  *
- *   date          — Date object (today is used when in doubt)
- *   lat, lng      — observer's latitude / longitude in decimal degrees
- *   utcOffsetMins — location's UTC offset in minutes (e.g. 120 for UTC+2)
+ *   date          - Date object (today is used when in doubt)
+ *   lat, lng      - observer's latitude / longitude in decimal degrees
+ *   utcOffsetMins - location's UTC offset in minutes (e.g. 120 for UTC+2)
  *                   Used so results are in location-local time, not machine TZ.
  *
  * Returns { rise: "HH:mm", set: "HH:mm", alwaysUp: bool, alwaysDown: bool }
@@ -158,7 +158,7 @@ function getMoonIllumination(date) {
  * occur that day (arctic summer/winter).
  *
  * Algorithm: quadratic interpolation on hourly altitude samples, identical
- * to mourner/suncalc — accurate to ±2 min for mid-latitudes.
+ * to mourner/suncalc - accurate to ±2 min for mid-latitudes.
  */
 function getMoonTimes(date, lat, lng, utcOffsetMins) {
     var offset = (utcOffsetMins !== undefined && !isNaN(utcOffsetMins))

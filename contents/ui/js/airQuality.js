@@ -16,38 +16,38 @@
  */
 
 /**
- * airQuality.js — Air-quality index helpers for all three standards the
+ * airQuality.js - Air-quality index helpers for all three standards the
  * widget can display: European CAQI, US EPA AQI, and Canadian AQHI.
  *
  * ── European CAQI / Open-Meteo european_aqi scale ─────────────────────────
  * Official EEA thresholds, using the bands revised in 2024:
  * https://airindex.eea.europa.eu/AQI/index.html
- *   0–20   Good
- *   20–40  Fair
- *   40–60  Moderate
- *   60–80  Poor
- *   80–100 Very Poor
- *   >100   Extremely Poor (open-ended — the EEA scale has no fixed ceiling)
+ *   0-20   Good
+ *   20-40  Fair
+ *   40-60  Moderate
+ *   60-80  Poor
+ *   80-100 Very Poor
+ *   >100   Extremely Poor (open-ended - the EEA scale has no fixed ceiling)
  *
  * Per-pollutant sub-index breakpoints follow the same 2024-revised EEA
- * specification (hourly concentrations, µg/m³) → sub-index 0–100:
+ * specification (hourly concentrations, µg/m³) → sub-index 0-100:
  *   PM2.5: 5 / 15 / 50 / 90 / 140
  *   PM10:  15 / 45 / 120 / 195 / 270
  *   NO2:   10 / 25 / 60 / 100 / 150
  *   O3:    60 / 100 / 120 / 160 / 180
  *   SO2:   20 / 40 / 125 / 190 / 275
  * CO has no entry: it is not one of the EEA's five index pollutants, so
- * there is no official EU sub-index to interpolate — its concentration is
+ * there is no official EU sub-index to interpolate - its concentration is
  * still shown, just without a fabricated color band.
  *
- * ── US EPA Air Quality Index (0–500) ───────────────────────────────────────
+ * ── US EPA Air Quality Index (0-500) ───────────────────────────────────────
  * https://document.airnow.gov/technical-assistance-document-for-the-reporting-of-daily-air-quailty.pdf
  * Open-Meteo computes this for us (its own NowCast/rolling-average math per
  * pollutant), so this file only needs the six headline bands for labeling.
  *
- * ── Canadian Air Quality Health Index (1–10+) ─────────────────────────────
+ * ── Canadian Air Quality Health Index (1-10+) ─────────────────────────────
  * Health Canada's published formula, computed from 3-hour moving averages
- * of NO2, O3 (ppb) and PM2.5 (µg/m³) — see aqhiFromPollutants() below.
+ * of NO2, O3 (ppb) and PM2.5 (µg/m³) - see aqhiFromPollutants() below.
  * https://www.canada.ca/en/environment-climate-change/services/air-quality-health-index/about.html
  */
 
@@ -71,9 +71,9 @@ var EEA_COUNTRIES = [
  *                Plasmoid.configuration.countryCode)
  *   override:    "auto" | "us" | "eu" | "ca" (from
  *                Plasmoid.configuration.aqiStandard)
- * Returns "us" | "eu" | "ca". The global default — used for the USA, South
+ * Returns "us" | "eu" | "ca". The global default - used for the USA, South
  * America, Africa, Asia, and anywhere else not covered by the two regional
- * standards below (including an unresolved/empty country code) — is US AQI.
+ * standards below (including an unresolved/empty country code) - is US AQI.
  */
 function resolveStandard(countryCode, override) {
     if (override === "us" || override === "eu" || override === "ca")
@@ -95,7 +95,7 @@ var BANDS = [
     { max: 9999,label: I18N_NOOP("Extremely Poor"), shortLabel: I18N_NOOP("Extreme"),  color: "#7B1FA2", textColor: "#1A002A", emoji: "\u{1F7E4}", description: I18N_NOOP("Air quality is extremely poor.") }
 ];
 
-// ─── US EPA AQI band definitions (0–500) ─────────────────────────────────
+// ─── US EPA AQI band definitions (0-500) ─────────────────────────────────
 // Official colors from the EPA's published AQI scale.
 
 var US_BANDS = [
@@ -114,7 +114,7 @@ function bandForUsAqi(aqi) {
     return US_BANDS[US_BANDS.length - 1];
 }
 
-// ─── Canadian AQHI (1–10+) ────────────────────────────────────────────────
+// ─── Canadian AQHI (1-10+) ────────────────────────────────────────────────
 
 var AQHI_BANDS = [
     { max: 3,    label: I18N_NOOP("Low Risk"),       shortLabel: I18N_NOOP("Low"),      color: "#00CCFF", textColor: "#004D66", emoji: "\u{1F535}", description: I18N_NOOP("Ideal air quality for outdoor activities.") },
@@ -147,7 +147,7 @@ function ugm3ToPpb(ugm3, pollutant) {
  * Computes the genuine Health Canada AQHI from 3-hour moving averages:
  *   AQHI = (10/10.4) × 100 × [(e^(0.000871·NO2) − 1) + (e^(0.000537·O3) − 1) + (e^(0.000487·PM2.5) − 1)]
  * NO2 and O3 must be in ppb; PM2.5 in µg/m³. Reported values are never
- * below 1. Returns NaN if any input is missing — round the result for
+ * below 1. Returns NaN if any input is missing - round the result for
  * display.
  */
 function aqhiFromPollutants(no2Ppb, o3Ppb, pm25) {
@@ -160,7 +160,7 @@ function aqhiFromPollutants(no2Ppb, o3Ppb, pm25) {
 
 /**
  * Returns { value, band, standardLabel } for the active standard, given the
- * raw values stored on aqiData. `value` is unrounded — round for display.
+ * raw values stored on aqiData. `value` is unrounded - round for display.
  * `standardLabel` is I18N_NOOP-wrapped like the band labels; wrap it in
  * i18n() at the call site.
  */
@@ -175,7 +175,7 @@ function standardDisplay(standard, europeanAqi, usAqi, aqhi) {
 // ─── Per-pollutant breakpoints (European CAQI sub-index bars) ───────────────
 // Each entry: [c1, c2, c3, c4, c5] concentrations mapping to sub-index
 // 0→0, c1→20, c2→40, c3→60, c4→80, c5→100, beyond c5→ open-ended (see
-// subIndex() below — the EEA scale itself has no fixed ceiling past 100).
+// subIndex() below - the EEA scale itself has no fixed ceiling past 100).
 
 var POLLUTANT_BREAKS = {
     pm2_5: [5,   15,   50,   90,  140],
@@ -183,13 +183,13 @@ var POLLUTANT_BREAKS = {
     no2:   [10,  25,   60,  100,  150],
     o3:    [60, 100,  120,  160,  180],
     so2:   [20,  40,  125,  190,  275]
-    // co intentionally omitted — see file header.
+    // co intentionally omitted - see file header.
 };
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 /**
- * Returns the band object for a given European AQI value (0–100+).
+ * Returns the band object for a given European AQI value (0-100+).
  */
 function bandForIndex(aqi) {
     if (isNaN(aqi) || aqi === null) return BANDS[0];
@@ -221,7 +221,7 @@ function labelForIndex(aqi) {
 }
 
 /**
- * Computes a 0–100+ sub-index for a pollutant concentration, on the same
+ * Computes a 0-100+ sub-index for a pollutant concentration, on the same
  * scale as the consolidated European AQI (BANDS above).
  *
  * @param {string} pollutant  Key in POLLUTANT_BREAKS: "pm2_5", "pm10", "no2", "o3", "so2"
@@ -268,7 +268,7 @@ function bandForSubIndex(si) {
 }
 
 /**
- * Returns a percentage (0–100) for positioning on a scale bar.
+ * Returns a percentage (0-100) for positioning on a scale bar.
  */
 function scalePercent(value, maxScale) {
     var scale = maxScale || 100;

@@ -16,9 +16,9 @@
  */
 
 /**
- * openWeather.js — OpenWeather current + hourly fetcher
+ * openWeather.js - OpenWeather current + hourly fetcher
  *
- * Non-pragma JS — accesses config via service properties.
+ * Non-pragma JS - accesses config via service properties.
  * Qt global is available; Plasmoid/i18n/Locale are NOT (use service instead).
  * W (weather.js) is passed as a parameter by the caller.
  */
@@ -141,19 +141,19 @@ function fetchCurrent(service, W, chain, idx) {
             r.loading = false;
             r.updateText = service._formatUpdateText("openWeather");
 
-            // No native alerts — fall back to MeteoAlarm / NWS
+            // No native alerts - fall back to MeteoAlarm / NWS
             service._fetchAlertsIfNeeded();
 
             // Air quality: OpenWeather's own air_pollution endpoint only
-            // exposes its proprietary 1–5 index (see the removed
-            // _owAqiLabel()/_fetchAirQuality() that used to live here) —
+            // exposes its proprietary 1-5 index (see the removed
+            // _owAqiLabel()/_fetchAirQuality() that used to live here) -
             // that scale doesn't correspond to any of the three standards
             // the widget supports (US AQI, European CAQI, Canadian AQHI),
             // so there's nothing to natively contribute here. Providers.qml
             // has no "openWeather" case in its fetchAirQuality() switch, so
             // WeatherService.refreshNow() already falls through to the
             // shared Open-Meteo air-quality fetch unconditionally for this
-            // provider — that's the sole source of pollutants and all three
+            // provider - that's the sole source of pollutants and all three
             // index values for OpenWeather users, same as for most other
             // providers.
         };

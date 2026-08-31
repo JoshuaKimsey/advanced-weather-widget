@@ -35,7 +35,7 @@
 pragma ComponentBehavior: Bound
 
 /**
- * WeatherIcon.qml — Unified weather icon renderer
+ * WeatherIcon.qml - Unified weather icon renderer
  *
  * Renders a weather icon with automatic fallback:
  *   1. KDE system icon (if type === "kde")
@@ -70,7 +70,7 @@ Item {
     /** Pass the result of IconResolver.resolve() directly */
     property var iconInfo: null
 
-    // ── Derived properties — reactively track iconInfo ─────────────────
+    // ── Derived properties - reactively track iconInfo ─────────────────
     // These are always in sync with iconInfo via QML bindings (no
     // imperative onChanged handler needed).  When iconInfo is null the
     // defaults produce an empty/invisible state.
@@ -89,7 +89,7 @@ Item {
     /** Pixel size for the icon */
     property int iconSize: 22
 
-    /** Bundled SVG fallback URL — used when KDE icon is not found */
+    /** Bundled SVG fallback URL - used when KDE icon is not found */
     property string svgFallback: _infoFallback
 
     /** Whether to render the SVG as a monochrome mask (symbolic theme) */
@@ -98,13 +98,13 @@ Item {
     /** Optional icon colour override (defaults to theme text colour) */
     property color iconColor: Kirigami.Theme.textColor
 
-    /** Static (non-animated) glow behind the icon — a blurred copy of the
+    /** Static (non-animated) glow behind the icon - a blurred copy of the
       * icon in its own colours.  Follows the global config toggle by
       * default; can be overridden per instance. */
     property bool glowEnabled: Plasmoid.configuration && Plasmoid.configuration.iconGlowEnabled === true
 
-    /** Glow strength 0.1–1.0 — drives the halo's opacity, brightness, AND
-      * reach (blurMax/pad below) — all three scale with it, not just
+    /** Glow strength 0.1-1.0 - drives the halo's opacity, brightness, AND
+      * reach (blurMax/pad below) - all three scale with it, not just
       * brightness/opacity, so the slider produces an actually visible
       * difference rather than a barely-perceptible brightness nudge on an
       * already-faint effect. */
@@ -114,39 +114,39 @@ Item {
       * (widget popup) spreads outward beyond iconSize and needs an
       * unclipped ancestor chain to paint into. Panel rows sit under
       * clip:true ancestors for marquee/scroll behaviour, so glowBleed:false
-      * is used there — the glow is contained entirely within the icon's
+      * is used there - the glow is contained entirely within the icon's
       * existing iconSize box instead, which never gets clipped no matter
       * what the ancestors do. */
     property bool glowBleed: true
 
     /** Contained mode needs somewhere inside the box for the halo to be
       * visible: a same-size layer directly behind an opaque icon is
-      * completely hidden with nothing showing around it — verified by
+      * completely hidden with nothing showing around it - verified by
       * direct pixel sampling: a same-box glow measured as indistinguishable
       * from background regardless of intensity. So instead of requesting
       * extra space, the visible icon content is rendered slightly smaller
-      * than the box (shrinkScale) when contained, leaving a real margin —
-      * inside the box that's already reserved by the panel layout — for
+      * than the box (shrinkScale) when contained, leaving a real margin -
+      * inside the box that's already reserved by the panel layout - for
       * the glow to occupy. Only takes effect when the glow is actually on
       * and contained; a plain icon is unaffected. */
     readonly property real _contentScale: (glowEnabled && !glowBleed) ? 0.78 : 1.0
     readonly property int _contentSize: Math.max(1, Math.round(iconSize * _contentScale))
 
-    // MultiEffect never reports an implicit size of its own — verified by
+    // MultiEffect never reports an implicit size of its own - verified by
     // direct measurement, implicitWidth/Height read back as 0 even with
-    // autoPaddingEnabled — so relying on a Loader/effect to size itself
+    // autoPaddingEnabled - so relying on a Loader/effect to size itself
     // renders a 0×0 item (i.e. nothing at all). The padded box has to be
     // computed and assigned explicitly. Bleed mode's pad also scales with
-    // glowIntensity (0.3–1.0× of the max reach) so higher intensity looks
+    // glowIntensity (0.3-1.0× of the max reach) so higher intensity looks
     // like a visibly bigger, bolder halo, not just a brighter one.
-    // Contained mode's pad stays fixed to the shrink margin above — that
+    // Contained mode's pad stays fixed to the shrink margin above - that
     // margin is the hard ceiling the panel layout allows regardless of
     // intensity, so only blur/brightness/opacity flex with it there.
     //
-    // NOTE on scale: measured directly — the glow's actual visible falloff
+    // NOTE on scale: measured directly - the glow's actual visible falloff
     // extends roughly 2x past the nominal blurMax value, not 1x. A blurMax
     // of iconSize*0.6 (as this briefly shipped) produces a halo that visibly
-    // reaches ~2.3x the icon's own diameter — the oversized "zoom" bloom.
+    // reaches ~2.3x the icon's own diameter - the oversized "zoom" bloom.
     // iconSize*0.1 measured out to a clean, proportionate ~25px halo past a
     // 120px icon's true edge instead.
     readonly property int _glowPad: glowBleed ? Math.max(3, Math.round(iconSize * 0.1 * (0.3 + 0.7 * glowIntensity))) : Math.max(1, Math.round((iconSize - _contentSize) / 2))
@@ -174,7 +174,7 @@ Item {
     // ── Single loaded branch ──────────────────────────────────────────────
     // Exactly one element is instantiated per icon (wi-font Text, or one
     // Kirigami.Icon).  Every Kirigami.Icon carries a PlasmaTheme object that
-    // re-syncs on each window expose, and pays icon-theme lookups on polish —
+    // re-syncs on each window expose, and pays icon-theme lookups on polish -
     // with hundreds of icons in the forecast/details delegates, keeping five
     // dormant Icon siblings per WeatherIcon froze the GUI thread on popup
     // open.  The bundled-SVG fallback is only created when the KDE theme
@@ -195,7 +195,7 @@ Item {
 
     // ── Static glow ───────────────────────────────────────────────────────
     // A blurred, slightly brightened copy of the icon drawn behind it.
-    // Purely static — no animation.  The MultiEffect (and its offscreen
+    // Purely static - no animation.  The MultiEffect (and its offscreen
     // texture) only exists while the option is enabled, so the default
     // configuration pays nothing.
     //
@@ -205,7 +205,7 @@ Item {
     // at 0×0 and the glow is invisible). autoPaddingEnabled:true then
     // renders the source at native scale, centered within that explicit
     // box, with blur bleeding into the padding rather than the source
-    // being stretched to fill it — verified by pixel sampling.
+    // being stretched to fill it - verified by pixel sampling.
     Loader {
         width: weatherIcon._glowBoxSize
         height: weatherIcon._glowBoxSize
@@ -247,7 +247,7 @@ Item {
             color: weatherIcon.isMask ? weatherIcon.iconColor : "transparent"
             fallback: weatherIcon.iconType === "kde" ? (weatherIcon.svgFallback.length > 0 ? "" : (weatherIcon.isMask ? "dialog-question-symbolic" : "dialog-question")) : "unknown"
 
-            // Bundled SVG fallback — only exists when the KDE icon is missing.
+            // Bundled SVG fallback - only exists when the KDE icon is missing.
             // Gate on status === Error, not !valid: a failed theme lookup still
             // reports valid=true (placeholder machinery), and Error is only set
             // after the lookup finishes, so no transient fallback gets built

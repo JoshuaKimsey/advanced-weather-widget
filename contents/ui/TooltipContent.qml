@@ -16,7 +16,7 @@
  */
 
 /**
- * TooltipContent.qml — Tooltip popup content
+ * TooltipContent.qml - Tooltip popup content
  *
  * Renders the rich tooltip with configurable icon themes + data values.
  * Receives weatherRoot to access live weather data and helper functions.
@@ -86,7 +86,7 @@ Item {
             : ttHeightManual)
         : 0
 
-    // Sum of header labels + separator — used in manual-height calculation
+    // Sum of header labels + separator - used in manual-height calculation
     readonly property int _headerHeight: _ttHeaderLabel.implicitHeight
         + ((_ttTimestamp.visible ? _ttTimestamp.implicitHeight : 0))
         + ((_ttNoLocHint.visible ? _ttNoLocHint.implicitHeight : 0))
@@ -119,7 +119,7 @@ Item {
         return Kirigami.Theme.defaultFont;
     }
 
-    // Custom icon map helper — delegates to ConfigUtils.parseConfigMap()
+    // Custom icon map helper - delegates to ConfigUtils.parseConfigMap()
     function getTooltipCustomIcon(itemId) {
         var m = ConfigUtils.parseConfigMap(Plasmoid.configuration.tooltipCustomIcons || "");
         return (itemId in m) ? m[itemId] : "";
@@ -188,7 +188,7 @@ Item {
             return { type: "kde", source: saved.length > 0 ? saved : (defaults[tok] || ""), svgFallback: "", isMask: false };
         }
 
-        // KDE / SVG themes — unified via IconResolver
+        // KDE / SVG themes - unified via IconResolver
         // Pass theme directly; "kde" is handled by IconResolver internally.
         var svgTheme = theme;
 
@@ -209,7 +209,7 @@ Item {
         return IconResolver.resolve(tok, ttIconSize, ttRoot.iconsBaseDir, svgTheme);
     }
 
-    // ── Inner layout — anchored to root Item for proper sizing ───────────
+    // ── Inner layout - anchored to root Item for proper sizing ───────────
     ColumnLayout {
         id: ttLayout
         anchors.fill: parent
@@ -267,7 +267,7 @@ Item {
         Layout.bottomMargin: 2
     }
 
-    // ── Scrollable data area — height capped when Manual ──────────────
+    // ── Scrollable data area - height capped when Manual ──────────────
     ScrollView {
         Layout.fillWidth: true
         Layout.fillHeight: !ttRoot.ttHeightAuto
@@ -286,7 +286,7 @@ Item {
             width: parent.width
             spacing: 0
 
-            // ── Data rows — ICONS MODE: 3-per-row grid ────────────────────────────
+            // ── Data rows - ICONS MODE: 3-per-row grid ────────────────────────────
             GridLayout {
                 id: ttContentCol
                 Layout.fillWidth: true
@@ -337,7 +337,7 @@ Item {
                 }
             }
 
-            // ── Data rows — TEXT MODE: one labelled row per item ──────────────────
+            // ── Data rows - TEXT MODE: one labelled row per item ──────────────────
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 3
@@ -387,7 +387,7 @@ Item {
     }
 
     /**
-     * Returns 1–2 row objects for a given token.
+     * Returns 1-2 row objects for a given token.
      * Icons mode: { iconInfo, showIcon, text }
      * Text mode:  { iconInfo: null, showIcon: false, text: "Label: value" }
      */

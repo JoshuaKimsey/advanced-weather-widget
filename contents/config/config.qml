@@ -36,7 +36,7 @@ import QtQuick
 import org.kde.plasma.configuration
 
 /**
- * config.qml — KDE Plasma plasmoid configuration model
+ * config.qml - KDE Plasma plasmoid configuration model
  *
  * All three config pages live in the config/ subdirectory.
  * KDE resolves the source path relative to the plasmoid's ui/ root,

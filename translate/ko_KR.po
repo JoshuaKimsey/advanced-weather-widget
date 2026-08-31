@@ -154,7 +154,7 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
 msgstr "<b>OWM 레이어와 RainViewer 레이더가 일치하지 않을 수 있는 이유</b><br/><br/>OWM 강수/구름 레이어는 <b>정적 모델 타일</b>입니다. 실제 레이더 반사파가 아니라 수치 기상 예측(NWP) 모델 출력을 보정한 결과를 보여줍니다. 즉, 기상 관측소와 모델 수행 결과 간의 보간을 통해 모델이 비가 온다고 <i>생각하는</i> 위치를 나타냅니다.<br/><br/>반면 RainViewer는 관측소의 <b>실제 기상 레이더 합성 데이터</b>를 사용합니다. 2~10분마다 업데이트되는 실제 측정 반사율입니다. 따라서 두 데이터 간의 차이는 정상적이며 알려진 현상입니다."
 
 #: contents/ui/config/configGeneral.qml:544
@@ -359,8 +359,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "정말 삭제하시겠습니까? 마지막으로 저장된 위치입니다. 제거하면 위젯에 더 이상 날씨 정보가 표시되지 않습니다."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "자정 무렵 — "
+msgid "Around midnight - "
+msgstr "자정 무렵 - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -700,8 +700,8 @@ msgid "Configure display mode options"
 msgstr "표시 모드 옵션 설정"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "아이콘 설정 — %1"
+msgid "Configure icon - %1"
+msgstr "아이콘 설정 - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -812,8 +812,8 @@ msgid "Dark map"
 msgstr "어두운 지도"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "대시  –"
+msgid "Dash  -"
+msgstr "대시  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -850,8 +850,8 @@ msgid "Date:"
 msgstr "날짜:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "동트는 중 — "
+msgid "Dawn approaching - "
+msgstr "동트는 중 - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1112,8 +1112,8 @@ msgid "Error (code %1)"
 msgstr "오류 (코드 %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "저녁 — "
+msgid "Evening - "
+msgstr "저녁 - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2689,8 +2689,8 @@ msgid "Recent"
 msgstr "최근"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "권장 — 예: 560"
+msgid "Recommended - e.g. 560"
+msgstr "권장 - 예: 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3035,8 +3035,8 @@ msgid "Size:"
 msgstr "크기:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "건너뜀 — API 키가 설정되지 않음"
+msgid "Skipped - API key not configured"
+msgstr "건너뜀 - API 키가 설정되지 않음"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3830,19 +3830,19 @@ msgstr "날씨 제공업체:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "날씨 경보 심각도 단계 (낮음에서 높음 순):\n"
 "\n"
-"🟡 노랑 — 주의: 날씨 상황에 유의하세요.\n"
-"🟠 주황 — 경고: 대비하세요.\n"
-"🔴 빨강 — 심각: 조치를 취하세요.\n"
-"🟣 보라 — 극심: 매우 위험하므로 즉시 조치를 취하세요.\n"
+"🟡 노랑 - 주의: 날씨 상황에 유의하세요.\n"
+"🟠 주황 - 경고: 대비하세요.\n"
+"🔴 빨강 - 심각: 조치를 취하세요.\n"
+"🟣 보라 - 극심: 매우 위험하므로 즉시 조치를 취하세요.\n"
 "\n"
 "해당 심각도의 알림 수신을 중지하려면 단계를 비활성화하세요."
 

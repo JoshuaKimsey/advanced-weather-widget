@@ -274,7 +274,7 @@ msgid ""
 "<b>Hybrid-GPU / NVIDIA PRIME + Wayland crash workaround</b><br/><br/>On some hybrid-GPU laptops running Wayland, the Radar tab's embedded browser view can crash the whole Plasma shell the moment it first paints, due to a driver-level conflict between the two GPUs. This option disables GPU-accelerated compositing inside that browser view to avoid it.<br/><br/>Only enable this if you're actually experiencing that crash - it costs some rendering performance on the radar map.<br/><br/><b>This needs a log out and back in to take effect</b>, since it has to be set before Plasma starts. It also applies to the whole session, so any other app that embeds a Chromium-based browser view will pick up the same setting.\n"
 "                <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 msgstr ""
-"<b>Rozwiązanie problemu awarii hybrydowego układu graficznego / NVIDIA PRIME w Wayland</b><br/><br/>Na niektórych laptopach z hybrydowym układem graficznym, na których działa Wayland, widok wbudowanej przeglądarki w zakładce „Radar” może spowodować awarię całego środowiska Plasma w momencie pierwszego odświeżenia obrazu, z powodu konfliktu na poziomie sterowników między dwoma układami graficznymi. Ta opcja wyłącza kompozycję przyspieszaną przez procesor graficzny w tym widoku przeglądarki, aby tego uniknąć.<br/><br/>Włącz tę opcję tylko wtedy, gdy faktycznie doświadczasz tego problemu — powoduje to pewien spadek wydajności renderowania mapy radarowej.<br/><br/><b>Aby zmiana zaczęła obowiązywać, konieczne jest wylogowanie się i ponowne zalogowanie</b>, ponieważ ustawienie to musi zostać skonfigurowane przed uruchomieniem Plasma. Dotyczy to również całej sesji, więc każda inna aplikacja wykorzystująca widok przeglądarki opartej na Chromium przejmie to samo ustawienie.\n"
+"<b>Rozwiązanie problemu awarii hybrydowego układu graficznego / NVIDIA PRIME w Wayland</b><br/><br/>Na niektórych laptopach z hybrydowym układem graficznym, na których działa Wayland, widok wbudowanej przeglądarki w zakładce „Radar” może spowodować awarię całego środowiska Plasma w momencie pierwszego odświeżenia obrazu, z powodu konfliktu na poziomie sterowników między dwoma układami graficznymi. Ta opcja wyłącza kompozycję przyspieszaną przez procesor graficzny w tym widoku przeglądarki, aby tego uniknąć.<br/><br/>Włącz tę opcję tylko wtedy, gdy faktycznie doświadczasz tego problemu - powoduje to pewien spadek wydajności renderowania mapy radarowej.<br/><br/><b>Aby zmiana zaczęła obowiązywać, konieczne jest wylogowanie się i ponowne zalogowanie</b>, ponieważ ustawienie to musi zostać skonfigurowane przed uruchomieniem Plasma. Dotyczy to również całej sesji, więc każda inna aplikacja wykorzystująca widok przeglądarki opartej na Chromium przejmie to samo ustawienie.\n"
 "                <br/><br/>Jeśli włączysz tę opcję, zostanie utworzony następujący plik: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 
 #: contents/ui/main.qml:1264
@@ -295,8 +295,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Dlaczego warstwy OWM mogą różnić się od radaru RainViewer</b><br/><br/>Warstwy opadu/chmur OWM są<b>kafelkami modelu statycznego</b> - pokazują wygładzony wynik NPP (Numerycznej Prognozy Pogody), a nie aktualne dane radarowe. Pokazują one gdzie model <i>myśli</i> że pada, na podstawie interpolacji pomiędzy stacjami pogodowymi a iteracjami modelowania.<br/><br/>RainViewer używa <b>prawdziwych map kompozytowych z radarów meteorologicznych</b> ze stacji radarowych - faktycznie zmierzonej reflektancji zachmurzenia, aktualizowanej co 2 – 10 minut. Ta rozbieżność jest spodziewana i znana."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>Dlaczego warstwy OWM mogą różnić się od radaru RainViewer</b><br/><br/>Warstwy opadu/chmur OWM są<b>kafelkami modelu statycznego</b> - pokazują wygładzony wynik NPP (Numerycznej Prognozy Pogody), a nie aktualne dane radarowe. Pokazują one gdzie model <i>myśli</i> że pada, na podstawie interpolacji pomiędzy stacjami pogodowymi a iteracjami modelowania.<br/><br/>RainViewer używa <b>prawdziwych map kompozytowych z radarów meteorologicznych</b> ze stacji radarowych - faktycznie zmierzonej reflektancji zachmurzenia, aktualizowanej co 2 - 10 minut. Ta rozbieżność jest spodziewana i znana."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -324,7 +324,7 @@ msgstr "Aktywnie"
 
 #: contents/ui/config/configGeneral.qml:97
 msgid "Active - GPU compositing is currently disabled for the radar map in this session."
-msgstr "Aktywne — w tej sesji kompozycja obrazu za pomocą procesora graficznego jest obecnie wyłączona dla mapy radarowej."
+msgstr "Aktywne - w tej sesji kompozycja obrazu za pomocą procesora graficznego jest obecnie wyłączona dla mapy radarowej."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
@@ -421,7 +421,7 @@ msgstr "Dostawca alertów: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/
 
 #: contents/ui/config/configGeneral.qml:1038
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr "Dostawca alertów: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/> w przypadku lokalizacji w Europie wykorzystywane są oficjalne kanały MeteoAlarm (38 krajów), natomiast w przypadku lokalizacji w Stanach Zjednoczonych – interfejs API alertów Narodowej Służby Meteorologicznej NOAA, z MetAlerts od met.no jako rozwiązaniem rezerwowym. Jeśli dostawca danych pogodowych udostępnia własne alerty (np. WeatherAPI.com, Pirate Weather), są one wykorzystywane bezpośrednio."
+msgstr "Dostawca alertów: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/> w przypadku lokalizacji w Europie wykorzystywane są oficjalne kanały MeteoAlarm (38 krajów), natomiast w przypadku lokalizacji w Stanach Zjednoczonych - interfejs API alertów Narodowej Służby Meteorologicznej NOAA, z MetAlerts od met.no jako rozwiązaniem rezerwowym. Jeśli dostawca danych pogodowych udostępnia własne alerty (np. WeatherAPI.com, Pirate Weather), są one wykorzystywane bezpośrednio."
 
 #: contents/ui/TooltipContent.qml:480
 msgid "Alerts:"
@@ -500,8 +500,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Czy na pewno? To Twoja ostania zapisana lokalizacja. Jeżeli ją usuniesz, widżet nie będzie pokazywać informacji pogodowej."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Około północy — "
+msgid "Around midnight - "
+msgstr "Około północy - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -841,8 +841,8 @@ msgid "Configure display mode options"
 msgstr "Konfiguruj opcja wyświetlania"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Dostosuj ikonę — %1"
+msgid "Configure icon - %1"
+msgstr "Dostosuj ikonę - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -953,8 +953,8 @@ msgid "Dark map"
 msgstr "Ciemna mapa"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Półpauza –"
+msgid "Dash  -"
+msgstr "Półpauza -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -991,8 +991,8 @@ msgid "Date:"
 msgstr "Data:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "Świt — "
+msgid "Dawn approaching - "
+msgstr "Świt - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1253,8 +1253,8 @@ msgid "Error (code %1)"
 msgstr "Błąd (kod %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Wieczór — "
+msgid "Evening - "
+msgstr "Wieczór - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2716,7 +2716,7 @@ msgid ""
 msgstr ""
 "Dostawcy są sprawdzani po kolei, aż jeden z nich połączy się z powodzeniem:\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-"Zawsze najpierw sprawdzane jest Open-Meteo – jest bezpłatne i nie wymaga klucza API."
+"Zawsze najpierw sprawdzane jest Open-Meteo - jest bezpłatne i nie wymaga klucza API."
 
 #: contents/ui/config/configNotifications.qml:272
 msgid "Purple"
@@ -2830,8 +2830,8 @@ msgid "Recent"
 msgstr "Ostatnio"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Rekomendowana — np. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Rekomendowana - np. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -2950,7 +2950,7 @@ msgstr "Zapisane lokalizacje"
 
 #: contents/ui/config/configGeneral.qml:100
 msgid "Saved, but not active yet - log out and back in for it to take effect."
-msgstr "Zapisano, ale nie aktywowano – wyloguj się i zaloguj ponownie, aby zmiany zaczęły obowiązywać."
+msgstr "Zapisano, ale nie aktywowano - wyloguj się i zaloguj ponownie, aby zmiany zaczęły obowiązywać."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:803
 msgid "Scroll animation:"
@@ -3176,8 +3176,8 @@ msgid "Size:"
 msgstr "Rozmiar:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Pominięto — klucz API nie został skonfigurowany"
+msgid "Skipped - API key not configured"
+msgstr "Pominięto - klucz API nie został skonfigurowany"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3974,19 +3974,19 @@ msgstr "Dostawca pogody:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "Poziomy alertów pogodowych, od najniższego do najwyższego:\n"
 "\n"
-"🟡 Żółty — Niski: miej świadomość warunków.\n"
-"🟠 Pomarańczowy — Moderate: bądź w gotowości.\n"
-"🔴 Czerwony — Wysoki: podejmij działania.\n"
-"🟣 Fioletowy — Ekstremalny: niezwykle niebezpieczny, podejmij działania natychmiast.\n"
+"🟡 Żółty - Niski: miej świadomość warunków.\n"
+"🟠 Pomarańczowy - Moderate: bądź w gotowości.\n"
+"🔴 Czerwony - Wysoki: podejmij działania.\n"
+"🟣 Fioletowy - Ekstremalny: niezwykle niebezpieczny, podejmij działania natychmiast.\n"
 "\n"
 "Wyłącz poziom, aby przestać otrzymywać powiadomienia o alertach o tej ważności."
 

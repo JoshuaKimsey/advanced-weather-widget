@@ -16,7 +16,7 @@
  */
 
 /**
- * weather.js — Pure weather utility functions
+ * weather.js - Pure weather utility functions
  *
  * .pragma library: No Qt APIs, no i18n, no QML-specific globals.
  * All functions take explicit parameters so callers remain in full control.
@@ -33,7 +33,7 @@ function I18N_NOOP(s) { return s; }
 // ── "Not supported" sentinel ─────────────────────────────────────────────────
 //
 // Numeric weather fields are normally NaN when a value is simply not loaded yet
-// (transient) — formatters render that as "--". Some providers, however, never
+// (transient) - formatters render that as "--". Some providers, however, never
 // expose a given field at all (e.g. BBC has no precipitation amount and no
 // per-hour UV index). Those providers set the field to NOT_SUPPORTED so the
 // formatters can render a distinct, honest "N/A" instead of "--".
@@ -59,7 +59,7 @@ function dewPoint(T, rh) {
 // Open-Meteo re-hosts the official national weather models. Passing the right
 // `models=` value to the SAME forecast endpoint yields the official per-country
 // high-resolution forecast (e.g. DWD ICON for Germany, Météo-France AROME for
-// France) — same JSON shape, so no parsing changes are needed.
+// France) - same JSON shape, so no parsing changes are needed.
 //
 // Every value below was verified against the live API to return a non-null
 // `current` block (temperature_2m + weather_code + wind + humidity) AND a
@@ -75,7 +75,7 @@ function dewPoint(T, rh) {
 //
 // Keyed by ISO 3166-1 alpha-2 country code (uppercase).
 var OPEN_METEO_COUNTRY_MODELS = {
-    // DWD ICON — Germany + immediate Central-European neighbours the 2km
+    // DWD ICON - Germany + immediate Central-European neighbours the 2km
     // ICON-D2 domain covers well (Austria, Switzerland handled separately below).
     "DE": "dwd_icon_seamless",
     "AT": "dwd_icon_seamless",   // GeoSphere Austria has no usable OM current model; ICON-D2 covers Austria
@@ -91,14 +91,14 @@ var OPEN_METEO_COUNTRY_MODELS = {
     "GB": "ukmo_seamless",
     "IE": "ukmo_seamless",
 
-    // NOAA — GFS seamless includes HRRR (3km CONUS) in the near term
+    // NOAA - GFS seamless includes HRRR (3km CONUS) in the near term
     "US": "gfs_seamless",
 
-    // MeteoSwiss ICON-CH (1–2km, Alpine)
+    // MeteoSwiss ICON-CH (1-2km, Alpine)
     "CH": "meteoswiss_icon_seamless",
     "LI": "meteoswiss_icon_seamless",
 
-    // MET Norway Nordic (1km) — covers the Nordics + Baltic
+    // MET Norway Nordic (1km) - covers the Nordics + Baltic
     "NO": "metno_seamless",
     "SE": "metno_seamless",
     "FI": "metno_seamless",
@@ -106,7 +106,7 @@ var OPEN_METEO_COUNTRY_MODELS = {
     // Environment Canada GEM HRDPS (2.5km)
     "CA": "gem_seamless",
 
-    // CMA GRAPES (China) — no seamless variant; direct global model returns data
+    // CMA GRAPES (China) - no seamless variant; direct global model returns data
     "CN": "cma_grapes_global",
 
     // JMA MSM (Japan, 5km)
@@ -118,7 +118,7 @@ var OPEN_METEO_COUNTRY_MODELS = {
     // DMI HARMONIE-AROME (Denmark + surrounding Europe, 2km)
     "DK": "dmi_seamless",
 
-    // ItaliaMeteo ARPAE ICON-2I (Italy, 2km) — no seamless variant
+    // ItaliaMeteo ARPAE ICON-2I (Italy, 2km) - no seamless variant
     "IT": "italia_meteo_arpae_icon_2i"
 };
 
@@ -263,79 +263,79 @@ function weatherCodeToIcon(code, night, symbolic) {
 
     if (code < 0)   return "weather-none-available";
 
-    // 0 — Clear sky
+    // 0 - Clear sky
     if (code === 0)
         return (n ? "weather-clear-night" : "weather-clear") + s;
 
-    // 1 — Mainly clear
+    // 1 - Mainly clear
     if (code === 1)
         return (n ? "weather-few-clouds-night" : "weather-few-clouds") + s;
 
-    // 2 — Partly cloudy
+    // 2 - Partly cloudy
     if (code === 2)
         return "weather-clouds-" + d + s;
 
-    // 3 — Overcast
+    // 3 - Overcast
     if (code === 3)
         return "weather-many-clouds" + s;
 
-    // 45, 48 — Fog / rime fog
+    // 45, 48 - Fog / rime fog
     if (code === 45 || code === 48)
         return "weather-fog" + s;
 
-    // 51, 53, 55 — Drizzle (light → dense)
+    // 51, 53, 55 - Drizzle (light → dense)
     if (code === 51 || code === 53 || code === 55)
         return "weather-showers-scattered-" + d + s;
 
-    // 56, 57 — Freezing drizzle (light, dense)
+    // 56, 57 - Freezing drizzle (light, dense)
     if (code === 56)
         return "weather-freezing-scattered-rain-" + d + s;
     if (code === 57)
         return "weather-freezing-rain-" + d + s;
 
-    // 61, 63, 65 — Rain (slight, moderate, heavy)
+    // 61, 63, 65 - Rain (slight, moderate, heavy)
     if (code === 61)
         return "weather-showers-scattered-" + d + s;
     if (code === 63 || code === 65)
         return "weather-showers-" + d + s;
 
-    // 66, 67 — Freezing rain (light, heavy)
+    // 66, 67 - Freezing rain (light, heavy)
     if (code === 66)
         return "weather-freezing-scattered-rain-" + d + s;
     if (code === 67)
         return "weather-freezing-rain-" + d + s;
 
-    // 71, 73, 75 — Snow fall (slight, moderate, heavy)
+    // 71, 73, 75 - Snow fall (slight, moderate, heavy)
     if (code === 71)
         return "weather-snow-scattered-" + d + s;
     if (code === 73 || code === 75)
         return "weather-snow-" + d + s;
 
-    // 77 — Snow grains
+    // 77 - Snow grains
     if (code === 77)
         return "weather-snow-scattered-" + d + s;
 
-    // 80, 81, 82 — Rain showers (slight, moderate, violent)
+    // 80, 81, 82 - Rain showers (slight, moderate, violent)
     if (code === 80)
         return "weather-showers-scattered-" + d + s;
     if (code === 81 || code === 82)
         return "weather-showers-" + d + s;
 
-    // 85, 86 — Snow showers (slight, heavy)
+    // 85, 86 - Snow showers (slight, heavy)
     if (code === 85)
         return "weather-snow-scattered-" + d + s;
     if (code === 86)
         return "weather-snow-" + d + s;
 
-    // 95 — Thunderstorm (slight or moderate)
+    // 95 - Thunderstorm (slight or moderate)
     if (code === 95)
         return "weather-storm-" + d + s;
 
-    // 96 — Thunderstorm with slight hail
+    // 96 - Thunderstorm with slight hail
     if (code === 96)
         return "weather-showers-scattered-storm-" + d + s;
 
-    // 99 — Thunderstorm with heavy hail
+    // 99 - Thunderstorm with heavy hail
     if (code === 99)
         return "weather-snow-scattered-storm-" + d + s;
 
@@ -413,7 +413,7 @@ function pirateWeatherIconToWmo(icon) {
 
 /**
  * Converts a BBC Weather (Met Office) numeric weatherType to a WMO weather code.
- * BBC uses the standard Met Office 0–30 code table; see
+ * BBC uses the standard Met Office 0-30 code table; see
  * https://www.metoffice.gov.uk/services/data/datapoint/code-definitions
  */
 function bbcWeatherTypeToWmo(code) {
@@ -505,7 +505,7 @@ function isPrecipCode(code) {
  * Formats an hourly precipitation-probability percentage for display.
  * Open-Meteo's `weather_code` and `precipitation_probability` are derived
  * from different model fields and can disagree for a given hour (e.g. a
- * thunderstorm code with a 0% probability) — this is an upstream data
+ * thunderstorm code with a 0% probability) - this is an upstream data
  * inconsistency, not a bug in how we read the API. When the icon implies
  * precipitation, floor the displayed percentage to a small nonzero value
  * so it doesn't visually contradict the icon.
@@ -571,5 +571,5 @@ function pressureUnitLabel(unit) {
     return PRESSURE_UNIT_LABELS[unit] || PRESSURE_UNIT_LABELS.hPa;
 }
 
-// windDirSvgFilename() removed — was a duplicate of windDirectionSvgStem().
+// windDirSvgFilename() removed - was a duplicate of windDirectionSvgStem().
 // Callers should use windDirectionSvgStem() instead.

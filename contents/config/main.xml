@@ -79,7 +79,7 @@
     <entry name="roundValues"             type="Bool"><default>true</default></entry>
     <entry name="showTempUnit"             type="Bool"><default>false</default></entry>
 
-    <!-- ── Panel — layout and items ──────────────────────────────────── -->
+    <!-- ── Panel - layout and items ──────────────────────────────────── -->
     <!-- panelInfoMode: "single" | "multiline" | "simple" -->
     <entry name="panelInfoMode"    type="String"><default>simple</default></entry>
     <entry name="panelItemOrder"   type="String"><default>location;temperature;humidity</default></entry>
@@ -101,14 +101,14 @@
     <entry name="panelShowCondition"   type="Bool"><default>false</default></entry>
     <entry name="panelShowLocation"    type="Bool"><default>true</default></entry>
 
-    <!-- ── Panel — multiline mode ─────────────────────────────────────── -->
+    <!-- ── Panel - multiline mode ─────────────────────────────────────── -->
     <entry name="panelMultiLines"         type="Int"><default>2</default><min>1</min><max>8</max></entry>
     <entry name="panelMultiAnimate"       type="Bool"><default>true</default></entry>
     <entry name="panelMultilineIconStyle" type="String"><default>colorful</default></entry>
     <entry name="panelMultilineIconSize"  type="Int"><default>0</default></entry>
     <entry name="panelScrollSeconds"      type="Int"><default>4</default><min>1</min><max>30</max></entry>
 
-    <!-- ── Panel — simple mode ───────────────────────────────────────── -->
+    <!-- ── Panel - simple mode ───────────────────────────────────────── -->
     <entry name="panelSimpleLayoutType"        type="Int"><default>0</default></entry>
     <entry name="panelSimpleWidgetOrder"       type="Int"><default>0</default></entry>
     <entry name="panelSimpleIconStyle"         type="String"><default>symbolic</default></entry>
@@ -145,7 +145,7 @@
     <entry name="simplePanelLargeDim"   type="Int"><default>0</default></entry>
     <entry name="simplePanelIsVertical" type="Bool"><default>false</default></entry>
 
-    <!-- ── Panel — icons and font ─────────────────────────────────────── -->
+    <!-- ── Panel - icons and font ─────────────────────────────────────── -->
     <!-- panelIconTheme: "symbolic" | "wi-font" | "flat-color" | "3d-oxygen" | "3d-adwaita" | "kde" | "custom" -->
     <entry name="panelIconTheme"       type="String"><default>symbolic</default></entry>
     <entry name="panelIconSize"        type="Int"><default>22</default></entry>
@@ -190,7 +190,7 @@
          Radar tab first paints) seen on hybrid-GPU (NVIDIA PRIME) Wayland sessions -->
     <entry name="radarGpuWorkaround"    type="Bool"><default>false</default></entry>
 
-    <!-- ── Widget — details view ──────────────────────────────────────── -->
+    <!-- ── Widget - details view ──────────────────────────────────────── -->
     <entry name="widgetDetailsOrder"    type="String"><default>humidity;pressure;wind;dewpoint;visibility;precipsum;moonphase;suntimes;preciprate;uvindex;airquality;pollen;spaceweather;alerts;datetime;snowcover</default></entry>
     <entry name="widgetDetailsItemIcons" type="String"><default>humidity=1;pressure=1;wind=1;preciprate=1;suntimes=1;dewpoint=1;visibility=1;moonphase=1;uvindex=1;airquality=1;spaceweather=1;alerts=1;datetime=1;pollen=1;snowcover=1</default></entry>
     <entry name="widgetDetailsCustomIcons" type="String"><default></default></entry>
@@ -214,7 +214,7 @@
     <entry name="widgetShowDewPoint"    type="Bool"><default>true</default></entry>
     <entry name="widgetShowVisibility"  type="Bool"><default>true</default></entry>
 
-    <!-- ── Widget — icons and font ────────────────────────────────────── -->
+    <!-- ── Widget - icons and font ────────────────────────────────────── -->
     <!-- widgetIconTheme: "symbolic" | "wi-font" | "flat-color" | "3d-oxygen" | "kde" -->
     <entry name="widgetIconTheme" type="String"><default>symbolic</default></entry>
     <!-- conditionIconTheme: "kde" | "kde-symbolic" | "symbolic" | "flat-color" | "3d-oxygen" | "custom" -->
@@ -245,18 +245,18 @@
     <entry name="dualTempInTooltip"  type="Bool"><default>true</default></entry>
     <entry name="dualTempSwapOrder"  type="Bool"><default>false</default></entry>
 
-    <!-- ── Widget — header date/time ─────────────────────────────────── -->
+    <!-- ── Widget - header date/time ─────────────────────────────────── -->
     <entry name="headerShowDateTime" type="Bool"><default>false</default></entry>
     <entry name="headerDateFormat"   type="String"><default>locale-long</default></entry>
     <entry name="headerTimeFormat"   type="String"><default>locale</default></entry>
 
-    <!-- ── Widget — simple mode options ──────────────────────────────── -->
+    <!-- ── Widget - simple mode options ──────────────────────────────── -->
     <entry name="simpleShowForecast"     type="Bool"><default>true</default></entry>
     <entry name="simpleShowSunriseSunset" type="Bool"><default>true</default></entry>
     <entry name="simpleShowForecastCompass" type="Bool"><default>true</default></entry>
     <entry name="simpleShowStatsChips"   type="Bool"><default>true</default></entry>
 
-    <!-- ── Widget — forecast ──────────────────────────────────────────── -->
+    <!-- ── Widget - forecast ──────────────────────────────────────────── -->
     <entry name="forecastLayout"      type="String"><default>rows</default></entry>
     <entry name="forecastDays"        type="Int"><default>5</default><min>3</min><max>16</max></entry>
     <entry name="forecastIconTheme"   type="String"><default>symbolic</default></entry>
@@ -266,7 +266,7 @@
     <entry name="forecastAutoOpen"     type="Bool"><default>true</default></entry>
     <entry name="forecastExpandAll"    type="Bool"><default>false</default></entry>
 
-    <!-- ── Widget — daily forecast extra stats ───────────────────────── -->
+    <!-- ── Widget - daily forecast extra stats ───────────────────────── -->
     <entry name="forecastShowWind"       type="Bool"><default>true</default></entry>
     <entry name="forecastShowPressure"   type="Bool"><default>false</default></entry>
     <entry name="forecastShowKpIndex"    type="Bool"><default>false</default></entry>
@@ -274,7 +274,7 @@
     <entry name="forecastShowPrecipSum"  type="Bool"><default>false</default></entry>
     <entry name="forecastShowVisibility" type="Bool"><default>false</default></entry>
 
-    <!-- ── Widget — hourly forecast extra stats ──────────────────────── -->
+    <!-- ── Widget - hourly forecast extra stats ──────────────────────── -->
     <entry name="forecastHourlyShowWind"       type="Bool"><default>true</default></entry>
     <entry name="forecastHourlyShowPressure"   type="Bool"><default>false</default></entry>
     <entry name="forecastHourlyShowKpIndex"    type="Bool"><default>false</default></entry>

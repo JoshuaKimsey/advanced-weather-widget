@@ -29,11 +29,11 @@ msgstr "%1 %2"
 
 #: contents/ui/main.qml:1559
 msgid "%1 - Today"
-msgstr "%1 — Vandaag"
+msgstr "%1 - Vandaag"
 
 #: contents/ui/main.qml:1632
 msgid "%1 - Tomorrow"
-msgstr "%1 — Morgen"
+msgstr "%1 - Morgen"
 
 #: contents/ui/main.qml:1757
 msgid "%1 ending"
@@ -155,8 +155,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Waarom komen OWM-lagen niet overeen met die van RainViewer?</b><br/><br/>OWM-lagen zijn <b>statische tegels</b> en tonen een afgevlakte numerieke weersvoorspelling, maar niet de daadwerkelijke radargegevens. Ze tonen de locatie waarop het model <i>vermoedt</i> dat het regent, op basis communicatie tussen meteorologische instituten en het model.<br/><br/>RainViewer maakt gebruik van <b>echte regenmeters</b> van radars, waarvan de reflectie elke 2–10 minuten wordt bijgewerkt."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>Waarom komen OWM-lagen niet overeen met die van RainViewer?</b><br/><br/>OWM-lagen zijn <b>statische tegels</b> en tonen een afgevlakte numerieke weersvoorspelling, maar niet de daadwerkelijke radargegevens. Ze tonen de locatie waarop het model <i>vermoedt</i> dat het regent, op basis communicatie tussen meteorologische instituten en het model.<br/><br/>RainViewer maakt gebruik van <b>echte regenmeters</b> van radars, waarvan de reflectie elke 2-10 minuten wordt bijgewerkt."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -184,7 +184,7 @@ msgstr "Actief"
 
 #: contents/ui/config/configGeneral.qml:97
 msgid "Active - GPU compositing is currently disabled for the radar map in this session."
-msgstr "Actief — gpu-hardwareverstelling op het radartabblad is uitgeschakeld."
+msgstr "Actief - gpu-hardwareverstelling op het radartabblad is uitgeschakeld."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:393
 msgid "Adaptive (Open-Meteo)"
@@ -309,7 +309,7 @@ msgstr "Hoogte: %1 m"
 
 #: contents/ui/config/configGeneral.qml:538
 msgid "Alternative provider. API key required below."
-msgstr "Een alternatieve weerdienst — api-sleutel vereist."
+msgstr "Een alternatieve weerdienst - api-sleutel vereist."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:464
 msgid "Altitude (%1):"
@@ -360,8 +360,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Weet je het zeker? Dit is de enige opgeslagen locatie. Als je deze verwijdert, wordt er geen weersinformatie meer getoond."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Rond middernacht — "
+msgid "Around midnight - "
+msgstr "Rond middernacht - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -581,7 +581,7 @@ msgstr "Bezig met controleren…"
 
 #: contents/ui/config/configGeneral.qml:550
 msgid "Chinese weather provider with global coverage. API key required below."
-msgstr "Een Chinese, landelijke weerdienst — api-sleutel vereist."
+msgstr "Een Chinese, landelijke weerdienst - api-sleutel vereist."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:999
 msgid "Choose Simple Mode Font"
@@ -701,8 +701,8 @@ msgid "Configure display mode options"
 msgstr "Stel de weergave-instellingen in"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Pictogram instellen — %1"
+msgid "Configure icon - %1"
+msgstr "Pictogram instellen - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -813,8 +813,8 @@ msgid "Dark map"
 msgstr "Donkere kaartstijl"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Streep  –"
+msgid "Dash  -"
+msgstr "Streep  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -851,8 +851,8 @@ msgid "Date:"
 msgstr "Datum:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "Zonsondergang nadert — "
+msgid "Dawn approaching - "
+msgstr "Zonsondergang nadert - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1113,8 +1113,8 @@ msgid "Error (code %1)"
 msgstr "Foutmelding (code %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Avond — "
+msgid "Evening - "
+msgstr "Avond - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -1273,7 +1273,7 @@ msgstr "De gratis dienst van het Noors Meteorologisch Instituut. Geen api-sleute
 
 #: contents/ui/config/configGeneral.qml:555
 msgid "Free and open-source. No API key needed. Recommended."
-msgstr "Gratis en opensource, geen api-sleutel benodigd — aanbevolen."
+msgstr "Gratis en opensource, geen api-sleutel benodigd - aanbevolen."
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:54
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:686
@@ -1415,7 +1415,7 @@ msgstr "Hoog"
 
 #: contents/ui/config/configGeneral.qml:548
 msgid "High precision forecast provider. API key required below."
-msgstr "Een weerdienst met hoge mate van nauwkeurigheid — api-sleutel vereist."
+msgstr "Een weerdienst met hoge mate van nauwkeurigheid - api-sleutel vereist."
 
 #: contents/ui/config/configNotifications.qml:46 contents/ui/main.qml:990
 msgid "High temperature"
@@ -1423,7 +1423,7 @@ msgstr "Hoge temperatuur"
 
 #: contents/ui/config/configGeneral.qml:542
 msgid "Historical and forecast data provider. API key required below."
-msgstr "Een weerdienst met historische en huidige weerberichten — api-sleutel vereist."
+msgstr "Een weerdienst met historische en huidige weerberichten - api-sleutel vereist."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:154
 msgid "Horizontal"
@@ -1604,7 +1604,7 @@ msgstr "Symbolisch KDE-thema"
 
 #: contents/ui/config/configAppearance.qml:446
 msgid "KDE System Icons (automatic, follows weather code)"
-msgstr "KDE-systeempictogrammen (automatisch — volgt de weercode)"
+msgstr "KDE-systeempictogrammen (automatisch - volgt de weercode)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:561
 msgid "KDE icon themes don't fully support many item icons. You can set your own icons by clicking \"Set your own icons\"."
@@ -2300,7 +2300,7 @@ msgstr "Radar openen in webbrowser"
 
 #: contents/ui/config/configGeneral.qml:377
 msgid "Open-Meteo (recommended, free)"
-msgstr "Open-Meteo (aanbevolen — gratis)"
+msgstr "Open-Meteo (aanbevolen - gratis)"
 
 #: contents/ui/components/MapBackgroundChoices.qml:43
 msgid "OpenStreetMap (standard)"
@@ -2690,8 +2690,8 @@ msgid "Recent"
 msgstr "Recent"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Aanbevolen — bijv. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Aanbevolen - bijv. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -2810,7 +2810,7 @@ msgstr "Opgeslagen locaties"
 
 #: contents/ui/config/configGeneral.qml:100
 msgid "Saved, but not active yet - log out and back in for it to take effect."
-msgstr "Opgeslagen, maar nog niet actief — meld af en aan om toe te passen."
+msgstr "Opgeslagen, maar nog niet actief - meld af en aan om toe te passen."
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:803
 msgid "Scroll animation:"
@@ -3036,8 +3036,8 @@ msgid "Size:"
 msgstr "Grootte:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Overgeslagen — er is geen api-sleutel ingesteld"
+msgid "Skipped - API key not configured"
+msgstr "Overgeslagen - er is geen api-sleutel ingesteld"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3604,7 +3604,7 @@ msgstr "Ultravioletindex"
 #: contents/ui/config/configLocation.qml:871
 #: contents/ui/config/configLocation.qml:978
 msgid "Unable to detect location. All methods failed."
-msgstr "De locatie kan niet worden vastgesteld — alle methoden zijn mislukt."
+msgstr "De locatie kan niet worden vastgesteld - alle methoden zijn mislukt."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:149
 msgid "Unit preset:"
@@ -3655,7 +3655,7 @@ msgstr ""
 
 #: contents/ui/WeatherService.qml:179
 msgid "Update timed out. Tap to retry."
-msgstr "Het bijwerken is mislukt — klik om opnieuw te proberen."
+msgstr "Het bijwerken is mislukt - klik om opnieuw te proberen."
 
 #: contents/ui/WeatherService.qml:818
 msgid "Updated %1 day ago"
@@ -3831,19 +3831,19 @@ msgstr "Weerdienst:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "De niveaus, van laag tot hoog:\n"
 "\n"
-"🟡 Geel — let goed op de weersvoorspelling.\n"
-"🟠 Oranje — wees voorbereid als je naar buiten gaat.\n"
-"🔴 Rood — onderneem actie om jezelf te beschermen.\n"
-"🟣 Paars — onderneem direct actie om jezelf te beschermen.\n"
+"🟡 Geel - let goed op de weersvoorspelling.\n"
+"🟠 Oranje - wees voorbereid als je naar buiten gaat.\n"
+"🔴 Rood - onderneem actie om jezelf te beschermen.\n"
+"🟣 Paars - onderneem direct actie om jezelf te beschermen.\n"
 "\n"
 "Schakel een niveau uit om geen meldingen meer te ontvangen."
 
@@ -4267,7 +4267,7 @@ msgstr "µg/m³"
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
 #~ "Diensten worden op volgorde afgelopen, totdat er eentje is die werkt:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
@@ -4300,7 +4300,7 @@ msgstr "µg/m³"
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
 #~ "Alle diensten worden een voor een afgegaan tot er resultaat is:\n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"

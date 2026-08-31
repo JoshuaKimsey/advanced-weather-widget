@@ -16,7 +16,7 @@
  */
 
 /**
- * ConfigLocationManualSubPage — Enter a location manually by name + coordinates.
+ * ConfigLocationManualSubPage - Enter a location manually by name + coordinates.
  * Includes a "Test" button that checks availability against every supported
  * weather provider in parallel and reports the results.
  * Requires: required property var configRoot
@@ -47,7 +47,7 @@ ColumnLayout {
     property int editingIndex: -1
     readonly property bool isEditMode: editingIndex >= 0
 
-    // Numeric validity — normalize "," to "." so users in locales like
+    // Numeric validity - normalize "," to "." so users in locales like
     // Bulgarian/German (where the keyboard decimal is ",") still parse correctly.
     readonly property real _latNum: parseFloat(String(mLat).replace(",", "."))
     readonly property real _lonNum: parseFloat(String(mLon).replace(",", "."))
@@ -57,7 +57,7 @@ ColumnLayout {
     readonly property bool _altValid: mAlt.length === 0 || !isNaN(_altNum)
     readonly property bool _formValid: _latValid && _lonValid && _altValid && mName.trim().length > 0
 
-    // ── Auto-stage to cfg_* — KCM Apply handles the final commit ───────
+    // ── Auto-stage to cfg_* - KCM Apply handles the final commit ───────
     // Debounced so we don't thrash on every keystroke.
     Timer {
         id: stageTimer
@@ -215,7 +215,7 @@ ColumnLayout {
             var p = entry.key;
             var info = _buildProviderUrl(p, lat, lon);
             if (!info || info.missingKey) {
-                _setResult(p, 4, i18n("Skipped — API key not configured"));
+                _setResult(p, 4, i18n("Skipped - API key not configured"));
                 if (++completed >= total && myGen === _testGen) testingActive = false;
                 return;
             }
@@ -251,7 +251,7 @@ ColumnLayout {
                 timeoutTimer.destroy();
 
                 if (req.status === 200) {
-                    // QWeather returns HTTP 200 even on auth failure — check body code
+                    // QWeather returns HTTP 200 even on auth failure - check body code
                     if (p === "qWeather") {
                         try {
                             var body = JSON.parse(req.responseText);
@@ -286,7 +286,7 @@ ColumnLayout {
         var lon = _lonNum;
         var alt = (mAlt.length > 0 && !isNaN(_altNum)) ? _altNum : 0;
         var name = mName.trim();
-        // Empty mTimezone means "Auto" — leave cfg_timezone unchanged so the
+        // Empty mTimezone means "Auto" - leave cfg_timezone unchanged so the
         // existing auto-detect flow on refresh fills it in.
         var tz = mTimezone;
 
@@ -300,7 +300,7 @@ ColumnLayout {
         // When editing an existing saved location, update that entry in
         // place (preserving its star flag and list position) instead of
         // creating a new _pendingEntry. The entry's lat/lon may also be
-        // changed — that's fine, we just overwrite in place.
+        // changed - that's fine, we just overwrite in place.
         if (isEditMode && editingIndex >= 0 && editingIndex < locs.length) {
             var prev = locs[editingIndex] || {};
             var wasActive = Math.abs(configRoot.cfg_latitude  - (prev.lat || 0)) < 0.01 &&
@@ -465,7 +465,7 @@ ColumnLayout {
                         configRoot.cfg_altitudeUnit === "ft" ? i18n("feet") : i18n("meters"))
                     Layout.fillWidth: true
                     Layout.preferredWidth: 320
-                    placeholderText: i18n("Recommended — e.g. 560")
+                    placeholderText: i18n("Recommended - e.g. 560")
                     text: manualSubPageRoot.mAlt
                     onTextEdited: manualSubPageRoot.mAlt = text
                     selectByMouse: true
@@ -509,7 +509,7 @@ ColumnLayout {
                         } else if (manualSubPageRoot._timezoneList.indexOf(t) >= 0) {
                             manualSubPageRoot.mTimezone = t;
                         } else {
-                            // Accept custom input — user may know a valid IANA id not in our list
+                            // Accept custom input - user may know a valid IANA id not in our list
                             manualSubPageRoot.mTimezone = t;
                         }
                     }

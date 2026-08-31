@@ -16,7 +16,7 @@
  */
 
 /**
- * js/spaceWeather.js — NOAA SWPC data fetcher
+ * js/spaceWeather.js - NOAA SWPC data fetcher
  *
  * Fetches 5 endpoints in parallel (no API key required) and assembles
  * a single spaceWeather object on weatherRoot.
@@ -68,7 +68,7 @@ function _formatSummary(data) {
     return parts.join(" · ");
 }
 
-// Kept in sync with auroraVisibilityPercent() in js/spaceWeather.js — this
+// Kept in sync with auroraVisibilityPercent() in js/spaceWeather.js - this
 // file is not a .pragma library (it needs XMLHttpRequest), and a plain
 // script importing a .pragma library is fine, but that hasn't been wired up
 // here yet, so the logic is duplicated for now. See spaceWeather.js for the
@@ -103,7 +103,7 @@ function fetchSpaceWeather(service) {
     var gen = service._refreshGen;
     var r = service.weatherRoot;
 
-    // Collector — wait for all 5 fetches to complete before assembling
+    // Collector - wait for all 5 fetches to complete before assembling
     var state = {
         kp:        undefined,
         solarWind: undefined,
@@ -152,7 +152,7 @@ function fetchSpaceWeather(service) {
         if (gotData) service._lastSpaceWeatherFetch = Date.now();
     }
 
-    // ── 1) Kp index — 1-minute real-time nowcast. The finalized 3-hourly
+    // ── 1) Kp index - 1-minute real-time nowcast. The finalized 3-hourly
     // feed lags up to 3 h behind (a storm onset wouldn't show until the
     // period closes), so it is only used as a fallback. ──────────────────
     function _fetchKp3hFallback() {
@@ -224,7 +224,7 @@ function fetchSpaceWeather(service) {
         function(text) {
             try {
                 var arr = JSON.parse(text);
-                // Filter for long channel (0.1–0.8 nm) and take last entry
+                // Filter for long channel (0.1-0.8 nm) and take last entry
                 var flux = NaN;
                 for (var i = arr.length - 1; i >= 0; i--) {
                     var e = arr[i];
@@ -245,7 +245,7 @@ function fetchSpaceWeather(service) {
         function() { state.flux = NaN; _tryAssemble(); }
     );
 
-    // ── 5) Kp/G forecast (3-hourly, ~3 days ahead) — independent of the
+    // ── 5) Kp/G forecast (3-hourly, ~3 days ahead) - independent of the
     // main assembly above; powers the optional daily-forecast Kp/G stat. ──
     _get("https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
         function(text) {
@@ -283,8 +283,8 @@ function fetchSpaceWeather(service) {
  *
  * Kp/solar wind/Bz/X-ray are genuinely location-independent, so refreshNow()
  * correctly skips re-fetching them on a location change while the 10-min
- * throttle is still active. But auroraPercent — bundled into that same
- * object — depends on the observer's latitude and on isNightTime()
+ * throttle is still active. But auroraPercent - bundled into that same
+ * object - depends on the observer's latitude and on isNightTime()
  * (sunrise/sunset), both of which change with location. Without this, a
  * location switch left the aurora number stuck showing the previous city's
  * value until the throttle window happened to expire or a manual refresh
@@ -300,7 +300,7 @@ function recomputeAuroraForLocation(service) {
 
     var isDark = (typeof r.isNightTime === "function") ? r.isNightTime() : false;
     var auroraProb = _auroraVisibilityPercent(kp, service.latitude, isDark);
-    if (auroraProb === r.spaceWeather.auroraPercent) return; // unchanged — skip the reassignment
+    if (auroraProb === r.spaceWeather.auroraPercent) return; // unchanged - skip the reassignment
 
     // QML's `property var` only notifies on a new object reference, so
     // patch a copy rather than mutating r.spaceWeather in place (same

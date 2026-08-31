@@ -154,7 +154,7 @@ msgid "<b>Starts:</b> %1"
 msgstr "<b>開始時間：</b>%1"
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
 msgstr "<b>為何 OWM 圖層可能與 RainViewer 雷達不符</b><br/><br/>OWM 降水/雲層圖層是<b>靜態模型磚</b>，顯示的是平滑化後的數值天氣預報（NWP）輸出，而非實際雷達回波。這些圖層呈現模型根據氣象站資料與模式計算後<i>推測</i>的降雨位置。<br/><br/>RainViewer 使用來自雷達站的<b>真實氣象雷達合成圖</b>，每 2 至 10 分鐘更新一次實際量測的反射率。此差異屬預期現象，為已知情況。"
 
 #: contents/ui/config/configGeneral.qml:544
@@ -359,8 +359,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "確定要刪除？這是您最後一個儲存的地點，刪除後小工具將不再顯示天氣資訊。"
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "接近午夜 — "
+msgid "Around midnight - "
+msgstr "接近午夜 - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -700,8 +700,8 @@ msgid "Configure display mode options"
 msgstr "設定顯示模式選項"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "設定圖示 — %1"
+msgid "Configure icon - %1"
+msgstr "設定圖示 - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -812,8 +812,8 @@ msgid "Dark map"
 msgstr "深色地圖"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "破折號  –"
+msgid "Dash  -"
+msgstr "破折號  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -850,8 +850,8 @@ msgid "Date:"
 msgstr "日期："
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "黎明將至 — "
+msgid "Dawn approaching - "
+msgstr "黎明將至 - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1112,8 +1112,8 @@ msgid "Error (code %1)"
 msgstr "錯誤（代碼 %1）"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "傍晚 — "
+msgid "Evening - "
+msgstr "傍晚 - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2575,7 +2575,7 @@ msgid ""
 msgstr ""
 "依序嘗試各供應商，直到成功為止：\n"
 "Open-Meteo  →  BBC Weather  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-"Open-Meteo 永遠優先嘗試——免費且無需 API 金鑰。"
+"Open-Meteo 永遠優先嘗試--免費且無需 API 金鑰。"
 
 #: contents/ui/config/configNotifications.qml:272
 msgid "Purple"
@@ -2689,8 +2689,8 @@ msgid "Recent"
 msgstr "最近"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "建議值 — 例如 560"
+msgid "Recommended - e.g. 560"
+msgstr "建議值 - 例如 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3035,8 +3035,8 @@ msgid "Size:"
 msgstr "大小："
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "已略過 — 未設定 API 金鑰"
+msgid "Skipped - API key not configured"
+msgstr "已略過 - 未設定 API 金鑰"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3827,19 +3827,19 @@ msgstr "天氣供應商："
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "天氣警報嚴重程度等級，由低至高：\n"
 "\n"
-"🟡 黃色 — 輕微：請留意天氣狀況。\n"
-"🟠 橙色 — 中度：請做好準備。\n"
-"🔴 紅色 — 嚴重：請採取行動。\n"
-"🟣 紫色 — 極端：極度危險，請立即採取行動。\n"
+"🟡 黃色 - 輕微：請留意天氣狀況。\n"
+"🟠 橙色 - 中度：請做好準備。\n"
+"🔴 紅色 - 嚴重：請採取行動。\n"
+"🟣 紫色 - 極端：極度危險，請立即採取行動。\n"
 "\n"
 "關閉某等級即可停止接收該嚴重程度的警報通知。"
 
@@ -4257,11 +4257,11 @@ msgstr "微克/立方公尺"
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
 #~ "依序嘗試各供應商，直到成功為止：\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo 永遠優先嘗試——免費且無需 API 金鑰。"
+#~ "Open-Meteo 永遠優先嘗試--免費且無需 API 金鑰。"
 
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
@@ -4270,4 +4270,4 @@ msgstr "微克/立方公尺"
 #~ msgstr ""
 #~ "依序嘗試各供應商，直到成功為止：\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo 永遠優先嘗試——免費且無需 API 金鑰。"
+#~ "Open-Meteo 永遠優先嘗試--免費且無需 API 金鑰。"

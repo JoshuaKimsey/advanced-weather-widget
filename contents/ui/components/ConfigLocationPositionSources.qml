@@ -8,7 +8,7 @@
  */
 
 /**
- * ConfigLocationPositionSources — encapsulates both QtPositioning PositionSource
+ * ConfigLocationPositionSources - encapsulates both QtPositioning PositionSource
  * items so that configLocation.qml can load this file with a Loader only when
  * QtPositioning is actually installed.  If the package is absent, this file is
  * never loaded, the top-level configLocation.qml parses cleanly, and the user
@@ -39,7 +39,7 @@ Item {
     function geoclue2DoUpdate() { cfgGeoclue2Source.update(); }
     function genericDoUpdate()  { cfgGenericSource.update();  }
 
-    // ── Tier 1 — GeoClue2 explicitly ──────────────────────────────────────
+    // ── Tier 1 - GeoClue2 explicitly ──────────────────────────────────────
     PositionSource {
         id: cfgGeoclue2Source
         name: "geoclue2"
@@ -58,7 +58,7 @@ Item {
         }
     }
 
-    // ── Tier 2 — any available Qt Positioning plugin ───────────────────────
+    // ── Tier 2 - any available Qt Positioning plugin ───────────────────────
     PositionSource {
         id: cfgGenericSource
         active: psRoot.genericActive

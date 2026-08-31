@@ -152,8 +152,8 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
-msgstr "<b>Proč se vrstvy OWM nemusí shodovat s radarem RainViewer</b><br/><br/>Vrstvy srážek/oblačnosti OWM jsou <b>statické modelové dlaždice</b> – zobrazují vyhlazený výstup NWP (numerická předpověď počasí), nikoli skutečné radarové odrazy. Představují místa, kde si model <i>myslí</i>, že prší, na základě interpolace mezi meteorologickými stanicemi a modelovými běhy.<br/><br/>RainViewer používá <b>kompozitní snímky z reálného meteorologického radaru</b> z radarových stanic – skutečná naměřená odrazivost se aktualizuje každé 2–10 minut. Tato nesrovnalost je očekávaná a známá."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
+msgstr "<b>Proč se vrstvy OWM nemusí shodovat s radarem RainViewer</b><br/><br/>Vrstvy srážek/oblačnosti OWM jsou <b>statické modelové dlaždice</b> - zobrazují vyhlazený výstup NWP (numerická předpověď počasí), nikoli skutečné radarové odrazy. Představují místa, kde si model <i>myslí</i>, že prší, na základě interpolace mezi meteorologickými stanicemi a modelovými běhy.<br/><br/>RainViewer používá <b>kompozitní snímky z reálného meteorologického radaru</b> z radarových stanic - skutečná naměřená odrazivost se aktualizuje každé 2-10 minut. Tato nesrovnalost je očekávaná a známá."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -357,8 +357,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Jste si jistý? Toto je vaše poslední uložená poloha. Pokud ji odstraníte, widget již nebude zobrazovat informace o počasí."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Kolem půlnoci — "
+msgid "Around midnight - "
+msgstr "Kolem půlnoci - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -698,8 +698,8 @@ msgid "Configure display mode options"
 msgstr "Konfigurace režimu zobrazení"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Konfigurovat ikonu — %1"
+msgid "Configure icon - %1"
+msgstr "Konfigurovat ikonu - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -810,8 +810,8 @@ msgid "Dark map"
 msgstr ""
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Pomlčka  –"
+msgid "Dash  -"
+msgstr "Pomlčka  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -848,8 +848,8 @@ msgid "Date:"
 msgstr "Datum:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "Blíží se svítání — "
+msgid "Dawn approaching - "
+msgstr "Blíží se svítání - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1110,8 +1110,8 @@ msgid "Error (code %1)"
 msgstr "Chyba (kód %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Večer — "
+msgid "Evening - "
+msgstr "Večer - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2684,8 +2684,8 @@ msgid "Recent"
 msgstr "Nedávné"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Doporučeno — např. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Doporučeno - např. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3030,8 +3030,8 @@ msgid "Size:"
 msgstr "Velikost:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Přeskočeno — klíč API není nakonfigurován"
+msgid "Skipped - API key not configured"
+msgstr "Přeskočeno - klíč API není nakonfigurován"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3825,10 +3825,10 @@ msgstr "Poskytovatel počasí:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
@@ -4221,7 +4221,7 @@ msgstr ""
 #~ msgstr ""
 #~ "Poskytovatelé se zkoušejí postupně, dokud jeden neuspěje:\n"
 #~ "Open-Meteo → met.no → Pirate Weather → Visual Crossing → Tomorrow.io → StormGlass → Weatherbit → QWeather → OpenWeatherMap → WeatherAPI.com\n"
-#~ "Open-Meteo se vždy zkouší jako první – je zdarma a nevyžaduje žádný API klíč."
+#~ "Open-Meteo se vždy zkouší jako první - je zdarma a nevyžaduje žádný API klíč."
 
 #~ msgid "Updated %1"
 #~ msgstr "Aktualizováno %1"
@@ -4250,11 +4250,11 @@ msgstr ""
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
 #~ "Poskytovatelé jsou zkoušeni v pořadí, dokud jeden neuspěje:\n"
 #~ "Open-Meteo  →  met.no  →  Pirate Weather  →  Visual Crossing  →  Tomorrow.io  →  StormGlass  →  Weatherbit  →  QWeather  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo je vždy vyzkoušen jako první — je zdarma a nevyžaduje žádný klíč API."
+#~ "Open-Meteo je vždy vyzkoušen jako první - je zdarma a nevyžaduje žádný klíč API."
 
 #~ msgid "Show sunrise/sunset markers"
 #~ msgstr "Zobrazit značky východu/západu slunce"

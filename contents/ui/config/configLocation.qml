@@ -25,10 +25,10 @@ import org.kde.plasma.plasmoid
 KCM.SimpleKCM {
     id: root
 
-    // Probed at startup — true only when the QtPositioning package is installed.
+    // Probed at startup - true only when the QtPositioning package is installed.
     // When false, auto-detect is hidden/disabled and an install-hint banner is shown.
     property bool _positioningAvailable: false
-    // Probed at startup — true only when QtLocation (map tiles) is installed.
+    // Probed at startup - true only when QtLocation (map tiles) is installed.
     // When false the "Choose on Map" button is disabled with an install hint.
     property bool _qtLocationAvailable: false
     readonly property bool _locationPackagesMissing: !_positioningAvailable || !_qtLocationAvailable
@@ -125,7 +125,7 @@ KCM.SimpleKCM {
             if (Math.abs(locs[i].lat - entry.lat) < 0.01 && Math.abs(locs[i].lon - entry.lon) < 0.01)
                 return; // already saved
         }
-        // First location ever added — make it the default automatically
+        // First location ever added - make it the default automatically
         if (locs.length === 0)
             entry.starred = true;
         locs.push(entry);
@@ -151,7 +151,7 @@ KCM.SimpleKCM {
     }
 
     // Set by subpages when a brand-new location is selected and staged to cfg_*.
-    // Returns to main view. Back button calls this; it does NOT save the location —
+    // Returns to main view. Back button calls this; it does NOT save the location -
     // saving happens when the user clicks Apply (detected via Plasmoid.configuration change).
     function _goBack() {
         stack.currentIndex = 0;
@@ -183,7 +183,7 @@ KCM.SimpleKCM {
             return;
         }
         if (locs.length === 0) {
-            // First location ever — auto-star, save immediately
+            // First location ever - auto-star, save immediately
             entry.starred = true;
             locs.push(entry);
             Plasmoid.configuration.savedLocations = JSON.stringify(locs);
@@ -329,12 +329,12 @@ KCM.SimpleKCM {
             detectedLocationName = name;
     }
     function applyDetectedLocation() {
-        // Apply even if name isn't available yet — coordinates are enough for weather
+        // Apply even if name isn't available yet - coordinates are enough for weather
         showDetectedLocationDialog = false;
         _forceConfirmAutoDetect = false;
         _detectedLocationApplied = true;
 
-        // Always star the auto-detected location — it becomes the new default,
+        // Always star the auto-detected location - it becomes the new default,
         // clearing any previously starred entry.
         var locs;
         try {
@@ -377,7 +377,7 @@ KCM.SimpleKCM {
         cfg_savedLocations = JSON.stringify(locs);
         Plasmoid.configuration.savedLocations = cfg_savedLocations;
 
-        // Always apply as the active location — write once to activeLocation,
+        // Always apply as the active location - write once to activeLocation,
         // then keep individual entries in sync (suppressed from triggering refreshDebounce).
         Plasmoid.configuration.activeLocation = JSON.stringify({
             name: detectedLocationName || "",
@@ -453,7 +453,7 @@ KCM.SimpleKCM {
     }
 
     // Like _immediateApplyAndOffer but WITHOUT the immediate Plasmoid.configuration
-    // write — used by the map sub-page so changes are only committed when the
+    // write - used by the map sub-page so changes are only committed when the
     // user clicks the KCM Apply button.
     function _offerSave() {
         // No-op: locations are now saved automatically without a dialog.
@@ -562,7 +562,7 @@ KCM.SimpleKCM {
 
     // Returns "(GMT +2)" / "(GMT -5:30)" for any IANA timezone identifier.
     // We compute the UTC offset by formatting the same Date in the target timezone
-    // and in UTC using basic hour+minute parts — this works in Qt 6's V4+ICU
+    // and in UTC using basic hour+minute parts - this works in Qt 6's V4+ICU
     // without needing timeZoneName:"shortOffset" (ES2021, not guaranteed available).
     function gmtOffsetLabel(tzId) {
         if (!tzId || tzId.length === 0)
@@ -650,7 +650,7 @@ KCM.SimpleKCM {
     function openManualPage() {
         manualPageLoader.active = true;
         stack.currentIndex = 3;
-        // Fresh "Add new location" flow — clear any leftover edit-mode state
+        // Fresh "Add new location" flow - clear any leftover edit-mode state
         // from a previous visit to this sub-page.
         var page = manualPageLoader.item;
         if (page) {
@@ -674,7 +674,7 @@ KCM.SimpleKCM {
                 var meta = JSON.parse(metaReq.responseText);
                 if (root._detectedLocationApplied) {
                     // The user already clicked "Apply" before this response
-                    // arrived — write directly to config so it’s not lost.
+                    // arrived - write directly to config so it’s not lost.
                     if (meta.timezone && meta.timezone.length > 0) {
                         cfg_timezone = meta.timezone;
                         Plasmoid.configuration.timezone = meta.timezone;
@@ -715,7 +715,7 @@ KCM.SimpleKCM {
                 var data = JSON.parse(req.responseText);
                 if (data && data.address) {
                     var a = data.address;
-                    // Extended fallback chain — matches forward-search logic
+                    // Extended fallback chain - matches forward-search logic
                     var city = a.city || a.town || a.village || a.hamlet || a.suburb || a.municipality || a.county || "";
                     var country = a.country || "";
                     var name;
@@ -873,14 +873,14 @@ KCM.SimpleKCM {
         }
     }
 
-    // ── Qt Positioning sources — loaded only when the package is present ──
+    // ── Qt Positioning sources - loaded only when the package is present ──
     // Signals from the loaded item are connected in onLoaded below.
     Loader {
         id: posSourceLoader
         active: root._positioningAvailable
         source: Qt.resolvedUrl("../components/ConfigLocationPositionSources.qml")
         onLoaded: {
-            // Tier 1 — GeoClue2
+            // Tier 1 - GeoClue2
             item.geoclue2PositionAcquired.connect(function (lat, lon, alt) {
                 if (!root.cfg_autoDetectLocation)
                     return;
@@ -896,7 +896,7 @@ KCM.SimpleKCM {
                     root._cfgEscalateToGeneric();
                 }
             });
-            // Tier 2 — generic Qt Positioning plugin
+            // Tier 2 - generic Qt Positioning plugin
             item.genericPositionAcquired.connect(function (lat, lon, alt) {
                 if (!root.cfg_autoDetectLocation)
                     return;
@@ -915,7 +915,7 @@ KCM.SimpleKCM {
         }
     }
 
-    // Tier 3 — IP-based geolocation
+    // Tier 3 - IP-based geolocation
     function _cfgIpGeolocate() {
         console.log("[Location/config] Tier 3: trying geo.kamero.ai…");
         var req = new XMLHttpRequest();
@@ -1005,7 +1005,7 @@ KCM.SimpleKCM {
         var newTimezone = item.timezone || cfg_timezone;
         var newCountryCode = (item.countryCode && item.countryCode.length > 0) ? item.countryCode.toUpperCase() : cfg_countryCode;
 
-        // Stage active location — committed to Plasmoid.configuration only on KCM Apply
+        // Stage active location - committed to Plasmoid.configuration only on KCM Apply
         cfg_autoDetectLocation = false;
         cfg_locationName = newName;
         cfg_latitude = lat;
@@ -1013,7 +1013,7 @@ KCM.SimpleKCM {
         cfg_timezone = newTimezone;
         cfg_countryCode = newCountryCode;
 
-        // Fetch accurate elevation — updates cfg_altitude only, no Plasmoid.configuration write
+        // Fetch accurate elevation - updates cfg_altitude only, no Plasmoid.configuration write
         var elevReq = new XMLHttpRequest();
         elevReq.open("GET", "https://api.open-meteo.com/v1/elevation?latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(lon));
         elevReq.onreadystatechange = function () {
@@ -1027,7 +1027,7 @@ KCM.SimpleKCM {
         };
         elevReq.send();
 
-        // Fetch timezone — updates cfg_timezone only, no Plasmoid.configuration write
+        // Fetch timezone - updates cfg_timezone only, no Plasmoid.configuration write
         var tzReq = new XMLHttpRequest();
         tzReq.open("GET", "https://api.open-meteo.com/v1/forecast?latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(lon) + "&current=temperature_2m&timezone=auto");
         tzReq.onreadystatechange = function () {
@@ -1312,7 +1312,7 @@ KCM.SimpleKCM {
                                 setDefaultDialog.close();
                                 return;
                             }
-                            // Clear _pendingEntry FIRST — same re-entrancy guard as Yes.
+                            // Clear _pendingEntry FIRST - same re-entrancy guard as Yes.
                             root._pendingEntry = null;
                             var locs;
                             try {
@@ -1427,24 +1427,24 @@ KCM.SimpleKCM {
         anchors.fill: parent
         currentIndex: 0
 
-        // page 0 — main
+        // page 0 - main
         Loader {
             id: mainPageLoader
             sourceComponent: mainPage
             active: true
         }
-        // page 1 — search
+        // page 1 - search
         Loader {
             id: searchPageLoader
             sourceComponent: searchSubPage
             active: false
         }
-        // page 2 — map (loaded lazily via openMapPage → setSource to satisfy required property)
+        // page 2 - map (loaded lazily via openMapPage → setSource to satisfy required property)
         Loader {
             id: mapPageLoader
             active: false
         }
-        // page 3 — manual entry
+        // page 3 - manual entry
         Loader {
             id: manualPageLoader
             sourceComponent: manualSubPage
@@ -1627,7 +1627,7 @@ KCM.SimpleKCM {
                         text: i18n("No saved locations. Save the current location to quickly switch between places.")
                     }
 
-                    // Drag-and-drop list of saved locations — matches the reorder
+                    // Drag-and-drop list of saved locations - matches the reorder
                     // pattern used in ConfigDetailsSubPage / ConfigPanelSubPage /
                     // ConfigTooltipSubPage via Kirigami.ListItemDragHandle.
                     ListView {

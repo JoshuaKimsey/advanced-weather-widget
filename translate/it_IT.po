@@ -175,13 +175,13 @@ msgid ""
 "<br/>"
 "OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/>"
 "<br/>"
-"RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+"RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
 msgstr ""
 "<b>Perché i livelli OWM potrebbero non corrispondere al radar RainViewer</b><br/>"
 "<br/>"
 "I livelli di precipitazione/nuvole OWM sono <b>tile di modello statici</b> - mostrano un output NWP (Numerical Weather Prediction) smussato, non ritorni radar reali. Rappresentano dove il modello <i>pensa</i> stia piovendo in base all'interpolazione tra stazioni meteorologiche e esecuzioni del modello.<br/>"
 "<br/>"
-"RainViewer utilizza <b>compositi radar meteorologici reali</b> da stazioni radar - riflettività effettivamente misurata aggiornata ogni 2–10 minuti. Questa discrepanza è prevista e nota."
+"RainViewer utilizza <b>compositi radar meteorologici reali</b> da stazioni radar - riflettività effettivamente misurata aggiornata ogni 2-10 minuti. Questa discrepanza è prevista e nota."
 
 #: contents/ui/config/configGeneral.qml:544
 msgid "AI-powered weather intelligence. API key required below."
@@ -403,8 +403,8 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr "Sei sicuro? Questa è la tua ultima posizione salvata. Se la rimuovi, il widget non mostrerà più informazioni meteorologiche."
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
-msgstr "Intorno a mezzanotte — "
+msgid "Around midnight - "
+msgstr "Intorno a mezzanotte - "
 
 #: contents/ui/config/configAppearance.qml:1370
 #: contents/ui/config/configAppearance.qml:1472
@@ -744,8 +744,8 @@ msgid "Configure display mode options"
 msgstr "Configura opzioni modalità di visualizzazione"
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Configura icona — %1"
+msgid "Configure icon - %1"
+msgstr "Configura icona - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -856,8 +856,8 @@ msgid "Dark map"
 msgstr "Mappa scura"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Trattino  –"
+msgid "Dash  -"
+msgstr "Trattino  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -894,8 +894,8 @@ msgid "Date:"
 msgstr "Data:"
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
-msgstr "L'alba si avvicina — "
+msgid "Dawn approaching - "
+msgstr "L'alba si avvicina - "
 
 #: contents/ui/DetailsView.qml:3471
 msgid "Day"
@@ -1156,8 +1156,8 @@ msgid "Error (code %1)"
 msgstr "Errore (codice %1)"
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
-msgstr "Sera — "
+msgid "Evening - "
+msgstr "Sera - "
 
 #: contents/ui/js/spaceWeather.js:198
 msgid "Excellent"
@@ -2753,8 +2753,8 @@ msgid "Recent"
 msgstr "Recente"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
-msgstr "Raccomandata — ad es. 560"
+msgid "Recommended - e.g. 560"
+msgstr "Raccomandata - ad es. 560"
 
 #: contents/ui/config/configNotifications.qml:267
 msgid "Red"
@@ -3099,8 +3099,8 @@ msgid "Size:"
 msgstr "Dimensione:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
-msgstr "Saltato — Chiave API non configurata"
+msgid "Skipped - API key not configured"
+msgstr "Saltato - Chiave API non configurata"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
 msgid "Slight rain"
@@ -3894,19 +3894,19 @@ msgstr "Fornitore meteo:"
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
 "Livelli di gravità delle allerte meteo, dal più basso al più alto:\n"
 "\n"
-"🟡 Giallo — Lieve: fai attenzione alle condizioni.\n"
-"🟠 Arancione — Moderata: preparati.\n"
-"🔴 Rosso — Grave: entra in azione.\n"
-"🟣 Viola — Estrema: straordinariamente pericoloso, agisci immediatamente.\n"
+"🟡 Giallo - Lieve: fai attenzione alle condizioni.\n"
+"🟠 Arancione - Moderata: preparati.\n"
+"🔴 Rosso - Grave: entra in azione.\n"
+"🟣 Viola - Estrema: straordinariamente pericoloso, agisci immediatamente.\n"
 "\n"
 "Disattiva un livello per smettere di ricevere le notifiche per le allerte di quella gravità."
 

@@ -151,7 +151,7 @@ msgid "<b>Starts:</b> %1"
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:905
-msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2–10 minutes. This discrepancy is expected and known."
+msgid "<b>Why OWM layers may not match RainViewer radar</b><br/><br/>OWM precipitation/cloud layers are <b>static model tiles</b> - they show a smoothed NWP (Numerical Weather Prediction) output, not actual radar returns. They represent where the model <i>thinks</i> it is raining based on interpolation between weather stations and model runs.<br/><br/>RainViewer uses <b>real weather radar composites</b> from radar stations - actual measured reflectivity updated every 2-10 minutes. This discrepancy is expected and known."
 msgstr ""
 
 #: contents/ui/config/configGeneral.qml:544
@@ -356,7 +356,7 @@ msgid "Are you sure? This is your last saved location. If you remove it, the wid
 msgstr ""
 
 #: contents/ui/DetailsView.qml:3495
-msgid "Around midnight — "
+msgid "Around midnight - "
 msgstr ""
 
 #: contents/ui/config/configAppearance.qml:1370
@@ -697,8 +697,8 @@ msgid "Configure display mode options"
 msgstr ""
 
 #: contents/ui/config/configAppearance.qml:619
-msgid "Configure icon — %1"
-msgstr "Configurar ícone — %1"
+msgid "Configure icon - %1"
+msgstr "Configurar ícone - %1"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:368
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:388
@@ -809,8 +809,8 @@ msgid "Dark map"
 msgstr ""
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:927
-msgid "Dash  –"
-msgstr "Traço  –"
+msgid "Dash  -"
+msgstr "Traço  -"
 
 #: contents/ui/config/configGeneral.qml:1075
 msgid "Data Refresh"
@@ -847,7 +847,7 @@ msgid "Date:"
 msgstr ""
 
 #: contents/ui/DetailsView.qml:3491
-msgid "Dawn approaching — "
+msgid "Dawn approaching - "
 msgstr ""
 
 #: contents/ui/DetailsView.qml:3471
@@ -1109,7 +1109,7 @@ msgid "Error (code %1)"
 msgstr ""
 
 #: contents/ui/DetailsView.qml:3493
-msgid "Evening — "
+msgid "Evening - "
 msgstr ""
 
 #: contents/ui/js/spaceWeather.js:198
@@ -2673,7 +2673,7 @@ msgid "Recent"
 msgstr ""
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:468
-msgid "Recommended — e.g. 560"
+msgid "Recommended - e.g. 560"
 msgstr ""
 
 #: contents/ui/config/configNotifications.qml:267
@@ -3019,7 +3019,7 @@ msgid "Size:"
 msgstr "Tamanho:"
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:218
-msgid "Skipped — API key not configured"
+msgid "Skipped - API key not configured"
 msgstr ""
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:688
@@ -3814,10 +3814,10 @@ msgstr ""
 msgid ""
 "Weather-alert severity levels, from lowest to highest:\n"
 "\n"
-"🟡 Yellow — Minor: be aware of the conditions.\n"
-"🟠 Orange — Moderate: be prepared.\n"
-"🔴 Red — Severe: take action.\n"
-"🟣 Purple — Extreme: extraordinarily dangerous, take action immediately.\n"
+"🟡 Yellow - Minor: be aware of the conditions.\n"
+"🟠 Orange - Moderate: be prepared.\n"
+"🔴 Red - Severe: take action.\n"
+"🟣 Purple - Extreme: extraordinarily dangerous, take action immediately.\n"
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
@@ -4206,7 +4206,7 @@ msgstr ""
 #~ msgid ""
 #~ "Providers are tried in order until one succeeds:\n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"
-#~ "Open-Meteo is always tried first — it is free and requires no API key."
+#~ "Open-Meteo is always tried first - it is free and requires no API key."
 #~ msgstr ""
 #~ "Provedores serão tentados em ordem até suceder:\n"
 #~ "Open-Meteo  →  met.no  →  OpenWeatherMap  →  WeatherAPI.com\n"

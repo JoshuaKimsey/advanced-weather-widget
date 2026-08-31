@@ -35,7 +35,7 @@ Item {
         }
     }
 
-    // Temperature badge — uses shared TemperatureBadge component
+    // Temperature badge - uses shared TemperatureBadge component
     TemperatureBadge {
         visible: trayRoot._hasTemp
         temperatureText: trayRoot._trayTemp
