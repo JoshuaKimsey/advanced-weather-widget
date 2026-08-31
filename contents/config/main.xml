@@ -182,10 +182,16 @@
          and applies to both maps. -->
     <entry name="mapBackground"         type="String"><default>auto</default></entry>
     <entry name="librewxrLayer"         type="String"><default>radar</default></entry>
-    <entry name="librewxrColorScheme"   type="Int"><default>2</default><min>0</min><max>12</max></entry>
+    <entry name="librewxrColorScheme"   type="Int"><default>10</default><min>0</min><max>12</max></entry>
     <entry name="librewxrArrows"        type="Bool"><default>false</default></entry>
     <entry name="librewxrTheme"         type="String"><default>auto</default></entry>
     <entry name="librewxrUrl"           type="String"><default>https://api.librewxr.net</default></entry>
+    <entry name="librewxrCells"         type="String"><default></default></entry>
+    <entry name="librewxrAlerts"        type="Bool"><default>false</default></entry>
+    <entry name="librewxrSmooth"        type="Bool"><default>true</default></entry>
+    <entry name="librewxrSnow"          type="Bool"><default>true</default></entry>
+    <entry name="librewxrFormat"        type="String"><default>webp</default></entry>
+    <entry name="librewxrTileSize"      type="String"><default>auto</default></entry>
     <!-- Workaround for a plasmashell crash (SIGSEGV in Mesa, triggered when the
          Radar tab first paints) seen on hybrid-GPU (NVIDIA PRIME) Wayland sessions -->
     <entry name="radarGpuWorkaround"    type="Bool"><default>false</default></entry>

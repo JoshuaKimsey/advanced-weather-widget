@@ -67,6 +67,16 @@ rm -rf ~/.cache/plasmashell/qmlcache
 systemctl --user restart plasma-plasmashell
 ```
 
+### Rebuilding the embedded LibreWXR radar map
+
+The radar tab embeds a page assembled from the KDE-widget glue fragments vendored in this repository under `scripts/librewxr-map-src/` plus the shared engine (`viewer-core.js`) and stylesheet (`viewer.css`) from the [LibreWXR](https://github.com/JoshuaKimsey/LibreWXR) checkout given via `--librewxr` (or `LIBREWXR_DIR`). After pulling changes from a LibreWXR checkout, regenerate it with:
+
+```bash
+python3 scripts/build_librewxr_map.py --librewxr /path/to/LibreWXR
+```
+
+`LIBREWXR_DIR` can be used instead of `--librewxr`. The script writes `contents/ui/components/librewxr-map.html` in place.
+
 ---
 
 # 🖼️ Screenshots
