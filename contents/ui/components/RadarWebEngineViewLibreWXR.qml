@@ -8,19 +8,34 @@
  */
 
 /**
- * RadarWebEngineViewLibreWXR.qml — Interactive weather radar map using WebEngineView + Leaflet
+ * RadarWebEngineViewLibreWXR.qml - Interactive weather radar map using WebEngineView + Leaflet
  *
  * LibreWXR (https://librewxr.net/) variant of the radar view, built on the
- * official LibreWXR Leaflet example (components/librewxr-map.html). The page
- * is configured through URL query parameters and driven live through
- * window.setLayerMode / setColorScheme / setArrows / setTheme.
+ * official LibreWXR Leaflet example (components/librewxr-map.html). The map
+ * page is a chrome-less map + replayer: every control lives in this QML side
+ * as a native Plasma widget, and each change is written straight into
+ * Plasmoid.configuration so the user's choices persist naturally. The page
+ * is seeded from URL query parameters and then driven live through these
+ * window functions:
  *
- * - Three layer modes: Radar, Satellite (infrared), Radar + Satellite
- * - Radar color scheme and motion-arrows toggle, in-widget (not in settings)
- * - Base map follows the KDE Plasma light/dark theme automatically; arrow
- *   color follows the map theme
- * - In-map picker to pin a different base map (shared with RadarWebEngineView
- *   through providers/mapProviders.js), which then stops following the theme
+ *   window.setLayerMode("radar" | "satellite" | "both")
+ *   window.setColorScheme(index)          // 0-12, LibreWXR color scheme id
+ *   window.setArrows(true | false)        // boolean; the page derives arrow color from its theme
+ *   window.setCells("light" | "dark" | "")   // storm-cell overlay theme; "" = off
+ *   window.setAlerts(true | false)        // WMO weather alerts overlay
+ *   window.setTheme("light" | "dark")     // map + replayer theme
+ *   window.setBackground(id)              // base map id, from backgroundChoices
+ *   window.fixViewport()                  // post-load Leaflet viewport fix
+ *
+ * - Layer mode pills, radar color scheme combo, motion-arrows switch, storm
+ *   cells switch, weather alerts switch and the Dark map switch are native
+ *   controls owned by this file; the base-map combo offers the same choices
+ *   as the settings picker (MapBackgroundChoices)
+ * - "auto" base map follows the KDE Plasma light/dark theme; any explicit
+ *   choice pins a fixed light/dark style and locks the Dark map switch
+ * - The page reports only zoom ("zoom:") and in-map background picks
+ *   ("bg:") back through document.title; the "state:" toolbar protocol is
+ *   gone because the chrome-less page no longer owns any controls
  */
 import QtQuick
 import QtQuick.Layouts
@@ -39,8 +54,14 @@ Item {
     readonly property double lon: weatherRoot ? (Plasmoid.configuration.longitude || 0) : 0
     readonly property string activeLayer: Plasmoid.configuration.librewxrLayer || "radar"
     readonly property int initialZoom: Math.min(12, Plasmoid.configuration.radarZoom || 7)
-    readonly property int colorScheme: Plasmoid.configuration.librewxrColorScheme !== undefined ? Plasmoid.configuration.librewxrColorScheme : 2
+    readonly property int colorScheme: Plasmoid.configuration.librewxrColorScheme !== undefined ? Plasmoid.configuration.librewxrColorScheme : 10
     readonly property bool arrowsOn: Plasmoid.configuration.librewxrArrows === true
+    readonly property string activeCells: Plasmoid.configuration.librewxrCells || ""
+    readonly property bool alertsOn: Plasmoid.configuration.librewxrAlerts === true
+    readonly property bool smoothOn: Plasmoid.configuration.librewxrSmooth !== false
+    readonly property bool snowOn: Plasmoid.configuration.librewxrSnow !== false
+    readonly property string tileFormat: Plasmoid.configuration.librewxrFormat || "webp"
+    readonly property string tileSizeChoice: Plasmoid.configuration.librewxrTileSize || "auto"
     readonly property string serverUrl: {
         var u = (Plasmoid.configuration.librewxrUrl || "https://api.librewxr.net").trim();
         while (u.length > 1 && u.charAt(u.length - 1) === "/")
@@ -53,11 +74,10 @@ Item {
         var c = Kirigami.Theme.backgroundColor;
         return (0.299 * c.r + 0.587 * c.g + 0.114 * c.b) < 0.5;
     }
-    // "auto" follows the Plasma theme; the in-widget switch stores an override
-    readonly property string themeOverride: Plasmoid.configuration.librewxrTheme || "auto"
     readonly property string mapTheme: {
-        if (themeOverride === "light" || themeOverride === "dark")
-            return themeOverride;
+        var t = Plasmoid.configuration.librewxrTheme || "auto";
+        if (t === "light" || t === "dark")
+            return t;
         return isDark ? "dark" : "light";
     }
 
@@ -75,16 +95,15 @@ Item {
         attributionSuffix: " | <a href=\"https://librewxr.net/\">LibreWXR</a>"
     }
 
-    // These pinned layouts each fix their own light/dark style, so the map
-    // page ignores the theme for tile selection while one is active (see
-    // setTheme's "only auto follows the theme" guard in librewxr-map.html).
-    // The Dark map switch is locked read-only while one is selected, since
-    // toggling it would have no visible effect on the base map.
-    readonly property var pinnedBackgroundIds: ["osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-liberty", "openfreemap-fiord", "openfreemap-dark"]
-    readonly property bool darkMapLocked: radarRoot.pinnedBackgroundIds.indexOf(radarRoot.mapBackground) !== -1
+    // Any explicitly chosen base map has a fixed light/dark style of its own,
+    // so the map page ignores the theme for tile selection while one is
+    // active (see setTheme's "only auto follows the theme" guard in
+    // librewxr-map.html). The Dark map switch is locked read-only while one
+    // is selected, since toggling it would have no visible effect on the map.
+    readonly property bool darkMapLocked: radarRoot.mapBackground !== "auto"
 
     // A manual "Dark map" toggle only sticks until the Plasma theme itself
-    // actually changes — at that point the override is cleared so the map
+    // actually changes - at that point the override is cleared so the map
     // (and the switch) snap back to following Plasma automatically.
     property bool _themeGuardArmed: false
 
@@ -100,7 +119,7 @@ Item {
             console.log("[Advanced Weather Widget Radar/LibreWXR] ignoring theme read during startup settle");
             return;
         }
-        if (radarRoot.themeOverride !== "auto") {
+        if ((Plasmoid.configuration.librewxrTheme || "auto") !== "auto") {
             console.log("[Advanced Weather Widget Radar/LibreWXR] Plasma theme changed; clearing manual dark-map override");
             Plasmoid.configuration.librewxrTheme = "auto";
         }
@@ -157,7 +176,7 @@ Item {
         themeGuardTimer.restart();
     }
 
-    // ── Wi-font icon loader ───────────────────────────────────────────────
+    // -- Wi-font icon loader -------------------------------------------------
     FontLoader {
         id: wiFont
         source: Qt.resolvedUrl("../../fonts/weathericons-regular-webfont.ttf")
@@ -165,22 +184,22 @@ Item {
     readonly property bool wiFontReady: wiFont.status === FontLoader.Ready
     readonly property string wiFontFamily: wiFontReady ? wiFont.font.family : ""
 
-    // ── Layer modes (matching the LibreWXR example) ──────────────────────
+    // -- Layer modes (matching the LibreWXR example) -------------------------
     readonly property var layers: [
         {
             id: "radar",
             label: i18n("Radar"),
-            glyph: ""
+            glyph: "\uF01D"
         },
         {
             id: "satellite",
             label: i18n("Satellite"),
-            glyph: ""
+            glyph: "\uF013"
         },
         {
             id: "both",
             label: i18n("Radar + Satellite"),
-            glyph: ""
+            glyph: "\uF002"
         }
     ]
 
@@ -200,7 +219,7 @@ Item {
             "apiError": i18n("API error"),
             "connFailed": i18n("Connection failed")
         };
-        return Qt.resolvedUrl("librewxr-map.html") + "?lat=" + radarRoot.lat + "&lon=" + radarRoot.lon + "&zoom=" + radarRoot.initialZoom + "&layer=" + encodeURIComponent(radarRoot.activeLayer) + "&color=" + radarRoot.colorScheme + "&arrows=" + (radarRoot.arrowsOn ? "1" : "0") + "&theme=" + radarRoot.mapTheme + "&server=" + encodeURIComponent(radarRoot.serverUrl) + "&hour12=" + (radarRoot.is24h ? "0" : "1") + "&locale=" + encodeURIComponent(Qt.locale().name.replace("_", "-")) + "&strings=" + encodeURIComponent(JSON.stringify(strings)) + "&bg=" + encodeURIComponent(radarRoot.mapBackground) + "&bglist=" + encodeURIComponent(radarRoot.backgroundChoices.toJson());
+        return Qt.resolvedUrl("librewxr-map.html") + "?lat=" + radarRoot.lat + "&lon=" + radarRoot.lon + "&zoom=" + radarRoot.initialZoom + "&layer=" + encodeURIComponent(radarRoot.activeLayer) + "&color=" + radarRoot.colorScheme + "&arrows=" + (radarRoot.arrowsOn ? "1" : "0") + "&cells=" + encodeURIComponent(radarRoot.activeCells) + "&alerts=" + (radarRoot.alertsOn ? "1" : "0") + "&smooth=" + (radarRoot.smoothOn ? "1" : "0") + "&snow=" + (radarRoot.snowOn ? "1" : "0") + "&format=" + encodeURIComponent(radarRoot.tileFormat) + "&tilesize=" + encodeURIComponent(radarRoot.tileSizeChoice) + "&theme=" + radarRoot.mapTheme + "&server=" + encodeURIComponent(radarRoot.serverUrl) + "&hour12=" + (radarRoot.is24h ? "0" : "1") + "&locale=" + encodeURIComponent(Qt.locale().name.replace("_", "-")) + "&strings=" + encodeURIComponent(JSON.stringify(strings)) + "&bg=" + encodeURIComponent(radarRoot.mapBackground) + "&bglist=" + encodeURIComponent(radarRoot.backgroundChoices.toJson()) + "&font=" + encodeURIComponent(Kirigami.Theme.defaultFont.family || "");
     }
 
     function _loadPage(reason) {
@@ -229,7 +248,7 @@ Item {
         anchors.fill: parent
         spacing: 4
 
-        // ── Layer mode selector (pill-tab style matching Details/Forecast/Radar tabs) ─
+        // -- Layer mode selector (pill-tab style matching Details/Forecast/Radar tabs) --
         Rectangle {
             Layout.fillWidth: true
             height: 34
@@ -304,7 +323,7 @@ Item {
             }
         }
 
-        // ── Options: color scheme + motion arrows (radar modes) + map theme ─
+        // -- Options: color scheme + motion arrows (radar modes) + map theme --
         RowLayout {
             Layout.fillWidth: true
             spacing: Kirigami.Units.smallSpacing
@@ -365,9 +384,71 @@ Item {
             }
         }
 
+        // -- Second options row: storm cells + weather alerts + base map --
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: Kirigami.Units.smallSpacing
+
+            PlasmaComponents.Switch {
+                text: i18n("Storm cells")
+                checked: radarRoot.activeCells !== ""
+                onToggled: {
+                    // The stored value is the storm-cell overlay theme; pick
+                    // the opposite of the map theme so the cells stand out.
+                    var cells = checked ? (radarRoot.mapTheme === "dark" ? "light" : "dark") : "";
+                    Plasmoid.configuration.librewxrCells = cells;
+                    webView.runJavaScript("if (window.setCells) window.setCells(" + JSON.stringify(cells) + ");");
+                }
+
+                PlasmaComponents.ToolTip.visible: hovered
+                PlasmaComponents.ToolTip.text: i18n("Overlay detected storm cells on the map")
+                PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
+            }
+
+            PlasmaComponents.Switch {
+                text: i18n("Weather alerts")
+                checked: radarRoot.alertsOn
+                onToggled: {
+                    Plasmoid.configuration.librewxrAlerts = checked;
+                    webView.runJavaScript("if (window.setAlerts) window.setAlerts(" + (checked ? "true" : "false") + ");");
+                }
+
+                PlasmaComponents.ToolTip.visible: hovered
+                PlasmaComponents.ToolTip.text: i18n("Show WMO weather alerts on the map")
+                PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            PlasmaComponents.ComboBox {
+                id: baseMapCombo
+                Layout.fillWidth: true
+                Layout.maximumWidth: Kirigami.Units.gridUnit * 18
+                model: radarRoot.backgroundChoices.list
+                textRole: "label"
+                currentIndex: {
+                    var entries = radarRoot.backgroundChoices.list;
+                    for (var i = 0; i < entries.length; ++i) {
+                        if (entries[i].id === radarRoot.mapBackground)
+                            return i;
+                    }
+                    return 0;
+                }
+                onActivated: {
+                    var id = radarRoot.backgroundChoices.list[currentIndex].id;
+                    Plasmoid.configuration.mapBackground = id;
+                    webView.runJavaScript("window.setBackground(" + JSON.stringify(id) + ");");
+                }
+            }
+        }
+
         // ── WebEngine map ─────────────────────────────────────────────
         WebEngineView {
             id: webView
+            // Match the page's --bg so the uninitialized web surface does not flash white
+            backgroundColor: radarRoot.isDark ? "#0f1117" : "#f0f2f5"
             Layout.fillWidth: true
             Layout.fillHeight: true
             // 1 px nudge to force Chromium recompositing after popup reopen
