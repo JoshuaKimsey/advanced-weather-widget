@@ -202,6 +202,11 @@ Item {
   #ctrlRow button img { width:16px; height:16px; display:block; }\
   #slider { width:120px; height:4px; cursor:pointer; accent-color:#4fc3f7; }\
   .base-dimmed img { filter: saturate(0.8) brightness(0.85); }\
+  /* Dark OSM: the same standard raster, recoloured here. Scoped to the base\
+     layer container, never to the tile pane, which this map shares with the\
+     radar and OWM overlays: filtering the pane would invert them too. */\
+  .base-inverted img { filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.8); }\
+  .base-inverted.base-dimmed img { filter: invert(1) hue-rotate(180deg) brightness(0.78) contrast(0.9) saturate(0.65); }\
   #timeLabel { font-size:10px; font-weight:bold; color:#fff; white-space:nowrap; \
     font-family:' + fontFamily + '; background:rgba(0,0,0,0.55); border-radius:6px; padding:2px 6px; }\
   /* Sits inside #controls, under the player row, so the layers button is in\
@@ -275,7 +280,9 @@ var map = L.map("map", { zoomControl: true, attributionControl: true })\
 \
 map.on("zoomend", function() { document.title = "zoom:" + map.getZoom(); });\
 \
-var _baseClass = (ACTIVE_LAYER !== "rainviewer") ? "base-dimmed" : "";\
+/* Leaflet splits this on whitespace, so both classes can ride along. */\
+var _baseClass = ((ACTIVE_LAYER !== "rainviewer") ? "base-dimmed " : "")\
+    + (bgEntry(BG_CURRENT).invert ? "base-inverted" : "");\
 var baseLayer = L.tileLayer(BASE_TILE_URL, {\
     attribution: BASE_ATTRIBUTION,\
     maxNativeZoom: BASE_MAX_ZOOM,\
@@ -528,6 +535,8 @@ function updateBaseDim() {\
     if (!c) return;\
     if (ACTIVE_LAYER !== "rainviewer") c.classList.add("base-dimmed");\
     else c.classList.remove("base-dimmed");\
+    if (bgEntry(BG_CURRENT).invert) c.classList.add("base-inverted");\
+    else c.classList.remove("base-inverted");\
 }\
 \
 /* MapLibre is only fetched when a vector background is actually picked: it is\

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-08-31 13:24+0300\n"
+"POT-Creation-Date: 2026-08-31 15:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -828,7 +828,7 @@ msgstr ""
 msgid "Custom…"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:45
+#: contents/ui/components/MapBackgroundChoices.qml:46
 msgid "CyclOSM (cycling)"
 msgstr ""
 
@@ -1412,7 +1412,7 @@ msgid "Health warning of emergency conditions: everyone is more likely to be aff
 msgstr ""
 
 #: contents/ui/components/RadarWebEngineView.qml:163
-#: contents/ui/components/RadarWebEngineView.qml:840
+#: contents/ui/components/RadarWebEngineView.qml:849
 msgid "Heavy"
 msgstr ""
 
@@ -1498,7 +1498,7 @@ msgstr ""
 msgid "How often the rows scroll to reveal the next item"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:44
+#: contents/ui/components/MapBackgroundChoices.qml:45
 msgid "Humanitarian (HOT)"
 msgstr ""
 
@@ -1744,7 +1744,7 @@ msgid "LibreWXR server:"
 msgstr ""
 
 #: contents/ui/components/RadarWebEngineView.qml:161
-#: contents/ui/components/RadarWebEngineView.qml:840
+#: contents/ui/components/RadarWebEngineView.qml:849
 msgid "Light"
 msgstr ""
 
@@ -2018,7 +2018,7 @@ msgstr ""
 msgid "Misc"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:840
+#: contents/ui/components/RadarWebEngineView.qml:849
 msgid "Mod"
 msgstr ""
 
@@ -2265,7 +2265,7 @@ msgid "No weather stations found for '%1'"
 msgstr ""
 
 #: contents/ui/components/RadarWebEngineView.qml:160
-#: contents/ui/components/RadarWebEngineView.qml:840
+#: contents/ui/components/RadarWebEngineView.qml:849
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:348
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:235
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:998
@@ -2364,27 +2364,31 @@ msgstr ""
 msgid "Open-Meteo (recommended, free)"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:50
+#: contents/ui/components/MapBackgroundChoices.qml:51
 msgid "OpenFreeMap Dark"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:49
+#: contents/ui/components/MapBackgroundChoices.qml:50
 msgid "OpenFreeMap Fiord (dark)"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:48
+#: contents/ui/components/MapBackgroundChoices.qml:49
 msgid "OpenFreeMap Liberty (light)"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:47
+#: contents/ui/components/MapBackgroundChoices.qml:48
 msgid "OpenFreeMap Positron (light)"
+msgstr ""
+
+#: contents/ui/components/MapBackgroundChoices.qml:44
+msgid "OpenStreetMap (dark)"
 msgstr ""
 
 #: contents/ui/components/MapBackgroundChoices.qml:43
 msgid "OpenStreetMap (standard)"
 msgstr ""
 
-#: contents/ui/components/MapBackgroundChoices.qml:46
+#: contents/ui/components/MapBackgroundChoices.qml:47
 msgid "OpenTopoMap (topographic)"
 msgstr ""
 
@@ -3246,7 +3250,7 @@ msgid "Stats items:"
 msgstr ""
 
 #: contents/ui/components/RadarWebEngineView.qml:164
-#: contents/ui/components/RadarWebEngineView.qml:840
+#: contents/ui/components/RadarWebEngineView.qml:849
 #: contents/ui/js/spaceWeather.js:174
 msgid "Storm"
 msgstr ""
@@ -4144,7 +4148,7 @@ msgstr ""
 msgid "grains/m³"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:853
+#: contents/ui/components/RadarWebEngineView.qml:862
 #: contents/ui/config/tabs/ConfigMiscTab.qml:289 contents/ui/js/weather.js:536
 msgid "hPa"
 msgstr ""
@@ -4161,11 +4165,11 @@ msgstr ""
 msgid "in the next few hours"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:841 contents/ui/main.qml:858
+#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:858
 msgid "in/h"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:851
+#: contents/ui/components/RadarWebEngineView.qml:860
 #: contents/ui/config/tabs/ConfigMiscTab.qml:297 contents/ui/js/weather.js:535
 msgid "inHg"
 msgstr ""
@@ -4176,7 +4180,7 @@ msgstr ""
 msgid "km"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:846
+#: contents/ui/components/RadarWebEngineView.qml:855
 #: contents/ui/config/tabs/ConfigMiscTab.qml:254 contents/ui/js/weather.js:529
 msgid "km/h"
 msgstr ""
@@ -4185,7 +4189,7 @@ msgstr ""
 msgid "km/s"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:847
+#: contents/ui/components/RadarWebEngineView.qml:856
 #: contents/ui/js/weather.js:528
 msgid "kn"
 msgstr ""
@@ -4202,7 +4206,7 @@ msgstr ""
 msgid "m"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:848
+#: contents/ui/components/RadarWebEngineView.qml:857
 #: contents/ui/config/tabs/ConfigMiscTab.qml:262 contents/ui/js/weather.js:527
 msgid "m/s"
 msgstr ""
@@ -4236,11 +4240,11 @@ msgstr ""
 msgid "mm"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:841 contents/ui/main.qml:859
+#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:859
 msgid "mm/h"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:852
+#: contents/ui/components/RadarWebEngineView.qml:861
 #: contents/ui/config/tabs/ConfigMiscTab.qml:293 contents/ui/js/weather.js:534
 msgid "mmHg"
 msgstr ""
@@ -4249,7 +4253,7 @@ msgstr ""
 msgid "moderate"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:845
+#: contents/ui/components/RadarWebEngineView.qml:854
 #: contents/ui/config/tabs/ConfigMiscTab.qml:258 contents/ui/js/weather.js:526
 msgid "mph"
 msgstr ""

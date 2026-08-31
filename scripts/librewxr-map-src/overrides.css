@@ -171,3 +171,14 @@
         font-weight: bold;
         color: var(--accent);
       }
+
+        /* Keyless dark basemap: the standard OSM raster recoloured here.
+           Scoped to the base layer's own container, never to the tile pane.
+           Leaflet gives every GridLayer its own div, so the filter cannot
+           reach the radar, satellite or alert layers. The viewer upstream
+           ships a .lv-basemap-dark rule that targets the pane instead; it is
+           left unused because RainViewer, which shares this provider list,
+           creates no panes at all and would have its radar inverted too. */
+        .base-inverted img {
+          filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(0.9) saturate(0.8);
+        }

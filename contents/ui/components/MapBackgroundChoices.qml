@@ -41,6 +41,7 @@ QtObject {
     readonly property var labels: ({
         "auto": i18n("Automatic"),
         "osm-standard": i18n("OpenStreetMap (standard)"),
+        "osm-dark": i18n("OpenStreetMap (dark)"),
         "osm-humanitarian": i18n("Humanitarian (HOT)"),
         "cyclosm": i18n("CyclOSM (cycling)"),
         "opentopomap": i18n("OpenTopoMap (topographic)"),
@@ -63,6 +64,7 @@ QtObject {
                 url: p.tileUrlTemplate || "",
                 styleUrl: p.styleUrl || "",
                 vector: MapProvidersJS.isVectorBackground(p),
+                invert: !!p.invert,
                 attribution: p.attribution + choices.attributionSuffix,
                 maxZoom: p.maxZoom
             });
