@@ -22,15 +22,16 @@
  *   window.setColorScheme(index)          // 0-12, LibreWXR color scheme id
  *   window.setArrows(true | false)        // boolean; the page derives arrow color from its theme
  *   window.setCells("light" | "dark" | "")   // storm-cell overlay theme; "" = off
- *   window.setAlerts(true | false)        // WMO weather alerts overlay
+ *   window.setAlerts(true | false)        // WMO alerts overlay
  *   window.setTheme("light" | "dark")     // map + replayer theme
  *   window.setBackground(id)              // base map id, from backgroundChoices
  *   window.fixViewport()                  // post-load Leaflet viewport fix
  *
  * - Layer mode pills, radar color scheme combo, motion-arrows switch, storm
- *   cells switch, weather alerts switch and the Dark map switch are native
- *   controls owned by this file; the base-map combo offers the same choices
- *   as the settings picker (MapBackgroundChoices)
+ *   cells switch, alerts switch and the Dark map switch are native
+ *   controls owned by this file; the base map is chosen via the in-map
+ *   picker on the map page (reports "bg:" picks through document.title),
+ *   with the configuration value seeding the initial state
  * - "auto" base map follows the KDE Plasma light/dark theme; any explicit
  *   choice pins a fixed light/dark style and locks the Dark map switch
  * - The page reports only zoom ("zoom:") and in-map background picks
@@ -323,10 +324,10 @@ Item {
             }
         }
 
-        // -- Options: color scheme + motion arrows (radar modes) + map theme --
-        RowLayout {
+        // -- Options: color scheme + motion arrows (radar modes) + cells + alerts + map theme --
+        Flow {
             Layout.fillWidth: true
-            spacing: Kirigami.Units.smallSpacing
+            spacing: Kirigami.Units.smallSpacing * 2
 
             Label {
                 visible: radarRoot.activeLayer !== "satellite"
@@ -349,13 +350,9 @@ Item {
                 }
             }
 
-            Item {
-                Layout.fillWidth: true
-            }
-
             PlasmaComponents.Switch {
                 visible: radarRoot.activeLayer !== "satellite"
-                text: i18n("Wind arrows")
+                text: i18n("Arrows")
                 checked: radarRoot.arrowsOn
                 onToggled: {
                     Plasmoid.configuration.librewxrArrows = checked;
@@ -363,31 +360,9 @@ Item {
                 }
 
                 PlasmaComponents.ToolTip.visible: hovered
-                PlasmaComponents.ToolTip.text: i18n("Show precipitation motion arrows")
+                PlasmaComponents.ToolTip.text: i18n("Show motion arrows on the map")
                 PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
             }
-
-            PlasmaComponents.Switch {
-                text: i18n("Dark map")
-                checked: radarRoot.mapTheme === "dark"
-                enabled: !radarRoot.darkMapLocked
-                onToggled: {
-                    // Manual choice overrides following the Plasma theme
-                    // until the Plasma theme itself changes (see onIsDarkChanged)
-                    Plasmoid.configuration.librewxrTheme = checked ? "dark" : "light";
-                    webView.runJavaScript("window.setTheme(" + JSON.stringify(checked ? "dark" : "light") + ");");
-                }
-
-                PlasmaComponents.ToolTip.visible: hovered
-                PlasmaComponents.ToolTip.text: radarRoot.darkMapLocked ? i18n("Not available: the selected base map already has a fixed light or dark style.") : i18n("Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme.")
-                PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
-            }
-        }
-
-        // -- Second options row: storm cells + weather alerts + base map --
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: Kirigami.Units.smallSpacing
 
             PlasmaComponents.Switch {
                 text: i18n("Storm cells")
@@ -406,7 +381,7 @@ Item {
             }
 
             PlasmaComponents.Switch {
-                text: i18n("Weather alerts")
+                text: i18n("Alerts")
                 checked: radarRoot.alertsOn
                 onToggled: {
                     Plasmoid.configuration.librewxrAlerts = checked;
@@ -414,33 +389,24 @@ Item {
                 }
 
                 PlasmaComponents.ToolTip.visible: hovered
-                PlasmaComponents.ToolTip.text: i18n("Show WMO weather alerts on the map")
+                PlasmaComponents.ToolTip.text: i18n("Show WMO alerts on the map")
                 PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
             }
 
-            Item {
-                Layout.fillWidth: true
-            }
+            PlasmaComponents.Switch {
+                text: i18n("Dark map")
+                checked: radarRoot.mapTheme === "dark"
+                enabled: !radarRoot.darkMapLocked
+                onToggled: {
+                    // Manual choice overrides following the Plasma theme
+                    // until the Plasma theme itself changes (see onIsDarkChanged)
+                    Plasmoid.configuration.librewxrTheme = checked ? "dark" : "light";
+                    webView.runJavaScript("window.setTheme(" + JSON.stringify(checked ? "dark" : "light") + ");");
+                }
 
-            PlasmaComponents.ComboBox {
-                id: baseMapCombo
-                Layout.fillWidth: true
-                Layout.maximumWidth: Kirigami.Units.gridUnit * 18
-                model: radarRoot.backgroundChoices.list
-                textRole: "label"
-                currentIndex: {
-                    var entries = radarRoot.backgroundChoices.list;
-                    for (var i = 0; i < entries.length; ++i) {
-                        if (entries[i].id === radarRoot.mapBackground)
-                            return i;
-                    }
-                    return 0;
-                }
-                onActivated: {
-                    var id = radarRoot.backgroundChoices.list[currentIndex].id;
-                    Plasmoid.configuration.mapBackground = id;
-                    webView.runJavaScript("window.setBackground(" + JSON.stringify(id) + ");");
-                }
+                PlasmaComponents.ToolTip.visible: hovered
+                PlasmaComponents.ToolTip.text: radarRoot.darkMapLocked ? i18n("Not available: the selected base map already has a fixed light or dark style.") : i18n("Switch between the light and dark map style. Until first toggled, the map follows the Plasma theme.")
+                PlasmaComponents.ToolTip.delay: Kirigami.Units.toolTipDelay
             }
         }
 

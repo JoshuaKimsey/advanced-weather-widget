@@ -9,9 +9,11 @@
       Adapted from the official LibreWXR Leaflet example
       (https://librewxr.net/examples/leaflet) for the Advanced Weather Widget.
       Chrome-less build: this page is the map + replayer only. All radar
-      controls (layer mode, color scheme, arrows, cells, alerts, theme, base
-      map) live in the QML side as native Plasma components. Initial state is
-      seeded via URL query parameters; live changes arrive through the
+      controls (layer mode, color scheme, arrows, cells, alerts, theme) live
+      in the QML side as native Plasma components. The base map is chosen with
+      the in-map picker, which reports picks via document.title; configuration
+      seeds the initial state. Initial state is seeded via URL query
+      parameters; live changes arrive through the
       window.* functions (setLayerMode / setColorScheme / setArrows / setCells
       / setAlerts / setTheme / setBackground / fixViewport). The QML side
       keeps zoom in sync via document.title ("zoom:" reports).
@@ -72,6 +74,16 @@
           <line x1="18" y1="12" x2="22" y2="12"></line>
         </svg>
       </button>
+      <div class="bg-picker" id="bgPicker">
+        <button class="bg-btn" id="bgBtn" title="Map background">
+          <svg viewBox="0 0 24 24">
+            <polygon points="12,3 21,7.5 12,12 3,7.5"></polygon>
+            <polyline points="3,12 12,16.5 21,12"></polyline>
+            <polyline points="3,16.5 12,21 21,16.5"></polyline>
+          </svg>
+        </button>
+        <div class="bg-menu" id="bgMenu"></div>
+      </div>
     </div>
 
     <!-- Replayer / Scrubber -->

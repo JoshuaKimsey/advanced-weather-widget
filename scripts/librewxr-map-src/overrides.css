@@ -106,3 +106,68 @@
         color: var(--text-dim) !important;
         background: var(--btn-bg) !important;
       }
+
+      /* Base-map picker: button stacks below the 30px locate button; the
+         menu opens downward over the map. */
+      .bg-picker {
+        position: absolute;
+        top: calc(var(--space-2) + 30px + var(--space-1));
+        right: var(--space-2);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+      }
+      .bg-btn {
+        width: 30px;
+        height: 30px;
+        background: var(--btn-bg);
+        border: 1px solid var(--btn-border);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+      .bg-btn:hover {
+        background: var(--btn-hover);
+      }
+      .bg-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: var(--text-secondary);
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .bg-menu {
+        display: none;
+        background: var(--btn-bg);
+        border: 1px solid var(--btn-border);
+        border-radius: var(--radius-sm);
+        padding: 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        min-width: 140px;
+      }
+      .bg-menu.open {
+        display: block;
+      }
+      .bg-menu div {
+        color: var(--text);
+        font-size: var(--font-size-sm);
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .bg-menu div:hover {
+        background: var(--btn-hover);
+      }
+      .bg-menu div.active {
+        font-weight: bold;
+        color: var(--accent);
+      }

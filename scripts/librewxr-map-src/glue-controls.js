@@ -43,7 +43,7 @@ window.setColorScheme = function (n) { viewer.setColorScheme(n); };
 
 window.setArrows = function (on) {
     arrowsOn = !!on;
-    viewer.setArrows(arrowsOn ? (document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark') : '');
+    viewer.setArrows(arrowsOn ? (currentTheme() === 'dark' ? 'light' : 'dark') : '');
 };
 
 window.setCells = function (mode) { viewer.setCells(mode); };
@@ -61,10 +61,11 @@ window.setBackground = function (id) {
     if (!found) return; // invalid id
   }
   BG_CURRENT = id;
-  var theme = document.body.getAttribute('data-theme') || 'dark';
+  var theme = currentTheme();
   if (_widgetAdapter && typeof _widgetAdapter.setBasemap === 'function') {
     _widgetAdapter.setBasemap(theme);
   }
+  renderBgMenu(); // keep the picker's active mark in sync with config-driven changes
 };
 
 window.fixViewport = function () {
@@ -80,6 +81,56 @@ window.fixViewport = function () {
   // which the cancelling 1px nudge (never a real view change) safely ignores.
   setTimeout(function () { m.invalidateSize(false); }, 400);
 };
+
+// === BASE MAP PICKER (in-map, 1.7.2 style) ===
+var bgMenu = document.getElementById('bgMenu');
+var bgBtn = document.getElementById('bgBtn');
+function currentTheme() {
+  return document.body.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+function renderBgMenu() {
+    if (!bgMenu) return;
+    bgMenu.innerHTML = '';
+    if (!BG_LIST.length) {
+        var picker = document.getElementById('bgPicker');
+        if (picker) picker.style.display = 'none';
+        return;
+    }
+    for (var i = 0; i < BG_LIST.length; i++) {
+        (function (entry) {
+            var row = document.createElement('div');
+            row.textContent = entry.label;
+            if (entry.id === BG_CURRENT) row.className = 'active';
+            row.addEventListener('click', function () {
+                if (entry.id === BG_CURRENT) { closeBgMenu(); return; }
+                BG_CURRENT = entry.id;
+                _widgetAdapter.setBasemap(currentTheme());
+                // Persist the pick on the QML side via the title channel
+                document.title = 'bg:' + entry.id;
+                closeBgMenu();
+                renderBgMenu();
+            });
+            bgMenu.appendChild(row);
+        })(BG_LIST[i]);
+    }
+}
+function closeBgMenu() {
+    if (bgMenu) bgMenu.classList.remove('open');
+}
+if (bgBtn) {
+    bgBtn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        if (bgMenu) {
+            var isOpen = bgMenu.classList.contains('open');
+            if (isOpen) { closeBgMenu(); }
+            else { renderBgMenu(); bgMenu.classList.add('open'); }
+        }
+    });
+}
+document.addEventListener('click', function (ev) {
+    if (bgMenu && bgMenu.classList.contains('open') && ev.target && !(ev.target.closest && (ev.target.closest('#bgPicker')))) closeBgMenu();
+});
+renderBgMenu();
 
 // === VIEWPORT FIX WIRING (map lifecycle in the ~380px embedded webview) ===
 if (typeof ResizeObserver !== 'undefined') {

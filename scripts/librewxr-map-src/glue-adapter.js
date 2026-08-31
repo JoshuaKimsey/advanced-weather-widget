@@ -276,7 +276,7 @@ var WidgetLeafletAdapter = function () {
         // Keep the engine callback (alerts refilter + background preload).
         if (cb) cb();
         // WIDGET PATCH: report the viewport zoom to QML via the page title.
-        // (No "bg:" reports are emitted, per the widget contract.)
+        // (In-map base-map picks report "bg:" titles; see glue-controls.)
         document.title = 'zoom:' + map.getZoom();
         // /WIDGET PATCH
       });
