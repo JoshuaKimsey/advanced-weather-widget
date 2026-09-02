@@ -117,7 +117,9 @@ var WidgetLeafletAdapter = function () {
         currentBaseMap = L.tileLayer(entry.url || FALLBACK_BG[theme].url, {
           attribution: entry.attribution,
           maxNativeZoom: entry.maxZoom || 19,
-          maxZoom: 19
+          maxZoom: 19,
+          // Dark OSM is that same raster recoloured; see .base-inverted.
+          className: entry.invert ? 'base-inverted' : ''
         });
       }
       currentBaseMap.addTo(map);

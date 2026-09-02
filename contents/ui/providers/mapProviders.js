@@ -64,6 +64,23 @@ var MAP_BACKGROUNDS = {
         maxZoom: 17,
         attribution: _OSM_LINK + ", SRTM | © <a href='https://opentopomap.org/'>OpenTopoMap</a> (CC-BY-SA)"
     },
+    /*
+     * The dark basemap LibreWXR itself moved to when CARTO closed its keyless
+     * tiles: plain OSM raster recoloured in CSS. `invert` tells the consumer
+     * to put the filter class on the base layer's own container, never on the
+     * tile pane, which radar and overlays share in RainViewer.
+     *
+     * It is the only dark background that needs no WebGL. The OpenFreeMap
+     * dark styles are vector, so a machine without a GL context falls back to
+     * raster and loses every dark option without this one.
+     */
+    "osm-dark": {
+        tileUrlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        singleHost: "https://tile.openstreetmap.org/",
+        maxZoom: 19,
+        invert: true,
+        attribution: _OSM_LINK
+    },
     "openfreemap-positron": {
         styleUrl: "https://tiles.openfreemap.org/styles/positron",
         vector: true,
@@ -102,7 +119,7 @@ var DEFAULT_MAP_BACKGROUND = "osm-standard";
 var AUTO_MAP_BACKGROUND = "auto";
 
 /** Ids offered by the "Map background" picker, in display order. */
-var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-liberty", "openfreemap-fiord", "openfreemap-dark"];
+var MAP_BACKGROUND_ORDER = ["auto", "osm-standard", "osm-dark", "osm-humanitarian", "cyclosm", "opentopomap", "openfreemap-positron", "openfreemap-liberty", "openfreemap-fiord", "openfreemap-dark"];
 
 /**
  * Resolve a background id to its definition.
