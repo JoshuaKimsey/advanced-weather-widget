@@ -258,6 +258,33 @@ function resolveMoonPhase(moonPhaseSvgStem, iconSize, iconsBaseDir, svgTheme) {
 }
 
 /**
+ * Resolves the wind icon.
+ *
+ * Meteocons-only dynamic resolution (cloned from resolveMoonPhase): when the
+ * SVG theme is "meteocons" and a compass stem is available, the wind item
+ * uses the directional wind-direction icons. All other themes (SVG themes,
+ * kde, empty stem) delegate to resolve() so the static strong-wind behavior
+ * is bit-for-bit unchanged.
+ *
+ * @param {string} windStem     - e.g. "wind-direction-ne" from weather.js
+ * @param {int}    iconSize
+ * @param {string} iconsBaseDir
+ * @param {string} svgTheme
+ */
+function resolveWindDirection(windStem, iconSize, iconsBaseDir, svgTheme) {
+    var theme = svgTheme || "symbolic";
+    if (theme === "meteocons" && windStem && windStem.length > 0 && iconsBaseDir) {
+        return {
+            type: "svg",
+            source: iconsBaseDir + "meteocons/" + iconSize + "/wi-" + windStem + ".svg",
+            svgFallback: "",
+            isMask: false
+        };
+    }
+    return resolve("wind", iconSize, iconsBaseDir, svgTheme);
+}
+
+/**
  * Returns the wi-font glyph for an item ID.
  * Useful for the panel compact view which still supports wi-font rendering.
  */

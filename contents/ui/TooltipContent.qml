@@ -205,6 +205,11 @@ Item {
             return IconResolver.resolve("moonrise", ttIconSize, ttRoot.iconsBaseDir, svgTheme);
         if (tok === "moonphase-moonset")
             return IconResolver.resolve("moonset", ttIconSize, ttRoot.iconsBaseDir, svgTheme);
+        // Meteocons wind item: directional compass icon (static for all other themes)
+        if (tok === "wind") {
+            var windStem = W.windDirectionCompassStem(weatherRoot ? weatherRoot.windDirection : NaN);
+            return IconResolver.resolveWindDirection(windStem, ttIconSize, ttRoot.iconsBaseDir, svgTheme);
+        }
 
         return IconResolver.resolve(tok, ttIconSize, ttRoot.iconsBaseDir, svgTheme);
     }

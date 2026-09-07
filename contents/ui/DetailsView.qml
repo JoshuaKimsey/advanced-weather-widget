@@ -281,6 +281,23 @@ Item {
         var theme = (root.iconTheme === "kde") ? "flat-color" : root.iconTheme;
         return IconResolver.resolveMoonPhase(stem, root.iconSize, root.iconsBaseDir, theme);
     }
+    /** Resolves the wind icon - meteocons compass when dynamic, otherwise static.
+     *  Preserves the KDE-theme custom icon path from resolveIcon(). */
+    function resolveWindIcon() {
+        if (root.iconTheme === "kde") {
+            var custom = getDetailsCustomIcon("wind");
+            if (custom.length > 0)
+                return {
+                    type: "kde",
+                    source: custom,
+                    svgFallback: "",
+                    isMask: false
+                };
+        }
+        return IconResolver.resolveWindDirection(
+            W.windDirectionCompassStem(root.weatherRoot ? root.weatherRoot.windDirection : NaN),
+            root.iconSize, root.iconsBaseDir, root.iconTheme);
+    }
     function accentFor(id) {
         return ({
                 feelslike: root.accentWarm,
@@ -718,7 +735,7 @@ Item {
                                 visible: card.modelData === "wind" && root.isList
 
                                 WeatherIcon {
-                                    iconInfo: root.showIconFor("wind") ? root.resolveIcon("wind") : null
+                                    iconInfo: root.showIconFor("wind") ? root.resolveWindIcon() : null
                                     iconSize: root.iconSize
                                     iconColor: root.iconColorFor(root.accentFor("wind"))
                                     Layout.alignment: Qt.AlignVCenter
@@ -785,7 +802,7 @@ Item {
                                             spacing: 8
 
                                             WeatherIcon {
-                                                iconInfo: root.showIconFor("wind") ? root.resolveIcon("wind") : null
+                                                iconInfo: root.showIconFor("wind") ? root.resolveWindIcon() : null
                                                 iconSize: root.iconSize
                                                 iconColor: root.iconColorFor(root.accentFor("wind"))
                                                 Layout.alignment: Qt.AlignVCenter

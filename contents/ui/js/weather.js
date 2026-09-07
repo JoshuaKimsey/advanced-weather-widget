@@ -245,6 +245,26 @@ function windDirectionSvgStem(degrees) {
     return "direction-" + mapping[idx16];
 }
 
+/**
+ * Returns the Meteocons wind-direction compass SVG stem (e.g. "wind-direction-ne")
+ * for the dynamic meteocons theme wind icon. 8-point compass; "" when no bearing.
+ *
+ * dirDeg (0 = N) is the meteorological convention - the direction the wind
+ * is blowing FROM (matching weather.js windDirectionGlyph() and the windCompass
+ * canvases). The arrow must point in the flow/TO direction (dirDeg + 180).
+ * The Meteocons wind-direction-* artwork points at its named direction (e.g.
+ * wind-direction-n points up toward N), so the FROM bearing is shifted +180
+ * to select the icon whose arrow points along the flow.
+ */
+function windDirectionCompassStem(deg) {
+    if (typeof deg !== "number" || !isFinite(deg)) return "";
+    var d = ((((deg + 180) % 360) + 360) % 360);
+    var stems = ["wind-direction-n", "wind-direction-ne", "wind-direction-e",
+                 "wind-direction-se", "wind-direction-s", "wind-direction-sw",
+                 "wind-direction-w", "wind-direction-nw"];
+    return stems[Math.round(d / 45) % 8];
+}
+
 // ── Plasma/Breeze theme icon names ──────────────────────────────────────────
 
 /**

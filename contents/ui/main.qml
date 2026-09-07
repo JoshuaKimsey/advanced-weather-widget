@@ -2538,6 +2538,9 @@ PlasmoidItem {
             return IconResolver.resolveMoonPhase(moonStem, iconSz, _iconsBaseDir, svgTheme);
         }
 
+        // Meteocons wind item: directional compass icon (static for all other themes)
+        if (tok === "wind") return IconResolver.resolveWindDirection(W.windDirectionCompassStem(windDirection), iconSz, _iconsBaseDir, svgTheme);
+
         // Standard items: temperature, humidity, pressure, wind, location, etc.
         return IconResolver.resolve(tok, iconSz, _iconsBaseDir, svgTheme);
     }
