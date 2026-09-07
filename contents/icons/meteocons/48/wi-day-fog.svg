@@ -1,10 +1,10 @@
 <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="fog-day">
 <g id="Mask group">
-<mask id="mask0_1868_4589" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="75">
-<rect id="Mask" width="128" height="75" fill="black"/>
-</mask>
-<g mask="url(#mask0_1868_4589)">
+<clipPath id="mask0_1868_4589">
+<rect id="Mask" width="128" height="75"/>
+</clipPath>
+<g clip-path="url(#mask0_1868_4589)">
 <g id="Sun">
 <circle id="Core" cx="64" cy="72" r="12.5" fill="url(#paint0_linear_1868_4589)" stroke="#F8AF18"/>
 <g id="Rays">
