@@ -2,10 +2,10 @@
 <g id="solar-eclipse" clip-path="url(#clip0_1858_7922)">
 <g id="Solar Eclipse">
 <g id="Mask group">
-<clipPath id="mask0_1858_7922">
-<path id="Mask" clip-rule="evenodd" d="M90 32H26V96H90V32ZM71 81C90 81 90 81 90 64C90 47 90 47 71 47C61.6112 47 54 54.6112 54 64C54 73.3888 61.6112 81 71 81Z"/>
-</clipPath>
-<g clip-path="url(#mask0_1858_7922)">
+<mask id="mask0_1858_7922" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="26" y="32" width="64" height="64">
+<path id="Mask" fill-rule="evenodd" clip-rule="evenodd" d="M90 32H26V96H90V32ZM71 81C90 81 90 81 90 64C90 47 90 47 71 47C61.6112 47 54 54.6112 54 64C54 73.3888 61.6112 81 71 81Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_1858_7922)">
 <g id="Sun">
 <circle id="Core" cx="58" cy="64" r="12.5" fill="url(#paint0_linear_1858_7922)" stroke="#F8AF18"/>
 <g id="Rays">

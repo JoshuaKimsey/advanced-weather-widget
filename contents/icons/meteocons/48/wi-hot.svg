@@ -1,10 +1,10 @@
 <svg viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="uv-index" clip-path="url(#clip0_1837_4930)">
 <g id="UV Sun">
-<clipPath id="mask0_1837_4930">
-<path id="Cutout" d="M128 0H0V128H64V85C64 73.402 73.402 64 85 64H128V0Z"/>
-</clipPath>
-<g clip-path="url(#mask0_1837_4930)">
+<mask id="mask0_1837_4930" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="128">
+<path id="Cutout" d="M128 0H0V128H64V85C64 73.402 73.402 64 85 64H128V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_1837_4930)">
 <g id="Sun">
 <circle id="Core" cx="64" cy="63.9999" r="19.5" fill="url(#paint0_linear_1837_4930)" stroke="#F8AF18"/>
 <g id="Rays">
